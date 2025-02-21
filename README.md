@@ -1,6 +1,8 @@
-# Duke project template
+# BoboType
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+BoboType is a minimalist, interactive CLI tool that enhances typing speed and accuracy through
+personalized exercises, real-time feedback, and progress tracking, helping users build muscle
+memory and confidence efficiently.
 
 ## Setting up in Intellij
 
