@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Roderick Kong Zhang - Project Portfolio Page
 
 ## Overview
 
