@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,15 +8,15 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        WordCounter wordCounter = new WordCounter();
+        FileReader fileReader = new FileReader();
+        Scanner scanner = new Scanner(System.in);
+        TextSelector textSelector = new TextSelector();
+        System.out.println("Enter difficulty level (Choose between easy, intermediate, and difficult)");
+        List<String> sample = textSelector.selectText(scanner.nextLine());
+        for (String sentence : sample) {
+            System.out.println(sentence);
+        }
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
     }
 }
