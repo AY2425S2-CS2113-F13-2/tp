@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ public class BoboType {
     private TextSelector textSelector;
     private WordCounter wordCounter;
     private int wordCount;
+    private TypeAccuracy typeAccuracy;
 
 
     public BoboType(String filepath) {
@@ -16,6 +18,7 @@ public class BoboType {
         textSelector = new TextSelector();
         wordCounter = new WordCounter();
         wordCount = 0;
+        typeAccuracy = new TypeAccuracy(new ArrayList<>());
     }
 
     public void run() {
@@ -46,12 +49,15 @@ public class BoboType {
         switch (command) {
         case "start":
             ui.chooseDifficulty();
-            List<String> testText = textSelector.selectText(sc.nextLine());
+            int randomNum = textSelector.getRandomTextIndex();
+            List<String> testText = textSelector.selectText(sc.nextLine(), randomNum);
+            typeAccuracy.setTestText((ArrayList<String>) testText);
             ui.showStartGame();
             wordCount = 0;
             for (String s : testText) {
                 System.out.println(s);
                 String userInput = sc.nextLine();
+                typeAccuracy.updateUserInput(userInput);
                 wordCount += wordCounter.countWords(userInput);
             }
             ui.showEndGame();
@@ -66,7 +72,7 @@ public class BoboType {
             break;
 
         case "typingaccuracy":
-            ui.showTypingAccuracy();
+            ui.showTypingAccuracy(typeAccuracy.getTypeAccuracy());
             break;
 
         case "highscore":
