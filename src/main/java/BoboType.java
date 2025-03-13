@@ -1,18 +1,26 @@
+import java.util.List;
 import java.util.Scanner;
+import org.w3c.dom.Text;
 
 public class BoboType {
 
     private Ui ui;
     private Scanner sc;
+    private TextSelector textSelector;
+    private WordCounter wordCounter;
+    int wordCount = 0;
+
 
     public BoboType(String filepath) {
         ui = new Ui();
         sc = new Scanner(System.in);
+        textSelector = new TextSelector();
+        wordCounter = new WordCounter();
     }
 
     public void run() {
-        ui.showWelcome();
         Scanner sc = new Scanner(System.in);
+        ui.showWelcome();
 
         while (true) {
             String input = sc.nextLine();
@@ -32,27 +40,29 @@ public class BoboType {
         }
     }
 
+
     private void handleCommand(String[] inputParts) {
         String command = inputParts[0];
 
         switch (command) {
         case "start":
+            ui.chooseDifficulty();
+            List<String> testText = textSelector.selectText(sc.nextLine());
             ui.showStartGame();
-            // Placeholder Text and functions, implement other classes here
-            String testText = "The quick brown fox jumps over the lazy dog.";
-            System.out.println(testText);
-            String userInput = sc.nextLine();
-            System.out.println("You typed: " + userInput);
+            for (String s : testText) {
+                System.out.println(s);
+                String userInput = sc.nextLine();
+                wordCount += wordCounter.countWords(userInput);
+            }
+            ui.showEndGame();
             break;
 
-        case "typelist":
-            // Add typelist code here
-            ui.showTypeList();
-            break;
 
         case "result":
             // Alter to automatically show the result after each game
             ui.showResult();
+            System.out.println("word count: " + wordCount);
+            ui.showEndGame();
             break;
 
         case "typingaccuracy":
