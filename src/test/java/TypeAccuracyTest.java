@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ class TypeAccuracyTest {
     }
 
     @Test
-    void getTypeAccuracy_IncorrectlyTypedText_zeroAccuracy() {
+    void getTypeAccuracy_incorrectlyTypedText_zeroAccuracy() {
         ArrayList<String> testText = new ArrayList<>();
         ArrayList<String> userInput = new ArrayList<>();
 
