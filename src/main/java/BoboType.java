@@ -7,7 +7,7 @@ public class BoboType {
     private Scanner sc;
     private TextSelector textSelector;
     private WordCounter wordCounter;
-    int wordCount;
+    private int wordCount;
 
 
     public BoboType(String filepath) {
@@ -15,6 +15,7 @@ public class BoboType {
         sc = new Scanner(System.in);
         textSelector = new TextSelector();
         wordCounter = new WordCounter();
+        wordCount = 0;
     }
 
     public void run() {
