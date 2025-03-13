@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.Scanner;
-import org.w3c.dom.Text;
 
 public class BoboType {
 
@@ -8,7 +7,7 @@ public class BoboType {
     private Scanner sc;
     private TextSelector textSelector;
     private WordCounter wordCounter;
-    int wordCount = 0;
+    int wordCount;
 
 
     public BoboType(String filepath) {
@@ -19,7 +18,6 @@ public class BoboType {
     }
 
     public void run() {
-        Scanner sc = new Scanner(System.in);
         ui.showWelcome();
 
         while (true) {
@@ -49,6 +47,7 @@ public class BoboType {
             ui.chooseDifficulty();
             List<String> testText = textSelector.selectText(sc.nextLine());
             ui.showStartGame();
+            wordCount = 0;
             for (String s : testText) {
                 System.out.println(s);
                 String userInput = sc.nextLine();
