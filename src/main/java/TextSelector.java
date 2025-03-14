@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,14 +11,13 @@ public class TextSelector {
         List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
 
         if (!validLevels.contains(difficultyLevel)) {
-            throw new InvalidInputException("Invalid user input: " +
-                    "choose between 'easy', 'intermediate' and 'difficult'");
+            throw new InvalidInputException("Invalid user input: '" + difficultyLevel +"'");
         }
 
         try {
             list = fileReader.readFile("./sample_texts/" + difficultyLevel + randomNum + ".txt");
-        } catch (Exception e) {
-            throw new RuntimeException("Error reading file: " + e.getMessage());
+        } catch (FileProcessingException e) {
+            throw new FileProcessingException("Error reading file: " + e.getMessage());
         }
         return list;
     }

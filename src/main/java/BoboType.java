@@ -58,7 +58,7 @@ public class BoboType {
                     break;
                 } catch (InvalidInputException e) {
                     ui.showErrorMessage(e.getMessage());
-                } catch (RuntimeException e) {
+                } catch (FileProcessingException e) {
                     ui.showErrorMessage(e.getMessage());
                 }
             }
