@@ -25,7 +25,7 @@ class TextSelectorTest {
     }
 
     @Test
-    void testTextSelector_invalidDifficultyLevel_InvalidInputExeption() {
+    void testTextSelector_invalidDifficultyLevel_InvalidInputException() {
         try {
             TextSelector.selectText("medium", 2);
             fail("Expected InvalidInputException was not thrown");
@@ -35,7 +35,7 @@ class TextSelectorTest {
         }
     }
     @Test
-    void testTextSelector_fileDoesNotExist_RuntimeExeption() {
+    void testTextSelector_fileDoesNotExist_RuntimeException() {
         try {
             TextSelector.selectText("easy", 4);
             fail("Expected RuntimeException was not thrown");
