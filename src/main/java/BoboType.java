@@ -10,6 +10,7 @@ public class BoboType {
     private WordCounter wordCounter;
     private int wordCount;
     private TypeAccuracy typeAccuracy;
+    private Timer timer;
 
 
     public BoboType(String filepath) {
@@ -19,6 +20,7 @@ public class BoboType {
         wordCounter = new WordCounter();
         wordCount = 0;
         typeAccuracy = new TypeAccuracy(new ArrayList<>());
+        timer = new Timer();
     }
 
     public void run() {
@@ -54,12 +56,18 @@ public class BoboType {
             typeAccuracy.setTestText((ArrayList<String>) testText);
             ui.showStartGame();
             wordCount = 0;
+
+            timer.start();
+
             for (String s : testText) {
                 System.out.println(s);
                 String userInput = sc.nextLine();
                 typeAccuracy.updateUserInput(userInput);
                 wordCount += wordCounter.countWords(userInput);
             }
+
+            timer.stop();
+
             ui.showEndGame();
             break;
 
@@ -67,7 +75,7 @@ public class BoboType {
         case "result":
             // Alter to automatically show the result after each game
             ui.showResult();
-            System.out.println("word count: " + wordCount);
+            System.out.println("Typing speed: " + (double) wordCount / timer.getDuration() * 1000 * 60 + " WPM");
             ui.showEndGame();
             break;
 
