@@ -48,9 +48,21 @@ public class BoboType {
 
         switch (command) {
         case "start":
-            ui.chooseDifficulty();
-            int randomNum = textSelector.getRandomTextIndex();
-            List<String> testText = textSelector.selectText(sc.nextLine(), randomNum);
+            List<String> testText = new ArrayList<>();
+
+            while (true) {
+                try {
+                    ui.chooseDifficulty();
+                    int randomNum = textSelector.getRandomTextIndex();
+                    testText = textSelector.selectText(sc.nextLine(), randomNum);
+                    break;
+                } catch (InvalidInputException e) {
+                    ui.showErrorMessage(e.getMessage());
+                } catch (RuntimeException e) {
+                    ui.showErrorMessage(e.getMessage());
+                }
+            }
+
             typeAccuracy.setTestText((ArrayList<String>) testText);
             ui.showStartGame();
             wordCount = 0;
