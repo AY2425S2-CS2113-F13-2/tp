@@ -24,6 +24,10 @@ public class Ui {
         drawLine();
     }
 
+    public void showErrorMessage(String message) {
+        System.out.println("[Error] " + message);
+    }
+
     public void showResult() {
         drawLine();
         System.out.println(" Hope you enjoyed the round! Here are your stats:");
