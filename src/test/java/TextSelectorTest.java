@@ -27,7 +27,7 @@ class TextSelectorTest {
     @Test
     void testTextSelector_invalidDifficultyLevel_invalidInputException() {
         assertThrows(InvalidInputException.class, () -> {
-                TextSelector.selectText("medium", 2);
+            TextSelector.selectText("medium", 2);
         });
     }
     @Test
