@@ -10,7 +10,8 @@ public class TextSelector {
         List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
 
         if (!validLevels.contains(difficultyLevel)) {
-            throw new InvalidInputException("Invalid user input: choose between 'easy', 'intermediate' and 'difficult'");
+            throw new InvalidInputException("Invalid user input: " +
+                    "choose between 'easy', 'intermediate' and 'difficult'");
         }
 
         try {
