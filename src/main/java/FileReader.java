@@ -23,7 +23,7 @@ public class FileReader {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
+            throw new FileProcessingException(e.getMessage());
         }
         return lines;
     }
