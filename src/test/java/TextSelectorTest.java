@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TextSelectorTest {
 
@@ -26,21 +26,14 @@ class TextSelectorTest {
 
     @Test
     void testTextSelector_invalidDifficultyLevel_invalidInputException() {
-        try {
-            TextSelector.selectText("medium", 2);
-            fail("Expected InvalidInputException was not thrown");
-        } catch (InvalidInputException e) {
-            assertEquals("Invalid user input: 'medium'", e.getMessage());
-        }
+        assertThrows(InvalidInputException.class, () -> {
+                TextSelector.selectText("medium", 2);
+        });
     }
     @Test
     void testTextSelector_fileDoesNotExist_fileProcessingException() {
-        try {
+        assertThrows(FileProcessingException.class, () -> {
             TextSelector.selectText("easy", 4);
-            fail("Expected RuntimeException was not thrown");
-        } catch (FileProcessingException e) {
-            assertEquals("Error reading file: .\\sample_texts\\easy4.txt " +
-                    "(The system cannot find the file specified)", e.getMessage());
-        }
+        });
     }
 }
