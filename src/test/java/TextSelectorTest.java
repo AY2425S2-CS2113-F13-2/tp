@@ -25,17 +25,16 @@ class TextSelectorTest {
     }
 
     @Test
-    void testTextSelector_invalidDifficultyLevel_InvalidInputException() {
+    void testTextSelector_invalidDifficultyLevel_invalidInputException() {
         try {
             TextSelector.selectText("medium", 2);
             fail("Expected InvalidInputException was not thrown");
         } catch (InvalidInputException e) {
-            assertEquals("Invalid user input: " +
-                    "choose between 'easy', 'intermediate' and 'difficult'", e.getMessage());
+            assertEquals("Invalid user input: 'medium'", e.getMessage());
         }
     }
     @Test
-    void testTextSelector_fileDoesNotExist_RuntimeException() {
+    void testTextSelector_fileDoesNotExist_fileProcessingException() {
         try {
             TextSelector.selectText("easy", 4);
             fail("Expected RuntimeException was not thrown");
