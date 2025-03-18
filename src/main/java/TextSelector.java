@@ -18,11 +18,6 @@ public class TextSelector {
         FileReader fileReader = new FileReader();
         List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
 
-        assert !validLevels.contains(difficultyLevel):
-                "difficulty level should be easy, intermediate, or difficult.";
-        assert randomNum <= numOfTextsPerLevel && randomNum >= 1:
-                "randomNum should be between 1 and " + numOfTextsPerLevel + ".";
-
         if (!validLevels.contains(difficultyLevel)) {
             logger.log(Level.SEVERE, "Invalid user input: '" + difficultyLevel +"'");
             throw new InvalidInputException("Invalid user input: '" + difficultyLevel +"'");
@@ -34,12 +29,16 @@ public class TextSelector {
             logger.log(Level.SEVERE, "Error reading file: ", e.getMessage());
             throw new FileProcessingException("Error reading file: " + e.getMessage());
         }
+        assert list != null;
         return list;
     }
 
     public static int getRandomTextIndex() {
         Random random = new Random();
-        return random.nextInt(3) + 1;
+        int randomNum = random.nextInt(3) + 1;
+        assert randomNum <= numOfTextsPerLevel && randomNum >= 1:
+            "randomNum is between 1 and " + numOfTextsPerLevel;
+        return randomNum;
     }
 
 }
