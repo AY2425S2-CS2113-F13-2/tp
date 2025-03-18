@@ -17,8 +17,11 @@ public class TextSelector {
         List<String> list = new ArrayList<>();
         FileReader fileReader = new FileReader();
         List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
-        assert !validLevels.contains(difficultyLevel): "difficulty level should be easy, intermediate, or difficult.";
-        assert randomNum <= numOfTextsPerLevel && randomNum >= 1: "randomNum should be between 1 and " + numOfTextsPerLevel + ".";
+
+        assert !validLevels.contains(difficultyLevel):
+                "difficulty level should be easy, intermediate, or difficult.";
+        assert randomNum <= numOfTextsPerLevel && randomNum >= 1:
+                "randomNum should be between 1 and " + numOfTextsPerLevel + ".";
 
         if (!validLevels.contains(difficultyLevel)) {
             logger.log(Level.SEVERE, "Invalid user input: '" + difficultyLevel +"'");
