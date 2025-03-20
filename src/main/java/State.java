@@ -28,6 +28,7 @@ public class State {
     }
 
     public void updateHighScore(Double newHighScore) {
+        assert highScore >= 0.0 : "highscore must be a positive number";
         if (newHighScore > highScore) {
             setHighScore(newHighScore);
         }
