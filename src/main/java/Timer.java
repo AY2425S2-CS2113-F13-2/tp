@@ -22,12 +22,12 @@ public class Timer {
     }
 
     public double getDurationMin() throws IllegalStateException {
-        if (startTime == -1 || stopTime == -1) {
+        if (startTime == -1 || stopTime == -1 || startTime >= stopTime) {
             logger.log(Level.SEVERE, "Timer not started or stopped");
             throw new IllegalStateException("Timer not started or stopped");
         }
         double duration = (double) (this.stopTime - this.startTime) / 60000;
-        assert duration >= 0.0 : "duration must be a positive number";
+        assert duration > 0.0 : "duration must be a positive number > 0";
         return duration;
     }
 }
