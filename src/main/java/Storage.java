@@ -1,12 +1,13 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Storage {
     File file;
 
     public Storage (String filePath) {
-        File file = new File(filePath);
+        this.file = new File(filePath);
         if (!file.exists()) {
             if (file.getParentFile() != null) {
                 file.getParentFile().mkdirs();
@@ -27,6 +28,7 @@ public class Storage {
     }
 
     public Double readScoreFromFile() throws IOException {
-        return Double.parseDouble(file.toString());
+        Scanner scanner = new Scanner(file);
+        return scanner.nextDouble();
     }
 }
