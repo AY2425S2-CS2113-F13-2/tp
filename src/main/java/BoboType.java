@@ -4,13 +4,12 @@ import java.util.Scanner;
 
 public class BoboType {
 
-    private Ui ui;
-    private Scanner sc;
-    private TextSelector textSelector;
-    private WordCounter wordCounter;
+    private final Ui ui;
+    private final Scanner sc;
     private int wordCount;
-    private TypeAccuracy typeAccuracy;
-    private Timer timer;
+    private int characterCount;
+    private final TypeAccuracy typeAccuracy;
+    private final Timer timer;
     private State state;
 
 
@@ -19,9 +18,8 @@ public class BoboType {
         state = new State(storage);
         ui = new Ui(state);
         sc = new Scanner(System.in);
-        textSelector = new TextSelector();
-        wordCounter = new WordCounter();
         wordCount = 0;
+        characterCount = 0;
         typeAccuracy = new TypeAccuracy(new ArrayList<>());
         timer = new Timer();
     }
@@ -34,15 +32,12 @@ public class BoboType {
             String[] inputParts = Parser.parseCommand(input);
             String command = inputParts[0];
 
-            switch (command) {
-            case "exit":
+            if (command.equals("exit")) {
                 ui.showExit();
                 sc.close();
                 return;  // Exit the method (and the program)
-
-            default:
+            } else {
                 handleCommand(inputParts);  // Handle any other commands
-                break;
             }
         }
     }
@@ -53,17 +48,15 @@ public class BoboType {
 
         switch (command) {
         case "start":
-            List<String> testText = new ArrayList<>();
+            List<String> testText;
 
             while (true) {
                 try {
                     ui.chooseDifficulty();
-                    int randomNum = textSelector.getRandomTextIndex();
-                    testText = textSelector.selectText(sc.nextLine(), randomNum);
+                    int randomNum = TextSelector.getRandomTextIndex();
+                    testText = TextSelector.selectText(sc.nextLine(), randomNum);
                     break;
-                } catch (InvalidInputException e) {
-                    ui.showErrorMessage(e.getMessage());
-                } catch (FileProcessingException e) {
+                } catch (InvalidInputException | FileProcessingException e) {
                     ui.showErrorMessage(e.getMessage());
                 }
             }
@@ -71,6 +64,7 @@ public class BoboType {
             typeAccuracy.setTestText((ArrayList<String>) testText);
             ui.showStartGame();
             wordCount = 0;
+            characterCount = 0;
 
             timer.start();
 
@@ -78,7 +72,8 @@ public class BoboType {
                 System.out.println(s);
                 String userInput = sc.nextLine();
                 typeAccuracy.updateUserInput(userInput);
-                wordCount += wordCounter.countWords(userInput);
+                wordCount += WordCounter.countWords(userInput);
+                characterCount += userInput.length();
             }
 
             timer.stop();
@@ -90,7 +85,9 @@ public class BoboType {
         case "result":
             // Alter to automatically show the result after each game
             ui.showResult();
-            System.out.println("Typing speed: " + (double) wordCount / timer.getDuration() * 1000 * 60 + " WPM");
+            double duration = timer.getDurationMin();
+            System.out.println("Typing speed (WPM): " + (int) (wordCount / duration) + " WPM");
+            System.out.println("Typing speed (CPM): " + (int) (characterCount / duration) + " CPM");
             ui.showEndGame();
             break;
 
