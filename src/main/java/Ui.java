@@ -33,6 +33,14 @@ public class Ui {
         System.out.println(" Hope you enjoyed the round! Here are your stats:");
     }
 
+    public void showTypingSpeedWPM(int typingSpeedWPM) {
+        System.out.println(" Typing speed (WPM): " + typingSpeedWPM + " WPM");
+    }
+
+    public void showTypingSpeedCPM(int typingSpeedCPM) {
+        System.out.println(" Typing speed (CPM): " + typingSpeedCPM + " CPM");
+    }
+
     public void showTypingAccuracy(double typeAccuracy) {
         drawLine();
         System.out.println(" Your typing accuracy is: " + typeAccuracy*100 + "%");

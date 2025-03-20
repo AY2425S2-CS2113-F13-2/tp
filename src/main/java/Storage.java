@@ -29,6 +29,10 @@ public class Storage {
 
     public Double readScoreFromFile() throws IOException {
         Scanner scanner = new Scanner(file);
-        return scanner.nextDouble();
+        if (scanner.hasNextDouble()) {
+            return scanner.nextDouble();
+        } else {
+            return 0.0; // Default value if no valid double is found
+        }
     }
 }

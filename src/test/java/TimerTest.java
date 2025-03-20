@@ -35,7 +35,17 @@ public class TimerTest {
             assertEquals("Timer not started or stopped", e.getMessage());
         }
 
-
+        // Timer not stopped
+        try {
+            Timer timer = new Timer();
+            timer.start();
+            timer.stop();
+            timer.start();
+            assertEquals(0, timer.getDurationMin());
+            fail();
+        } catch (IllegalStateException e) {
+            assertEquals("Timer not started or stopped", e.getMessage());
+        }
     }
 
 }
