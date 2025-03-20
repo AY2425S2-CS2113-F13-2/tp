@@ -111,7 +111,7 @@ public class BoboType {
 
     // Main method to start the program
     public static void main(String[] args) {
-        BoboType app = new BoboType("./BoboType.java");
+        BoboType app = new BoboType("data/BoboType.txt");
         app.run();  // Run the program
     }
 }

@@ -24,10 +24,10 @@ public class TextSelector {
         }
 
         try {
-            list = fileReader.readFile("./sample_texts/" + difficultyLevel + randomNum + ".txt");
+            list = fileReader.readFile("sample_texts/" + difficultyLevel + randomNum + ".txt");
         } catch (FileProcessingException e) {
-            logger.log(Level.SEVERE, "Error reading file: ", e.getMessage());
-            throw new FileProcessingException("Error reading file: " + e.getMessage());
+            logger.log(Level.WARNING, "No file found, use sample text" + e.getMessage());
+            list = SampleTextReader.readSampleText(difficultyLevel);
         }
         assert list != null;
         return list;
@@ -35,6 +35,8 @@ public class TextSelector {
 
     public static int getRandomTextIndex() {
         Random random = new Random();
+        //TODO: random file chosen in fileReader instead?
+        // TODO: bound should be 2 instead? (0, 1, 2) + 1
         int randomNum = random.nextInt(3) + 1;
         assert randomNum <= numOfTextsPerLevel && randomNum >= 1:
             "randomNum is between 1 and " + numOfTextsPerLevel;
