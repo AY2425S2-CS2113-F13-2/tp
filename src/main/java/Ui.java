@@ -24,6 +24,10 @@ public class Ui {
         drawLine();
     }
 
+    public void showErrorMessage(String message) {
+        System.out.println("[Error] " + message);
+    }
+
     public void showResult() {
         drawLine();
         System.out.println(" Hope you enjoyed the round! Here are your stats:");
@@ -32,6 +36,9 @@ public class Ui {
     public void showTypingAccuracy(double accuracy) {
         drawLine();
         System.out.println(" Your typing accuracy is: " + accuracy*100 + "%");
+    public void showTypingAccuracy(double typeAccuracy) {
+        drawLine();
+        System.out.println(" Your typing accuracy is: " + typeAccuracy*100 + "%");
         drawLine();
     }
 
