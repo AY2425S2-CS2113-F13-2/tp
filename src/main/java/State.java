@@ -4,8 +4,8 @@ public class State {
     private Double highScore;
     private Storage storage;
 
-    public State () {
-        storage = new Storage("data/BoboType.txt");
+    public State (Storage storage) {
+        this.storage = storage;
         try {
             highScore = storage.readScoreFromFile();
         } catch (IOException e) {
@@ -28,6 +28,7 @@ public class State {
     }
 
     public void updateHighScore(Double newHighScore) {
+        assert highScore >= 0.0 : "highscore must be a positive number";
         if (newHighScore > highScore) {
             setHighScore(newHighScore);
         }
