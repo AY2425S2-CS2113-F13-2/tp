@@ -11,10 +11,13 @@ public class BoboType {
     private int wordCount;
     private TypeAccuracy typeAccuracy;
     private Timer timer;
+    private State state;
 
 
     public BoboType(String filepath) {
-        ui = new Ui();
+        Storage storage = new Storage(filepath);
+        state = new State(storage);
+        ui = new Ui(state);
         sc = new Scanner(System.in);
         textSelector = new TextSelector();
         wordCounter = new WordCounter();
