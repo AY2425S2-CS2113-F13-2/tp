@@ -17,21 +17,25 @@ public class Ui {
         drawLine();
     }
 
-    public void showTypeList() {
+    public void chooseDifficulty() {
         drawLine();
-        System.out.println(" Select your difficulty:");
+        System.out.println(" Select your difficulty: ");
+        System.out.println(" Type: 'easy' or 'intermediate' or 'difficult'");
         drawLine();
+    }
+
+    public void showErrorMessage(String message) {
+        System.out.println("[Error] " + message);
     }
 
     public void showResult() {
         drawLine();
         System.out.println(" Hope you enjoyed the round! Here are your stats:");
-        drawLine();
     }
 
-    public void showTypingAccuracy() {
+    public void showTypingAccuracy(double typeAccuracy) {
         drawLine();
-        System.out.println(" Your typing accuracy is: :");
+        System.out.println(" Your typing accuracy is: " + typeAccuracy*100 + "%");
         drawLine();
     }
 
@@ -44,6 +48,17 @@ public class Ui {
     public void showStartGame() {
         drawLine();
         System.out.println("Typing test started! Type the following text:");
+    }
+
+    public void showEndGame() {
+        drawLine();
+        System.out.println("You finished the practice! Please type \n" +
+                "\t - 'result' to view the result \n" +
+                "\t - 'typingaccuracy' to view your typing accuracy \n" +
+                "\t - 'exit' to exit or \n" +
+                "\t - 'start' to start the new practice.");
+        drawLine();
+
     }
 }
 

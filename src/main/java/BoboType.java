@@ -1,18 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BoboType {
 
     private Ui ui;
     private Scanner sc;
+    private TextSelector textSelector;
+    private WordCounter wordCounter;
+    private int wordCount;
+    private TypeAccuracy typeAccuracy;
+    private Timer timer;
+
 
     public BoboType(String filepath) {
         ui = new Ui();
         sc = new Scanner(System.in);
+        textSelector = new TextSelector();
+        wordCounter = new WordCounter();
+        wordCount = 0;
+        typeAccuracy = new TypeAccuracy(new ArrayList<>());
+        timer = new Timer();
     }
 
     public void run() {
         ui.showWelcome();
-        Scanner sc = new Scanner(System.in);
 
         while (true) {
             String input = sc.nextLine();
@@ -32,31 +44,55 @@ public class BoboType {
         }
     }
 
+
     private void handleCommand(String[] inputParts) {
         String command = inputParts[0];
 
         switch (command) {
         case "start":
+            List<String> testText = new ArrayList<>();
+
+            while (true) {
+                try {
+                    ui.chooseDifficulty();
+                    int randomNum = textSelector.getRandomTextIndex();
+                    testText = textSelector.selectText(sc.nextLine(), randomNum);
+                    break;
+                } catch (InvalidInputException e) {
+                    ui.showErrorMessage(e.getMessage());
+                } catch (FileProcessingException e) {
+                    ui.showErrorMessage(e.getMessage());
+                }
+            }
+
+            typeAccuracy.setTestText((ArrayList<String>) testText);
             ui.showStartGame();
-            // Placeholder Text and functions, implement other classes here
-            String testText = "The quick brown fox jumps over the lazy dog.";
-            System.out.println(testText);
-            String userInput = sc.nextLine();
-            System.out.println("You typed: " + userInput);
+            wordCount = 0;
+
+            timer.start();
+
+            for (String s : testText) {
+                System.out.println(s);
+                String userInput = sc.nextLine();
+                typeAccuracy.updateUserInput(userInput);
+                wordCount += wordCounter.countWords(userInput);
+            }
+
+            timer.stop();
+
+            ui.showEndGame();
             break;
 
-        case "typelist":
-            // Add typelist code here
-            ui.showTypeList();
-            break;
 
         case "result":
             // Alter to automatically show the result after each game
             ui.showResult();
+            System.out.println("Typing speed: " + (double) wordCount / timer.getDuration() * 1000 * 60 + " WPM");
+            ui.showEndGame();
             break;
 
         case "typingaccuracy":
-            ui.showTypingAccuracy();
+            ui.showTypingAccuracy(typeAccuracy.getTypeAccuracy());
             break;
 
         case "highscore":
@@ -76,4 +112,3 @@ public class BoboType {
         app.run();  // Run the program
     }
 }
-
