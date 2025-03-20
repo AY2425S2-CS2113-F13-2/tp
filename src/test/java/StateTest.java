@@ -11,10 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StateTest {
 
+    private static final Logger logger = Logger.getLogger(StateTest.class.getName());
     private State state;
     private Storage storage;
     private final String testFilePath = "data/testBoboType.txt";
-    private static final Logger logger = Logger.getLogger(StateTest.class.getName());
+
 
     @BeforeEach
     public void setUp() throws IOException {
