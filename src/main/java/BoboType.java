@@ -86,8 +86,8 @@ public class BoboType {
             // Alter to automatically show the result after each game
             ui.showResult();
             double duration = timer.getDurationMin();
-            System.out.println("Typing speed (WPM): " + (int) (wordCount / duration) + " WPM");
-            System.out.println("Typing speed (CPM): " + (int) (characterCount / duration) + " CPM");
+            ui.showTypingSpeedWPM((int) (wordCount / duration));
+            ui.showTypingSpeedCPM((int) (characterCount / duration));
             ui.showEndGame();
             break;
 
