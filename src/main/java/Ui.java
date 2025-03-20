@@ -33,9 +33,6 @@ public class Ui {
         System.out.println(" Hope you enjoyed the round! Here are your stats:");
     }
 
-    public void showTypingAccuracy(double accuracy) {
-        drawLine();
-        System.out.println(" Your typing accuracy is: " + accuracy*100 + "%");
     public void showTypingAccuracy(double typeAccuracy) {
         drawLine();
         System.out.println(" Your typing accuracy is: " + typeAccuracy*100 + "%");

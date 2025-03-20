@@ -41,13 +41,6 @@ public class TypeAccuracy {
             String[] splitTestWords = testText.get(i).split(" ");
             testTotalWordCount += splitTestWords.length;
             String[] splitUserWords = userText.get(i).split(" ");
-            userTotalWordCount += splitUserWords.length;
-
-            if (splitTestWords.length > splitUserWords.length) {
-                leastWordCount = splitUserWords.length;
-            }else {
-                leastWordCount = splitTestWords.length;
-            }
             leastWordCount = Math.min(splitTestWords.length, splitUserWords.length);
 
             for (int j = 0; j < leastWordCount; j++) {
