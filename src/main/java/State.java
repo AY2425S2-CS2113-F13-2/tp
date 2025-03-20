@@ -4,8 +4,8 @@ public class State {
     private Double highScore;
     private Storage storage;
 
-    public State () {
-        storage = new Storage("data/BoboType.txt");
+    public State (Storage storage) {
+        this.storage = storage;
         try {
             highScore = storage.readScoreFromFile();
         } catch (IOException e) {

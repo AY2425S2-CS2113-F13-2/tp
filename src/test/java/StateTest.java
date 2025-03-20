@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StateTest {
 
     private State state;
+    private Storage storage;
     private final String testFilePath = "data/testBoboType.txt";
     private static final Logger logger = Logger.getLogger(StateTest.class.getName());
 
@@ -24,7 +26,15 @@ public class StateTest {
         file.getParentFile().mkdirs();
         file.createNewFile();
 
-        state = new State();
+        // Write an initial value to the file to avoid NoSuchElementException
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write("0.0");
+        } catch (Exception e) {
+            logger.warning("Error writing to temporary file.");
+        }
+
+        storage = new Storage(testFilePath);
+        state = new State(storage);
         logger.info("Set up complete. Temporary file created and State instance initialized.");
     }
 

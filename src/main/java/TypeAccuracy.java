@@ -29,8 +29,7 @@ public class TypeAccuracy {
 
             if (splitTestWords.length > splitUserWords.length) {
                 leastWordCount = splitUserWords.length;
-            }
-            else {
+            }else {
                 leastWordCount = splitTestWords.length;
             }
 
