@@ -22,7 +22,7 @@ public class TextSelector {
             logger.log(Level.SEVERE, "Invalid user input: '" + difficultyLevel +"'");
             throw new InvalidInputException("Invalid user input: '" + difficultyLevel +"'");
         }
-        list = SampleTextReader.readSampleText(difficultyLevel);
+        list = SampleTextReader.readSampleText(difficultyLevel, randomNum);
         assert list != null;
         return list;
     }

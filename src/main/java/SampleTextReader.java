@@ -91,7 +91,7 @@ public class SampleTextReader {
     public SampleTextReader() {
     }
 
-    public static List<String> readSampleText(String difficultyLevel) {
+    public static List<String> readSampleText(String difficultyLevel, int randomNum) {
         List<String> lines = new ArrayList<>();
         String[] texts;
         switch (difficultyLevel) {
@@ -108,10 +108,7 @@ public class SampleTextReader {
             throw new IllegalArgumentException("Invalid difficulty level.");
         }
 
-        // choose random text
-        Random random = new Random();
-        int randomIndex = random.nextInt(NUM_SAMPLE_TEXTS);
-        String randomText = texts[randomIndex];
+        String randomText = texts[randomNum];
         // split the text into lines
         String[] textLines = randomText.split("\\.");
         for (String line : textLines) {
@@ -122,5 +119,10 @@ public class SampleTextReader {
             }
         }
         return lines;
+    }
+
+    public static int getRandomNum() {
+        Random random = new Random();
+        return random.nextInt(NUM_SAMPLE_TEXTS);
     }
 }
