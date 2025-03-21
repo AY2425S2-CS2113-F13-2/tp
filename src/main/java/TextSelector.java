@@ -22,13 +22,7 @@ public class TextSelector {
             logger.log(Level.SEVERE, "Invalid user input: '" + difficultyLevel +"'");
             throw new InvalidInputException("Invalid user input: '" + difficultyLevel +"'");
         }
-
-        try {
-            list = fileReader.readFile("sample_texts/" + difficultyLevel + randomNum + ".txt");
-        } catch (FileProcessingException e) {
-            logger.log(Level.WARNING, "No file found, use sample text" + e.getMessage());
-            list = SampleTextReader.readSampleText(difficultyLevel);
-        }
+        list = SampleTextReader.readSampleText(difficultyLevel, randomNum);
         assert list != null;
         return list;
     }

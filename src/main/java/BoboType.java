@@ -53,7 +53,7 @@ public class BoboType {
             while (true) {
                 try {
                     ui.chooseDifficulty();
-                    int randomNum = TextSelector.getRandomTextIndex();
+                    int randomNum = SampleTextReader.getRandomNum();
                     testText = TextSelector.selectText(sc.nextLine(), randomNum);
                     break;
                 } catch (InvalidInputException | FileProcessingException e) {

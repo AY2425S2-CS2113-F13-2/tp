@@ -20,7 +20,7 @@ class TextSelectorTest {
         resultText.add("It’s a fun food to share with friends or family.");
         resultText.add("Everyone can pick their favorite toppings, and we can all enjoy it together.");
 
-        List<String> actualText = TextSelector.selectText("easy", 2);
+        List<String> actualText = SampleTextReader.readSampleText("easy", 2);
         assertEquals(resultText, actualText);
     }
 
