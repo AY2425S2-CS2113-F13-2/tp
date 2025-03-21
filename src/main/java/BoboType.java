@@ -96,6 +96,8 @@ public class BoboType {
             break;
 
         case "highscore":
+            double time = timer.getDurationMin();
+            state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
             ui.showHighScore();
             break;
 
