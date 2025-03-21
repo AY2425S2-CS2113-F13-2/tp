@@ -115,7 +115,11 @@ public class SampleTextReader {
         // split the text into lines
         String[] textLines = randomText.split("\\.");
         for (String line : textLines) {
-            lines.add(line.trim());
+            if (!line.trim().isEmpty()) {
+                lines.add(line.trim() + ".");
+            } else {
+                lines.add(line.trim());
+            }
         }
         return lines;
     }
