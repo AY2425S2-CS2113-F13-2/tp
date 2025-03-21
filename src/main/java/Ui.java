@@ -1,5 +1,9 @@
 public class Ui {
 
+    private State state;
+    public Ui(State state) {
+        this.state = state;
+    }
     public void drawLine() {
         System.out.println("____________________________________________________________");
     }
@@ -49,7 +53,7 @@ public class Ui {
 
     public void showHighScore() {
         drawLine();
-        System.out.println(" Your high score is: :");
+        System.out.println(" Your high score is: " + toString().valueOf(state.getHighScore()));
         drawLine();
     }
 
@@ -63,6 +67,7 @@ public class Ui {
         System.out.println("You finished the practice! Please type \n" +
                 "\t - 'result' to view the result \n" +
                 "\t - 'typingaccuracy' to view your typing accuracy \n" +
+                "\t - 'highscore' to view your high score \n" +
                 "\t - 'exit' to exit or \n" +
                 "\t - 'start' to start the new practice.");
         drawLine();

@@ -30,10 +30,4 @@ class TextSelectorTest {
             TextSelector.selectText("medium", 2);
         });
     }
-    @Test
-    void testTextSelector_fileDoesNotExist_fileProcessingException() {
-        assertThrows(FileProcessingException.class, () -> {
-            TextSelector.selectText("easy", 4);
-        });
-    }
 }

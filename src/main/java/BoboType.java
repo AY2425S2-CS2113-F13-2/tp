@@ -10,10 +10,13 @@ public class BoboType {
     private int characterCount;
     private final TypeAccuracy typeAccuracy;
     private final Timer timer;
+    private State state;
 
 
     public BoboType(String filepath) {
-        ui = new Ui();
+        Storage storage = new Storage(filepath);
+        state = new State(storage);
+        ui = new Ui(state);
         sc = new Scanner(System.in);
         wordCount = 0;
         characterCount = 0;
@@ -105,7 +108,7 @@ public class BoboType {
 
     // Main method to start the program
     public static void main(String[] args) {
-        BoboType app = new BoboType("./BoboType.java");
+        BoboType app = new BoboType("data/BoboType.txt");
         app.run();  // Run the program
     }
 }
