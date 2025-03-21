@@ -57,15 +57,15 @@ public class StateTest {
 
     @Test
     public void testUpdateHighScore() {
-        state.updateHighScore(100.0);
+        state.updateHighScore(1.0, 100);
         assertEquals(100.0, state.getHighScore());
         logger.info("High score updated to 100.0 and verified.");
 
-        state.updateHighScore(50.0);
+        state.updateHighScore(1.0, 50);
         assertEquals(100.0, state.getHighScore());
         logger.info("High score remains 100.0 after attempting to update with a lower score.");
 
-        state.updateHighScore(150.0);
+        state.updateHighScore(1.0, 150);
         assertEquals(150.0, state.getHighScore());
         logger.info("High score updated to 150.0 and verified.");
     }

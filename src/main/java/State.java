@@ -27,7 +27,8 @@ public class State {
         }
     }
 
-    public void updateHighScore(Double newHighScore) {
+    public void updateHighScore(Double accuracy, int wpm) {
+        double newHighScore = accuracy * wpm;
         assert highScore >= 0.0 : "highscore must be a positive number";
         if (newHighScore > highScore) {
             setHighScore(newHighScore);

@@ -122,6 +122,7 @@ public class SampleTextReader {
     }
 
     public static int getRandomNum() {
+        //TODO: random file chosen in fileReader instead?
         Random random = new Random();
         return random.nextInt(NUM_SAMPLE_TEXTS);
     }
