@@ -26,7 +26,6 @@ public class TextSelector {
         try {
             list = fileReader.readFile("sample_texts/" + difficultyLevel + randomNum + ".txt");
         } catch (FileProcessingException e) {
-            logger.log(Level.WARNING, "No file found, use sample text" + e.getMessage());
             list = SampleTextReader.readSampleText(difficultyLevel);
         }
         assert list != null;
