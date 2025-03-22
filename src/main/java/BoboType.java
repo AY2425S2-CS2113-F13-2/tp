@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BoboType {
+    private static final int NUM_OF_TEXTS = 3;
 
     private final Ui ui;
     private final Scanner sc;
@@ -10,7 +11,7 @@ public class BoboType {
     private int characterCount;
     private final TypeAccuracy typeAccuracy;
     private final Timer timer;
-    private State state;
+    private final State state;
 
 
     public BoboType(String filepath) {
@@ -53,7 +54,7 @@ public class BoboType {
             while (true) {
                 try {
                     ui.chooseDifficulty();
-                    int randomNum = SampleTextReader.getRandomNum();
+                    int randomNum = RandNumGenerator.randInt(1, NUM_OF_TEXTS);
                     testText = TextSelector.selectText(sc.nextLine(), randomNum);
                     break;
                 } catch (InvalidInputException | FileProcessingException e) {
