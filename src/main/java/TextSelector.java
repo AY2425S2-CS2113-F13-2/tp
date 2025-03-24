@@ -13,7 +13,7 @@ public class TextSelector {
     public static List<String> selectText(String difficultyLevel, String textLength, int randomNum) {
         List<String> list = new ArrayList<>();
         FileReader fileReader = new FileReader();
-        List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
+        List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult", "zen");
         List<String> validLengths = Arrays.asList("short", "medium", "long");
 
         if (!validLevels.contains(difficultyLevel)) {
@@ -21,6 +21,11 @@ public class TextSelector {
         }
         if (!validLengths.contains(textLength)) {
             throw new InvalidInputException("Please enter a valid text length.");
+        }
+
+        if (difficultyLevel.equals("zen")) {
+            list.add("IN_ZEN_MODE");
+            return list;
         }
 
         String filePath = "/sample_texts/" + difficultyLevel + "/" + textLength + "/" + randomNum + ".txt";

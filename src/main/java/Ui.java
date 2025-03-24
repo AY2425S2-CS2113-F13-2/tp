@@ -1,9 +1,11 @@
 public class Ui {
 
     private State state;
+
     public Ui(State state) {
         this.state = state;
     }
+
     public void drawLine() {
         System.out.println("____________________________________________________________");
     }
@@ -24,7 +26,7 @@ public class Ui {
     public void chooseDifficulty() {
         drawLine();
         System.out.println(" Select your difficulty: ");
-        System.out.println(" Type: 'easy' or 'intermediate' or 'difficult'");
+        System.out.println(" Type: 'easy' or 'intermediate' or 'difficult' or 'zen'");
         drawLine();
     }
 
@@ -52,9 +54,14 @@ public class Ui {
         System.out.println(" Typing speed (CPM): " + typingSpeedCPM + " CPM");
     }
 
+    /**
+     * Displays typing accuracy of user in percentage to user
+     *
+     * @param typeAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
+     */
     public void showTypingAccuracy(double typeAccuracy) {
         drawLine();
-        System.out.println(" Your typing accuracy is: " + typeAccuracy*100 + "%");
+        System.out.println(" Your typing accuracy is: " + typeAccuracy * 100 + "%");
         drawLine();
     }
 
@@ -80,6 +87,27 @@ public class Ui {
         drawLine();
 
     }
+
+    public void showZenModeInstructions() {
+        drawLine();
+        System.out.println("""
+                Welcome to Zen Mode, you can type out anything to your
+                heart's content and find out your typing speed.
+                Pressing Enter will start the timer and typing the comment
+                'stop_practice' will stop the practice.""");
+        drawLine();
+    }
+
+    public void showZenModeEndGame(int wordCount, int typingSpeedWPM, int typingSpeedCPM) {
+        drawLine();
+        System.out.println("You finished the Zen Mode Practice! \n" +
+                "You have typed: " + wordCount + " words\n");
+        showTypingSpeedWPM(typingSpeedWPM);
+        showTypingSpeedCPM(typingSpeedWPM);
+        drawLine();
+
+    }
+
 }
 
 
