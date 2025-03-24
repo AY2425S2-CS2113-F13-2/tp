@@ -68,24 +68,30 @@ public class BoboType {
                 }
             }
 
-            typeAccuracy.setTestText((ArrayList<String>) testText);
-            ui.showStartGame();
-            wordCount = 0;
-            characterCount = 0;
+            if (testText.contains("IN_ZEN_MODE")) {
+                ZenMode zenMode = new ZenMode(timer,sc,ui);
+                zenMode.startZenMode();
+            } else {
 
-            timer.start();
+                typeAccuracy.setTestText((ArrayList<String>) testText);
+                ui.showStartGame();
+                wordCount = 0;
+                characterCount = 0;
 
-            for (String s : testText) {
-                System.out.println(s);
-                String userInput = sc.nextLine();
-                typeAccuracy.updateUserInput(userInput);
-                wordCount += WordCounter.countWords(userInput);
-                characterCount += userInput.length();
+                timer.start();
+
+                for (String s : testText) {
+                    System.out.println(s);
+                    String userInput = sc.nextLine();
+                    typeAccuracy.updateUserInput(userInput);
+                    wordCount += WordCounter.countWords(userInput);
+                    characterCount += userInput.length();
+                }
+
+                timer.stop();
+
+                ui.showEndGame();
             }
-
-            timer.stop();
-
-            ui.showEndGame();
             break;
 
 
@@ -99,7 +105,13 @@ public class BoboType {
             break;
 
         case "typingaccuracy":
-            ui.showTypingAccuracy(typeAccuracy.getTypeAccuracy());
+            try {
+                double typingAccuracy = typeAccuracy.getTypeAccuracy();
+                ui.showTypingAccuracy(typeAccuracy.getTypeAccuracy());
+            } catch (BoboTypeException e) {
+                ui.showErrorMessage(e.getMessage());
+            }
+
             break;
 
         case "highscore":
