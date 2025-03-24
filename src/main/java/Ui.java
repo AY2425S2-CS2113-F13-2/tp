@@ -1,9 +1,11 @@
 public class Ui {
 
     private State state;
+
     public Ui(State state) {
         this.state = state;
     }
+
     public void drawLine() {
         System.out.println("____________________________________________________________");
     }
@@ -54,12 +56,13 @@ public class Ui {
 
     /**
      * Displays typing accuracy of user in percentage to user
+     *
      * @param typeAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
      */
     public void showTypingAccuracy(double typeAccuracy) {
-            drawLine();
-            System.out.println(" Your typing accuracy is: " + typeAccuracy*100 + "%");
-            drawLine();
+        drawLine();
+        System.out.println(" Your typing accuracy is: " + typeAccuracy * 100 + "%");
+        drawLine();
     }
 
     public void showHighScore() {
