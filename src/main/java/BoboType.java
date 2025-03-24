@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.w3c.dom.Text;
 
 public class BoboType {
     private static final int NUM_OF_TEXTS = 3;
@@ -85,6 +86,17 @@ public class BoboType {
 
             timer.stop();
 
+            ui.showEndGame();
+            break;
+
+        case "timeLimit":
+            List<String> timeLimitText = TextSelector.selectText("easy", "short", 2);
+            TimedTypingTest timedTypingTest = new TimedTypingTest();
+            try {
+                timedTypingTest.run(timeLimitText, 10);
+            } catch (InterruptedException e) {
+                ui.showErrorMessage(e.getMessage());
+            }
             ui.showEndGame();
             break;
 
