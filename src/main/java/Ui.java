@@ -28,6 +28,13 @@ public class Ui {
         drawLine();
     }
 
+    public void chooseLength() {
+        drawLine();
+        System.out.println(" Select your text length: ");
+        System.out.println(" Type: 'short' or 'medium' or 'long'");
+        drawLine();
+    }
+
     public void showErrorMessage(String message) {
         System.out.println(" *** Oops! *** \n -> " + message);
     }
