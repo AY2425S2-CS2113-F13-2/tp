@@ -23,10 +23,17 @@ public class Ui {
         drawLine();
     }
 
+    public void chooseMode() {
+        drawLine();
+        System.out.println(" Select your mode: ");
+        System.out.println(" Type: 'normal' or 'timeLimit' or 'zen'");
+        drawLine();
+    }
+
     public void chooseDifficulty() {
         drawLine();
         System.out.println(" Select your difficulty: ");
-        System.out.println(" Type: 'easy' or 'intermediate' or 'difficult' or 'zen'");
+        System.out.println(" Type: 'easy' or 'intermediate' or 'difficult'");
         drawLine();
     }
 
@@ -79,7 +86,6 @@ public class Ui {
     public void showEndGame() {
         drawLine();
         System.out.println("You finished the practice! Please type \n" +
-                "\t - 'result' to view the result \n" +
                 "\t - 'typingaccuracy' to view your typing accuracy \n" +
                 "\t - 'highscore' to view your high score \n" +
                 "\t - 'exit' to exit or \n" +
@@ -107,6 +113,40 @@ public class Ui {
         drawLine();
 
     }
+
+    public void showTimeLimitModeInstructions(int timeLimit) {
+        drawLine();
+        System.out.println("Welcome to Time Limit mode. \n" +
+                "\t - You will have " + timeLimit + " seconds to finish typing each sentence.");
+        drawLine();
+        waitOneSec();
+        System.out.println("Are you ready? The game will begin in ");
+        waitOneSec();
+        System.out.println("3");
+        waitOneSec();
+        System.out.println("2");
+        waitOneSec();
+        System.out.println("1");
+        drawLine();
+        waitOneSec();
+    }
+
+    public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
+        waitOneSec();
+        drawLine();
+        System.out.println("You finished the timeLimit Mode Practice! ");
+        System.out.println("\t - Num of correct lines: " + numOfCorrect + " lines out of " + numOfLines + " lines");
+        drawLine();
+    }
+
+    private void waitOneSec() {
+        try {
+            Thread.sleep(1000); // Wait for 1 second (1000 milliseconds)
+        } catch (InterruptedException e) {
+            System.out.println("Thread was interrupted");
+        }
+    }
+
 
 }
 
