@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import org.w3c.dom.Text;
 
 public class BoboType {
     private static final int NUM_OF_TEXTS = 3;
