@@ -98,6 +98,7 @@ public class BoboType {
                     numOfLines = testText.size();
                     numOfCorrect = timeLimitMode.getNumOfCorrect();
                     ui.showTimeLimitResult(numOfLines, numOfCorrect);
+                    sc.nextLine(); // to clear the input
                 } else { // normal mode
                     typeAccuracy.setTestText((ArrayList<String>) testText);
                     ui.showStartGame();

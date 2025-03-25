@@ -137,6 +137,7 @@ public class Ui {
         System.out.println("You finished the timeLimit Mode Practice! ");
         System.out.println("\t - Num of correct lines: " + numOfCorrect + " lines out of " + numOfLines + " lines");
         drawLine();
+        System.out.println("*** Please press enter to continue. ***");
     }
 
     private void waitOneSec() {

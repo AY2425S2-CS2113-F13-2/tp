@@ -35,6 +35,7 @@ public class TimeLimitMode {
         for (String s : testText) {
             String userInput = "";
             ClockThread clockThread = new ClockThread();
+            // to make sure the user input is empty before the target string is printed
             try {
                 if (System.in.available() > 0) {
                     sc.nextLine(); // Consume and ignore the previous input before the game starts
@@ -76,20 +77,11 @@ public class TimeLimitMode {
                 return null;
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(100); // Check every 0.1 sec
             } catch (InterruptedException e) {
                 return null;
             }
         }
-
-        try {
-            if (System.in.available() > 0) {
-                sc.nextLine(); // Consume and ignore the remaining input
-            }
-        } catch (IOException e) {
-            System.err.println("Failed to clear input buffer: " + e.getMessage());
-        }
-
         return null;
     }
 
