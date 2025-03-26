@@ -11,7 +11,7 @@ public class BoboType {
     private int wordCount;
     private int characterCount;
     private final TypeAccuracy typeAccuracy;
-    private final Timer timer;
+    private final TypingTimer typingTimer;
     private final State state;
 
 
@@ -23,7 +23,7 @@ public class BoboType {
         wordCount = 0;
         characterCount = 0;
         typeAccuracy = new TypeAccuracy(new ArrayList<>());
-        timer = new Timer();
+        typingTimer = new TypingTimer();
     }
 
     public void run() throws IOException {
@@ -53,7 +53,7 @@ public class BoboType {
             ui.chooseMode();
             String mode = sc.nextLine().trim();
             if (mode.equals("zen")) {
-                ZenMode zenMode = new ZenMode(timer, sc, ui);
+                ZenMode zenMode = new ZenMode(typingTimer,sc,ui);
                 zenMode.startZenMode();
             } else {
                 // select difficulty and length of the test
@@ -106,7 +106,7 @@ public class BoboType {
                     wordCount = 0;
                     characterCount = 0;
 
-                    timer.start();
+                    typingTimer.start();
 
                     for (String s : testText) {
                         System.out.println(s);
@@ -115,16 +115,17 @@ public class BoboType {
                         wordCount += WordCounter.countWords(userInput);
                         characterCount += userInput.length();
                     }
-                    timer.stop();
+                    typingTimer.stop();
 
                     ui.showResult();
-                    double duration = timer.getDurationMin();
+                    double duration = typingTimer.getDurationMin();
                     ui.showTypingSpeedWPM((int) (wordCount / duration));
                     ui.showTypingSpeedCPM((int) (characterCount / duration));
                 }
             }
             double time = timer.getDurationMin();
             state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
+            
             ui.showEndGame();
             break;
 
