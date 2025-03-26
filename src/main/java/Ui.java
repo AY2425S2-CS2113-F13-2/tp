@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Ui {
 
     private State state;
@@ -78,6 +80,16 @@ public class Ui {
         drawLine();
     }
 
+    public void showHighScoreList() {
+        drawLine();
+        System.out.println(" Top 3 High Scores: ");
+        ArrayList<Double> highScoreList = state.getHighScoreList();
+        for (int i = 1; i <= Math.min(4, highScoreList.size()); i++) {
+            System.out.println(i + ". " + highScoreList.get(i - 1));
+        }
+        drawLine();
+    }
+
     public void showStartGame() {
         drawLine();
         System.out.println("Typing test started! Type the following text:");
@@ -88,6 +100,7 @@ public class Ui {
         System.out.println("You finished the practice! Please type \n" +
                 "\t - 'typingaccuracy' to view your typing accuracy \n" +
                 "\t - 'highscore' to view your high score \n" +
+                "\t - 'highscorelist' to view your top 3 high scores \n" +
                 "\t - 'exit' to exit or \n" +
                 "\t - 'start' to start the new practice.");
         drawLine();

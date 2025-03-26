@@ -28,9 +28,9 @@ public class StorageTest {
     }
 
     @Test
-    public void testSaveScoreToFile() throws IOException {
+    public void testSaveScoreList() throws IOException {
         Double score = 123.45;
-        storage.saveScoreToFile(score);
+        storage.saveScoreList(score);
 
         File file = new File(testFilePath);
         assertTrue(file.exists());
@@ -43,11 +43,11 @@ public class StorageTest {
     }
 
     @Test
-    public void testReadScoreFromFile() throws IOException {
+    public void testReadHighScoreFromFile() throws IOException {
         Double score = 678.90;
-        storage.saveScoreToFile(score);
+        storage.saveScoreList(score);
 
-        Double readScore = storage.readScoreFromFile();
+        Double readScore = storage.readHighScoreFromFile();
         assertEquals(score, readScore);
     }
 }
