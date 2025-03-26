@@ -68,10 +68,15 @@ public class TimeLimitMode {
     }
 
     private String waitForInput(ClockThread clockThread, Scanner sc, long timeLimit) throws Exception {
+        // TODO: how to prevent the user input "enter" to get processed after the time limit
         while (clockThread.getElapsedTime() < timeLimit) {
             try {
                 if (System.in.available() > 0) {
-                    return sc.nextLine();
+                    if (clockThread.getElapsedTime() < 3) {
+                        sc.nextLine();
+                    } else {
+                        return sc.nextLine();
+                    }
                 }
             } catch (IOException e) {
                 return null;

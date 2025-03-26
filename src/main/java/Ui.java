@@ -133,6 +133,7 @@ public class Ui {
 
     public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
         waitOneSec();
+        System.out.println("");
         drawLine();
         System.out.println("You finished the timeLimit Mode Practice! ");
         System.out.println("\t - Num of correct lines: " + numOfCorrect + " lines out of " + numOfLines + " lines");
