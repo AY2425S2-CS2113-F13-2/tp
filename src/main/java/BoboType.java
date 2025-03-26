@@ -10,7 +10,7 @@ public class BoboType {
     private int wordCount;
     private int characterCount;
     private final TypeAccuracy typeAccuracy;
-    private final Timer timer;
+    private final TypingTimer typingTimer;
     private final State state;
 
 
@@ -22,7 +22,7 @@ public class BoboType {
         wordCount = 0;
         characterCount = 0;
         typeAccuracy = new TypeAccuracy(new ArrayList<>());
-        timer = new Timer();
+        typingTimer = new TypingTimer();
     }
 
     public void run() {
@@ -69,7 +69,7 @@ public class BoboType {
             }
 
             if (testText.contains("IN_ZEN_MODE")) {
-                ZenMode zenMode = new ZenMode(timer,sc,ui);
+                ZenMode zenMode = new ZenMode(typingTimer,sc,ui);
                 zenMode.startZenMode();
             } else {
 
@@ -78,7 +78,7 @@ public class BoboType {
                 wordCount = 0;
                 characterCount = 0;
 
-                timer.start();
+                typingTimer.start();
 
                 for (String s : testText) {
                     System.out.println(s);
@@ -88,7 +88,7 @@ public class BoboType {
                     characterCount += userInput.length();
                 }
 
-                timer.stop();
+                typingTimer.stop();
 
                 ui.showEndGame();
             }
@@ -98,7 +98,7 @@ public class BoboType {
         case "result":
             // Alter to automatically show the result after each game
             ui.showResult();
-            double duration = timer.getDurationMin();
+            double duration = typingTimer.getDurationMin();
             ui.showTypingSpeedWPM((int) (wordCount / duration));
             ui.showTypingSpeedCPM((int) (characterCount / duration));
             ui.showEndGame();
@@ -115,7 +115,7 @@ public class BoboType {
             break;
 
         case "highscore":
-            double time = timer.getDurationMin();
+            double time = typingTimer.getDurationMin();
             state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
             ui.showHighScore();
             break;

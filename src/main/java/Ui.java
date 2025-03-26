@@ -93,7 +93,7 @@ public class Ui {
         System.out.println("""
                 Welcome to Zen Mode, you can type out anything to your
                 heart's content and find out your typing speed.
-                Pressing Enter will start the timer and typing the comment
+                Pressing Enter will start the typingTimer and typing the comment
                 'stop_practice' will stop the practice.""");
         drawLine();
     }
