@@ -1,37 +1,46 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class State {
-    private Double highScore;
     private Storage storage;
+    private ArrayList<Double> highScoreList;
 
     public State (Storage storage) {
         this.storage = storage;
         try {
-            highScore = storage.readScoreFromFile();
+            highScoreList = storage.readHighScoreList();
         } catch (IOException e) {
-            highScore = 0.0;
+            System.err.println("Error reading score from file.");
         }
 
+        assert highScoreList != null : "highScoreList should not be null";
     }
 
     public Double getHighScore() {
-        return highScore;
-    }
-
-    private void setHighScore(Double newHighScore) {
-        highScore = newHighScore;
-        try {
-            storage.saveScoreToFile(newHighScore);
-        } catch (IOException e) {
-            System.err.println("Error saving high score to file.");
+        if (highScoreList.isEmpty()) {
+            return 0.0;
         }
+        return highScoreList.get(0);
     }
 
-    public void updateHighScore(Double accuracy, int wpm) {
+    public ArrayList<Double> getHighScoreList() {
+        return highScoreList;
+    }
+
+    private void setHighScoreList(ArrayList<Double> newHighScoreList) {
+        highScoreList = newHighScoreList;
+        assert highScoreList.equals(newHighScoreList) : "highscorelist should be updated";
+    }
+
+    public void updateHighScore(Double accuracy, int wpm) throws IOException {
         double newHighScore = accuracy * wpm;
-        assert highScore >= 0.0 : "highscore must be a positive number";
-        if (newHighScore > highScore) {
-            setHighScore(newHighScore);
+        highScoreList.add(newHighScore);
+        highScoreList = new ArrayList<>(new HashSet<>(highScoreList));
+        highScoreList.sort((a, b) -> Double.compare(b, a));
+        if (highScoreList.size() > 3) {
+            highScoreList = new ArrayList<>(highScoreList.subList(0, 3));
         }
+        storage.saveScoreList(highScoreList);
     }
 }

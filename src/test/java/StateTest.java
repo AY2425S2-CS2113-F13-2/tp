@@ -5,17 +5,15 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StateTest {
 
-    private static final Logger logger = Logger.getLogger(StateTest.class.getName());
     private State state;
     private Storage storage;
     private final String testFilePath = "data/testBoboType.txt";
-
 
     @BeforeEach
     public void setUp() throws IOException {
@@ -31,12 +29,12 @@ public class StateTest {
         try (FileWriter writer = new FileWriter(file)) {
             writer.write("0.0");
         } catch (Exception e) {
-            logger.warning("Error writing to temporary file.");
+            System.err.println("Error writing to temporary file.");
         }
 
         storage = new Storage(testFilePath);
         state = new State(storage);
-        logger.info("Set up complete. Temporary file created and State instance initialized.");
+        System.out.println("Set up complete. Temporary file created and State instance initialized.");
     }
 
     @AfterEach
@@ -46,27 +44,41 @@ public class StateTest {
         if (file.exists()) {
             file.delete();
         }
-        logger.info("Tear down complete. Temporary file deleted.");
+        System.out.println("Tear down complete. Temporary file deleted.");
     }
 
     @Test
     public void testGetHighScore() {
         assertEquals(0.0, state.getHighScore());
-        logger.info("testGetHighScore passed.");
+        System.out.println("testGetHighScore passed.");
     }
 
     @Test
-    public void testUpdateHighScore() {
+    public void testUpdateHighScore() throws IOException {
         state.updateHighScore(1.0, 100);
         assertEquals(100.0, state.getHighScore());
-        logger.info("High score updated to 100.0 and verified.");
+        System.out.println("High score updated to 100.0 and verified.");
 
         state.updateHighScore(1.0, 50);
         assertEquals(100.0, state.getHighScore());
-        logger.info("High score remains 100.0 after attempting to update with a lower score.");
+        System.out.println("High score remains 100.0 after attempting to update with a lower score.");
 
         state.updateHighScore(1.0, 150);
         assertEquals(150.0, state.getHighScore());
-        logger.info("High score updated to 150.0 and verified.");
+        System.out.println("High score updated to 150.0 and verified.");
+    }
+
+    @Test
+    public void testGetHighScoreList() throws IOException {
+        state.updateHighScore(1.0, 100);
+        state.updateHighScore(1.0, 200);
+        state.updateHighScore(1.0, 300);
+
+        ArrayList<Double> highScoreList = state.getHighScoreList();
+        assertEquals(3, highScoreList.size(), "There should be 3 scores in the list.");
+        assertEquals(300.0, highScoreList.get(0), "First score should be the highest.");
+        assertEquals(200.0, highScoreList.get(1), "Second score should be the second highest.");
+        assertEquals(100.0, highScoreList.get(2), "Third score should be the third highest.");
+        System.out.println("testGetHighScoreList passed. Scores: " + highScoreList);
     }
 }

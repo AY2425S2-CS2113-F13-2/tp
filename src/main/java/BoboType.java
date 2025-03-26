@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ public class BoboType {
         typingTimer = new TypingTimer();
     }
 
-    public void run() {
+    public void run() throws IOException {
         ui.showWelcome();
 
         while (true) {
@@ -44,7 +45,7 @@ public class BoboType {
     }
 
 
-    private void handleCommand(String[] inputParts) {
+    private void handleCommand(String[] inputParts) throws IOException {
         String command = inputParts[0];
 
         switch (command) {
@@ -122,7 +123,9 @@ public class BoboType {
                     ui.showTypingSpeedCPM((int) (characterCount / duration));
                 }
             }
-
+            double time = typingTimer.getDurationMin();
+            state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
+            
             ui.showEndGame();
             break;
 
@@ -137,9 +140,11 @@ public class BoboType {
             break;
 
         case "highscore":
-            double time = typingTimer.getDurationMin();
-            state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
             ui.showHighScore();
+            break;
+
+        case "highscorelist":
+            ui.showHighScoreList();
             break;
 
         default:
@@ -150,7 +155,7 @@ public class BoboType {
     }
 
     // Main method to start the program
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BoboType app = new BoboType("data/BoboType.txt");
         app.run();  // Run the program
     }
