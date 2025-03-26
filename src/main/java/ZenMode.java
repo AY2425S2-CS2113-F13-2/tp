@@ -5,20 +5,24 @@ import java.util.Scanner;
  */
 public class ZenMode {
 
-    private Timer timer;
+    private TypingTimer typingTimer;
     private Scanner sc;
     private int wordCount;
     private int characterCount;
     private Ui ui;
+    private int typingSpeedInWPM;
+    private int typingSpeedInCPM;
+    private double typingDuration;
+
 
     /**
      * Constructs a ZenMode object used for the Zen practice mode
-     * @param timer Timer to measure typing time
+     * @param typingTimer TypingTimer to measure typing time
      * @param sc Scanner to take in user input
      * @param ui To display messages to user
      */
-    public ZenMode(Timer timer,Scanner sc, Ui ui) {
-        this.timer = timer;
+    public ZenMode(TypingTimer typingTimer, Scanner sc, Ui ui) {
+        this.typingTimer = typingTimer;
         this.sc = sc;
         this.ui = ui;
     }
@@ -32,7 +36,7 @@ public class ZenMode {
         boolean isZenMode = true;
 
         ui.showZenModeInstructions();
-        timer.start();
+        typingTimer.start();
         while (isZenMode) {
             String userInput = sc.nextLine();
             if (userInput.equals("stop_practice")) {
@@ -41,17 +45,37 @@ public class ZenMode {
             wordCount += WordCounter.countWords(userInput);
             characterCount += userInput.length();
         }
-        timer.stop();
-        double duration = timer.getDurationMin();
-        int typingSpeedInWPM = ((int) (wordCount / duration));
-        int typingSpeedInCPM = ((int) (characterCount / duration));
+        typingTimer.stop();
+        typingDuration = typingTimer.getDurationMin();
+        typingSpeedInWPM = ((int) (wordCount / typingDuration));
+        typingSpeedInCPM = ((int) (characterCount / typingDuration));
 
-        assert (wordCount >= 0) : "word count must be non-negative";
-        assert (characterCount >= 0) : "character count must be non-negative";
+        assert (wordCount >= 1) : "word count must be greater than 0";
+        assert (characterCount >= 13) : "character count must be greater than 12";
         assert (typingSpeedInWPM >= 0) : "typing speed must be non-negative";
         assert (typingSpeedInCPM >= 0) : "typing speed must be non-negative";
 
         ui.showZenModeEndGame(wordCount, typingSpeedInWPM, typingSpeedInCPM);
+    }
+
+    public int getTypingSpeedInWPM() {
+        return typingSpeedInWPM;
+    }
+
+    public int getTypingSpeedInCPM() {
+        return typingSpeedInCPM;
+    }
+
+    public double getTypingDuration() {
+        return typingDuration;
+    }
+
+    public int getWordCount() {
+        return wordCount;
+    }
+
+    public int getCharacterCount() {
+        return characterCount;
     }
 
 }

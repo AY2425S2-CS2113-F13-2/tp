@@ -8,6 +8,24 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Zen Mode feature
+
+#### Proposed Implementation
+
+Zen Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
+- `ZenMode(TypingTimer typingTimer,Scanner sc, Ui ui)` - Constructor to create ZenMode object
+- `startZenMode()` - Runs input loop to read user input and compute typing statistics
+
+Given below is an example usage scenario and how the Zen Mode behaves at each step.
+
+Step 1. The user selects Zen Mode when selecting the practice mode, instantiating a `ZenMode` object and running `startZenMode()`. `startZenMode()` starts `typingTimer` and reads user input.
+
+Step 2. The user types `I am typing a sample text here`, calling `wordCounter.countWords` to count the number of words in the user's input and adds to the `wordCount`.
+
+Step 3. The user types `stop_practice`, ending the loop and computes the typing speed.
+
+Step 4. The typing practice results is displayed to the user with `UI.showZenModeEndGame`
+
 
 ## Product scope
 ### Target user profile
