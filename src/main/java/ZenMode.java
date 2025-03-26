@@ -50,8 +50,8 @@ public class ZenMode {
         typingSpeedInWPM = ((int) (wordCount / typingDuration));
         typingSpeedInCPM = ((int) (characterCount / typingDuration));
 
-        assert (wordCount >= 0) : "word count must be non-negative";
-        assert (characterCount >= 0) : "character count must be non-negative";
+        assert (wordCount >= 1) : "word count must be greater than 0";
+        assert (characterCount >= 13) : "character count must be greater than 12";
         assert (typingSpeedInWPM >= 0) : "typing speed must be non-negative";
         assert (typingSpeedInCPM >= 0) : "typing speed must be non-negative";
 
