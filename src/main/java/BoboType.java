@@ -123,7 +123,7 @@ public class BoboType {
                     ui.showTypingSpeedCPM((int) (characterCount / duration));
                 }
             }
-            double time = timer.getDurationMin();
+            double time = typingTimer.getDurationMin();
             state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
             
             ui.showEndGame();
