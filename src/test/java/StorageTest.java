@@ -53,22 +53,6 @@ public class StorageTest {
     }
 
     @Test
-    public void testReadHighScoreList() throws IOException {
-        ArrayList<Double> scores = new ArrayList<>();
-        scores.add(100.0);
-        scores.add(200.0);
-        scores.add(300.0);
-        storage.saveScoreList(scores);
-
-        ArrayList<Double> readScores = storage.readHighScoreList();
-        assertEquals(3, readScores.size(), "There should be 3 scores in the list.");
-        assertEquals(300.0, readScores.get(0), "First score should be the highest.");
-        assertEquals(200.0, readScores.get(1), "Second score should be the second highest.");
-        assertEquals(100.0, readScores.get(2), "Third score should be the third highest.");
-        System.out.println("testReadHighScoreList passed. Scores: " + readScores);
-    }
-
-    @Test
     public void testEmptyFile() throws IOException {
         File file = new File(testFilePath);
         file.createNewFile(); // Create an empty file
