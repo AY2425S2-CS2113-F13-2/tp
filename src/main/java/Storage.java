@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    File file;
     public static ArrayList<Double> data = new ArrayList<>();
+    File file;
 
     public Storage (String filePath) {
         this.file = new File(filePath);
@@ -24,19 +24,9 @@ public class Storage {
         }
     }
 
-    public void sortScoreList() {
-        data.sort((a, b) -> Double.compare(b, a));
-    }
-
-    public void saveScoreList(Double newHighScore) throws IOException {
-        readHighScoreList();
-        data.add(newHighScore);
-        sortScoreList();
-        if (data.size() > 3) {
-            data = new ArrayList<>(data.subList(0, 3));
-        }
+    public void saveScoreList(ArrayList<Double> newHighScoreList) throws IOException {
         FileWriter save = new FileWriter(file);
-        for (Double score : data) {
+        for (Double score : newHighScoreList) {
             save.write(score + "\n");
         }
         save.close();
@@ -47,32 +37,18 @@ public class Storage {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             try {
-                score.add(Double.parseDouble(scanner.nextLine()));
+                String read = scanner.nextLine();
+                if (read.isEmpty()) {
+                    break;
+                }
+                score.add(Double.parseDouble(read));
             } catch (Exception e) {
                 System.err.println("Error reading high score list: " + e.getMessage());
             }
         }
         data = score;
+        assert data != null : "data should not be null";
+        assert data.size() <= 3 : "data should not have more than 3 elements";
         return score;
-    }
-
-//    public void saveScoreToFile(Double newHighScore) throws IOException {
-//        FileWriter save = new FileWriter(file);
-//        save.write(String.valueOf(newHighScore));
-//        save.close();
-//    }
-
-    public Double readHighScoreFromFile() throws IOException {
-        Scanner scanner = new Scanner(file);
-        try {
-            if (scanner.hasNextLine()) {
-                return Double.parseDouble(scanner.nextLine());
-            } else {
-                return 0.0; // Default value if no valid double is found
-            }
-        } catch (Exception e) {
-            System.err.println("Error reading high score from file: " + e.getMessage());
-            return 0.0;
-        }
     }
 }

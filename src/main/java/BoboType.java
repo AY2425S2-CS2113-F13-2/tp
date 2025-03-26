@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ public class BoboType {
         timer = new Timer();
     }
 
-    public void run() {
+    public void run() throws IOException {
         ui.showWelcome();
 
         while (true) {
@@ -44,116 +45,116 @@ public class BoboType {
     }
 
 
-    private void handleCommand(String[] inputParts) {
+    private void handleCommand(String[] inputParts) throws IOException {
         String command = inputParts[0];
 
         switch (command) {
-            case "start":
-                ui.chooseMode();
-                String mode = sc.nextLine().trim();
-                if (mode.equals("zen")) {
-                    ZenMode zenMode = new ZenMode(timer, sc, ui);
-                    zenMode.startZenMode();
-                } else {
-                    // select difficulty and length of the test
-                    List<String> testText;
-                    String difficultyLevel;
-                    String textLength;
-                    while (true) {
-                        try {
-                            ui.chooseDifficulty();
-                            difficultyLevel = sc.nextLine().trim();
+        case "start":
+            ui.chooseMode();
+            String mode = sc.nextLine().trim();
+            if (mode.equals("zen")) {
+                ZenMode zenMode = new ZenMode(timer, sc, ui);
+                zenMode.startZenMode();
+            } else {
+                // select difficulty and length of the test
+                List<String> testText;
+                String difficultyLevel;
+                String textLength;
+                while (true) {
+                    try {
+                        ui.chooseDifficulty();
+                        difficultyLevel = sc.nextLine().trim();
 
-                            ui.chooseLength();
-                            textLength = sc.nextLine().trim();
+                        ui.chooseLength();
+                        textLength = sc.nextLine().trim();
 
-                            int randomNum = RandNumGenerator.randInt(1, NUM_OF_TEXTS);
+                        int randomNum = RandNumGenerator.randInt(1, NUM_OF_TEXTS);
 
-                            testText = TextSelector.selectText(difficultyLevel, textLength, randomNum);
-                            break;
-                        } catch (InvalidInputException | FileProcessingException e) {
-                            ui.showErrorMessage(e.getMessage());
-                        }
-                    }
-                    // time limit mode
-                    if (mode.equals("timeLimit")) {
-                        int timeLimit;
-                        int numOfLines;
-                        int numOfCorrect;
-                        TimeLimitMode timeLimitMode = new TimeLimitMode();
-                        if (difficultyLevel.equals("easy")) {
-                            timeLimit = 10;
-                        } else if (difficultyLevel.equals("intermediate")) {
-                            timeLimit = 15;
-                        } else {
-                            timeLimit = 20;
-                        }
-                        ui.showTimeLimitModeInstructions(timeLimit);
-
-                        try {
-                            timeLimitMode.run(testText, timeLimit, sc);
-                        } catch (InterruptedException e) {
-                            ui.showErrorMessage(e.getMessage());
-                        }
-                        numOfLines = testText.size();
-                        numOfCorrect = timeLimitMode.getNumOfCorrect();
-                        ui.showTimeLimitResult(numOfLines, numOfCorrect);
-                        sc.nextLine(); // to clear the input
-                    } else { // normal mode
-                        typeAccuracy.setTestText((ArrayList<String>) testText);
-                        ui.showStartGame();
-                        wordCount = 0;
-                        characterCount = 0;
-
-                        timer.start();
-
-                        for (String s : testText) {
-                            System.out.println(s);
-                            String userInput = sc.nextLine();
-                            typeAccuracy.updateUserInput(userInput);
-                            wordCount += WordCounter.countWords(userInput);
-                            characterCount += userInput.length();
-                        }
-                        timer.stop();
-
-                        ui.showResult();
-                        double duration = timer.getDurationMin();
-                        ui.showTypingSpeedWPM((int) (wordCount / duration));
-                        ui.showTypingSpeedCPM((int) (characterCount / duration));
+                        testText = TextSelector.selectText(difficultyLevel, textLength, randomNum);
+                        break;
+                    } catch (InvalidInputException | FileProcessingException e) {
+                        ui.showErrorMessage(e.getMessage());
                     }
                 }
-                double time = timer.getDurationMin();
-                state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
-                ui.showEndGame();
-                break;
+                // time limit mode
+                if (mode.equals("timeLimit")) {
+                    int timeLimit;
+                    int numOfLines;
+                    int numOfCorrect;
+                    TimeLimitMode timeLimitMode = new TimeLimitMode();
+                    if (difficultyLevel.equals("easy")) {
+                        timeLimit = 10;
+                    } else if (difficultyLevel.equals("intermediate")) {
+                        timeLimit = 15;
+                    } else {
+                        timeLimit = 20;
+                    }
+                    ui.showTimeLimitModeInstructions(timeLimit);
 
-            case "typingaccuracy":
-                try {
-                    double typingAccuracy = typeAccuracy.getTypeAccuracy();
-                    ui.showTypingAccuracy(typeAccuracy.getTypeAccuracy());
-                } catch (BoboTypeException e) {
-                    ui.showErrorMessage(e.getMessage());
+                    try {
+                        timeLimitMode.run(testText, timeLimit, sc);
+                    } catch (InterruptedException e) {
+                        ui.showErrorMessage(e.getMessage());
+                    }
+                    numOfLines = testText.size();
+                    numOfCorrect = timeLimitMode.getNumOfCorrect();
+                    ui.showTimeLimitResult(numOfLines, numOfCorrect);
+                    sc.nextLine(); // to clear the input
+                } else { // normal mode
+                    typeAccuracy.setTestText((ArrayList<String>) testText);
+                    ui.showStartGame();
+                    wordCount = 0;
+                    characterCount = 0;
+
+                    timer.start();
+
+                    for (String s : testText) {
+                        System.out.println(s);
+                        String userInput = sc.nextLine();
+                        typeAccuracy.updateUserInput(userInput);
+                        wordCount += WordCounter.countWords(userInput);
+                        characterCount += userInput.length();
+                    }
+                    timer.stop();
+
+                    ui.showResult();
+                    double duration = timer.getDurationMin();
+                    ui.showTypingSpeedWPM((int) (wordCount / duration));
+                    ui.showTypingSpeedCPM((int) (characterCount / duration));
                 }
+            }
+            double time = timer.getDurationMin();
+            state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
+            ui.showEndGame();
+            break;
 
-                break;
+        case "typingaccuracy":
+            try {
+                double typingAccuracy = typeAccuracy.getTypeAccuracy();
+                ui.showTypingAccuracy(typeAccuracy.getTypeAccuracy());
+            } catch (BoboTypeException e) {
+                ui.showErrorMessage(e.getMessage());
+            }
 
-            case "highscore":
-                ui.showHighScore();
-                break;
+            break;
 
-            case "highscorelist":
-                ui.showHighScoreList();
-                break;
+        case "highscore":
+            ui.showHighScore();
+            break;
 
-            default:
-                ui.drawLine();
-                System.out.println("What does this mean??");
-                ui.drawLine();
+        case "highscorelist":
+            ui.showHighScoreList();
+            break;
+
+        default:
+            ui.drawLine();
+            System.out.println("What does this mean??");
+            ui.drawLine();
         }
     }
 
     // Main method to start the program
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BoboType app = new BoboType("data/BoboType.txt");
         app.run();  // Run the program
     }
