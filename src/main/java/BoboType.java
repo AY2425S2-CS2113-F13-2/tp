@@ -137,7 +137,7 @@ public class BoboType {
                     }
                 }
                 double time = typingTimer.getDurationMin();
-                state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
+                //state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
                 autoAdjust.evaluate((int) (wordCount / time));
                 state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
                 ui.showEndGame();
