@@ -106,10 +106,12 @@ public class Ui {
     public void showEndGame() {
         drawLine();
         System.out.print("""
-                You finished the practice! Please type\s
-                \t - 'typingaccuracy' to view your typing accuracy\s
-                \t - 'highscore' to view your high score\s
-                \t - 'highscorelist' to view your top 3 high scores\s
+                You finished the practice! Please type
+                \t - 'typingaccuracy' to view your typing accuracy
+                \t - 'highscore' to view your high score
+                \t - 'highscorelist' to view your top 3 high scores
+                \t - 'targetspeedadd' to add a typing speed target
+                \t - 'targetscoreadd' to add a typing score target
                 \t - 'exit' to exit or\s
                 \t - 'start' to start the new practice.
                 """
