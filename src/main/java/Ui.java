@@ -105,17 +105,16 @@ public class Ui {
 
     public void showEndGame() {
         drawLine();
-        System.out.print("""
-                You finished the practice! Please type
-                \t - 'typingaccuracy' to view your typing accuracy
-                \t - 'highscore' to view your high score
-                \t - 'highscorelist' to view your top 3 high scores
-                \t - 'targetspeedadd' to add a typing speed target
-                \t - 'targetscoreadd' to add a typing score target
-                \t - 'exit' to exit or\s
-                \t - 'start' to start the new practice.
-                """
-        );
+
+        System.out.println("You finished the practice! Please type \n" +
+                "\t - 'typingaccuracy' to view your typing accuracy \n" +
+                "\t - 'highscore' to view your high score \n" +
+                "\t - 'highscorelist' to view your top 3 high scores \n" +
+                "\t - 'milestone' to view your default difficulty level \n" +       
+                "\t - 'targetspeedadd' to add a typing speed target \n" +
+                "\t - 'targetscoreadd' to add a typing score target \n" +
+                "\t - 'exit' to exit or \n" +
+                "\t - 'start' to start the new practice.");
         drawLine();
 
     }
@@ -183,6 +182,25 @@ public class Ui {
         }
     }
 
+    public void showMilestoneAchieved(String difficulty, int wpmGoal) {
+        drawLine();
+        System.out.println("Congrats! You hit the milestone:");
+        System.out.println(" -> Achieved " + wpmGoal + " WPM in " + difficulty + " mode!");
+        System.out.println(" You've been promoted to a new difficulty level.");
+    }
+
+    public void showDefaultDifficultyPrompt(String difficultyLevel) {
+        drawLine();
+        System.out.println(" Default difficulty: " + difficultyLevel);
+        System.out.println(" (Type 'override' to choose your own difficulty, or leave blank to proceed)");
+        drawLine();
+    }
+
+    public void showCurrentMilestone(String difficulty) {
+        drawLine();
+        System.out.println("Current milestone: " + difficulty);
+        drawLine();
+    }
 
 }
 

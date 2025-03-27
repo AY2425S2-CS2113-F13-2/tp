@@ -13,7 +13,10 @@ public class BoboType {
     private final TypingAccuracy typingAccuracy;
     private final TypingTimer typingTimer;
     private final State state;
+    private final Milestones milestones;
+    private final AutoAdjust autoAdjust;
     private final TypingTargetList typingTargetList;
+
 
     public BoboType(String filepath) {
         Storage storage = new Storage(filepath);
@@ -24,6 +27,8 @@ public class BoboType {
         characterCount = 0;
         typingAccuracy = new TypingAccuracy(new ArrayList<>());
         typingTimer = new TypingTimer();
+        milestones = new Milestones("data/milestones.txt");
+        autoAdjust = new AutoAdjust(milestones, ui);
         typingTargetList = new TypingTargetList();
     }
 
@@ -44,8 +49,15 @@ public class BoboType {
                 String textLength;
                 while (true) {
                     try {
-                        ui.chooseDifficulty();
-                        difficultyLevel = sc.nextLine().trim();
+                        // load difficulty from milestones.txt
+                        difficultyLevel = milestones.getCurrentDifficulty();
+                        ui.showDefaultDifficultyPrompt(difficultyLevel);
+
+                        String input = sc.nextLine().trim();
+                        if (input.equalsIgnoreCase("override")) {
+                            ui.chooseDifficulty();
+                            difficultyLevel = sc.nextLine().trim();
+                        }
 
                         ui.chooseLength();
                         textLength = sc.nextLine().trim();
@@ -125,6 +137,8 @@ public class BoboType {
                     }
                 }
                 double time = typingTimer.getDurationMin();
+                //state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
+                autoAdjust.evaluate((int) (wordCount / time));
                 state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
                 ui.showEndGame();
             }
@@ -144,6 +158,11 @@ public class BoboType {
 
         case "highscorelist":
             ui.showHighScoreList();
+            break;
+
+        case "milestone":
+            String difficulty = milestones.getCurrentDifficulty();
+            ui.showCurrentMilestone(difficulty);
             break;
 
         case "targetspeedadd":
