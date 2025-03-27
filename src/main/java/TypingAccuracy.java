@@ -5,22 +5,22 @@ import java.util.logging.Logger;
 /**
  * Calculates the accuracy of the user's input against the test text.
  */
-public class TypeAccuracy {
+public class TypingAccuracy {
 
-    private static Logger logger = Logger.getLogger("TypeAccuracyLogger");
+    private static final Logger logger = Logger.getLogger("TypeAccuracyLogger");
 
     static {
         logger.setLevel(Level.WARNING);
     }
 
     private ArrayList<String> testText;
-    private ArrayList<String> userText;
+    private final ArrayList<String> userText;
 
     /**
      * Constructs a TypeAccuracy object used to find the typing of the user's input.
      * @param userText ArrayList containing the user's input line by line.
      */
-    public TypeAccuracy(ArrayList<String> userText) {
+    public TypingAccuracy(ArrayList<String> userText) {
         this.userText = userText;
         logger.log(Level.INFO, "TypeAccuracy object successfully created. UserText initialized.");
     }
@@ -48,7 +48,7 @@ public class TypeAccuracy {
      * @return typing accuracy as a decimal (0.0 to 1.0).
      * @throws BoboTypeException if the test text has not been set.
      */
-    public double getTypeAccuracy() throws BoboTypeException {
+    public double getTypingAccuracy() throws BoboTypeException {
         if (testText == null) {
             throw new BoboTypeException("Please complete a typing test first");
         }
@@ -69,10 +69,10 @@ public class TypeAccuracy {
             }
 
         }
-        double typeAccuracy = (double) correctWordCount / (double) testTotalWordCount;
-        assert typeAccuracy >= 0.0 : "typeAccuracy must be a positive number";
-        assert typeAccuracy <= 1.0 : "typeAccuracy must be less than or equal to 1.0";
-        return typeAccuracy;
+        double typingAccuracy = (double) correctWordCount / (double) testTotalWordCount;
+        assert typingAccuracy >= 0.0 : "typingAccuracy must be a positive number";
+        assert typingAccuracy <= 1.0 : "typingAccuracy must be less than or equal to 1.0";
+        return typingAccuracy;
     }
 
 }
