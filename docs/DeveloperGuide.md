@@ -30,6 +30,16 @@ Step 3. The user types `stop_practice`, ending the loop and computes the typing 
 
 Step 4. The typing practice results is displayed to the user with `UI.showZenModeEndGame`
 
+### Typing Targets Feature
+
+Typing Targets are facilitated by `TypingTargetList`, `TypingTarget`, `TypingTargetSpeed`, and `TypingTargetScore`.
+`TypingTargetList` contains various `TypingTarget` instances, which can be of class `TypingTargetSpeed` or
+`TypingTargetScore`.
+
+The user can issue the command `targetspeedadd` or `targetscoreadd` to add a typing target for speed or score
+respectively. When the target is hit when the user finishes a `normal` typing test, the program will inform the user
+that their target has been successfully reached.
+
 ## Product scope
 
 ### Target user profile
