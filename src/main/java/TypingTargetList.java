@@ -15,4 +15,18 @@ public class TypingTargetList {
     public void addTarget(TypingTarget typingTarget) {
         this.typingTargetList.add(typingTarget);
     }
+
+    public void print() {
+        System.out.print("[");
+        int index = 0;
+        for (TypingTarget typingTarget: typingTargetList) {
+            if (index == typingTargetList.size() - 1) {
+                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget());
+            } else {
+                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget() + ", ");
+                index++;
+            }
+        }
+        System.out.println("]");
+    }
 }

@@ -10,7 +10,7 @@ public class BoboType {
     private final Scanner sc;
     private int wordCount;
     private int characterCount;
-    private final TypeAccuracy typeAccuracy;
+    private final TypingAccuracy typingAccuracy;
     private final TypingTimer typingTimer;
     private final State state;
     private final TypingTargetList typingTargetList;
@@ -22,29 +22,10 @@ public class BoboType {
         sc = new Scanner(System.in);
         wordCount = 0;
         characterCount = 0;
-        typeAccuracy = new TypeAccuracy(new ArrayList<>());
+        typingAccuracy = new TypingAccuracy(new ArrayList<>());
         typingTimer = new TypingTimer();
         typingTargetList = new TypingTargetList();
     }
-
-    public void run() throws IOException {
-        ui.showWelcome();
-
-        while (true) {
-            String input = sc.nextLine();
-            String[] inputParts = Parser.parseCommand(input);
-            String command = inputParts[0];
-
-            if (command.equals("exit")) {
-                ui.showExit();
-                sc.close();
-                return;  // Exit the method (and the program)
-            } else {
-                handleCommand(inputParts);  // Handle any other commands
-            }
-        }
-    }
-
 
     private void handleCommand(String[] inputParts) throws IOException {
         String command = inputParts[0];
@@ -103,7 +84,7 @@ public class BoboType {
                     ui.showTimeLimitResult(numOfLines, numOfCorrect);
                     sc.nextLine(); // to clear the input
                 } else { // normal mode
-                    typeAccuracy.setTestText((ArrayList<String>) testText);
+                    typingAccuracy.setTestText((ArrayList<String>) testText);
                     ui.showStartGame();
                     wordCount = 0;
                     characterCount = 0;
@@ -113,7 +94,7 @@ public class BoboType {
                     for (String s : testText) {
                         System.out.println(s);
                         String userInput = sc.nextLine();
-                        typeAccuracy.updateUserInput(userInput);
+                        typingAccuracy.updateUserInput(userInput);
                         wordCount += WordCounter.countWords(userInput);
                         characterCount += userInput.length();
                     }
@@ -125,15 +106,14 @@ public class BoboType {
                     ui.showTypingSpeedCPM((int) (characterCount / duration));
                 }
                 double time = typingTimer.getDurationMin();
-                state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
+                state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
                 ui.showEndGame();
                 break;
             }
 
         case "typingaccuracy":
             try {
-                double typingAccuracy = typeAccuracy.getTypeAccuracy();
-                ui.showTypingAccuracy(typeAccuracy.getTypeAccuracy());
+                ui.showTypingAccuracy(typingAccuracy.getTypingAccuracy());
             } catch (BoboTypeException e) {
                 ui.showErrorMessage(e.getMessage());
             }
@@ -148,10 +128,52 @@ public class BoboType {
             ui.showHighScoreList();
             break;
 
+        case "targetspeedadd":
+            System.out.println("Please enter a typing speed target you would like to hit (WPM)!");
+            try {
+                String targetSpeed = sc.nextLine().trim();
+                long targetSpeedLong = Long.parseLong(targetSpeed);
+                typingTargetList.addTarget(new TypingTargetSpeed(targetSpeedLong));
+                typingTargetList.print();
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid target speed entered. Please provide a valid integer!");
+            }
+            break;
+
+        case "targetscoreadd":
+            System.out.println("Please enter a typing score target you would like to hit (effective WPM)!");
+            try {
+                String targetScore = sc.nextLine().trim();
+                long targetScoreLong = Long.parseLong(targetScore);
+                typingTargetList.addTarget(new TypingTargetScore(targetScoreLong));
+                typingTargetList.print();
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid target score entered. Please provide a valid integer!");
+            }
+            break;
+
         default:
             ui.drawLine();
-            System.out.println("What does this mean??");
+            System.out.println("Invalid command entered. Please provide a valid input!");
             ui.drawLine();
+        }
+    }
+
+    public void run() throws IOException {
+        ui.showWelcome();
+
+        while (true) {
+            String input = sc.nextLine();
+            String[] inputParts = Parser.parseCommand(input);
+            String command = inputParts[0];
+
+            if (command.equals("exit")) {
+                ui.showExit();
+                sc.close();
+                return;  // Exit the method (and the program)
+            } else {
+                handleCommand(inputParts);  // Handle any other commands
+            }
         }
     }
 

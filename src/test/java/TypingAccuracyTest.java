@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TypeAccuracyTest {
+class TypingAccuracyTest {
 
     @Test
     void getTypeAccuracy_correctlyTypedText_fullAccuracy() {
@@ -16,7 +16,7 @@ class TypeAccuracyTest {
         testText.add("The trees provide shade, and the grass is soft underfoot.");
         testText.add("Some people like to sit on benches, reading books or chatting with friends.");
 
-        TypeAccuracy testTypeAccuracy = new TypeAccuracy(userInput);
+        TypingAccuracy testTypeAccuracy = new TypingAccuracy(userInput);
         testTypeAccuracy.setTestText(testText);
 
         userInput.add("On a sunny day, the park is a great place to relax.");
@@ -24,7 +24,7 @@ class TypeAccuracyTest {
         userInput.add("The trees provide shade, and the grass is soft underfoot.");
         userInput.add("Some people like to sit on benches, reading books or chatting with friends.");
 
-        assertEquals(1.0,testTypeAccuracy.getTypeAccuracy());
+        assertEquals(1.0,testTypeAccuracy.getTypingAccuracy());
     }
 
     @Test
@@ -37,7 +37,7 @@ class TypeAccuracyTest {
         testText.add("The trees provide shade, and the grass is soft underfoot.");
         testText.add("Some people like to sit on benches, reading books or chatting with friends.");
 
-        TypeAccuracy testTypeAccuracy = new TypeAccuracy(userInput);
+        TypingAccuracy testTypeAccuracy = new TypingAccuracy(userInput);
         testTypeAccuracy.setTestText(testText);
 
         userInput.add("On a sunny day, the park is a great place.");
@@ -45,7 +45,7 @@ class TypeAccuracyTest {
         userInput.add("");
         userInput.add("");
 
-        assertEquals(0.5,testTypeAccuracy.getTypeAccuracy());
+        assertEquals(0.5,testTypeAccuracy.getTypingAccuracy());
     }
 
     @Test
@@ -58,7 +58,7 @@ class TypeAccuracyTest {
         testText.add("The trees provide shade, and the grass is soft underfoot.");
         testText.add("Some people like to sit on benches, reading books or chatting with friends.");
 
-        TypeAccuracy testTypeAccuracy = new TypeAccuracy(userInput);
+        TypingAccuracy testTypeAccuracy = new TypingAccuracy(userInput);
         testTypeAccuracy.setTestText(testText);
 
         userInput.add("");
@@ -66,7 +66,7 @@ class TypeAccuracyTest {
         userInput.add("");
         userInput.add("");
 
-        assertEquals(0.0,testTypeAccuracy.getTypeAccuracy());
+        assertEquals(0.0,testTypeAccuracy.getTypingAccuracy());
     }
 
 
