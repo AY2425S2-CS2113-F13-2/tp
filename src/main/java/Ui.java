@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Ui {
 
-    private State state;
+    private final State state;
 
     public Ui(State state) {
         this.state = state;
@@ -63,20 +63,28 @@ public class Ui {
         System.out.println(" Typing speed (CPM): " + typingSpeedCPM + " CPM");
     }
 
+    public void showTypingScore(double typingScore) {
+        System.out.print(" Typing Score (Effective WPM): ");
+        System.out.printf("%.2f", typingScore);
+        System.out.println(" WPM");
+    }
+
     /**
      * Displays typing accuracy of user in percentage to user
      *
-     * @param typeAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
+     * @param typingAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
      */
-    public void showTypingAccuracy(double typeAccuracy) {
+    public void showTypingAccuracy(double typingAccuracy) {
         drawLine();
-        System.out.println(" Your typing accuracy is: " + typeAccuracy * 100 + "%");
+        System.out.print(" Your typing accuracy is: ");
+        System.out.printf("%.2f", typingAccuracy * 100);
+        System.out.println("%");
         drawLine();
     }
 
     public void showHighScore() {
         drawLine();
-        System.out.println(" Your high score is: " + toString().valueOf(state.getHighScore()));
+        System.out.println(" Your high score is: " + state.getHighScore());
         drawLine();
     }
 
@@ -97,12 +105,15 @@ public class Ui {
 
     public void showEndGame() {
         drawLine();
-        System.out.println("You finished the practice! Please type \n" +
-                "\t - 'typingaccuracy' to view your typing accuracy \n" +
-                "\t - 'highscore' to view your high score \n" +
-                "\t - 'highscorelist' to view your top 3 high scores \n" +
-                "\t - 'exit' to exit or \n" +
-                "\t - 'start' to start the new practice.");
+        System.out.print("""
+                You finished the practice! Please type\s
+                \t - 'typingaccuracy' to view your typing accuracy\s
+                \t - 'highscore' to view your high score\s
+                \t - 'highscorelist' to view your top 3 high scores\s
+                \t - 'exit' to exit or\s
+                \t - 'start' to start the new practice.
+                """
+        );
         drawLine();
 
     }
@@ -123,10 +134,10 @@ public class Ui {
         if (wordCount >1) {
             wordText = " words";
         }
-        System.out.println("  You finished the Zen Mode Practice! \n" +
-                "You have typed: " + wordCount + wordText);
+        System.out.println(" You finished the Zen Mode Practice! \n" +
+                " You have typed: " + wordCount + wordText);
         showTypingSpeedWPM(typingSpeedWPM);
-        showTypingSpeedCPM(typingSpeedWPM);
+        showTypingSpeedCPM(typingSpeedCPM);
         drawLine();
         System.out.println("""
                 Please type

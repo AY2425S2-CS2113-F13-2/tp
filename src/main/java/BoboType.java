@@ -37,7 +37,6 @@ public class BoboType {
             if (mode.equals("zen")) {
                 ZenMode zenMode = new ZenMode(typingTimer,sc,ui);
                 zenMode.startZenMode();
-                break;
             } else {
                 // select difficulty and length of the test
                 List<String> testText;
@@ -102,22 +101,41 @@ public class BoboType {
 
                     ui.showResult();
                     double duration = typingTimer.getDurationMin();
-                    ui.showTypingSpeedWPM((int) (wordCount / duration));
-                    ui.showTypingSpeedCPM((int) (characterCount / duration));
+                    int typingSpeedWPM = (int) (wordCount / duration);
+                    int typingSpeedCPM = (int) (characterCount / duration);
+                    double typingAccuracyDouble = typingAccuracy.getTypingAccuracy();
+                    double typingScore = (double) typingSpeedWPM * typingAccuracyDouble;
+                    ui.showTypingSpeedWPM(typingSpeedWPM);
+                    ui.showTypingSpeedCPM(typingSpeedCPM);
+                    // ui.showTypingAccuracy(typingAccuracyDouble);
+                    ui.showTypingScore(typingScore);
+
+                    for (TypingTarget typingTarget: typingTargetList.getTypingTargetList()) {
+                        if (typingTarget instanceof TypingTargetSpeed) {
+                            if (typingSpeedWPM >= typingTarget.getTarget()) {
+                                typingTarget.setHit(true);
+                            }
+                            typingTarget.printHit();
+                        } else if (typingTarget instanceof TypingTargetScore) {
+                            if (typingScore >= typingTarget.getTarget()) {
+                                typingTarget.setHit(true);
+                            }
+                            typingTarget.printHit();
+                        }
+                    }
                 }
                 double time = typingTimer.getDurationMin();
                 state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
                 ui.showEndGame();
-                break;
             }
+            break;
 
-        case "typingaccuracy":
+            case "typingaccuracy":
             try {
                 ui.showTypingAccuracy(typingAccuracy.getTypingAccuracy());
             } catch (BoboTypeException e) {
                 ui.showErrorMessage(e.getMessage());
             }
-
             break;
 
         case "highscore":

@@ -16,14 +16,20 @@ public class TypingTargetList {
         this.typingTargetList.add(typingTarget);
     }
 
+    public ArrayList<TypingTarget> getTypingTargetList() {
+        return this.typingTargetList;
+    }
+
     public void print() {
         System.out.print("[");
         int index = 0;
-        for (TypingTarget typingTarget: typingTargetList) {
+        for (TypingTarget typingTarget : typingTargetList) {
             if (index == typingTargetList.size() - 1) {
-                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget());
+                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget() + " | " +
+                        typingTarget.getHit());
             } else {
-                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget() + ", ");
+                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget() + " | " +
+                        typingTarget.getHit() + ", ");
                 index++;
             }
         }
