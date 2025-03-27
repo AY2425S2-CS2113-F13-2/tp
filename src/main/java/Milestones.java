@@ -55,7 +55,9 @@ public class Milestones {
     private void save() {
         try (FileWriter writer = new FileWriter(file)) {
             writer.write("currentDifficulty:" + currentDifficulty + "\n");
-            for (String diff : achieved) writer.write(diff + "\n");
+            for (String diff : achieved) {
+                writer.write(diff + "\n");
+            }
         } catch (IOException e) {
             System.err.println("Error saving milestone file.");
         }
@@ -71,9 +73,9 @@ public class Milestones {
      */
     public boolean checkAndUpdate(String difficulty, double wpm) {
         double goal = switch (difficulty) {
-            case "easy" -> 100;
-            case "intermediate" -> 120;
-            default -> Double.MAX_VALUE;
+        case "easy" -> 100;
+        case "intermediate" -> 120;
+        default -> Double.MAX_VALUE;
         };
 
         if (wpm >= goal && !achieved.contains(difficulty)) {
