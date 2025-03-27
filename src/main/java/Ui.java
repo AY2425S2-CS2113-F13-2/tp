@@ -101,6 +101,7 @@ public class Ui {
                 "\t - 'typingaccuracy' to view your typing accuracy \n" +
                 "\t - 'highscore' to view your high score \n" +
                 "\t - 'highscorelist' to view your top 3 high scores \n" +
+                "\t - 'milestone' to view your default difficulty level \n" +
                 "\t - 'exit' to exit or \n" +
                 "\t - 'start' to start the new practice.");
         drawLine();
@@ -170,6 +171,25 @@ public class Ui {
         }
     }
 
+    public void showMilestoneAchieved(String difficulty, int wpmGoal) {
+        drawLine();
+        System.out.println("Congrats! You hit the milestone:");
+        System.out.println(" -> Achieved " + wpmGoal + " WPM in " + difficulty + " mode!");
+        System.out.println(" You've been promoted to a new difficulty level.");
+    }
+
+    public void showDefaultDifficultyPrompt(String difficultyLevel) {
+        drawLine();
+        System.out.println(" Default difficulty: " + difficultyLevel);
+        System.out.println(" (Type 'override' to choose your own difficulty, or leave blank to proceed)");
+        drawLine();
+    }
+
+    public void showCurrentMilestone(String difficulty) {
+        drawLine();
+        System.out.println("Current milestone: " + difficulty);
+        drawLine();
+    }
 
 }
 
