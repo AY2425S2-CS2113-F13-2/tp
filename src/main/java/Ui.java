@@ -119,10 +119,19 @@ public class Ui {
 
     public void showZenModeEndGame(int wordCount, int typingSpeedWPM, int typingSpeedCPM) {
         drawLine();
-        System.out.println("You finished the Zen Mode Practice! \n" +
-                "You have typed: " + wordCount + " words\n");
+        String wordText = " word";
+        if (wordCount >1) {
+            wordText = " words";
+        }
+        System.out.println("  You finished the Zen Mode Practice! \n" +
+                "You have typed: " + wordCount + wordText);
         showTypingSpeedWPM(typingSpeedWPM);
         showTypingSpeedCPM(typingSpeedWPM);
+        drawLine();
+        System.out.println("""
+                Please type
+                    -'exit' to exit or
+                    -'start' to start the new practice.""");
         drawLine();
 
     }
