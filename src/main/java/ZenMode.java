@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * Typing practice mode where user can type any word they wish and find their typing speed
+ * Typing practice mode where user can type any word they wish and find their typing speed.
  */
 public class ZenMode {
 
@@ -16,10 +16,10 @@ public class ZenMode {
 
 
     /**
-     * Constructs a ZenMode object used for the Zen practice mode
-     * @param typingTimer TypingTimer to measure typing time
-     * @param sc Scanner to take in user input
-     * @param ui To display messages to user
+     * Constructs a ZenMode object used for the Zen practice mode.
+     * @param typingTimer TypingTimer to measure typing time.
+     * @param sc Scanner to take in user input.
+     * @param ui To display messages to user.
      */
     public ZenMode(TypingTimer typingTimer, Scanner sc, Ui ui) {
         this.typingTimer = typingTimer;
@@ -28,7 +28,7 @@ public class ZenMode {
     }
 
     /**
-     * Starts and runs the Zen practice mode
+     * Starts and runs the Zen practice mode.
      */
     public void startZenMode() {
         wordCount = 0;
@@ -64,10 +64,6 @@ public class ZenMode {
 
     public int getTypingSpeedInCPM() {
         return typingSpeedInCPM;
-    }
-
-    public double getTypingDuration() {
-        return typingDuration;
     }
 
     public int getWordCount() {
