@@ -55,6 +55,7 @@ public class BoboType {
             if (mode.equals("zen")) {
                 ZenMode zenMode = new ZenMode(typingTimer,sc,ui);
                 zenMode.startZenMode();
+                break;
             } else {
                 // select difficulty and length of the test
                 List<String> testText;
@@ -122,12 +123,11 @@ public class BoboType {
                     ui.showTypingSpeedWPM((int) (wordCount / duration));
                     ui.showTypingSpeedCPM((int) (characterCount / duration));
                 }
+                double time = typingTimer.getDurationMin();
+                state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
+                ui.showEndGame();
+                break;
             }
-            double time = typingTimer.getDurationMin();
-            state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
-            
-            ui.showEndGame();
-            break;
 
         case "typingaccuracy":
             try {
