@@ -34,8 +34,15 @@ public class ZenMode {
         wordCount = 0;
         characterCount = 0;
         boolean isZenMode = true;
+        boolean isZenModeStarted = false;
 
         ui.showZenModeInstructions();
+        while (!isZenModeStarted) {
+            String userInput = sc.nextLine();
+            if (userInput.equals("start")) {
+                isZenModeStarted = true;
+            }
+        }
         typingTimer.start();
         while (isZenMode) {
             String userInput = sc.nextLine();
