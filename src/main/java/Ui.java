@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class Ui {
 
-    private State state;
+    private final State state;
 
     public Ui(State state) {
         this.state = state;
@@ -61,20 +63,38 @@ public class Ui {
         System.out.println(" Typing speed (CPM): " + typingSpeedCPM + " CPM");
     }
 
+    public void showTypingScore(double typingScore) {
+        System.out.print(" Typing Score (Effective WPM): ");
+        System.out.printf("%.2f", typingScore);
+        System.out.println(" WPM");
+    }
+
     /**
      * Displays typing accuracy of user in percentage to user
      *
-     * @param typeAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
+     * @param typingAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
      */
-    public void showTypingAccuracy(double typeAccuracy) {
+    public void showTypingAccuracy(double typingAccuracy) {
         drawLine();
-        System.out.println(" Your typing accuracy is: " + typeAccuracy * 100 + "%");
+        System.out.print(" Your typing accuracy is: ");
+        System.out.printf("%.2f", typingAccuracy * 100);
+        System.out.println("%");
         drawLine();
     }
 
     public void showHighScore() {
         drawLine();
-        System.out.println(" Your high score is: " + toString().valueOf(state.getHighScore()));
+        System.out.println(" Your high score is: " + state.getHighScore());
+        drawLine();
+    }
+
+    public void showHighScoreList() {
+        drawLine();
+        System.out.println(" Top 3 High Scores: ");
+        ArrayList<Double> highScoreList = state.getHighScoreList();
+        for (int i = 1; i <= Math.min(4, highScoreList.size()); i++) {
+            System.out.println(i + ". " + highScoreList.get(i - 1));
+        }
         drawLine();
     }
 
@@ -85,9 +105,14 @@ public class Ui {
 
     public void showEndGame() {
         drawLine();
+
         System.out.println("You finished the practice! Please type \n" +
                 "\t - 'typingaccuracy' to view your typing accuracy \n" +
                 "\t - 'highscore' to view your high score \n" +
+                "\t - 'highscorelist' to view your top 3 high scores \n" +
+                "\t - 'milestone' to view your default difficulty level \n" +       
+                "\t - 'targetspeedadd' to add a typing speed target \n" +
+                "\t - 'targetscoreadd' to add a typing score target \n" +
                 "\t - 'exit' to exit or \n" +
                 "\t - 'start' to start the new practice.");
         drawLine();
@@ -99,17 +124,26 @@ public class Ui {
         System.out.println("""
                 Welcome to Zen Mode, you can type out anything to your
                 heart's content and find out your typing speed.
-                Pressing Enter will start the timer and typing the comment
+                Pressing Enter will start the typingTimer and typing the comment
                 'stop_practice' will stop the practice.""");
         drawLine();
     }
 
     public void showZenModeEndGame(int wordCount, int typingSpeedWPM, int typingSpeedCPM) {
         drawLine();
-        System.out.println("You finished the Zen Mode Practice! \n" +
-                "You have typed: " + wordCount + " words\n");
+        String wordText = " word";
+        if (wordCount >1) {
+            wordText = " words";
+        }
+        System.out.println(" You finished the Zen Mode Practice! \n" +
+                " You have typed: " + wordCount + wordText);
         showTypingSpeedWPM(typingSpeedWPM);
-        showTypingSpeedCPM(typingSpeedWPM);
+        showTypingSpeedCPM(typingSpeedCPM);
+        drawLine();
+        System.out.println("""
+                Please type
+                    -'exit' to exit or
+                    -'start' to start the new practice.""");
         drawLine();
 
     }
@@ -149,6 +183,25 @@ public class Ui {
         }
     }
 
+    public void showMilestoneAchieved(String difficulty, int wpmGoal) {
+        drawLine();
+        System.out.println("Congrats! You hit the milestone:");
+        System.out.println(" -> Achieved " + wpmGoal + " WPM in " + difficulty + " mode!");
+        System.out.println(" You've been promoted to a new difficulty level.");
+    }
+
+    public void showDefaultDifficultyPrompt(String difficultyLevel) {
+        drawLine();
+        System.out.println(" Default difficulty: " + difficultyLevel);
+        System.out.println(" (Type 'override' to choose your own difficulty, or leave blank to proceed)");
+        drawLine();
+    }
+
+    public void showCurrentMilestone(String difficulty) {
+        drawLine();
+        System.out.println("Current milestone: " + difficulty);
+        drawLine();
+    }
 
 }
 
