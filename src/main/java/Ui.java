@@ -110,11 +110,10 @@ public class Ui {
 
     public void showZenModeInstructions() {
         drawLine();
-        System.out.println("""
-                Welcome to Zen Mode, you can type out anything to your
-                heart's content and find out your typing speed.
-                Pressing Enter will start the typingTimer and typing the comment
-                'stop_practice' will stop the practice.""");
+        System.out.println("Welcome to Zen Mode, you can type out anything to your\n" +
+                "heart's content and find out your typing speed.\n" +
+                "Pressing Enter will start the typingTimer and typing the comment\n" +
+                "'stop_practice' will stop the practice.");
         drawLine();
     }
 
@@ -129,10 +128,9 @@ public class Ui {
         showTypingSpeedWPM(typingSpeedWPM);
         showTypingSpeedCPM(typingSpeedWPM);
         drawLine();
-        System.out.println("""
-                Please type
-                    -'exit' to exit or
-                    -'start' to start the new practice.""");
+        System.out.println("Please type\n" +
+                "    - 'exit' to exit or\n" +
+                "    - 'start' to start the new practice.");
         drawLine();
 
     }
