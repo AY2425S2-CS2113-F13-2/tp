@@ -61,7 +61,32 @@ that their target has been successfully reached.
 
 #### Implementation
 
-Milestones are faciliated by `Milestones`.
+Milestones are facilitated by `Milestones` and managed in coordination with `AutoAdjust`.
+Additionally, it implements the following operations:
+
+- `Milestones(String filePath)` - Loads milestone progress from a file (or initializes it if not found).
+
+- `checkAndUpdate(String difficulty, double wpm)` - Checks whether the user has hit the milestone (e.g., 60 WPM in easy)
+and updates their progress if so. Promotes to the next difficulty and writes to file.
+
+- `getCurrentDifficulty()` - Returns the current default difficulty that will be suggested for practice.
+
+- `evaluate(int wpm)` - Invokes checkAndUpdate to determine whether the user should be promoted. If a milestone is hit, 
+the user is congratulated with Ui.showMilestoneAchieved.
+
+Given below is an example usage scenario of how Milestones feature behave at each step.
+Step 1. The user starts a practice session in normal or timedLimit mode. `Milestones.getCurrentDifficulty()` is used to 
+determine their default difficulty (e.g., "easy").
+
+Step 2. The user completes the round and achieves a sufficiently high WPM (e.g., 61 WPM in easy mode).
+`AutoAdjust.evaluate(wpm)` is called at the end of the session.
+
+Step 3. `Milestones.checkAndUpdate(difficulty, wpm)` checks if the user qualifies for a milestone. Since 61 WPM is the 
+goal for "easy"(60), the milestone is achieved.
+
+Step 4. The Milestones class promotes the user to the next difficulty (e.g., from "easy" to "intermediate") and updates 
+`data/milestones.txt`.
+`Ui.showMilestoneAchieved(...)` is then called to notify the user of their achievement and promotion.
 
 ## Product scope
 
