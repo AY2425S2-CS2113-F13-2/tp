@@ -5,9 +5,26 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
 original source as well}
 
-## Design & implementation
-
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+## Design
+### Architecture
+
+{Insert architecture diagrams and explain the overall architecture of the code.}
+
+### Ui Component
+
+The API of this component is specified in `Ui.java`.
+
+### Logic Component
+
+### Model Component
+
+### Storage Component
+
+### Common Classes
+
+## Implementation
 
 ### Zen Mode Feature
 
@@ -40,15 +57,30 @@ The user can issue the command `targetspeedadd` or `targetscoreadd` to add a typ
 respectively. When the target is hit when the user finishes a `normal` typing test, the program will inform the user
 that their target has been successfully reached.
 
+### Milestones Feature
+
+#### Implementation
+
+Milestones are faciliated by `Milestones`.
+
 ## Product scope
 
 ### Target user profile
 
-{Describe the target user profile}
+Has a desire to improve typing speed and accuracy.
+
+Prefers desktop applications to web or mobile apps.
+
+Enjoys or is comfortable using Command-Line Interface (CLI) tools.
+
+Prefers keyboard-based interactions to mouse navigation.
+
+Is motivated by progress tracking, stats, and milestone achievements.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Helps users practice and improve typing in a distraction-free CLI environment by offering a faster, 
+lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric users.
 
 ## User Stories
 
