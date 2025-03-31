@@ -6,6 +6,9 @@ import java.util.logging.Logger;
 
 public class TextSelector {
     private static Logger logger = Logger.getLogger("TextSelectorLogger");
+    private static final List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
+    private static final List<String> validLengths = Arrays.asList("short", "medium", "long");
+
     static {
         logger.setLevel(Level.WARNING);
     }
@@ -13,8 +16,6 @@ public class TextSelector {
     public static List<String> selectText(String difficultyLevel, String textLength, int randomNum) {
         List<String> list = new ArrayList<>();
         FileReader fileReader = new FileReader();
-        List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
-        List<String> validLengths = Arrays.asList("short", "medium", "long");
 
         if (!validLevels.contains(difficultyLevel)) {
             throw new InvalidInputException("Please enter a valid difficulty level.");
@@ -33,6 +34,18 @@ public class TextSelector {
 
         assert list != null;
         return list;
+    }
+
+    /**
+     * Selects text based on the default difficulty stored in milestones.txt.
+     * @param textLength "short", "medium", or "long"
+     * @param randomNum The random number used to select a specific file (e.g., 1.txt, 2.txt)
+     * @param milestonePath Path to milestones.txt file (e.g., "data/milestones.txt")
+     */
+    public static List<String> selectTextDefault(String textLength, int randomNum, String milestonePath) {
+        Milestones milestones = new Milestones(milestonePath);
+        String defaultDifficulty = milestones.getCurrentDifficulty();
+        return selectText(defaultDifficulty, textLength, randomNum);
     }
 
 }
