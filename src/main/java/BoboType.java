@@ -9,7 +9,6 @@ import ui.Ui;
 import parser.Parser;
 import storage.State;
 import storage.Storage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,8 +50,7 @@ public class BoboType {
                 Command c = userInput.parseToCommand();
                 c.execute(ui, sc, milestones, typingTimer, typingAccuracy, typingTargetList, state, autoAdjust);
                 isExit = c.isExit();
-            }
-            catch (InvalidInputException e) {
+            } catch (InvalidInputException e) {
                 ui.showInvalidInputMessage();
             }
         }

@@ -8,7 +8,12 @@ import modes.ZenMode;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;
-import typing.*;
+import typing.TypingAccuracy;
+import typing.TypingTarget;
+import typing.TypingTargetList;
+import typing.TextSelector;
+import typing.TypingTargetScore;
+import typing.TypingTargetSpeed;
 import ui.Ui;
 import util.RandNumGenerator;
 import util.WordCounter;
@@ -21,8 +26,9 @@ import java.util.Scanner;
 public class StartCommand extends Command {
 
     @Override
-    public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer, TypingAccuracy typingAccuracy,
-                        TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust) throws IOException {
+    public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer,
+                        TypingAccuracy typingAccuracy, TypingTargetList typingTargetList, State state,
+                        AutoAdjust autoAdjust) throws IOException {
         int wordCount = 0;
         int characterCount = 0;
         final int NUM_OF_TEXTS = 3;

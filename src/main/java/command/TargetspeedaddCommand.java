@@ -15,8 +15,9 @@ import java.util.Scanner;
 public class TargetspeedaddCommand extends Command {
 
     @Override
-    public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer, TypingAccuracy typingAccuracy,
-                        TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust) throws IOException {
+    public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer,
+                        TypingAccuracy typingAccuracy, TypingTargetList typingTargetList, State state,
+                        AutoAdjust autoAdjust) throws IOException {
         System.out.println("Please enter a typing speed target you would like to hit (WPM)!");
         try {
             String targetSpeed = sc.nextLine().trim();

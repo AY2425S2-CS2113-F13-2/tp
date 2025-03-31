@@ -1,38 +1,25 @@
 package parser;
 
-import command.*;
-import exceptions.BoboTypeException;
-import exceptions.FileProcessingException;
-import exceptions.InvalidInputException;
-import modes.TimeLimitMode;
-import modes.TypingTimer;
-import modes.ZenMode;
-import storage.AutoAdjust;
-import storage.Milestones;
-import storage.State;
-import storage.Storage;
-import typing.*;
-import ui.Ui;
-import util.RandNumGenerator;
-import util.WordCounter;
+import command.Command;
+import command.StartCommand;
+import command.TypingAccuracyCommand;
+import command.ExitCommand;
+import command.HighscoreCommand;
+import command.HighscorelistCommand;
+import command.MilestoneCommand;
+import command.TargetspeedaddCommand;
+import command.TargetscoreaddCommand;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import exceptions.InvalidInputException;
 
 public class Parser {
 
     private String userInput;
 
-    public static String[] parseCommand(String input) {
-        return input.split(" ", 2);
-    }
-
     /**
-     * Constructs a UserInputParser object and sets the user input
-     * Splits user input by spaces
-     * @param userInput The complete input provided by the user
+     * Constructs a UserInputParser object and sets the user input.
+     * Splits user input by spaces.
+     * @param userInput The complete input provided by the user.
      */
     public Parser(String userInput) {
         this.userInput = userInput;
