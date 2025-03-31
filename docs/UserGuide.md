@@ -60,16 +60,35 @@ Example:
 ` Type: '1' or '2' or '3' `
 
 ### Set Zen Typing Speed: `zen`
-Type as long as desired. Get back the typing speed of the user's attempt.
+Type as long as desired. Get the typing speed of the user's attempt.
 
 Format: `zen`
 
 Example:
 
-` Welcome to Zen Mode, you can type out anything to your
-heart's content and find out your typing speed.
-Pressing Enter will start the typingTimer and typing the comment
-'stop_practice' will stop the practice.`
+```
+Welcome to Zen Mode, you can type out anything to your heart's content and find out your typing speed.
+Typing 'start' will start the typingTimer and typing the command 'stop_practice' will stop the practice.
+```
+
+User types
+- `start`
+- `Some Sample Text`
+- `stop_practice`
+
+Returns
+```
+____________________________________________________________
+You finished the Zen Mode Practice!
+You have typed: 4 words
+Typing speed (WPM): 33 WPM
+Typing speed (CPM): 246 CPM
+____________________________________________________________
+Please type
+- 'exit' to exit or
+- 'start' to start the new practice.
+____________________________________________________________
+```
 
 ### Set Typing Difficulty: `difficulty`
 Sets the difficulty of the typing exercise.
@@ -80,11 +99,11 @@ Example:
 ` Type: 'easy' or 'intermediate' or 'difficult' `
 
 ### Get Typing Accuracy: `typingaccuracy`
-Gets back the typing accuracy of the user's attempt.
+Returns the typing accuracy of the user's previous typing test.
 
 Format: `typingaccuracy`
 
-Example:
+Example: 
 
 ` Your typing accuracy is: 39.285714285714285%`
 
