@@ -1,5 +1,6 @@
+package typing;
+
 import org.junit.jupiter.api.Test;
-import typing.TypingAccuracy;
 
 import java.util.ArrayList;
 

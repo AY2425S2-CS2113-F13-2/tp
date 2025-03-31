@@ -1,3 +1,5 @@
+package typing;
+
 import exceptions.FileProcessingException;
 import exceptions.InvalidInputException;
 import storage.Milestones;

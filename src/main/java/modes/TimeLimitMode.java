@@ -1,4 +1,4 @@
-package typing;
+package modes;
 
 import java.io.IOException;
 import java.util.List;

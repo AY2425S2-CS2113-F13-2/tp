@@ -1,4 +1,4 @@
-package typingtarget;
+package typing;
 
 public class TypingTargetScore extends TypingTarget {
     public TypingTargetScore(long target) {

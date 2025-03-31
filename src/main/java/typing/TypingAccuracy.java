@@ -1,3 +1,5 @@
+package typing;
+
 import exceptions.BoboTypeException;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class TypingAccuracy {
     private final ArrayList<String> userText;
 
     /**
-     * Constructs a TypeAccuracy object used to find the typing of the user's input.
+     * Constructs a TypeAccuracy object used to find the typing accuracy of the user's input.
      * @param userText ArrayList containing the user's input line by line.
      */
     public TypingAccuracy(ArrayList<String> userText) {

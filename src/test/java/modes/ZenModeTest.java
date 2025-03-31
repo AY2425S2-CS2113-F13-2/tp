@@ -1,9 +1,9 @@
+package modes;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.State;
 import storage.Storage;
-import modes.ZenMode;
-import modes.TypingTimer;
 import ui.Ui;
 
 import java.util.Scanner;

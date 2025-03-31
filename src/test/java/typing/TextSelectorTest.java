@@ -1,7 +1,8 @@
+package typing;
+
 import exceptions.FileProcessingException;
 import exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
-import typing.TextSelector;
 
 import java.util.ArrayList;
 import java.util.List;

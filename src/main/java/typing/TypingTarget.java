@@ -1,4 +1,4 @@
-package typingtarget;
+package typing;
 
 public abstract class TypingTarget {
     private final long target;

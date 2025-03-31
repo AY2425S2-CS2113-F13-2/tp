@@ -1,3 +1,5 @@
+package util;
+
 public class WordCounter {
     public static int countWords(String input) {
         if (input == null || input.trim().isEmpty()) {

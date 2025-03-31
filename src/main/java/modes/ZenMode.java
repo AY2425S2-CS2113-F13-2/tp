@@ -1,4 +1,4 @@
-package typing;
+package modes;
 
 import ui.Ui;
 import util.WordCounter;

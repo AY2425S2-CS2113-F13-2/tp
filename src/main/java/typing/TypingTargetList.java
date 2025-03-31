@@ -1,4 +1,4 @@
-package typingtarget;
+package typing;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
