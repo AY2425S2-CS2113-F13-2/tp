@@ -27,12 +27,20 @@ public class AutoAdjust {
     public void evaluate(int wpm) {
         String difficulty = milestones.getCurrentDifficulty();
         if (milestones.checkAndUpdate(difficulty, wpm)) {
-            int goal = switch (difficulty) {
-            case "easy" -> 60;
-            case "intermediate" -> 80;
-            case "difficult" -> 100;
-            default -> 9999;
-            };
+            int goal;
+            switch (difficulty) {
+            case "easy":
+                goal = 60;
+                break;
+            case "intermediate":
+                goal = 80;
+                break;
+            case "difficult":
+                goal = 100;
+                break;
+            default:
+                goal = 9999;
+            }
             ui.showMilestoneAchieved(difficulty, goal);
         }
     }
