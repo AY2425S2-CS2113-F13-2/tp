@@ -5,6 +5,7 @@
 public class AutoAdjust {
     private final Milestones milestones;
     private final Ui ui;
+    private final State state;
 
     /**
      * Constructs an AutoAdjust instance.
@@ -12,9 +13,10 @@ public class AutoAdjust {
      * @param milestones The milestones tracker used to store and update user progress.
      * @param ui         The UI component used to display milestone achievement messages.
      */
-    public AutoAdjust(Milestones milestones, Ui ui) {
+    public AutoAdjust(Milestones milestones, Ui ui, State state) {
         this.milestones = milestones;
         this.ui = ui;
+        this.state = state;
     }
 
     /**
@@ -22,11 +24,12 @@ public class AutoAdjust {
      * If the user has achieved the WPM goal for the current difficulty,
      * updates their milestone and promotes them to the next level.
      *
-     * @param wpm Words per minute achieved in the latest typing session.
+     * @param highscore highscore achieved in the overall typing session.
      */
-    public void evaluate(int wpm) {
+    public void evaluate(double highscore) {
         String difficulty = milestones.getCurrentDifficulty();
-        if (milestones.checkAndUpdate(difficulty, wpm)) {
+        double highScore = state.getHighScore();
+        if (milestones.checkAndUpdate(difficulty, highScore)) {
             int goal;
             switch (difficulty) {
             case "easy":

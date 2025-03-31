@@ -28,7 +28,7 @@ public class BoboType {
         typingAccuracy = new TypingAccuracy(new ArrayList<>());
         typingTimer = new TypingTimer();
         milestones = new Milestones("data/milestones.txt");
-        autoAdjust = new AutoAdjust(milestones, ui);
+        autoAdjust = new AutoAdjust(milestones, ui, state);
         typingTargetList = new TypingTargetList();
     }
 
@@ -138,8 +138,8 @@ public class BoboType {
                 }
                 double time = typingTimer.getDurationMin();
                 //state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
-                autoAdjust.evaluate((int) (wordCount / time));
                 state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
+                autoAdjust.evaluate(state.getHighScore());
                 ui.showEndGame();
             }
             break;
