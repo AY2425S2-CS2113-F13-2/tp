@@ -4,15 +4,22 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 class TimeLimitModeTest {
     private TimeLimitMode timeLimitMode;
     private WordCounter wordCounter;
+    private Ui ui;
+    private Scanner sc;
 
     @BeforeEach
     void setUp() {
-        timeLimitMode = new TimeLimitMode();
         wordCounter = new WordCounter();
+        Storage storage = new Storage("TestStorage");
+        State state = new State(storage);
+        ui = new Ui(state);
+        sc = new Scanner(System.in);
+        timeLimitMode = new TimeLimitMode(ui, sc);
     }
 
     @Test

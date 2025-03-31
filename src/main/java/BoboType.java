@@ -72,21 +72,12 @@ public class BoboType {
                 }
                 // time limit mode
                 if (mode.equals("timeLimit")) {
-                    int timeLimit;
-                    int numOfLines;
-                    int numOfCorrect;
-                    TimeLimitMode timeLimitMode = new TimeLimitMode();
-                    ui.showTimeLimitModeInstructions();
-
+                    TimeLimitMode timeLimitMode = new TimeLimitMode(ui, sc);
                     try {
                         timeLimitMode.run(testText, difficultyLevel);
                     } catch (InterruptedException e) {
                         ui.showErrorMessage(e.getMessage());
                     }
-                    numOfLines = testText.size();
-                    numOfCorrect = timeLimitMode.getNumOfCorrect();
-                    ui.showTimeLimitResult(numOfLines, numOfCorrect);
-                    sc.nextLine(); // to clear the input
                 } else { // normal mode
                     typingAccuracy.setTestText((ArrayList<String>) testText);
                     ui.showStartGame();
@@ -128,7 +119,6 @@ public class BoboType {
                             typingTarget.printHit();
                         }
                     }
-
                     double time = typingTimer.getDurationMin();
                     autoAdjust.evaluate((int) (wordCount / time));
                     state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
