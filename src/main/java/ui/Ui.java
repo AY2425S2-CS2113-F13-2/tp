@@ -54,6 +54,12 @@ public class Ui {
         System.out.println(" *** Oops! *** \n -> " + message);
     }
 
+    public void showInvalidInputMessage() {
+        drawLine();
+        System.out.println("Invalid command entered. Please provide a valid input!");
+        drawLine();
+    }
+
     public void showResult() {
         drawLine();
         System.out.println(" Hope you enjoyed the round! Here are your stats:");
