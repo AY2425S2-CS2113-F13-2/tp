@@ -148,10 +148,9 @@ public class Ui {
 
     }
 
-    public void showTimeLimitModeInstructions(int timeLimit) {
+    public void showTimeLimitModeInstructions() {
         drawLine();
-        System.out.println("Welcome to Time Limit mode. \n" +
-                "\t - You will have " + timeLimit + " seconds to finish typing each sentence.");
+        System.out.println("Welcome to Time Limit mode.");
         drawLine();
         waitOneSec();
         System.out.println("Are you ready? The game will begin in ");
