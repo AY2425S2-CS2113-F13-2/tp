@@ -26,6 +26,16 @@ The API of this component is specified in `Ui.java`.
 
 ## Implementation
 
+### Typing Accuracy
+
+#### Proposed Implementation
+
+The typing accuracy of the user is facilitated by `TypingAccuracy`. It implements the following operations:
+- `TypingAccuracy(ArrayList<String> userText)` - Constructor to create TypingAccuracy object with user input
+- `setTestText` - Set's the test text to the corresponding text being tested
+- `updateUserInput` - Update's the user input when they type a new line
+- `getTypingAccuracy` - Computes and returns typing accuracy
+
 ### Zen Mode Feature
 
 #### Proposed Implementation
