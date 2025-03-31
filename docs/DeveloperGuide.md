@@ -5,9 +5,36 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
 original source as well}
 
-## Design & implementation
-
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+## Design
+### Architecture
+
+{Insert architecture diagrams and explain the overall architecture of the code.}
+
+### Ui Component
+
+The API of this component is specified in `Ui.java`.
+
+### Logic Component
+
+### Model Component
+
+### Storage Component
+
+### Common Classes
+
+## Implementation
+
+### Typing Accuracy
+
+#### Proposed Implementation
+
+The typing accuracy of the user is facilitated by `TypingAccuracy`. It implements the following operations:
+- `TypingAccuracy(ArrayList<String> userText)` - Constructor to create TypingAccuracy object with user input
+- `setTestText` - Set's the test text to the corresponding text being tested
+- `updateUserInput` - Update's the user input when they type a new line
+- `getTypingAccuracy` - Computes and returns typing accuracy
 
 ### Zen Mode Feature
 
@@ -40,15 +67,55 @@ The user can issue the command `targetspeedadd` or `targetscoreadd` to add a typ
 respectively. When the target is hit when the user finishes a `normal` typing test, the program will inform the user
 that their target has been successfully reached.
 
+### Milestones Feature
+
+#### Implementation
+
+Milestones are facilitated by `Milestones` and managed in coordination with `AutoAdjust`.
+Additionally, it implements the following operations:
+
+- `Milestones(String filePath)` - Loads milestone progress from a file (or initializes it if not found).
+
+- `checkAndUpdate(String difficulty, double wpm)` - Checks whether the user has hit the milestone (e.g., 60 WPM in easy)
+and updates their progress if so. Promotes to the next difficulty and writes to file.
+
+- `getCurrentDifficulty()` - Returns the current default difficulty that will be suggested for practice.
+
+- `evaluate(int wpm)` - Invokes checkAndUpdate to determine whether the user should be promoted. If a milestone is hit, 
+the user is congratulated with Ui.showMilestoneAchieved.
+
+Given below is an example usage scenario of how Milestones feature behave at each step.
+Step 1. The user starts a practice session in normal or timedLimit mode. `Milestones.getCurrentDifficulty()` is used to 
+determine their default difficulty (e.g., "easy").
+
+Step 2. The user completes the round and achieves a sufficiently high WPM (e.g., 61 WPM in easy mode).
+`AutoAdjust.evaluate(wpm)` is called at the end of the session.
+
+Step 3. `Milestones.checkAndUpdate(difficulty, wpm)` checks if the user qualifies for a milestone. Since 61 WPM is the 
+goal for "easy"(60), the milestone is achieved.
+
+Step 4. The Milestones class promotes the user to the next difficulty (e.g., from "easy" to "intermediate") and updates 
+`data/milestones.txt`.
+`Ui.showMilestoneAchieved(...)` is then called to notify the user of their achievement and promotion.
+
 ## Product scope
 
 ### Target user profile
 
-{Describe the target user profile}
+Has a desire to improve typing speed and accuracy.
+
+Prefers desktop applications to web or mobile apps.
+
+Enjoys or is comfortable using Command-Line Interface (CLI) tools.
+
+Prefers keyboard-based interactions to mouse navigation.
+
+Is motivated by progress tracking, stats, and milestone achievements.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Helps users practice and improve typing in a distraction-free CLI environment by offering a faster, 
+lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric users.
 
 ## User Stories
 
