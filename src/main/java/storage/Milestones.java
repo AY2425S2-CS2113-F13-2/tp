@@ -70,10 +70,10 @@ public class Milestones {
      * If so, marks it as completed and promotes to the next difficulty level.
      *
      * @param difficulty The difficulty level attempted.
-     * @param wpm        The WPM achieved by the user.
+     * @param highscore  The highscore achieved by the user.
      * @return true if a milestone was achieved and updated, false otherwise.
      */
-    public boolean checkAndUpdate(String difficulty, double wpm) {
+    public boolean checkAndUpdate(String difficulty, double highscore) {
         double goal;
         switch (difficulty) {
         case "easy":
@@ -90,7 +90,7 @@ public class Milestones {
             break;
         }
 
-        if (wpm >= goal && !achieved.contains(difficulty)) {
+        if (highscore >= goal && !achieved.contains(difficulty)) {
             achieved.add(difficulty);
             promote(difficulty);
             save();

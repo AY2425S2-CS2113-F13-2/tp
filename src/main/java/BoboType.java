@@ -44,7 +44,7 @@ public class BoboType {
         typingAccuracy = new TypingAccuracy(new ArrayList<>());
         typingTimer = new TypingTimer();
         milestones = new Milestones("data/milestones.txt");
-        autoAdjust = new AutoAdjust(milestones, ui);
+        autoAdjust = new AutoAdjust(milestones, ui, state);
         typingTargetList = new TypingTargetList();
     }
 
@@ -92,17 +92,10 @@ public class BoboType {
                     int numOfLines;
                     int numOfCorrect;
                     TimeLimitMode timeLimitMode = new TimeLimitMode();
-                    if (difficultyLevel.equals("easy")) {
-                        timeLimit = 10;
-                    } else if (difficultyLevel.equals("intermediate")) {
-                        timeLimit = 15;
-                    } else {
-                        timeLimit = 20;
-                    }
-                    ui.showTimeLimitModeInstructions(timeLimit);
+                    ui.showTimeLimitModeInstructions();
 
                     try {
-                        timeLimitMode.run(testText, timeLimit, sc);
+                        timeLimitMode.run(testText, difficultyLevel);
                     } catch (InterruptedException e) {
                         ui.showErrorMessage(e.getMessage());
                     }
@@ -151,11 +144,12 @@ public class BoboType {
                             typingTarget.printHit();
                         }
                     }
+
+                    double time = typingTimer.getDurationMin();
+                    state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
+                    autoAdjust.evaluate(state.getHighScore());
                 }
-                double time = typingTimer.getDurationMin();
-                //state.updateHighScore(typeAccuracy.getTypeAccuracy(), (int) (wordCount / time));
-                autoAdjust.evaluate((int) (wordCount / time));
-                state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
+
                 ui.showEndGame();
             }
             break;
