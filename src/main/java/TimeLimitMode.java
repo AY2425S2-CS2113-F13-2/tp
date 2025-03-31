@@ -1,27 +1,25 @@
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Scanner;
 
 class ClockThread extends Thread {
-    private long startTime; // Variable to store the start time
-    private long elapsedTime; // Variable to store elapsed time in seconds
+    private long startTime;
+    private long elapsedTime;
 
     @Override
     public void run() {
-        startTime = System.currentTimeMillis(); // Store the current time as start time
+        startTime = System.currentTimeMillis();
 
-        while (!Thread.interrupted()) { // Check if thread is interrupted
-            // Calculate elapsed time in seconds
-            elapsedTime = (System.currentTimeMillis() - startTime) / 1000; // Convert to seconds
+        while (!Thread.interrupted()) {
+            elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
             try {
-                Thread.sleep(1000); // Sleep for 1 second before updating the time again
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
-                return; // Exit the thread when interrupted
+                return;
             }
         }
     }
 
-    // Method to get the elapsed time in seconds
     public long getElapsedTime() {
         return elapsedTime;
     }
@@ -29,28 +27,26 @@ class ClockThread extends Thread {
 
 public class TimeLimitMode {
     private int numOfCorrect;
+    private WordCounter wordCounter = new WordCounter();
 
-    public void run(List<String> testText, long timeLimit, Scanner sc) throws InterruptedException {
+    public void run(List<String> testText, String difficulty) throws InterruptedException {
         numOfCorrect = 0;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         for (String s : testText) {
             String userInput = "";
+            long timeLimit = getTimeLimit(s, difficulty);
             ClockThread clockThread = new ClockThread();
-            // to make sure the user input is empty before the target string is printed
-            try {
-                if (System.in.available() > 0) {
-                    sc.nextLine(); // Consume and ignore the previous input before the game starts
-                }
-            } catch (IOException e) {
-                System.err.println("Failed to clear input buffer: " + e.getMessage());
-            }
+
             System.out.println(s);
             clockThread.start();
 
             try {
-                userInput = waitForInput(clockThread, sc, timeLimit);
+                userInput = waitForInput(clockThread, reader, timeLimit); // Get user input
             } catch (Exception e) {
                 System.out.println("An error occurred while waiting for input.");
             }
+
             if (userInput != null) {
                 if (userInput.equals(s)) {
                     numOfCorrect++;
@@ -61,32 +57,48 @@ public class TimeLimitMode {
             } else {
                 System.out.println("\n*** Time's up! Try typing faster! ***");
             }
-
             // After time limit or correct input, interrupt the threads
             clockThread.interrupt();
         }
     }
 
-    private String waitForInput(ClockThread clockThread, Scanner sc, long timeLimit) throws Exception {
+    // Non-blocking check for user input using BufferedReader and ready()
+    String waitForInput(ClockThread clockThread, BufferedReader reader, long timeLimit) throws Exception {
+        long startTime = System.currentTimeMillis();
+        String userInput = null;
+
         while (clockThread.getElapsedTime() < timeLimit) {
-            try {
-                if (System.in.available() > 0) {
-                    return sc.nextLine();
+            if (reader.ready()) { // Check if there's input available without blocking
+                userInput = reader.readLine(); // Read the input
+                // to prevent the program to process the input after the previous interrupt as valid input
+                if (clockThread.getElapsedTime() >= 3) {
+                    break;
                 }
-            } catch (IOException e) {
-                return null;
             }
+
             try {
-                Thread.sleep(100); // Check every 0.1 sec
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 return null;
             }
         }
-        return null;
+        return userInput; // Return the user input or null if time runs out
     }
 
     public int getNumOfCorrect() {
         return numOfCorrect;
+    }
+
+    long getTimeLimit(String s, String difficulty) {
+        long timeLimit = 0;
+        if (difficulty.equals("easy")) {
+            timeLimit = (long) (wordCounter.countWords(s) / 0.67);
+        } else if (difficulty.equals("intermediate")) {
+            timeLimit = (long) (wordCounter.countWords(s) / 0.83);
+        } else {
+            timeLimit = wordCounter.countWords(s);
+        }
+        return timeLimit;
     }
 }
 
