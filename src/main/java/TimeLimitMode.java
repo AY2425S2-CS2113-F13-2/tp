@@ -27,7 +27,7 @@ class ClockThread extends Thread {
 
 public class TimeLimitMode {
     private int numOfCorrect;
-    private static WordCounter wordCounter = new WordCounter();
+    private WordCounter wordCounter = new WordCounter();
 
     public void run(List<String> testText, String difficulty) throws InterruptedException {
         numOfCorrect = 0;
@@ -70,8 +70,8 @@ public class TimeLimitMode {
         while (clockThread.getElapsedTime() < timeLimit) {
             if (reader.ready()) { // Check if there's input available without blocking
                 userInput = reader.readLine(); // Read the input
-//                break;
-                if (clockThread.getElapsedTime() >= 3) { // to prevent the program to process the input after the previous interrupt as valid input
+                // to prevent the program to process the input after the previous interrupt as valid input
+                if (clockThread.getElapsedTime() >= 3) {
                     break;
                 }
             }
