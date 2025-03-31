@@ -146,10 +146,9 @@ public class Ui {
 
     }
 
-    public void showTimeLimitModeInstructions(int timeLimit) {
+    public void showTimeLimitModeInstructions() {
         drawLine();
-        System.out.println("Welcome to Time Limit mode. \n" +
-                "\t - You will have " + timeLimit + " seconds to finish typing each sentence.");
+        System.out.println("Welcome to Time Limit mode.");
         drawLine();
         waitOneSec();
         System.out.println("Are you ready? The game will begin in ");
@@ -165,6 +164,7 @@ public class Ui {
 
     public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
         waitOneSec();
+        System.out.println("");
         drawLine();
         System.out.println("You finished the timeLimit Mode Practice! ");
         System.out.println("\t - Num of correct lines: " + numOfCorrect + " lines out of " + numOfLines + " lines");
