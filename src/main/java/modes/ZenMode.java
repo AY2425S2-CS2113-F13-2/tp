@@ -1,4 +1,10 @@
+package typing;
+
+import ui.Ui;
+import util.WordCounter;
+
 import java.util.Scanner;
+
 
 /**
  * Typing practice mode where user can type any word they wish and find their typing speed.

@@ -1,4 +1,6 @@
-abstract class TypingTarget {
+package typingtarget;
+
+public abstract class TypingTarget {
     private final long target;
     private boolean hit;
 

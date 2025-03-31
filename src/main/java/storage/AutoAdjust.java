@@ -1,3 +1,5 @@
+import ui.Ui;
+
 /**
  * Handles automatic adjustment of the user's typing difficulty
  * based on their current performance (WPM).

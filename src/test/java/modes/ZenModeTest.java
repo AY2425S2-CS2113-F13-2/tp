@@ -1,5 +1,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import storage.State;
+import storage.Storage;
+import modes.ZenMode;
+import modes.TypingTimer;
+import ui.Ui;
 
 import java.util.Scanner;
 
@@ -7,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ZenModeTest {
 
-    private TestTypingTimer typingTimer;
+    private TypingTimer typingTimer;
     private Ui ui;
     private Scanner scanner;
     private ZenMode zenMode;
@@ -24,7 +29,7 @@ class ZenModeTest {
 
     @Test
     void startZenMode_oneWord_twoWords() {
-        scanner = new Scanner("Test\nstop_practice\n");
+        scanner = new Scanner("start\nTest\nstop_practice\n");
         zenMode = new ZenMode(typingTimer, scanner, ui);
 
         zenMode.startZenMode();
@@ -37,7 +42,7 @@ class ZenModeTest {
 
     @Test
     void startZenMode_stopImmediately_oneWord() {
-        scanner = new Scanner("stop_practice");
+        scanner = new Scanner("start\nstop_practice");
         zenMode = new ZenMode(typingTimer, scanner, ui);
 
         zenMode.startZenMode();
