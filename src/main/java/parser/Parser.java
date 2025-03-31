@@ -25,18 +25,32 @@ public class Parser {
         this.userInput = userInput;
     }
 
+    /**
+     * Parses user input to identify type of command
+     * @return command of corresponding type
+     */
+    //No break as all cases return
     public Command parseToCommand() {
-        return switch (userInput) {
-            case "start" -> new StartCommand();
-            case "typingaccuracy" -> new TypingAccuracyCommand();
-            case "exit" -> new ExitCommand();
-            case "highscore" -> new HighscoreCommand();
-            case "highscorelist" -> new HighscorelistCommand();
-            case "milestone" -> new MilestoneCommand();
-            case "targetspeedadd" -> new TargetspeedaddCommand();
-            case "targetscoreadd" -> new TargetscoreaddCommand();
-            default -> throw new InvalidInputException("Invalid input");
-        };
+        switch (userInput) {
+        case "start":
+            return new StartCommand();
+        case "typingaccuracy":
+            return new TypingAccuracyCommand();
+        case "exit":
+            return new ExitCommand();
+        case "highscore":
+            return new HighscoreCommand();
+        case "highscorelist":
+            return new HighscorelistCommand();
+        case "milestone":
+            return new MilestoneCommand();
+        case "targetspeedadd":
+            return new TargetspeedaddCommand();
+        case "targetscoreadd":
+            return new TargetscoreaddCommand();
+        default:
+            throw new InvalidInputException("Invalid input");
+        }
     }
 }
 
