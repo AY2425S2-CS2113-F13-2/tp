@@ -72,11 +72,21 @@ public class Milestones {
      * @return true if a milestone was achieved and updated, false otherwise.
      */
     public boolean checkAndUpdate(String difficulty, double wpm) {
-        double goal = switch (difficulty) {
-        case "easy" -> 100;
-        case "intermediate" -> 120;
-        default -> Double.MAX_VALUE;
-        };
+        double goal;
+        switch (difficulty) {
+        case "easy":
+            goal = 60;
+            break;
+        case "intermediate":
+            goal = 80;
+            break;
+        case "difficult":
+            goal = 100;
+            break;
+        default:
+            goal = Double.MAX_VALUE;
+            break;
+        }
 
         if (wpm >= goal && !achieved.contains(difficulty)) {
             achieved.add(difficulty);
