@@ -7,7 +7,6 @@ package typing;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ui.Ui;
 
 public class TypingTargetList {
     private static final Logger logger = Logger.getLogger("TimerLogger");

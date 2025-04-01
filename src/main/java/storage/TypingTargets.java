@@ -20,6 +20,7 @@ public class TypingTargets {
 
     /**
      * Constructs a Milestones object that tracks user progress.
+     *
      * @param filePath The path to the milestones file used to store progress.
      */
     public TypingTargets(String filePath) {
@@ -40,6 +41,7 @@ public class TypingTargets {
     /**
      * Loads the milestone progress from the file.
      * If the file doesn't exist, it will be initialized with default values.
+     *
      * @param typingTargetList Typing target list
      * @throws IOException if there was an error reading the file
      */
@@ -54,9 +56,15 @@ public class TypingTargets {
                 String line = scanner.nextLine().trim();
                 String[] data = line.split("\\|");
                 if (data[0].equals("Speed")) {
-                    typingTargetList.addTarget(new TypingTargetSpeed(Long.parseLong(data[1]), Boolean.parseBoolean(data[2])));
+                    typingTargetList.addTarget(
+                            new TypingTargetSpeed(Long.parseLong(data[1]),
+                                    Boolean.parseBoolean(data[2]))
+                    );
                 } else {
-                    typingTargetList.addTarget(new TypingTargetScore(Long.parseLong(data[1]), Boolean.parseBoolean(data[2])));
+                    typingTargetList.addTarget(
+                            new TypingTargetScore(Long.parseLong(data[1]),
+                                    Boolean.parseBoolean(data[2]))
+                    );
                 }
             }
         } catch (IOException e) {
@@ -66,6 +74,7 @@ public class TypingTargets {
 
     /**
      * Saves the current typing target list to the file
+     *
      * @param typingTargetList Typing target list
      * @throws IOException if an input/output operation has failed
      */
