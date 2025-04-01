@@ -1,0 +1,17 @@
+@startuml
+
+    class TypingAccuracy {
+        - ArrayList<String> testText
+        - ArrayList<String> userText
+        + TypingAccuracy(ArrayList<String> userText)
+        + void setTestText(ArrayList<String> testText)
+        + void updateUserInput(String userInput)
+        + double getTypingAccuracy() throws BoboTypeException
+    }
+
+    class BoboTypeException {
+        + BoboTypeException(String message)
+    }
+
+TypingAccuracy ..|> BoboTypeException : throws >
+@enduml

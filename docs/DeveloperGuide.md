@@ -10,7 +10,11 @@ original source as well}
 ## Design
 ### Architecture
 
-{Insert architecture diagrams and explain the overall architecture of the code.}
+<img src="images/Architecture.png" width="280" />
+
+The ***Architecture Diagram*** given above explains the high-level design of BoboType.
+
+**Main components of the architecture**
 
 ### Ui Component
 
@@ -48,6 +52,23 @@ The typing accuracy of the user is facilitated by `TypingAccuracy`. It implement
 - `setTestText` - Set's the test text to the corresponding text being tested
 - `updateUserInput` - Update's the user input when they type a new line
 - `getTypingAccuracy` - Computes and returns typing accuracy
+
+Below is the sequence diagram for `TypingAccuracy`
+
+<img src="images/TypingAccuracySequenceDiagram.png" width="280" />
+
+Below is the class diagram for `TypingAccuracy`
+
+<img src="images/TypingAccuracyClassDiagram.png" width="280" />
+
+#### Design Considerations
+
+- **Alternative 1 (current choice):** Measure typing accuracy only up to the test text or user input depending on which
+input is shorter
+  - **Pros:** Easier to implement
+- **Alternative 2:** Always measure to the end of user input and penalise for additional words
+  - **Pros:** More accurate comparison between user and test text
+  - **Cons:** Less intuitive for users
 
 ### Normal Mode Feature
 
@@ -146,6 +167,10 @@ in the user's input and adds to the `wordCount`.
 Step 3. The user types `stop_practice`, ending the loop and computes the typing speed.
 
 Step 4. The typing practice results is displayed to the user with `UI.showZenModeEndGame`
+
+Below is the sequence diagram for ZenMode
+
+<img src="images/ZenModeSequenceDiagram.png" width="280" />
 
 ### Typing Targets Feature
 
