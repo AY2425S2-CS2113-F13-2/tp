@@ -17,6 +17,7 @@ import typing.TypingTargetSpeed;
 import ui.Ui;
 import util.RandNumGenerator;
 import util.WordCounter;
+import storage.InputUserText;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class StartCommand extends Command {
         if (mode.equals("zen")) {
             ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
             zenMode.startZenMode();
+        } else if (mode.equals("custom")) {
+            storage.InputUserText inputUserText = new InputUserText();
+            inputUserText.inputText();
         } else {
             // select difficulty and length of the test
             List<String> testText;
@@ -123,9 +127,7 @@ public class StartCommand extends Command {
                         typingTarget.printHit();
                     }
                 }
-
-                double time = typingTimer.getDurationMin();
-                state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
+                state.updateHighScore(typingAccuracyDouble, (typingSpeedWPM));
                 autoAdjust.evaluate(state.getHighScore());
             }
 

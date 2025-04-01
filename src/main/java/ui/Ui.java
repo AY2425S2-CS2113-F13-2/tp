@@ -32,7 +32,7 @@ public class Ui {
     public void chooseMode() {
         drawLine();
         System.out.println(" Select your mode: ");
-        System.out.println(" Type: 'normal' or 'timeLimit' or 'zen'");
+        System.out.println(" Type: 'normal' or 'timeLimit' or 'zen' or 'custom'");
         drawLine();
     }
 
