@@ -25,13 +25,14 @@ import java.util.Scanner;
 
 public class StartCommand extends Command {
 
+    private static final int NUM_OF_TEXTS = 3;
+
     @Override
     public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer,
                         TypingAccuracy typingAccuracy, TypingTargetList typingTargetList, State state,
                         AutoAdjust autoAdjust) throws IOException {
         int wordCount = 0;
         int characterCount = 0;
-        final int NUM_OF_TEXTS = 3;
         ui.chooseMode();
         String mode = sc.nextLine().trim();
         if (mode.equals("zen")) {
@@ -123,9 +124,7 @@ public class StartCommand extends Command {
                         typingTarget.printHit();
                     }
                 }
-
-                double time = typingTimer.getDurationMin();
-                state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
+                state.updateHighScore(typingAccuracyDouble, (typingSpeedWPM));
                 autoAdjust.evaluate(state.getHighScore());
             }
 

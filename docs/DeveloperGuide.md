@@ -100,6 +100,80 @@ Step 4. The Milestones class promotes the user to the next difficulty (e.g., fro
 `data/milestones.txt`.
 `Ui.showMilestoneAchieved(...)` is then called to notify the user of their achievement and promotion.
 
+### Highscore List Feature
+
+#### Implementation
+
+Highscore List is facilitated by `highScoreList` and managed in coordination with `Highscore`.
+Additionally, it implements the following operations:
+
+- `getHighscoreList()` - loads the highscore list from storage file.
+- `saveScoreList(ArrayList<Double> newHighScoreList)` - saves the highscore list to storage file.
+- `readHighScoreList()` - reads the highscore list from storage file.
+- `updateHighScore(Double accuracy, int wpm)` - updates the highscore list by adding the new highscore to the list.
+  Then sorting the list into the top 3 highscores.
+- `showHighscoreList()` - displays the highscore list to the user.
+
+Given below is an example usage scenario of how Highscore List feature behave at each step.
+
+Step 1. The user starts a practice session in normal mode.
+
+Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated.
+
+Step 3. `state.updateHighscoreList(typingAccuracyDouble, typingSpeedWPM)` adds the new highscore to the highscore list.
+Then, the list is sorted into the top 3 highscores.
+
+### Highscore Feature
+
+#### Implementation
+
+Highscores are facilitated by `Highscores` and managed in coordination with `TypingTest`.
+Additionally, it implements the following operations:
+
+- `getHighscore()` - loads the top highscore from the highscore List.
+- `updateHighscore(Double accuracy, int wpm)` - updates the highscore list by adding the new highscore to the list.
+  Then sorting the list into the top 3 highscores.
+- `showHighscore()` - displays the highscore to the user.
+
+Given below is an example usage scenario of how Highscore feature behave at each step.
+
+Step 1. The user starts a practice session in normal mode. 
+
+Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated. 
+`state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` is called at the end of the session.
+
+Step 3. `state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` adds the new highscore to the highscore list.
+Then, the list is sorted into the top 3 highscores.
+
+Step 4. `getHighscore()` will take the top highscore in the highscore list and save it.
+
+Step 5. `state.showHighscore()` displays the highscore to the user.
+
+### Custom Mode Feature
+
+#### Planned Implementation
+
+Custom Mode is facilitated by `CustomMode`. 
+Additionally, it implements the following operations:
+
+- `CustomMode(TypingTimer typingTimer, Scanner sc, Ui ui)` - Constructor to create CustomMode object
+- `startCustomMode()` - Runs input loop to read user input and compute typing statistics
+- `inputText()` - creates a file to store the user's custom text input
+
+Given below is an example usage scenario and how the Custom Mode behaves at each step.
+  
+Step 1. The user selects Custom Mode when selecting the practice mode, instantiating a `CustomMode` object and running
+`startCustomMode()`. 
+
+Step 2. Custom mode requires the user to input a custom text to be tested on. 
+
+Step 3. The user types `exit`. The loop ends and the user's custom text is saved to a file.
+
+Step 4. Typing Practice will start for the user, using the custom text they inputted.
+
+Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm) 
+are calculated and displayed to the user.
+
 ## Product scope
 
 ### Target user profile
@@ -121,20 +195,20 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 
 ## User Stories
 
-| Version | As a ...         | I want to ...                                                                     | So that I can ...                                                 |
-|---------|------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| v1.0    | slow typer       | practise typing with different texts                                              | improve my typing speed                                           |
-| v1.0    | user             | have various lengths for typing tests                                             | spend as little or as much time I want practising                 |
-| v1.0    | user             | adjust the difficulty level of typing exercises                                   | challenge myself appropriately as I improve over time             |
-| v1.0    | user             | track my typing speed                                                             | know how fast I can type                                          |
-| v1.0    | user             | track my typing accuracy                                                          | know how accurately I can type                                    |
-| v1.0    | user             | track my typing high scores                                                       | track my personal best and attempt to break it                    |
+| Version | As a ...         | I want to ...                                                                    | So that I can ...                                                 |
+|---------|------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | slow typer       | practise typing with different texts                                             | improve my typing speed                                           |
+| v1.0    | user             | have various lengths for typing tests                                            | spend as little or as much time I want practising                 |
+| v1.0    | user             | adjust the difficulty level of typing exercises                                  | challenge myself appropriately as I improve over time             |
+| v1.0    | user             | track my typing speed                                                            | know how fast I can type                                          |
+| v1.0    | user             | track my typing accuracy                                                         | know how accurately I can type                                    |
+| v1.0    | user             | track my typing high score                                                       | track my personal best and attempt to break it                    |
 | v2.0    | goal-driven user | set specific targets for typing speed and scores and get notified when I hit them | keep track of my progress and goals                               |
-| v2.0    | unmotivated user | have timed tests                                                                  | be motivated to type faster each time                             |
-| v2.0    | user             | type my own words (zen mode)                                                      | train using my own texts                                          |
-| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience     | gradually improve as the difficulty increases with my skill level |
-| v2.0    | user             | track milestones I achieve                                                        | keep track of my progress and give myself a sense of achievement  |
-
+| v2.0    | unmotivated user | have timed tests                                                                 | be motivated to type faster each time                             |
+| v2.0    | user             | type my own words (zen mode)                                                     | train using my own texts                                          |
+| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience    | gradually improve as the difficulty increases with my skill level |
+| v2.0    | user             | track milestones I achieve                                                       | keep track of my progress and give myself a sense of achievement  |
+| v2.0    | user             | view the top 3 highscores                                                        | keep track of my progress and past performances.                  |
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
