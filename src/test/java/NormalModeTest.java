@@ -1,13 +1,24 @@
+import modes.NormalMode;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import storage.Storage;
+import storage.Milestones;
+import ui.Ui;
+import storage.AutoAdjust;
+import storage.State;
+import typing.TypingAccuracy;
+import typing.TypingTargetList;
+import storage.Milestones;
 
 class NormalModeTest {
     private NormalMode normalMode;
@@ -28,7 +39,7 @@ class NormalModeTest {
         ui = new Ui(state);
         milestones = new Milestones("data/milestones.txt");
         typingTargetList = new TypingTargetList();
-        autoAdjust = new AutoAdjust(milestones, ui);
+        autoAdjust = new AutoAdjust(milestones, ui, state);
         typingAccuracy = new TypingAccuracy(new ArrayList<>());
         scanner = new Scanner(System.in);
         normalMode = new NormalMode(ui, scanner, typingTargetList, state, autoAdjust, typingAccuracy);
