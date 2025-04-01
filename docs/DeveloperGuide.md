@@ -46,6 +46,15 @@ Below is the class diagram for `TypingAccuracy`
 
 <img src="images/TypingAccuracyClassDiagram.png" width="280" />
 
+#### Design Considerations
+
+- **Alternative 1 (current choice):** Measure typing accuracy only up to the test text or user input depending on which
+input is shorter
+  - **Pros:** Easier to implement
+- **Alternative 2:** Always measure to the end of user input and penalise for additional words
+  - **Pros:** More accurate comparison between user and test text
+  - **Cons:** Less intuitive for users
+
 ### Zen Mode Feature
 
 Zen Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
