@@ -28,7 +28,8 @@ public class NormalMode {
     private State state;
     private AutoAdjust autoAdjust;
 
-    public NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust, TypingAccuracy typingAccuracy) {
+    public NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust,
+                      TypingAccuracy typingAccuracy) {
         this.ui = ui;
         this.sc = sc;
         this.typingTargetList = typingTargetList;

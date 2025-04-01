@@ -36,7 +36,7 @@ class TextSelectorTest {
     }
 
     @Test
-    void testSelectDifficulty_Default() {
+    void testSelectDifficulty_default() {
         milestones.setCurrentDifficulty("easy");
         System.setIn(new java.io.ByteArrayInputStream("\n".getBytes()));
         scanner = new Scanner(System.in);
@@ -46,7 +46,7 @@ class TextSelectorTest {
     }
 
     @Test
-    void testSelectDifficulty_OverrideValid() {
+    void testSelectDifficulty_overrideValid() {
         System.setIn(new java.io.ByteArrayInputStream("override\nintermediate\n".getBytes()));
         scanner = new Scanner(System.in);
         textSelector = new TextSelector(scanner, ui);
@@ -55,7 +55,7 @@ class TextSelectorTest {
     }
 
     @Test
-    void testSelectDifficulty_OverrideInvalidThenValid() {
+    void testSelectDifficulty_overrideInvalidThenValid() {
         System.setIn(new java.io.ByteArrayInputStream("override\ninvalid\ndifficult\n".getBytes()));
         scanner = new Scanner(System.in);
         textSelector = new TextSelector(scanner, ui);
@@ -64,7 +64,7 @@ class TextSelectorTest {
     }
 
     @Test
-    void testSelectLength_ValidInput() {
+    void testSelectLength_validInput() {
         System.setIn(new java.io.ByteArrayInputStream("short\n".getBytes()));
         scanner = new Scanner(System.in);
         textSelector = new TextSelector(scanner, ui);
@@ -73,7 +73,7 @@ class TextSelectorTest {
     }
 
     @Test
-    void testSelectLength_InvalidThenValidInput() {
+    void testSelectLength_invalidThenValidInput() {
         System.setIn(new java.io.ByteArrayInputStream("invalid\nmedium\n".getBytes()));
         scanner = new Scanner(System.in);
         textSelector = new TextSelector(scanner, ui);
@@ -82,7 +82,7 @@ class TextSelectorTest {
     }
 
     @Test
-    void testSelectText_SuccessfulRead() {
+    void testSelectText_successfulRead() {
         System.setIn(new java.io.ByteArrayInputStream("\nshort\n".getBytes()));
         scanner = new Scanner(System.in);
         textSelector = new TextSelector(scanner, ui);

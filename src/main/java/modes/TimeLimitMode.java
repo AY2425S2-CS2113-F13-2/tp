@@ -47,7 +47,7 @@ public class TimeLimitMode {
         this.sc = sc;
     }
 
-    public void StartTimeLimitMode(List<String> testText, DifficultyLevel difficulty) throws InterruptedException {
+    public void startTimeLimitMode(List<String> testText, DifficultyLevel difficulty) throws InterruptedException {
         ui.showTimeLimitModeInstructions();
         numOfCorrect = 0;
         this.testText = testText;

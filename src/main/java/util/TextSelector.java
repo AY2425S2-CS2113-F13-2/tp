@@ -15,7 +15,7 @@ import enums.DifficultyLevel;
 public class TextSelector {
     private static Logger logger = setupLogger();
     private final Milestones milestones;
-    private static final int NUM_OF_TEXTS = 3;
+    private final int NUM_OF_TEXTS = 3;
     private List<String> testText;
     private FileReader fileReader;
     private Scanner sc;

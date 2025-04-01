@@ -34,7 +34,7 @@ public class StartCommand extends Command {
             if (mode.equals("timeLimit")) {
                 TimeLimitMode timeLimitMode = new TimeLimitMode(ui, sc);
                 try {
-                    timeLimitMode.StartTimeLimitMode(testText, textSelector.getDifficultyLevel());
+                    timeLimitMode.startTimeLimitMode(testText, textSelector.getDifficultyLevel());
                 } catch (InterruptedException e) {
                     ui.showErrorMessage(e.getMessage());
                 }
