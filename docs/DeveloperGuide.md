@@ -41,7 +41,7 @@ The API of this component is specified in `Ui.java`.
 
 ### Typing Accuracy
 
-#### Proposed Implementation
+#### Implementation
 
 The typing accuracy of the user is facilitated by `TypingAccuracy`. It implements the following operations:
 - `TypingAccuracy(ArrayList<String> userText)` - Constructor to create TypingAccuracy object with user input
@@ -51,7 +51,7 @@ The typing accuracy of the user is facilitated by `TypingAccuracy`. It implement
 
 ### Normal Mode Feature
 
-#### Proposed Implementation
+#### Implementation
 
 Normal Mode is facilitated by `NormalMode`. Additionally, it implements the following operations:
 
@@ -93,7 +93,7 @@ Step 9: The user returns to the main menu after reviewing their results.
 
 ### TimeLimit Mode Feature 
 
-#### Proposed Implementation 
+#### Implementation 
 
 TimeLimit Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
 
@@ -128,7 +128,7 @@ Step 7: The user presses Enter to return to the main menu.
 
 ### Zen Mode Feature
 
-#### Proposed Implementation
+#### Implementation
 
 Zen Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
 
