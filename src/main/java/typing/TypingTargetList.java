@@ -7,6 +7,7 @@ package typing;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ui.Ui;
 
 public class TypingTargetList {
     private static final Logger logger = Logger.getLogger("TimerLogger");
@@ -34,21 +35,14 @@ public class TypingTargetList {
     }
 
     /**
-     * Prints the typing target list (for debugging)
+     * Prints the typing target list
      */
     public void print() {
-        System.out.print("[");
-        int index = 0;
-        for (TypingTarget typingTarget : typingTargetList) {
-            if (index == typingTargetList.size() - 1) {
-                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget() + " | " +
-                        typingTarget.getHit());
-            } else {
-                System.out.print(typingTarget.getClass() + ": " + typingTarget.getTarget() + " | " +
-                        typingTarget.getHit() + ", ");
-                index++;
-            }
+        System.out.println(" Here is your list of targets!");
+        int count = 1;
+        for (TypingTarget typingTarget: getTypingTargetList()) {
+            System.out.printf(" %d.%s%n", count, typingTarget.getString());
+            count++;
         }
-        System.out.println("]");
     }
 }

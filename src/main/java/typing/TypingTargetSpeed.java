@@ -5,8 +5,8 @@
 package typing;
 
 public class TypingTargetSpeed extends TypingTarget {
-    public TypingTargetSpeed(long target) {
-        super(target);
+    public TypingTargetSpeed(long target, boolean hit) {
+        super(target, hit);
     }
 
     /**
@@ -19,5 +19,14 @@ public class TypingTargetSpeed extends TypingTarget {
         } else {
             System.out.println(" Almost there! Hit this target next time: " + this.getTarget() + " WPM");
         }
+    }
+
+    /**
+     * Gets a string representation of the target
+     * @return String representation of target
+     */
+    @Override
+    public String getString() {
+        return " Target Speed (Effective WPM): " + getTarget() + " | " + (getHit() ? "Achieved" : "Not Achieved");
     }
 }

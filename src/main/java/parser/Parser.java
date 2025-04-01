@@ -1,14 +1,6 @@
 package parser;
 
-import command.Command;
-import command.StartCommand;
-import command.TypingAccuracyCommand;
-import command.ExitCommand;
-import command.HighscoreCommand;
-import command.HighscorelistCommand;
-import command.MilestoneCommand;
-import command.TargetspeedaddCommand;
-import command.TargetscoreaddCommand;
+import command.*;
 
 import exceptions.InvalidInputException;
 
@@ -48,6 +40,8 @@ public class Parser {
             return new TargetspeedaddCommand();
         case "targetscoreadd":
             return new TargetscoreaddCommand();
+        case "listtargets":
+            return new ListtargetsCommand();
         default:
             throw new InvalidInputException("Invalid input");
         }

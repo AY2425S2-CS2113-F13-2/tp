@@ -8,6 +8,7 @@ import modes.ZenMode;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;
+import storage.TypingTargets;
 import typing.TypingAccuracy;
 import typing.TypingTarget;
 import typing.TypingTargetList;
@@ -26,9 +27,17 @@ import java.util.Scanner;
 public class StartCommand extends Command {
 
     @Override
-    public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer,
-                        TypingAccuracy typingAccuracy, TypingTargetList typingTargetList, State state,
-                        AutoAdjust autoAdjust) throws IOException {
+    public void execute(
+            Ui ui,
+            Scanner sc,
+            Milestones milestones,
+            TypingTimer typingTimer,
+            TypingAccuracy typingAccuracy,
+            TypingTargetList typingTargetList,
+            TypingTargets typingTargets,
+            State state,
+            AutoAdjust autoAdjust
+    ) throws IOException {
         int wordCount = 0;
         int characterCount = 0;
         final int NUM_OF_TEXTS = 3;
@@ -67,7 +76,6 @@ public class StartCommand extends Command {
             }
             // time limit mode
             if (mode.equals("timeLimit")) {
-                int timeLimit;
                 int numOfLines;
                 int numOfCorrect;
                 TimeLimitMode timeLimitMode = new TimeLimitMode();
@@ -85,8 +93,6 @@ public class StartCommand extends Command {
             } else { // normal mode
                 typingAccuracy.setTestText((ArrayList<String>) testText);
                 ui.showStartGame();
-                wordCount = 0;
-                characterCount = 0;
 
                 typingTimer.start();
 
@@ -123,6 +129,7 @@ public class StartCommand extends Command {
                         typingTarget.printHit();
                     }
                 }
+                typingTargets.update(typingTargetList);
 
                 double time = typingTimer.getDurationMin();
                 state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));

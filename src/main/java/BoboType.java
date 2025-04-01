@@ -1,21 +1,17 @@
 import command.Command;
 import exceptions.InvalidInputException;
-import storage.AutoAdjust;
-import storage.Milestones;
+import storage.*;
 import modes.TypingTimer;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;
 import ui.Ui;
 import parser.Parser;
-import storage.State;
-import storage.Storage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BoboType {
-    private static final int NUM_OF_TEXTS = 3;
-
     private final Ui ui;
     private final Scanner sc;
     private final TypingAccuracy typingAccuracy;
@@ -24,9 +20,9 @@ public class BoboType {
     private final Milestones milestones;
     private final AutoAdjust autoAdjust;
     private final TypingTargetList typingTargetList;
+    private final TypingTargets typingTargets;
 
-
-    public BoboType(String filepath) {
+    public BoboType(String filepath) throws IOException {
         Storage storage = new Storage(filepath);
         state = new State(storage);
         ui = new Ui(state);
@@ -36,9 +32,9 @@ public class BoboType {
         milestones = new Milestones("data/milestones.txt");
         autoAdjust = new AutoAdjust(milestones, ui, state);
         typingTargetList = new TypingTargetList();
+        typingTargets = new TypingTargets("data/typingtargets.txt");
+        typingTargets.load(typingTargetList);
     }
-
-
 
     public void run() throws IOException {
         ui.showWelcome();
@@ -46,9 +42,12 @@ public class BoboType {
         while (!isExit) {
             try {
                 String input = sc.nextLine();
-                Parser userInput =  new Parser(input);
+                Parser userInput = new Parser(input);
                 Command c = userInput.parseToCommand();
-                c.execute(ui, sc, milestones, typingTimer, typingAccuracy, typingTargetList, state, autoAdjust);
+                c.execute(
+                        ui, sc, milestones, typingTimer, typingAccuracy,
+                        typingTargetList, typingTargets, state, autoAdjust
+                );
                 isExit = c.isExit();
             } catch (InvalidInputException e) {
                 ui.showInvalidInputMessage();
