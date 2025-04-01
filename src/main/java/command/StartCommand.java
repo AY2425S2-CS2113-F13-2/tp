@@ -17,7 +17,6 @@ import typing.TypingTargetSpeed;
 import ui.Ui;
 import util.RandNumGenerator;
 import util.WordCounter;
-import storage.InputUserText;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,21 +25,19 @@ import java.util.Scanner;
 
 public class StartCommand extends Command {
 
+    private static final int NUM_OF_TEXTS = 3;
+
     @Override
     public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer,
                         TypingAccuracy typingAccuracy, TypingTargetList typingTargetList, State state,
                         AutoAdjust autoAdjust) throws IOException {
         int wordCount = 0;
         int characterCount = 0;
-        final int NUM_OF_TEXTS = 3;
         ui.chooseMode();
         String mode = sc.nextLine().trim();
         if (mode.equals("zen")) {
             ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
             zenMode.startZenMode();
-        } else if (mode.equals("custom")) {
-            storage.InputUserText inputUserText = new InputUserText();
-            inputUserText.inputText();
         } else {
             // select difficulty and length of the test
             List<String> testText;
