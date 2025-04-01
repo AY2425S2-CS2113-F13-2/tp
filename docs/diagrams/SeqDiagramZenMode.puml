@@ -1,0 +1,48 @@
+@startuml
+
+participant User
+participant ZenMode
+participant TypingTimer
+participant Ui
+participant Scanner
+participant WordCounter
+
+User -> ZenMode: startZenMode()
+ZenMode -> Ui: showZenModeInstructions()
+
+loop Until "start" is entered
+    User -> Scanner: nextLine()
+    Scanner -> ZenMode: return input
+    alt input != "start"
+        ZenMode -> Ui: showMessage("Type 'start' to begin.")
+    end
+end
+
+ZenMode -> TypingTimer: start()
+
+loop While user types
+    User -> Scanner: nextLine()
+    Scanner -> ZenMode: return input
+    alt input == "stop_practice"
+        ZenMode -> TypingTimer: stop()
+        break
+    else
+        ZenMode -> WordCounter: countWords(userInput)
+        WordCounter -> ZenMode: return wordCount
+        ZenMode -> ZenMode: Update wordCount and characterCount
+    end
+end
+
+ZenMode -> TypingTimer: getDurationMin()
+TypingTimer -> ZenMode: return typingDuration
+
+alt typingDuration > 0
+    ZenMode -> ZenMode: Calculate WPM & CPM
+else
+    ZenMode -> ZenMode: Set WPM & CPM to 0
+end
+
+ZenMode -> Ui: showZenModeEndGame(wordCount, typingSpeedInWPM, typingSpeedInCPM)
+User -> ZenMode: End session
+
+@enduml
