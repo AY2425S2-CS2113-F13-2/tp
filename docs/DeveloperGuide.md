@@ -149,6 +149,31 @@ Step 4. `getHighscore()` will take the top highscore in the highscore list and s
 
 Step 5. `state.showHighscore()` displays the highscore to the user.
 
+### Custom Mode Feature
+
+#### Planned Implementation
+
+Custom Mode is facilitated by `CustomMode`. 
+Additionally, it implements the following operations:
+
+- `CustomMode(TypingTimer typingTimer, Scanner sc, Ui ui)` - Constructor to create CustomMode object
+- `startCustomMode()` - Runs input loop to read user input and compute typing statistics
+- `inputText()` - creates a file to store the user's custom text input
+
+Given below is an example usage scenario and how the Custom Mode behaves at each step.
+  
+Step 1. The user selects Custom Mode when selecting the practice mode, instantiating a `CustomMode` object and running
+`startCustomMode()`. 
+
+Step 2. Custom mode requires the user to input a custom text to be tested on. 
+
+Step 3. The user types `exit`. The loop ends and the user's custom text is saved to a file.
+
+Step 4. Typing Practice will start for the user, using the custom text they inputted.
+
+Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm) 
+are calculated and displayed to the user.
+
 ## Product scope
 
 ### Target user profile
