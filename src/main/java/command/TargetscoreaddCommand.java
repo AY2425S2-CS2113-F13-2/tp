@@ -27,7 +27,7 @@ public class TargetscoreaddCommand extends Command {
             State state,
             AutoAdjust autoAdjust
     ) throws IOException {
-        System.out.println("Please enter a typing speed target you would like to hit (WPM)!");
+        System.out.println("Please enter a typing score target you would like to hit (Effective WPM)!");
         try {
             String targetScore = sc.nextLine().trim();
             long targetScoreLong = Long.parseLong(targetScore);
