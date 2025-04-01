@@ -32,15 +32,6 @@ The API of this component is specified in `Ui.java`.
 #### Zen Mode 
 ![Zen Mode Diagram](https://uml.planttext.com/plantuml/png/jLJ1IiGm4BqN-W_Z7dG55SyBYh2AB5WGrhBWHM8xx0Qxav1CKV_UJ3TTsvA35tCeoSpBlFUcIUuyAyVjlicpFBDXgYjj5J6K7jquyefKc1h7mPTlgsdxelTJTAd7wtMbYAQWZN7rqhJ4aiWpuOJBsvvf0Psuk9gVvrcS2gRK8Rqpdp6q8i-khLWRyeBCiyOO2oMnRc3MrPc1ze32XNMUGHWzNzIs0C8lVjBKSGaW9aQQ77Bh23JPbWyerV1X2IStFTSX8oEXkK3lrHRdiz0zXBDknncmWNVSQhgQHNQaeBFxZ9mFMXuxD32ysUa6eHLZ78hxVp9wqnarziqw5PfUOThmHAgnFP-CTuVg8pfjF2OB30x80YgPICJFnU1Ab0pg3R0f7vzzEabqH9UsLeo_Q51KGxLJuXFTeC1V_iuM-RvrIavbeKdC3z8faTob-prIMde-Zi8jN1yafFGlLLErZLZOF1Tm2ild8iWyzZUrPOty2vPZU9qoDhbm3rG_gZtEZuswY3BN5h5UKIWuYOJYvuax7Wg13nSY-hqBpDrpz0C0)
 
-
-### Logic Component
-
-### Model Component
-
-### Storage Component
-
-### Common Classes
-
 ## Implementation
 
 ### Typing Accuracy
