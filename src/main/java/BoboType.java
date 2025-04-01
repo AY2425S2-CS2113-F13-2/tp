@@ -11,11 +11,11 @@ import storage.State;
 import storage.Storage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import util.TextSelector;
 
 public class BoboType {
-    private static final int NUM_OF_TEXTS = 3;
-
     private final Ui ui;
     private final Scanner sc;
     private final TypingAccuracy typingAccuracy;
@@ -24,7 +24,8 @@ public class BoboType {
     private final Milestones milestones;
     private final AutoAdjust autoAdjust;
     private final TypingTargetList typingTargetList;
-
+    private List<String> testText;
+    private final TextSelector textSelector;
 
     public BoboType(String filepath) {
         Storage storage = new Storage(filepath);
@@ -36,9 +37,8 @@ public class BoboType {
         milestones = new Milestones("data/milestones.txt");
         autoAdjust = new AutoAdjust(milestones, ui, state);
         typingTargetList = new TypingTargetList();
+        textSelector = new TextSelector(sc, ui);
     }
-
-
 
     public void run() throws IOException {
         ui.showWelcome();

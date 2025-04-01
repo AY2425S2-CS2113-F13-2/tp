@@ -6,24 +6,37 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Scanner;
+import storage.State;
+import storage.Storage;
 import util.WordCounter;
+import ui.Ui;
+import enums.DifficultyLevel;
 
 class TimeLimitModeTest {
     private TimeLimitMode timeLimitMode;
     private WordCounter wordCounter;
+    private Ui ui;
+    private Scanner sc;
 
     @BeforeEach
     void setUp() {
-        timeLimitMode = new TimeLimitMode();
         wordCounter = new WordCounter();
+        Storage storage = new Storage("TestStorage");
+        State state = new State(storage);
+        ui = new Ui(state);
+        sc = new Scanner(System.in);
+        timeLimitMode = new TimeLimitMode(ui, sc);
     }
 
     @Test
     void testGetTimeLimit() {
         String text = "This is a test sentence";
-        assertEquals((long) (wordCounter.countWords(text) / 0.67), timeLimitMode.getTimeLimit(text, "easy"));
-        assertEquals((long) (wordCounter.countWords(text) / 0.83), timeLimitMode.getTimeLimit(text, "intermediate"));
-        assertEquals(wordCounter.countWords(text), timeLimitMode.getTimeLimit(text, "hard"));
+        assertEquals((long) (wordCounter.countWords(text) / 0.67),
+                timeLimitMode.getTimeLimit(text, DifficultyLevel.EASY));
+        assertEquals((long) (wordCounter.countWords(text) / 0.83),
+                timeLimitMode.getTimeLimit(text, DifficultyLevel.INTERMEDIATE));
+        assertEquals(wordCounter.countWords(text), timeLimitMode.getTimeLimit(text, DifficultyLevel.DIFFICULT));
     }
 
     @Test
