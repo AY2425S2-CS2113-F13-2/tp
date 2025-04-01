@@ -182,7 +182,8 @@ Additionally, it implements the following operations:
 
 - `getProgressReport()` - loads the past 10 scores from the ProgressReport List.
 - `updateProgressReport()` - updates the ProgressReport list to store the score from the past 10 runs.
-- `showProgressReport()` - displays the ProgresReport to the user.
+- `showProgressReport()` - displays the ProgressReport to the user.
+- `resetProgress()` - Reset all stored scores and empties the ProgressReport list.
 
 Given below is an example usage scenario and how the Custom Mode behaves at each step.
 
@@ -192,7 +193,9 @@ Step 2. The user completes the round and `updateProgressReport()` adds the new s
 
 Step 3. `updateProgressReport()` updates the new score to the ProgressReport list.
 
-Step 4. When user inputs the command `ProgressReport`, `showProgressReport()` displays the Report.
+Step 4. When user inputs the command `progress`, `showProgressReport()` displays the Report as a Graph.
+
+Step 5. When user inputs command `resetprogress`, the ProgressReport list will clear.
 
 ## Product scope
 
@@ -231,12 +234,138 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 | v2.0    | user             | view the top 3 highscores                                                        | keep track of my progress and past performances.                  |
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 17 or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
+be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## Glossary
 
-* *glossary item* - Definition
+- Mainstream OS: Windows, Linux, Unix, MacOS
+- WPM (Words Per Minute): A measure of typing speed, indicating how many words a user types per minute. 
+- CPM (Characters Per Minute): A measure of typing speed based on the number of characters typed per minute.
 
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+Given below are instructions to test the app manually.
+
+Note: These instructions only provide a starting point for testers to work on; testers are expected to do more 
+exploratory testing.
+
+### 1. Launch and Shutdown
+
+#### Initial Launch
+
+1. Download the executable JAR file and place it in an empty folder.
+
+2. Open a terminal or command prompt and navigate to the folder containing the JAR file.
+
+3. Run the command: `java -jar BoboType.jar`.
+
+Expected: The CLI interface should launch, displaying the welcome message and available commands.
+
+#### Saving Session Data
+
+1. Start a typing session.
+
+2. Complete a few exercises and exit the application using the exit command.
+
+3. Restart the application with `java -jar BoboType.jar`.
+
+Expected: User progress and settings from the previous session should be retained.
+
+### 2. Typing Exercises
+
+#### Starting a Typing Test
+
+1. Run the command: `start`
+
+Expected: A typing prompt should appear with a sample text to type.
+
+#### Completing a Typing Test
+
+1. Type the displayed text correctly and press `Enter`.
+
+Expected: The app should calculate and display typing speed (WPM) and accuracy percentage.
+
+#### Handling Incorrect Inputs
+
+1. Enter a completely incorrect text and press `Enter`.
+
+Expected: The app should highlight mistakes and display an accuracy score below 100%.
+
+2. Enter an empty input and press `Enter`.
+
+Expected: The app should display an error message indicating that input cannot be empty.
+
+3. Enter special characters not present in the prompt.
+
+Expected: The app should ignore or flag them as incorrect input.
+
+### 3. Custom Mode
+
+#### Adding Custom Text
+
+1. Run the command: `custom "Custom text here."`
+
+Expected: The app should save this text as a new typing prompt.
+
+#### Starting a Custom Typing Test
+
+1. Run the command: `start custom`
+
+Expected: The app should prompt the user to type the previously added custom text.
+
+### 4. Progress Tracking
+
+#### Viewing Progress
+
+1. Run the command: `progress`
+
+Expected: The app should display the past 10 typing scores.
+
+#### Resetting Progress
+
+1. Run the command: `resetprogress`
+
+Expected: The app should reset all stored progress and confirm the reset.
+
+### 5. Error Handling & Edge Cases
+
+#### Invalid Commands
+
+1. Enter a random text.
+
+Expected: The app should display an error message stating that the command is invalid.
+
+2. Enter an incomplete command.
+
+Expected: The app should provide a suggestion or display the correct command usage.
+
+#### Corrupted Data Handling
+
+1. Manually edit the saved progress file and enter invalid values.
+
+2. Restart the application.
+
+Expected: The app should detect corruption and either reset progress or notify the user of an error.
+
+### 6. Exiting the Application
+
+#### Using the exit Command
+
+1. Run the command: `exit`
+
+Expected: The application should close cleanly without errors.
+
+#### Forcing Shutdown
+
+1. Close the terminal without using the `exit` command.
+
+2. Reopen the application.
+
+Expected: The app should start normally without corruption or data loss.
+
+
+
