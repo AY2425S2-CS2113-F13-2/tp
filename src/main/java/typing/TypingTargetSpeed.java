@@ -1,3 +1,7 @@
+/**
+ * Class representing a target speed
+ */
+
 package typing;
 
 public class TypingTargetSpeed extends TypingTarget {
@@ -5,6 +9,9 @@ public class TypingTargetSpeed extends TypingTarget {
         super(target);
     }
 
+    /**
+     * Prints a message informing the user whether their target has been hit
+     */
     @Override
     public void printHit() {
         if (this.getHit()) {

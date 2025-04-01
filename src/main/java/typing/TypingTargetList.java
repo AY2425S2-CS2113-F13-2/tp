@@ -1,10 +1,13 @@
+/**
+ * Class representing a list of typing targets
+ */
+
 package typing;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@SuppressWarnings("ClassEscapesDefinedScope")
 public class TypingTargetList {
     private static final Logger logger = Logger.getLogger("TimerLogger");
 
@@ -12,16 +15,27 @@ public class TypingTargetList {
         logger.setLevel(Level.WARNING);
     }
 
-    private ArrayList<TypingTarget> typingTargetList = new ArrayList<>();
+    private final ArrayList<TypingTarget> typingTargetList = new ArrayList<>();
 
+    /**
+     * Adds a typing target to the list
+     * @param typingTarget Target speed/score
+     */
     public void addTarget(TypingTarget typingTarget) {
         this.typingTargetList.add(typingTarget);
     }
 
+    /**
+     * Returns the typing target list
+     * @return Typing target list
+     */
     public ArrayList<TypingTarget> getTypingTargetList() {
         return this.typingTargetList;
     }
 
+    /**
+     * Prints the typing target list (for debugging)
+     */
     public void print() {
         System.out.print("[");
         int index = 0;
