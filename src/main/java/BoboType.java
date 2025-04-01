@@ -45,7 +45,7 @@ public class BoboType {
         boolean isExit = false;
         while (!isExit) {
             try {
-                String input = sc.nextLine();
+                String input = ui.readInput(sc);
                 Parser userInput =  new Parser(input);
                 Command c = userInput.parseToCommand();
                 c.execute(ui, sc, milestones, typingTimer, typingAccuracy, typingTargetList, state, autoAdjust);
