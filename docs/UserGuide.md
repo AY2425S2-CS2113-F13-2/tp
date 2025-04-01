@@ -131,6 +131,23 @@ Example:
 
 `3. 12.7`
 
+### Add Target Speed: `targetspeedadd`
+Add a target speed (WPM) to hit. Users will be informed when they hit their target speed.
+
+Format: `targetspeedadd TARGET_SPEED`
+
+Example:
+
+`targetspeedadd 60`
+
+### Add Target Score: `targetspeedadd`
+Add a target score (effective WPM) to hit. Users will be informed when they hit their target score.
+
+Format: `targetspeedadd TARGET_SCORE`
+
+Example:
+
+`targetscoreadd 60`
 
 ### Exit the application: `exit`
 Exits the application.
@@ -161,3 +178,5 @@ Advanced users are welcome to update data directly by editing that data file.
 * Get typing accuracy `typingaccuracy`
 * Get high score `highscore`
 * Get high score list `highscorelist`
+* Add target speed `targetspeedadd`
+* Add target score `targetscoreadd`
