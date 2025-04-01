@@ -16,6 +16,19 @@ original source as well}
 
 The API of this component is specified in `Ui.java`.
 
+### Sequence Diagram for 3 Different Modes
+
+#### Normal Mode 
+![Normal Mode Diagram](https://uml.planttext.com/plantuml/png/ZLHDRuCm3BrNuZ_u2DBs1pXChTfgdJIcQMtLSnHScWsIA77MzTylWR82fUeue62_vuzdXwabPiXLPJI99jeV1HUQIOAjHTEtl2bJiJ9JEVRjcvCMijY8QaXe73FEdM7yrFVjbCddoaaQahPYD3ep1TAhi7JRs_VC7AbP_kc6Z3Knmj1iQ10UdpfjfL2BSJ74X9Os-4D9DBbO0sahFFYWZkj0U6OLnbUGZYpdm05JAgLXhmmWumSeXKGG4jeyqGJyCqXbGu25iBfa9uziKMFrBuEUFg1sew7w0qd1wToB4GAz14hisbConkwCB0KU3i5YUooK-HqTbBuZbP_amjT7GibCo6jmAtr3Mcl4VFUUnKTT_GSwzr1-7ygLmTY6zwrY_nQohdXel1vrVrDlpQRnUtaFoB-0wY-eMaONqnQjZP2q4dN64VKlro05_6QbymCVrQg-5-rAh4HnQ3HWvsLvW8PKmuPhPv2SaM0TvsWjX9QDKUQMnilWp3oI5HXZvoE1MEmRBgYGs2RZz_IZIKZAQoDTkCrJtxl_Y_q2)
+
+
+#### TimeLimit Mode
+![TimeLimit Mode Diagram](https://uml.planttext.com/plantuml/png/ZPJDRjim3CVl0V8ER2zpWEm5V1YAPTXG8CM0B4NFXapNn6p9aAXbUVkHSb97-UYgaooIF_tv8Jy4hZp7lflFvhD1jcHeg2p3Sq2VdsofnpNrn4-knjoqwfpvlMqzLlKPXVBlhx5fq6Ez4Szp_elpzSf5o-U6RzGqP6B7-pN-mQHKrS7dBxcc4b8osLd167YBVta9zHjcCPzbJafw9WbltIupFDh0FXecPqCXKPrp0pJE0rQcXOui0bauNZ6VWQmByabn3WeLTTLLqoebtp1qrLwuDvbd9IdX5QUy2xxCzoebxqO9kuhuk_EFTeXSc4ds4dpoM08V4GTarOsJ0hmVCC2EkDM2Y9TKHzn6BrtvNLTwvv6Zjn2LHgfWYhqGVZ8g9HZTw4aeD3YfNqp1AZ6TGL-nQKMbzkkak3TlqP7u9IC1zpyaVxwxd_on2tYWaZNEUpGVfxruPrypcgt7ZuJLIF3H1d3l5c42gkbJW3WSeM_0zuUHj80-3caWKyp_dyK6WunKOMF_irdB0mXBIFlLM8J5pRUv6VlB3dgqKH_nWrmfVvv_)
+
+#### Zen Mode 
+![Zen Mode Diagram](https://uml.planttext.com/plantuml/png/jLJ1IiGm4BqN-W_Z7dG55SyBYh2AB5WGrhBWHM8xx0Qxav1CKV_UJ3TTsvA35tCeoSpBlFUcIUuyAyVjlicpFBDXgYjj5J6K7jquyefKc1h7mPTlgsdxelTJTAd7wtMbYAQWZN7rqhJ4aiWpuOJBsvvf0Psuk9gVvrcS2gRK8Rqpdp6q8i-khLWRyeBCiyOO2oMnRc3MrPc1ze32XNMUGHWzNzIs0C8lVjBKSGaW9aQQ77Bh23JPbWyerV1X2IStFTSX8oEXkK3lrHRdiz0zXBDknncmWNVSQhgQHNQaeBFxZ9mFMXuxD32ysUa6eHLZ78hxVp9wqnarziqw5PfUOThmHAgnFP-CTuVg8pfjF2OB30x80YgPICJFnU1Ab0pg3R0f7vzzEabqH9UsLeo_Q51KGxLJuXFTeC1V_iuM-RvrIavbeKdC3z8faTob-prIMde-Zi8jN1yafFGlLLErZLZOF1Tm2ild8iWyzZUrPOty2vPZU9qoDhbm3rG_gZtEZuswY3BN5h5UKIWuYOJYvuax7Wg13nSY-hqBpDrpz0C0)
+
+
 ### Logic Component
 
 ### Model Component
@@ -35,6 +48,83 @@ The typing accuracy of the user is facilitated by `TypingAccuracy`. It implement
 - `setTestText` - Set's the test text to the corresponding text being tested
 - `updateUserInput` - Update's the user input when they type a new line
 - `getTypingAccuracy` - Computes and returns typing accuracy
+
+### Normal Mode Feature
+
+#### Proposed Implementation
+
+Normal Mode is facilitated by `NormalMode`. Additionally, it implements the following operations:
+
+- `NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust, TypingAccuracy typingAccuracy)` - Constructor to create a NormalMode object. 
+- `startNormalMode(List<String> testText)` - Runs the normal typing test, displaying test text, tracking user input, and computing typing statistics.
+
+Usage Scenario
+
+Given below is an example usage scenario and how the Normal Mode behaves at each step.
+
+Step 1: The user selects Normal Mode from the available practice modes, instantiating a NormalMode object and running `startNormalMode()`. The method displays instructions and initializes counters.
+
+Step 2: The first line of the test text is displayed to the user. The TypingTimer starts tracking time.
+
+Step 3: The user types their response, which is recorded and analyzed. `TypingAccuracy.updateUserInput()` updates accuracy tracking. `WordCounter.countWords()` calculates the number of words typed, and the character count is updated accordingly.
+
+Step 4: The process repeats for each line in the test text until all lines have been typed.
+
+Step 5: The typing timer stops, and the typing statistics are calculated:
+
+- Words per minute (WPM)
+- Characters per minute (CPM)
+- Typing accuracy
+- Overall typing score (calculated using WPM and accuracy)
+
+These results are displayed using UI methods (`ui.showTypingSpeedWPM()`, `ui.showTypingSpeedCPM()`, and `ui.showTypingScore()`).
+
+Step 6: The program checks if the user has met any predefined typing targets stored in TypingTargetList:
+
+- If the user meets a speed target (`TypingTargetSpeed`), it is marked as hit.
+- If the user meets a score target (`TypingTargetScore`), it is marked as hit.
+- The system displays feedback on whether each target was met.
+
+Step 7: The AutoAdjust system evaluates the user’s typing speed and provides feedback to adjust difficulty.
+
+Step 8: The user's high score is updated using state.updateHighScore(). If an error occurs while updating the score, an error message is displayed.
+
+Step 9: The user returns to the main menu after reviewing their results.
+
+### TimeLimit Mode Feature 
+
+#### Proposed Implementation 
+
+TimeLimit Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
+
+- `TimeLimitMode(Ui ui, Scanner sc)` - Constructor to create TimeLimitMode object 
+- `startTimeLimitMode(List<String> testText, DifficultyLevel difficulty)` - Runs the time-limited typing test, displaying test text, tracking user input, and enforcing a time limit. 
+- `waitForInput(ClockThread clockThread, BufferedReader reader, long timeLimit)` - Waits for user input within the given time limit and returns the typed text.
+- `getNumOfCorrect()` - Returns the number of correctly typed lines.
+- `getNumOfLines()` - Returns the total number of lines in the test text.
+- `getTimeLimit(String s, DifficultyLevel difficulty)` - Determines the time limit for each line based on its word count and difficulty level.
+
+Additionally, the ClockThread class is implemented as a separate thread to track elapsed time:
+
+- `run()` - Starts a timer and keeps updating elapsed time until interrupted.
+- `getElapsedTime()` - Returns the elapsed time in seconds.
+
+Given below is an example usage scenario and how the Time Limit Mode behaves at each step.
+
+Step 1: The user selects Time Limit Mode from the available practice modes, instantiating a `TimeLimitMode` object and running `startTimeLimitMode()`. The method displays instructions and initializes counters.
+
+Step 2: The first line of the test text is displayed to the user. A ClockThread instance starts running to track elapsed time.
+
+Step 3: The user types their response. The program waits for input while checking if the elapsed time exceeds the time limit using `waitForInput()`. If input is provided before the time limit, it is validated against the expected text.
+
+Step 4: If the input matches the expected text, the correct count increases, and a success message is displayed. Otherwise, an error message is shown.
+
+Step 5: If the user fails to respond within the time limit, a timeout message is displayed.
+
+Step 6: The process repeats for each line in the test text. After all lines are completed, the final result is displayed using `ui.showTimeLimitResult()`.
+
+Step 7: The user presses Enter to return to the main menu.
+
 
 ### Zen Mode Feature
 

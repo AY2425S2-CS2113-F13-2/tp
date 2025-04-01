@@ -1,0 +1,39 @@
+@startuml
+
+participant User
+participant NormalMode
+participant TypingTimer
+participant TypingAccuracy
+participant WordCounter
+participant Ui
+participant TypingTargetList
+participant TypingTarget
+participant AutoAdjust
+participant State
+
+User -> NormalMode: startNormalMode(testText)
+NormalMode -> Ui: showStartGame()
+NormalMode -> TypingTimer: start()
+loop for each line in testText
+    NormalMode -> User: Display text
+    User -> NormalMode: Enter input
+    NormalMode -> TypingAccuracy: updateUserInput(userInput)
+    NormalMode -> WordCounter: countWords(userInput)
+end
+NormalMode -> TypingTimer: stop()
+NormalMode -> TypingTimer: getDurationMin()
+NormalMode -> Ui: showTypingSpeedWPM(wpm)
+NormalMode -> Ui: showTypingSpeedCPM(cpm)
+NormalMode -> Ui: showTypingScore(score)
+NormalMode -> TypingTargetList: getTypingTargetList()
+loop for each TypingTarget
+    NormalMode -> TypingTarget: check target met
+    TypingTarget -> Ui: printHit()
+end
+NormalMode -> AutoAdjust: evaluate(wpm)
+NormalMode -> State: updateHighScore(accuracy, wpm)
+State -> NormalMode: return success or error
+NormalMode -> Ui: showErrorMessage(errorMessage) (if error occurs)
+User -> NormalMode: Return to menu
+
+@enduml
