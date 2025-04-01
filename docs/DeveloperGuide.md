@@ -59,6 +59,8 @@ Step 4. The typing practice results is displayed to the user with `UI.showZenMod
 
 ### Typing Targets Feature
 
+#### Proposed Implementation
+
 Typing Targets are facilitated by `TypingTargetList`, `TypingTarget`, `TypingTargetSpeed`, and `TypingTargetScore`.
 `TypingTargetList` contains various `TypingTarget` instances, which can be of class `TypingTargetSpeed` or
 `TypingTargetScore`.
