@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BoboType {
-    private static final int NUM_OF_TEXTS = 3;
-
     private final Ui ui;
     private final Scanner sc;
     private int wordCount;
@@ -16,7 +14,8 @@ public class BoboType {
     private final Milestones milestones;
     private final AutoAdjust autoAdjust;
     private final TypingTargetList typingTargetList;
-
+    private List<String> testText;
+    private final TextSelector textSelector;
 
     public BoboType(String filepath) {
         Storage storage = new Storage(filepath);
@@ -30,6 +29,7 @@ public class BoboType {
         milestones = new Milestones("data/milestones.txt");
         autoAdjust = new AutoAdjust(milestones, ui);
         typingTargetList = new TypingTargetList();
+        textSelector = new TextSelector(sc, ui);
     }
 
     private void handleCommand(String[] inputParts) throws IOException {
@@ -43,85 +43,18 @@ public class BoboType {
                 ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
                 zenMode.startZenMode();
             } else {
-                // select difficulty and length of the test
-                List<String> testText;
-                String difficultyLevel;
-                String textLength;
-                while (true) {
-                    try {
-                        // load difficulty from milestones.txt
-                        difficultyLevel = milestones.getCurrentDifficulty();
-                        ui.showDefaultDifficultyPrompt(difficultyLevel);
-
-                        String input = sc.nextLine().trim();
-                        if (input.equalsIgnoreCase("override")) {
-                            ui.chooseDifficulty();
-                            difficultyLevel = sc.nextLine().trim();
-                        }
-
-                        ui.chooseLength();
-                        textLength = sc.nextLine().trim();
-
-                        int randomNum = RandNumGenerator.randInt(1, NUM_OF_TEXTS);
-
-                        testText = TextSelector.selectText(difficultyLevel, textLength, randomNum);
-                        break;
-                    } catch (InvalidInputException | FileProcessingException e) {
-                        ui.showErrorMessage(e.getMessage());
-                    }
-                }
+                testText = textSelector.selectText();
                 // time limit mode
                 if (mode.equals("timeLimit")) {
                     TimeLimitMode timeLimitMode = new TimeLimitMode(ui, sc);
                     try {
-                        timeLimitMode.run(testText, difficultyLevel);
+                        timeLimitMode.StartTimeLimitMode(testText, textSelector.getDifficultyLevel());
                     } catch (InterruptedException e) {
                         ui.showErrorMessage(e.getMessage());
                     }
                 } else { // normal mode
-                    typingAccuracy.setTestText((ArrayList<String>) testText);
-                    ui.showStartGame();
-                    wordCount = 0;
-                    characterCount = 0;
-
-                    typingTimer.start();
-
-                    for (String s : testText) {
-                        System.out.println(s);
-                        String userInput = sc.nextLine();
-                        typingAccuracy.updateUserInput(userInput);
-                        wordCount += WordCounter.countWords(userInput);
-                        characterCount += userInput.length();
-                    }
-                    typingTimer.stop();
-
-                    ui.showResult();
-                    double duration = typingTimer.getDurationMin();
-                    int typingSpeedWPM = (int) (wordCount / duration);
-                    int typingSpeedCPM = (int) (characterCount / duration);
-                    double typingAccuracyDouble = typingAccuracy.getTypingAccuracy();
-                    double typingScore = (double) typingSpeedWPM * typingAccuracyDouble;
-                    ui.showTypingSpeedWPM(typingSpeedWPM);
-                    ui.showTypingSpeedCPM(typingSpeedCPM);
-                    // ui.showTypingAccuracy(typingAccuracyDouble);
-                    ui.showTypingScore(typingScore);
-
-                    for (TypingTarget typingTarget : typingTargetList.getTypingTargetList()) {
-                        if (typingTarget instanceof TypingTargetSpeed) {
-                            if (typingSpeedWPM >= typingTarget.getTarget()) {
-                                typingTarget.setHit(true);
-                            }
-                            typingTarget.printHit();
-                        } else if (typingTarget instanceof TypingTargetScore) {
-                            if (typingScore >= typingTarget.getTarget()) {
-                                typingTarget.setHit(true);
-                            }
-                            typingTarget.printHit();
-                        }
-                    }
-                    double time = typingTimer.getDurationMin();
-                    autoAdjust.evaluate((int) (wordCount / time));
-                    state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
+                    NormalMode normalMode = new NormalMode(ui, sc, typingTargetList, state, autoAdjust, typingAccuracy);
+                    normalMode.startNormalMode(testText);
                 }
 
                 ui.showEndGame();

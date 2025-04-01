@@ -25,9 +25,9 @@ class TimeLimitModeTest {
     @Test
     void testGetTimeLimit() {
         String text = "This is a test sentence";
-        assertEquals((long) (wordCounter.countWords(text) / 0.67), timeLimitMode.getTimeLimit(text, "easy"));
-        assertEquals((long) (wordCounter.countWords(text) / 0.83), timeLimitMode.getTimeLimit(text, "intermediate"));
-        assertEquals(wordCounter.countWords(text), timeLimitMode.getTimeLimit(text, "hard"));
+        assertEquals((long) (wordCounter.countWords(text) / 0.67), timeLimitMode.getTimeLimit(text, DifficultyLevel.EASY));
+        assertEquals((long) (wordCounter.countWords(text) / 0.83), timeLimitMode.getTimeLimit(text, DifficultyLevel.INTERMEDIATE));
+        assertEquals(wordCounter.countWords(text), timeLimitMode.getTimeLimit(text, DifficultyLevel.DIFFICULT));
     }
 
     @Test

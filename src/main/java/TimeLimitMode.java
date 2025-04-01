@@ -42,7 +42,7 @@ public class TimeLimitMode {
         this.sc = sc;
     }
 
-    public void run(List<String> testText, String difficulty) throws InterruptedException {
+    public void StartTimeLimitMode(List<String> testText, DifficultyLevel difficulty) throws InterruptedException {
         ui.showTimeLimitModeInstructions();
         numOfCorrect = 0;
         this.testText = testText;
@@ -112,16 +112,8 @@ public class TimeLimitMode {
         return numOfLines;
     }
 
-    long getTimeLimit(String s, String difficulty) {
-        long timeLimit = 0;
-        if (difficulty.equals("easy")) {
-            timeLimit = (long) (wordCounter.countWords(s) / 0.67);
-        } else if (difficulty.equals("intermediate")) {
-            timeLimit = (long) (wordCounter.countWords(s) / 0.83);
-        } else {
-            timeLimit = wordCounter.countWords(s);
-        }
-        return timeLimit;
+    long getTimeLimit(String s, DifficultyLevel difficulty) {
+        return (long) (wordCounter.countWords(s) / difficulty.getDivisor());
     }
 }
 

@@ -1,51 +1,86 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TextSelector {
-    private static Logger logger = Logger.getLogger("TextSelectorLogger");
-    private static final List<String> validLevels = Arrays.asList("easy", "intermediate", "difficult");
-    private static final List<String> validLengths = Arrays.asList("short", "medium", "long");
+    private static Logger logger = setupLogger();
+    private final Milestones milestones;
+    private static final int NUM_OF_TEXTS = 3;
+    private List<String> testText;
+    private FileReader fileReader;
+    private Scanner sc;
+    private Ui ui;
+    private DifficultyLevel difficultyLevel;
+    private TextLength textLength;
 
-    static {
+    public TextSelector(Scanner sc, Ui ui) {
+        milestones = new Milestones("data/milestones.txt");
+        fileReader = new FileReader();
+        this.sc = sc;
+        this.ui = ui;
+    }
+
+    private static Logger setupLogger() {
+        Logger logger = Logger.getLogger("TextSelectorLogger");
         logger.setLevel(Level.WARNING);
+        return logger;
     }
 
-    public static List<String> selectText(String difficultyLevel, String textLength, int randomNum) {
-        List<String> list = new ArrayList<>();
-        FileReader fileReader = new FileReader();
+    public DifficultyLevel selectDifficulty() {
+        String defaultDifficulty = milestones.getCurrentDifficulty().toUpperCase();
+        difficultyLevel = DifficultyLevel.valueOf(defaultDifficulty);
+        ui.showDefaultDifficultyPrompt(difficultyLevel.name().toLowerCase());
 
-        if (!validLevels.contains(difficultyLevel)) {
-            throw new InvalidInputException("Please enter a valid difficulty level.");
+        String input = sc.nextLine().trim();
+        if (input.equalsIgnoreCase("override")) {
+            while (true) {
+                ui.chooseDifficulty();
+                input = sc.nextLine().trim().toUpperCase();
+                try {
+                    difficultyLevel = DifficultyLevel.valueOf(input);
+                    break;
+                } catch (IllegalArgumentException e) {
+                    ui.showErrorMessage("Please enter a valid difficulty level.");
+                }
+            }
         }
-        if (!validLengths.contains(textLength)) {
-            throw new InvalidInputException("Please enter a valid text length.");
-        }
+        return difficultyLevel;
+    }
 
-        String filePath = "/sample_texts/" + difficultyLevel + "/" + textLength + "/" + randomNum + ".txt";
-        try  {
-            list = fileReader.readFile(filePath);
+    public TextLength selectLength() {
+        while (true) {
+            ui.chooseLength();
+            String input = sc.nextLine().trim().toUpperCase();
+            try {
+                textLength = TextLength.valueOf(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                ui.showErrorMessage("Please enter a valid text length.");
+            }
+        }
+        return textLength;
+    }
+
+    public List<String> selectText() {
+        selectDifficulty();
+        selectLength();
+        int randomNum = RandNumGenerator.randInt(1, NUM_OF_TEXTS);
+        String difficultyLevelName = difficultyLevel.name().toLowerCase();
+        String textLengthName = textLength.name().toLowerCase();
+        String filePath = "/sample_texts/" + difficultyLevelName + "/" + textLengthName + "/" + randomNum + ".txt";
+        try {
+            testText = fileReader.readFile(filePath);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Error reading file: " + filePath);
-            throw new FileProcessingException("There has been error when reading file from" + filePath);
+            ui.showErrorMessage("An error occurred while retrieving text. Please try again later.");
+            logger.log(Level.SEVERE, "Error reading file: " + filePath, e);
+            throw new FileProcessingException("There has been error when reading file from " + filePath);
         }
-
-        assert list != null;
-        return list;
+        return testText;
     }
 
-    /**
-     * Selects text based on the default difficulty stored in milestones.txt.
-     * @param textLength "short", "medium", or "long"
-     * @param randomNum The random number used to select a specific file (e.g., 1.txt, 2.txt)
-     * @param milestonePath Path to milestones.txt file (e.g., "data/milestones.txt")
-     */
-    public static List<String> selectTextDefault(String textLength, int randomNum, String milestonePath) {
-        Milestones milestones = new Milestones(milestonePath);
-        String defaultDifficulty = milestones.getCurrentDifficulty();
-        return selectText(defaultDifficulty, textLength, randomNum);
+    public DifficultyLevel getDifficultyLevel() {
+        return difficultyLevel;
     }
-
 }
+
