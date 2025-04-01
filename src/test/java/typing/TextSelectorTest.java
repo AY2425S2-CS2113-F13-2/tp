@@ -1,11 +1,8 @@
-<<<<<<< HEAD:src/test/java/TextSelectorTest.java
-import org.junit.jupiter.api.BeforeEach;
-=======
 package typing;
 
+import org.junit.jupiter.api.BeforeEach;
 import enums.DifficultyLevel;
 import enums.TextLength;
->>>>>>> upstream/master:src/test/java/typing/TextSelectorTest.java
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import storage.Storage;
+import storage.Milestones;
+import ui.Ui;
+import util.TextSelector;
+import util.FileReader;
+import storage.State;
 
 class TextSelectorTest {
     private TextSelector textSelector;
