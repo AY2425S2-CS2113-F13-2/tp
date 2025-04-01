@@ -174,6 +174,26 @@ Step 4. Typing Practice will start for the user, using the custom text they inpu
 Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm) 
 are calculated and displayed to the user.
 
+### Progress Report
+#### Planned Implementation
+
+Progress Report is facilitated by `ProgressReport`.
+Additionally, it implements the following operations:
+
+- `getProgressReport()` - loads the past 10 scores from the ProgressReport List.
+- `updateProgressReport()` - updates the ProgressReport list to store the score from the past 10 runs.
+- `showProgressReport()` - displays the ProgresReport to the user.
+
+Given below is an example usage scenario and how the Custom Mode behaves at each step.
+
+Step 1. The user starts a practice session in normal mode.
+
+Step 2. The user completes the round and `updateProgressReport()` adds the new score to the list of past 10 practices. 
+
+Step 3. `updateProgressReport()` updates the new score to the ProgressReport list.
+
+Step 4. When user inputs the command `ProgressReport`, `showProgressReport()` displays the Report.
+
 ## Product scope
 
 ### Target user profile
