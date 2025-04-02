@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+[User]
+[Data File]
+
+
+node {
+  [UI]
+  [Parser]
+  [BoboType]
+  [Storage]
+  [Typing]
+  [Command]
+  [Modes]
+}
+
+
+[User] --> [UI]
+[UI] --> [BoboType]
+[BoboType] --> [Parser]
+[BoboType] --> [Storage]
+[Parser] --> [Command]
+[Command] --> [Typing]
+[Command] --> [Modes]
+[Storage] --> [Data File]
+
+@enduml

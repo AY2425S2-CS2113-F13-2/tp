@@ -27,25 +27,83 @@ Format: `normal`, `timeLimit`, `zen`
 
 Example:
 
-` Select your mode: `
+```
+____________________________________________________________
+ Select your mode: 
+ Type: 'normal' or 'timeLimit' or 'zen'
+____________________________________________________________
+```
 
-` Type: 'normal' or 'timeLimit' or 'zen'`
+### Select Difficulty Level: `easy`, `intermediate`, `difficult`
+Select the difficulty level of the typing exercise. If the user leaves it blank, then 
+it is set as default difficulty level. 
 
-### Normal Typing Speed: `normal`
-Times the typing exercise. Gives the user a choice of the level of difficulty of the typing exercise.
+Format: `easy`, `intermediate`, `difficult`
 
-Format: `normal`
+Example: 
+```
+____________________________________________________________
+ Default difficulty: easy
+ (Type 'override' to choose your own difficulty, or leave blank to proceed)
+____________________________________________________________
+```
+
+### Select Text Length: `short`, `medium`, `long`
+Select the length of the typing exercise. 
+
+Format: `short`, `medium`, `long`
+
+Example:
+```
+____________________________________________________________
+ Select your text length: 
+ Type: 'short' or 'medium' or 'long'
+____________________________________________________________
+```
+
+### Practice in Normal Mode: 
+In the normal mode, each sentence will be given for the user to type.
 
 Example:
 
-` Select your difficulty: `
+```
+____________________________________________________________
+Typing test started! Type the following text:
+The sun is shining, and birds are singing.
+```
 
-` Type: 'easy' or 'intermediate' or 'difficult'`
 
-### Select Difficulty Level: `easy`, `intermediate`, `difficult`
-Select the difficulty level of the typing exercise.
+### Practice in TimeLimit Mode:
+In the time limit mode, each sentence will be given for the user to type, and there will be time limit for each sentence based on the difficulty level and the length of the sentence. Based on the user input, the response will be given. 
 
-Format: `easy`, `intermediate`, `difficult`
+Example:
+
+```
+____________________________________________________________
+Welcome to Time Limit mode.
+____________________________________________________________
+Are you ready? The game will begin in 
+3
+2
+1
+____________________________________________________________
+The sun is shining, and birds are singing.
+The sun is shining, and birds are singing.
+*** Great! ***
+The park is full of families enjoying the day.
+The park is full of fammmmmmmmmmmmmmmmmmmmmmm.
+
+*** Time's up! Try typing faster! ***
+Children play on swings, and parents chat while sitting on benches.
+Children paay on
+*** Wrong! Please be more careful next time! ***
+
+____________________________________________________________
+You finished the timeLimit Mode Practice! 
+	 - Num of correct lines: 1 lines out of 0 lines
+____________________________________________________________
+*** Please press enter to continue. ***
+```
 
 
 ### Time Limit Typing Speed: `timeLimit`

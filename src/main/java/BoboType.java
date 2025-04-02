@@ -16,7 +16,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import util.TextSelector;
+
 public class BoboType {
+
     private final Ui ui;
     private final Scanner sc;
     private final TypingAccuracy typingAccuracy;
@@ -26,6 +29,7 @@ public class BoboType {
     private final AutoAdjust autoAdjust;
     private final TypingTargetList typingTargetList;
     private final TypingTargets typingTargets;
+    private final TextSelector textSelector;
 
     public BoboType(String filepath) throws IOException {
         Storage storage = new Storage(filepath);
@@ -39,14 +43,16 @@ public class BoboType {
         typingTargetList = new TypingTargetList();
         typingTargets = new TypingTargets("data/typingtargets.txt");
         typingTargets.load(typingTargetList);
+        textSelector = new TextSelector(sc, ui);
     }
+
 
     public void run() throws IOException {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
-                String input = sc.nextLine();
+                String input = ui.readInput(sc);
                 Parser userInput = new Parser(input);
                 Command c = userInput.parseToCommand();
                 c.execute(

@@ -1,0 +1,23 @@
+@startuml
+hide footbox
+participant ":TypingAccuracyCommand" as TypingAccuracyCommand
+participant ":TypingAccuracy" as TypingAccuracy
+participant ":BoboTypeException" as BoboTypeException
+
+TypingAccuracyCommand -> TypingAccuracy : new TypingAccuracy(userText)
+activate TypingAccuracy
+TypingAccuracy -> TypingAccuracy : setTestText(testText)
+TypingAccuracy -> TypingAccuracy : updateUserInput(userInput)
+TypingAccuracyCommand -> TypingAccuracy : getTypingAccuracy()
+activate TypingAccuracy
+
+TypingAccuracy -> TypingAccuracy : Validate testText != null
+alt testText is null
+    TypingAccuracy -> BoboTypeException : throw new BoboTypeException()
+else testText is set
+    TypingAccuracy -> TypingAccuracy : Calculate accuracy
+    TypingAccuracy -> TypingAccuracy : Return accuracy
+end
+
+deactivate TypingAccuracy
+@enduml

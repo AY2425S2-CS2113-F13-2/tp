@@ -10,25 +10,33 @@ original source as well}
 ## Design
 ### Architecture
 
-{Insert architecture diagrams and explain the overall architecture of the code.}
+<img src="images/Architecture.png" width="280" />
+
+The ***Architecture Diagram*** given above explains the high-level design of BoboType.
+
+**Main components of the architecture**
 
 ### Ui Component
 
 The API of this component is specified in `Ui.java`.
 
-### Logic Component
+### Sequence Diagram for 3 Different Modes
 
-### Model Component
+#### Normal Mode 
+![Normal Mode Diagram](https://uml.planttext.com/plantuml/png/ZLHDRuCm3BrNuZ_u2DBs1pXChTfgdJIcQMtLSnHScWsIA77MzTylWR82fUeue62_vuzdXwabPiXLPJI99jeV1HUQIOAjHTEtl2bJiJ9JEVRjcvCMijY8QaXe73FEdM7yrFVjbCddoaaQahPYD3ep1TAhi7JRs_VC7AbP_kc6Z3Knmj1iQ10UdpfjfL2BSJ74X9Os-4D9DBbO0sahFFYWZkj0U6OLnbUGZYpdm05JAgLXhmmWumSeXKGG4jeyqGJyCqXbGu25iBfa9uziKMFrBuEUFg1sew7w0qd1wToB4GAz14hisbConkwCB0KU3i5YUooK-HqTbBuZbP_amjT7GibCo6jmAtr3Mcl4VFUUnKTT_GSwzr1-7ygLmTY6zwrY_nQohdXel1vrVrDlpQRnUtaFoB-0wY-eMaONqnQjZP2q4dN64VKlro05_6QbymCVrQg-5-rAh4HnQ3HWvsLvW8PKmuPhPv2SaM0TvsWjX9QDKUQMnilWp3oI5HXZvoE1MEmRBgYGs2RZz_IZIKZAQoDTkCrJtxl_Y_q2)
 
-### Storage Component
 
-### Common Classes
+#### TimeLimit Mode
+![TimeLimit Mode Diagram](https://uml.planttext.com/plantuml/png/ZPJDRjim3CVl0V8ER2zpWEm5V1YAPTXG8CM0B4NFXapNn6p9aAXbUVkHSb97-UYgaooIF_tv8Jy4hZp7lflFvhD1jcHeg2p3Sq2VdsofnpNrn4-knjoqwfpvlMqzLlKPXVBlhx5fq6Ez4Szp_elpzSf5o-U6RzGqP6B7-pN-mQHKrS7dBxcc4b8osLd167YBVta9zHjcCPzbJafw9WbltIupFDh0FXecPqCXKPrp0pJE0rQcXOui0bauNZ6VWQmByabn3WeLTTLLqoebtp1qrLwuDvbd9IdX5QUy2xxCzoebxqO9kuhuk_EFTeXSc4ds4dpoM08V4GTarOsJ0hmVCC2EkDM2Y9TKHzn6BrtvNLTwvv6Zjn2LHgfWYhqGVZ8g9HZTw4aeD3YfNqp1AZ6TGL-nQKMbzkkak3TlqP7u9IC1zpyaVxwxd_on2tYWaZNEUpGVfxruPrypcgt7ZuJLIF3H1d3l5c42gkbJW3WSeM_0zuUHj80-3caWKyp_dyK6WunKOMF_irdB0mXBIFlLM8J5pRUv6VlB3dgqKH_nWrmfVvv_)
+
+#### Zen Mode 
+![Zen Mode Diagram](https://uml.planttext.com/plantuml/png/jLJ1IiGm4BqN-W_Z7dG55SyBYh2AB5WGrhBWHM8xx0Qxav1CKV_UJ3TTsvA35tCeoSpBlFUcIUuyAyVjlicpFBDXgYjj5J6K7jquyefKc1h7mPTlgsdxelTJTAd7wtMbYAQWZN7rqhJ4aiWpuOJBsvvf0Psuk9gVvrcS2gRK8Rqpdp6q8i-khLWRyeBCiyOO2oMnRc3MrPc1ze32XNMUGHWzNzIs0C8lVjBKSGaW9aQQ77Bh23JPbWyerV1X2IStFTSX8oEXkK3lrHRdiz0zXBDknncmWNVSQhgQHNQaeBFxZ9mFMXuxD32ysUa6eHLZ78hxVp9wqnarziqw5PfUOThmHAgnFP-CTuVg8pfjF2OB30x80YgPICJFnU1Ab0pg3R0f7vzzEabqH9UsLeo_Q51KGxLJuXFTeC1V_iuM-RvrIavbeKdC3z8faTob-prIMde-Zi8jN1yafFGlLLErZLZOF1Tm2ild8iWyzZUrPOty2vPZU9qoDhbm3rG_gZtEZuswY3BN5h5UKIWuYOJYvuax7Wg13nSY-hqBpDrpz0C0)
 
 ## Implementation
 
 ### Typing Accuracy
 
-#### Proposed Implementation
+#### Implementation
 
 The typing accuracy of the user is facilitated by `TypingAccuracy`. It implements the following operations:
 - `TypingAccuracy(ArrayList<String> userText)` - Constructor to create TypingAccuracy object with user input
@@ -36,9 +44,103 @@ The typing accuracy of the user is facilitated by `TypingAccuracy`. It implement
 - `updateUserInput` - Update's the user input when they type a new line
 - `getTypingAccuracy` - Computes and returns typing accuracy
 
+Below is the sequence diagram for `TypingAccuracy`
+
+<img src="images/TypingAccuracySequenceDiagram.png" width="280" />
+
+Below is the class diagram for `TypingAccuracy`
+
+<img src="images/TypingAccuracyClassDiagram.png" width="280" />
+
+#### Design Considerations
+
+- **Alternative 1 (current choice):** Measure typing accuracy only up to the test text or user input depending on which
+input is shorter
+  - **Pros:** Easier to implement
+- **Alternative 2:** Always measure to the end of user input and penalise for additional words
+  - **Pros:** More accurate comparison between user and test text
+  - **Cons:** Less intuitive for users
+
+### Normal Mode Feature
+
+#### Implementation
+
+Normal Mode is facilitated by `NormalMode`. Additionally, it implements the following operations:
+
+- `NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust, TypingAccuracy typingAccuracy)` - Constructor to create a NormalMode object. 
+- `startNormalMode(List<String> testText)` - Runs the normal typing test, displaying test text, tracking user input, and computing typing statistics.
+
+Usage Scenario
+
+Given below is an example usage scenario and how the Normal Mode behaves at each step.
+
+Step 1: The user selects Normal Mode from the available practice modes, instantiating a NormalMode object and running `startNormalMode()`. The method displays instructions and initializes counters.
+
+Step 2: The first line of the test text is displayed to the user. The TypingTimer starts tracking time.
+
+Step 3: The user types their response, which is recorded and analyzed. `TypingAccuracy.updateUserInput()` updates accuracy tracking. `WordCounter.countWords()` calculates the number of words typed, and the character count is updated accordingly.
+
+Step 4: The process repeats for each line in the test text until all lines have been typed.
+
+Step 5: The typing timer stops, and the typing statistics are calculated:
+
+- Words per minute (WPM)
+- Characters per minute (CPM)
+- Typing accuracy
+- Overall typing score (calculated using WPM and accuracy)
+
+These results are displayed using UI methods (`ui.showTypingSpeedWPM()`, `ui.showTypingSpeedCPM()`, and `ui.showTypingScore()`).
+
+Step 6: The program checks if the user has met any predefined typing targets stored in TypingTargetList:
+
+- If the user meets a speed target (`TypingTargetSpeed`), it is marked as hit.
+- If the user meets a score target (`TypingTargetScore`), it is marked as hit.
+- The system displays feedback on whether each target was met.
+
+Step 7: The AutoAdjust system evaluates the user’s typing speed and provides feedback to adjust difficulty.
+
+Step 8: The user's high score is updated using state.updateHighScore(). If an error occurs while updating the score, an error message is displayed.
+
+Step 9: The user returns to the main menu after reviewing their results.
+
+### TimeLimit Mode Feature 
+
+#### Implementation 
+
+TimeLimit Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
+
+- `TimeLimitMode(Ui ui, Scanner sc)` - Constructor to create TimeLimitMode object 
+- `startTimeLimitMode(List<String> testText, DifficultyLevel difficulty)` - Runs the time-limited typing test, displaying test text, tracking user input, and enforcing a time limit. 
+- `waitForInput(ClockThread clockThread, BufferedReader reader, long timeLimit)` - Waits for user input within the given time limit and returns the typed text.
+- `getNumOfCorrect()` - Returns the number of correctly typed lines.
+- `getNumOfLines()` - Returns the total number of lines in the test text.
+- `getTimeLimit(String s, DifficultyLevel difficulty)` - Determines the time limit for each line based on its word count and difficulty level.
+
+Additionally, the ClockThread class is implemented as a separate thread to track elapsed time:
+
+- `run()` - Starts a timer and keeps updating elapsed time until interrupted.
+- `getElapsedTime()` - Returns the elapsed time in seconds.
+
+Given below is an example usage scenario and how the Time Limit Mode behaves at each step.
+
+Step 1: The user selects Time Limit Mode from the available practice modes, instantiating a `TimeLimitMode` object and running `startTimeLimitMode()`. The method displays instructions and initializes counters.
+
+Step 2: The first line of the test text is displayed to the user. A ClockThread instance starts running to track elapsed time.
+
+Step 3: The user types their response. The program waits for input while checking if the elapsed time exceeds the time limit using `waitForInput()`. If input is provided before the time limit, it is validated against the expected text.
+
+Step 4: If the input matches the expected text, the correct count increases, and a success message is displayed. Otherwise, an error message is shown.
+
+Step 5: If the user fails to respond within the time limit, a timeout message is displayed.
+
+Step 6: The process repeats for each line in the test text. After all lines are completed, the final result is displayed using `ui.showTimeLimitResult()`.
+
+Step 7: The user presses Enter to return to the main menu.
+
+
 ### Zen Mode Feature
 
-#### Proposed Implementation
+#### Implementation
 
 Zen Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
 
@@ -56,6 +158,10 @@ in the user's input and adds to the `wordCount`.
 Step 3. The user types `stop_practice`, ending the loop and computes the typing speed.
 
 Step 4. The typing practice results is displayed to the user with `UI.showZenModeEndGame`
+
+Below is the sequence diagram for ZenMode
+
+<img src="images/ZenModeSequenceDiagram.png" width="280" />
 
 ### Typing Targets Feature
 
@@ -100,6 +206,103 @@ Step 4. The Milestones class promotes the user to the next difficulty (e.g., fro
 `data/milestones.txt`.
 `Ui.showMilestoneAchieved(...)` is then called to notify the user of their achievement and promotion.
 
+### Highscore List Feature
+
+#### Implementation
+
+Highscore List is facilitated by `highScoreList` and managed in coordination with `Highscore`.
+Additionally, it implements the following operations:
+
+- `getHighscoreList()` - loads the highscore list from storage file.
+- `saveScoreList(ArrayList<Double> newHighScoreList)` - saves the highscore list to storage file.
+- `readHighScoreList()` - reads the highscore list from storage file.
+- `updateHighScore(Double accuracy, int wpm)` - updates the highscore list by adding the new highscore to the list.
+  Then sorting the list into the top 3 highscores.
+- `showHighscoreList()` - displays the highscore list to the user.
+
+Given below is an example usage scenario of how Highscore List feature behave at each step.
+
+Step 1. The user starts a practice session in normal mode.
+
+Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated.
+
+Step 3. `state.updateHighscoreList(typingAccuracyDouble, typingSpeedWPM)` adds the new highscore to the highscore list.
+Then, the list is sorted into the top 3 highscores.
+
+### Highscore Feature
+
+#### Implementation
+
+Highscores are facilitated by `Highscores` and managed in coordination with `TypingTest`.
+Additionally, it implements the following operations:
+
+- `getHighscore()` - loads the top highscore from the highscore List.
+- `updateHighscore(Double accuracy, int wpm)` - updates the highscore list by adding the new highscore to the list.
+  Then sorting the list into the top 3 highscores.
+- `showHighscore()` - displays the highscore to the user.
+
+Given below is an example usage scenario of how Highscore feature behave at each step.
+
+Step 1. The user starts a practice session in normal mode. 
+
+Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated. 
+`state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` is called at the end of the session.
+
+Step 3. `state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` adds the new highscore to the highscore list.
+Then, the list is sorted into the top 3 highscores.
+
+Step 4. `getHighscore()` will take the top highscore in the highscore list and save it.
+
+Step 5. `state.showHighscore()` displays the highscore to the user.
+
+### Custom Mode Feature
+
+#### Planned Implementation
+
+Custom Mode is facilitated by `CustomMode`. 
+Additionally, it implements the following operations:
+
+- `CustomMode(TypingTimer typingTimer, Scanner sc, Ui ui)` - Constructor to create CustomMode object
+- `startCustomMode()` - Runs input loop to read user input and compute typing statistics
+- `inputText()` - creates a file to store the user's custom text input
+
+Given below is an example usage scenario and how the Custom Mode behaves at each step.
+  
+Step 1. The user selects Custom Mode when selecting the practice mode, instantiating a `CustomMode` object and running
+`startCustomMode()`. 
+
+Step 2. Custom mode requires the user to input a custom text to be tested on. 
+
+Step 3. The user types `exit`. The loop ends and the user's custom text is saved to a file.
+
+Step 4. Typing Practice will start for the user, using the custom text they inputted.
+
+Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm) 
+are calculated and displayed to the user.
+
+### Progress Report
+#### Planned Implementation
+
+Progress Report is facilitated by `ProgressReport`.
+Additionally, it implements the following operations:
+
+- `getProgressReport()` - loads the past 10 scores from the ProgressReport List.
+- `updateProgressReport()` - updates the ProgressReport list to store the score from the past 10 runs.
+- `showProgressReport()` - displays the ProgressReport to the user.
+- `resetProgress()` - Reset all stored scores and empties the ProgressReport list.
+
+Given below is an example usage scenario and how the Custom Mode behaves at each step.
+
+Step 1. The user starts a practice session in normal mode.
+
+Step 2. The user completes the round and `updateProgressReport()` adds the new score to the list of past 10 practices. 
+
+Step 3. `updateProgressReport()` updates the new score to the ProgressReport list.
+
+Step 4. When user inputs the command `progress`, `showProgressReport()` displays the Report as a Graph.
+
+Step 5. When user inputs command `resetprogress`, the ProgressReport list will clear.
+
 ## Product scope
 
 ### Target user profile
@@ -121,28 +324,154 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 
 ## User Stories
 
-| Version | As a ...         | I want to ...                                                                     | So that I can ...                                                 |
-|---------|------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| v1.0    | slow typer       | practise typing with different texts                                              | improve my typing speed                                           |
-| v1.0    | user             | have various lengths for typing tests                                             | spend as little or as much time I want practising                 |
-| v1.0    | user             | adjust the difficulty level of typing exercises                                   | challenge myself appropriately as I improve over time             |
-| v1.0    | user             | track my typing speed                                                             | know how fast I can type                                          |
-| v1.0    | user             | track my typing accuracy                                                          | know how accurately I can type                                    |
-| v1.0    | user             | track my typing high scores                                                       | track my personal best and attempt to break it                    |
+| Version | As a ...         | I want to ...                                                                    | So that I can ...                                                 |
+|---------|------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | slow typer       | practise typing with different texts                                             | improve my typing speed                                           |
+| v1.0    | user             | have various lengths for typing tests                                            | spend as little or as much time I want practising                 |
+| v1.0    | user             | adjust the difficulty level of typing exercises                                  | challenge myself appropriately as I improve over time             |
+| v1.0    | user             | track my typing speed                                                            | know how fast I can type                                          |
+| v1.0    | user             | track my typing accuracy                                                         | know how accurately I can type                                    |
+| v1.0    | user             | track my typing high score                                                       | track my personal best and attempt to break it                    |
 | v2.0    | goal-driven user | set specific targets for typing speed and scores and get notified when I hit them | keep track of my progress and goals                               |
-| v2.0    | unmotivated user | have timed tests                                                                  | be motivated to type faster each time                             |
-| v2.0    | user             | type my own words (zen mode)                                                      | train using my own texts                                          |
-| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience     | gradually improve as the difficulty increases with my skill level |
-| v2.0    | user             | track milestones I achieve                                                        | keep track of my progress and give myself a sense of achievement  |
-
+| v2.0    | unmotivated user | have timed tests                                                                 | be motivated to type faster each time                             |
+| v2.0    | user             | type my own words (zen mode)                                                     | train using my own texts                                          |
+| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience    | gradually improve as the difficulty increases with my skill level |
+| v2.0    | user             | track milestones I achieve                                                       | keep track of my progress and give myself a sense of achievement  |
+| v2.0    | user             | view the top 3 highscores                                                        | keep track of my progress and past performances.                  |
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 17 or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
+be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## Glossary
 
-* *glossary item* - Definition
+- Mainstream OS: Windows, Linux, Unix, MacOS
+- WPM (Words Per Minute): A measure of typing speed, indicating how many words a user types per minute. 
+- CPM (Characters Per Minute): A measure of typing speed based on the number of characters typed per minute.
 
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+Given below are instructions to test the app manually.
+
+Note: These instructions only provide a starting point for testers to work on; testers are expected to do more 
+exploratory testing.
+
+### 1. Launch and Shutdown
+
+#### Initial Launch
+
+1. Download the executable JAR file and place it in an empty folder.
+
+2. Open a terminal or command prompt and navigate to the folder containing the JAR file.
+
+3. Run the command: `java -jar BoboType.jar`.
+
+Expected: The CLI interface should launch, displaying the welcome message and available commands.
+
+#### Saving Session Data
+
+1. Start a typing session.
+
+2. Complete a few exercises and exit the application using the exit command.
+
+3. Restart the application with `java -jar BoboType.jar`.
+
+Expected: User progress and settings from the previous session should be retained.
+
+### 2. Typing Exercises
+
+#### Starting a Typing Test
+
+1. Run the command: `start`
+
+Expected: A typing prompt should appear with a sample text to type.
+
+#### Completing a Typing Test
+
+1. Type the displayed text correctly and press `Enter`.
+
+Expected: The app should calculate and display typing speed (WPM) and accuracy percentage.
+
+#### Handling Incorrect Inputs
+
+1. Enter a completely incorrect text and press `Enter`.
+
+Expected: The app should highlight mistakes and display an accuracy score below 100%.
+
+2. Enter an empty input and press `Enter`.
+
+Expected: The app should display an error message indicating that input cannot be empty.
+
+3. Enter special characters not present in the prompt.
+
+Expected: The app should ignore or flag them as incorrect input.
+
+### 3. Custom Mode
+
+#### Adding Custom Text
+
+1. Run the command: `custom "Custom text here."`
+
+Expected: The app should save this text as a new typing prompt.
+
+#### Starting a Custom Typing Test
+
+1. Run the command: `start custom`
+
+Expected: The app should prompt the user to type the previously added custom text.
+
+### 4. Progress Tracking
+
+#### Viewing Progress
+
+1. Run the command: `progress`
+
+Expected: The app should display the past 10 typing scores.
+
+#### Resetting Progress
+
+1. Run the command: `resetprogress`
+
+Expected: The app should reset all stored progress and confirm the reset.
+
+### 5. Error Handling & Edge Cases
+
+#### Invalid Commands
+
+1. Enter a random text.
+
+Expected: The app should display an error message stating that the command is invalid.
+
+2. Enter an incomplete command.
+
+Expected: The app should provide a suggestion or display the correct command usage.
+
+#### Corrupted Data Handling
+
+1. Manually edit the saved progress file and enter invalid values.
+
+2. Restart the application.
+
+Expected: The app should detect corruption and either reset progress or notify the user of an error.
+
+### 6. Exiting the Application
+
+#### Using the exit Command
+
+1. Run the command: `exit`
+
+Expected: The application should close cleanly without errors.
+
+#### Forcing Shutdown
+
+1. Close the terminal without using the `exit` command.
+
+2. Reopen the application.
+
+Expected: The app should start normally without corruption or data loss.
+
+
+

@@ -3,6 +3,7 @@ package ui;
 import storage.State;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Ui {
 
@@ -14,6 +15,10 @@ public class Ui {
 
     public void drawLine() {
         System.out.println("____________________________________________________________");
+    }
+
+    public String readInput(Scanner scanner) {
+        return scanner.nextLine();
     }
 
     public void showWelcome() {

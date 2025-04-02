@@ -1,10 +1,12 @@
-
 package modes;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Scanner;
 import util.WordCounter;
+import ui.Ui;
+import enums.DifficultyLevel;
 
 class ClockThread extends Thread {
     private long startTime;
@@ -31,11 +33,24 @@ class ClockThread extends Thread {
 
 public class TimeLimitMode {
     private int numOfCorrect;
-    private WordCounter wordCounter = new WordCounter();
+    private int numOfLines;
+    private WordCounter wordCounter;
+    private BufferedReader reader;
+    private List<String> testText;
+    private Ui ui;
+    private Scanner sc;
 
-    public void run(List<String> testText, String difficulty) throws InterruptedException {
+    public TimeLimitMode(Ui ui, Scanner sc) {
+        this.wordCounter = new WordCounter();
+        this.reader = new BufferedReader(new InputStreamReader(System.in));
+        this.ui = ui;
+        this.sc = sc;
+    }
+
+    public void startTimeLimitMode(List<String> testText, DifficultyLevel difficulty) throws InterruptedException {
+        ui.showTimeLimitModeInstructions();
         numOfCorrect = 0;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        this.testText = testText;
 
         for (String s : testText) {
             String userInput = "";
@@ -64,6 +79,10 @@ public class TimeLimitMode {
             // After time limit or correct input, interrupt the threads
             clockThread.interrupt();
         }
+
+        ui.showTimeLimitResult(numOfLines, numOfCorrect);
+        sc.nextLine();
+
     }
 
     // Non-blocking check for user input using BufferedReader and ready()
@@ -93,16 +112,13 @@ public class TimeLimitMode {
         return numOfCorrect;
     }
 
-    long getTimeLimit(String s, String difficulty) {
-        long timeLimit = 0;
-        if (difficulty.equals("easy")) {
-            timeLimit = (long) (wordCounter.countWords(s) / 0.67);
-        } else if (difficulty.equals("intermediate")) {
-            timeLimit = (long) (wordCounter.countWords(s) / 0.83);
-        } else {
-            timeLimit = wordCounter.countWords(s);
-        }
-        return timeLimit;
+    public int getNumOfLines() {
+        numOfLines = testText.size();
+        return numOfLines;
+    }
+
+    long getTimeLimit(String s, DifficultyLevel difficulty) {
+        return (long) (wordCounter.countWords(s) / difficulty.getDivisor());
     }
 }
 
