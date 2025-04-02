@@ -1,7 +1,5 @@
 package command;
 
-import exceptions.FileProcessingException;
-import exceptions.InvalidInputException;
 import modes.TimeLimitMode;
 import modes.TypingTimer;
 import modes.NormalMode;
@@ -11,15 +9,10 @@ import storage.Milestones;
 import storage.State;
 import storage.TypingTargets;
 import typing.TypingAccuracy;
-import typing.TypingTarget;
 import typing.TypingTargetList;
 import util.TextSelector;
 import ui.Ui;
-import util.RandNumGenerator;
-import util.WordCounter;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
