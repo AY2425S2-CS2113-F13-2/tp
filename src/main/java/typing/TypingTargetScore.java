@@ -1,10 +1,17 @@
+/**
+ * Class representing a target score
+ */
+
 package typing;
 
 public class TypingTargetScore extends TypingTarget {
-    public TypingTargetScore(long target) {
-        super(target);
+    public TypingTargetScore(long target, boolean hit) {
+        super(target, hit);
     }
 
+    /**
+     * Prints a message informing the user whether their target has been hit
+     */
     @Override
     public void printHit() {
         if (this.getHit()) {
@@ -12,5 +19,14 @@ public class TypingTargetScore extends TypingTarget {
         } else {
             System.out.println(" Almost there! Hit this target next time: " + this.getTarget() + " WPM");
         }
+    }
+
+    /**
+     * Gets a string representation of the target
+     * @return String representation of target
+     */
+    @Override
+    public String getString() {
+        return " Target Score: " + getTarget() + " | " + (getHit() ? "Achieved" : "Not Achieved");
     }
 }

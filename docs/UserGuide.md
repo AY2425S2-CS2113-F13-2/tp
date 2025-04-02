@@ -192,20 +192,24 @@ Example:
 ### Add Target Speed: `targetspeedadd`
 Add a target speed (WPM) to hit. Users will be informed when they hit their target speed.
 
-Format: `targetspeedadd TARGET_SPEED`
+Format: `targetspeedadd`
 
 Example:
 
-`targetspeedadd 60`
+`Please enter a typing speed target you would like to hit (WPM)!`
 
-### Add Target Score: `targetspeedadd`
+`Type an integer (e.g., 60)`
+
+### Add Target Score: `targetscoreadd`
 Add a target score (effective WPM) to hit. Users will be informed when they hit their target score.
 
-Format: `targetspeedadd TARGET_SCORE`
+Format: `targetscoreadd`
 
 Example:
 
-`targetscoreadd 60`
+`Please enter a typing score target you would like to hit (Effective WPM)!`
+
+`Type an integer (e.g., 60)`
 
 ### Exit the application: `exit`
 Exits the application.

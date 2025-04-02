@@ -12,8 +12,7 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ExitCommand extends Command {
-
+public class ListtargetsCommand extends Command {
     @Override
     public void execute(
             Ui ui,
@@ -26,17 +25,8 @@ public class ExitCommand extends Command {
             State state,
             AutoAdjust autoAdjust
     ) throws IOException {
-        ui.showExit();
+        ui.drawLine();
+        typingTargetList.print();
+        ui.drawLine();
     }
-
-    /**
-     * Sets isExit to true
-     *
-     * @return Always returns true to ensure application exits
-     */
-    @Override
-    public boolean isExit() {
-        return true;
-    }
-
 }

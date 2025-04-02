@@ -113,6 +113,13 @@ public class Ui {
         drawLine();
     }
 
+    public void showTargetAdded(String targetString) {
+        drawLine();
+        System.out.println(" Target added!");
+        System.out.println(targetString);
+        drawLine();
+    }
+
     public void showStartGame() {
         drawLine();
         System.out.println("Typing test started! Type the following text:");

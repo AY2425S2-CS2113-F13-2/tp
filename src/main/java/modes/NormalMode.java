@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import storage.TypingTargets;
 import ui.Ui;
 import util.WordCounter;
 import storage.AutoAdjust;
@@ -17,33 +18,33 @@ import typing.TypingTargetScore;
 
 
 public class NormalMode {
-    private List<String> testText;
-    private TypingAccuracy typingAccuracy;
-    private TypingTimer typingTimer;
-    private int wordCount;
-    private int characterCount;
-    private Scanner sc;
-    private Ui ui;
-    private TypingTargetList typingTargetList;
-    private State state;
-    private AutoAdjust autoAdjust;
+    private final TypingAccuracy typingAccuracy;
+    private final TypingTimer typingTimer;
+    private final Scanner sc;
+    private final Ui ui;
+    private final TypingTargetList typingTargetList;
+    private final TypingTargets typingTargets;
+    private final State state;
+    private final AutoAdjust autoAdjust;
 
-    public NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust,
+    public NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, TypingTargets typingTargets,
+                      State state, AutoAdjust autoAdjust,
                       TypingAccuracy typingAccuracy) {
         this.ui = ui;
         this.sc = sc;
         this.typingTargetList = typingTargetList;
+        this.typingTargets = typingTargets;
         this.state = state;
         this.autoAdjust = autoAdjust;
         this.typingTimer = new TypingTimer();
         this.typingAccuracy = typingAccuracy;
     }
 
-    public void startNormalMode(List<String> testText) {
+    public void startNormalMode(List<String> testText) throws IOException {
         typingAccuracy.setTestText((ArrayList<String>) testText);
         ui.showStartGame();
-        wordCount = 0;
-        characterCount = 0;
+        int wordCount = 0;
+        int characterCount = 0;
 
         typingTimer.start();
 
@@ -84,14 +85,14 @@ public class NormalMode {
                 typingTarget.printHit();
             }
         }
+        typingTargets.update(typingTargetList);
 
         // Adjust the game based on typing speed
-        double time = typingTimer.getDurationMin();
-        autoAdjust.evaluate((int) (wordCount / time));
+        autoAdjust.evaluate((int) (wordCount / duration));
 
         // Update the high score
         try {
-            state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / time));
+            state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / duration));
         } catch (IOException e) {
             ui.showErrorMessage(e.getMessage());
         }

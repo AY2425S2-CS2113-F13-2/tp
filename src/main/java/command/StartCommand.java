@@ -7,6 +7,7 @@ import modes.ZenMode;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;
+import storage.TypingTargets;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;
 import util.TextSelector;
@@ -15,13 +16,20 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class StartCommand extends Command {
 
     @Override
-    public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer,
-                        TypingAccuracy typingAccuracy, TypingTargetList typingTargetList, State state,
-                        AutoAdjust autoAdjust) throws IOException {
+    public void execute(
+            Ui ui,
+            Scanner sc,
+            Milestones milestones,
+            TypingTimer typingTimer,
+            TypingAccuracy typingAccuracy,
+            TypingTargetList typingTargetList,
+            TypingTargets typingTargets,
+            State state,
+            AutoAdjust autoAdjust
+    ) throws IOException {
         ui.chooseMode();
         String mode = sc.nextLine().trim();
         if (mode.equals("zen")) {
@@ -40,12 +48,13 @@ public class StartCommand extends Command {
                 }
             } else { // normal mode
                 // TODO: if (mode.equals("normal") else ask for valid input
-                NormalMode normalMode = new NormalMode(ui, sc, typingTargetList, state, autoAdjust, typingAccuracy);
+                NormalMode normalMode = new NormalMode(
+                        ui, sc, typingTargetList, typingTargets, state, autoAdjust, typingAccuracy
+                );
                 normalMode.startNormalMode(testText);
             }
+
             ui.showEndGame();
         }
     }
 }
-
-
