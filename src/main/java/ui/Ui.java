@@ -171,15 +171,10 @@ public class Ui {
     public void showTimeLimitModeInstructions() {
         drawLine();
         System.out.println("Welcome to Time Limit mode.");
-        drawLine();
         waitOneSec();
-        System.out.println("Are you ready? The game will begin in ");
+        System.out.println("*** You can see your input ONLY after you press ENTER!!! ***");
         waitOneSec();
-        System.out.println("3");
-        waitOneSec();
-        System.out.println("2");
-        waitOneSec();
-        System.out.println("1");
+        System.out.println("*** RESULT will be shown in either GREAT! or WRONG! or Time's up! ***");
         drawLine();
         waitOneSec();
     }
