@@ -2,10 +2,7 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-original source as well}
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+The format of the Developer Guide and User Guide were inspired and adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3).
 
 ## Design
 ### Architecture
@@ -24,13 +21,13 @@ The API of this component is specified in `Ui.java`.
 
 #### Normal Mode 
 
-<img src ="images/SeqDiagramNormalMode.png" width="280" />
+<img src ="images/SeqDiagramNormalMode.png" width="500" />
 
 #### TimeLimit Mode
-<img src ="images/SeqDiagramTimeLimitMode.png" width="280" />
+<img src ="images/SeqDiagramTimeLimitMode.png" width="500" />
 
 #### Zen Mode 
-<img src="images/ZenModeSequenceDiagram.png" width="280" />
+<img src="images/ZenModeSequenceDiagram.png" width="400" />
 
 ## Implementation
 
@@ -50,7 +47,7 @@ Below is the sequence diagram for `TypingAccuracy`
 
 Below is the class diagram for `TypingAccuracy`
 
-<img src="images/TypingAccuracyClassDiagram.png" width="280" />
+<img src="images/TypingAccuracyClassDiagram.png" width="500" />
 
 #### Design Considerations
 
