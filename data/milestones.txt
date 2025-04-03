@@ -1,4 +1,2 @@
-currentDifficulty:easy
+currentDifficulty:intermediate
 easy
-intermediate
-difficult

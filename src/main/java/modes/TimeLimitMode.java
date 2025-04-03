@@ -56,10 +56,9 @@ public class TimeLimitMode {
             String userInput = "";
             long timeLimit = getTimeLimit(s, difficulty);
             ClockThread clockThread = new ClockThread();
-
-            System.out.println(s);
             clockThread.start();
 
+            ui.showString(s);
             try {
                 userInput = waitForInput(clockThread, reader, timeLimit); // Get user input
             } catch (Exception e) {
@@ -79,7 +78,7 @@ public class TimeLimitMode {
             // After time limit or correct input, interrupt the threads
             clockThread.interrupt();
         }
-
+        numOfLines = getNumOfLines();
         ui.showTimeLimitResult(numOfLines, numOfCorrect);
         sc.nextLine();
 
@@ -94,7 +93,7 @@ public class TimeLimitMode {
             if (reader.ready()) { // Check if there's input available without blocking
                 userInput = reader.readLine(); // Read the input
                 // to prevent the program to process the input after the previous interrupt as valid input
-                if (clockThread.getElapsedTime() >= 3) {
+                if (clockThread.getElapsedTime() >= 2) {
                     break;
                 }
             }
@@ -120,5 +119,6 @@ public class TimeLimitMode {
     long getTimeLimit(String s, DifficultyLevel difficulty) {
         return (long) (wordCounter.countWords(s) / difficulty.getDivisor());
     }
+
 }
 

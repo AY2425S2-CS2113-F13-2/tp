@@ -16,12 +16,14 @@ import enums.DifficultyLevel;
 class TimeLimitModeTest {
     private TimeLimitMode timeLimitMode;
     private WordCounter wordCounter;
+    private BufferedReader reader;
     private Ui ui;
     private Scanner sc;
 
     @BeforeEach
     void setUp() {
         wordCounter = new WordCounter();
+        this.reader = new BufferedReader(new InputStreamReader(System.in));
         Storage storage = new Storage("TestStorage");
         State state = new State(storage);
         ui = new Ui(state);
@@ -62,7 +64,6 @@ class TimeLimitModeTest {
     void testWaitForEmptyInput() throws Exception {
         String simulatedInput = "";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         ClockThread clockThread = new ClockThread();
         clockThread.start();
 

@@ -39,19 +39,30 @@ public class TextSelector {
     public DifficultyLevel selectDifficulty() {
         String defaultDifficulty = milestones.getCurrentDifficulty().toUpperCase();
         difficultyLevel = DifficultyLevel.valueOf(defaultDifficulty);
-        ui.showDefaultDifficultyPrompt(difficultyLevel.name().toLowerCase());
 
-        String input = sc.nextLine().trim();
-        if (input.equalsIgnoreCase("override")) {
-            while (true) {
-                ui.chooseDifficulty();
-                input = sc.nextLine().trim().toUpperCase();
-                try {
-                    difficultyLevel = DifficultyLevel.valueOf(input);
-                    break;
-                } catch (IllegalArgumentException e) {
-                    ui.showErrorMessage("Please enter a valid difficulty level.");
+        String input;
+        while (true) {
+            ui.showDefaultDifficultyPrompt(difficultyLevel.name().toLowerCase());
+            input = sc.nextLine().trim();
+            if (input.isEmpty()) {
+                // User accepts default difficulty
+                break;
+            } else if (input.equalsIgnoreCase("override")) {
+                // User override default difficulty, ask for new difficulty input
+                while (true) {
+                    ui.chooseDifficulty();
+                    input = sc.nextLine().trim().toUpperCase();
+                    try {
+                        difficultyLevel = DifficultyLevel.valueOf(input);
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        ui.showErrorMessage("Please enter a valid difficulty level.");
+                    }
                 }
+                break;
+            // Invalid input
+            } else {
+                ui.showErrorMessage("Please type 'override' or leave blank to proceed with default.");
             }
         }
         return difficultyLevel;

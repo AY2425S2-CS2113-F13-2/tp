@@ -51,7 +51,7 @@ public class NormalMode {
 
         // Typing test logic
         for (String s : testText) {
-            System.out.println(s);
+            ui.showString(s);
             String userInput = sc.nextLine();
             typingAccuracy.updateUserInput(userInput);
             wordCount += WordCounter.countWords(userInput);
@@ -88,14 +88,13 @@ public class NormalMode {
         }
         typingTargets.update(typingTargetList);
 
-        // Adjust the game based on typing speed
-        autoAdjust.evaluate((int) (wordCount / duration));
-
         // Update the high score
         try {
             state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / duration));
+            autoAdjust.evaluate();
         } catch (IOException e) {
             ui.showErrorMessage(e.getMessage());
         }
+
     }
 }

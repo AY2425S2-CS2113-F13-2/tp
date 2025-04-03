@@ -1,6 +1,9 @@
 @startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
 
-participant User
+box
+participant StartCommand
 participant TimeLimitMode
 participant ClockThread
 participant Ui
@@ -8,11 +11,12 @@ participant BufferedReader
 participant WordCounter
 participant DifficultyLevel
 
-User -> TimeLimitMode: startTimeLimitMode(testText, difficulty)
+StartCommand -> TimeLimitMode: startTimeLimitMode(testText, difficulty)
+activate TimeLimitMode
 TimeLimitMode -> Ui: showTimeLimitModeInstructions()
 loop for each line in testText
     TimeLimitMode -> ClockThread: start()
-    TimeLimitMode -> User: Display text
+    TimeLimitMode -> Ui: Display text
     TimeLimitMode -> DifficultyLevel: getTimeLimit(text, difficulty)
     TimeLimitMode -> BufferedReader: waitForInput(clockThread, reader, timeLimit)
     alt User types within time limit
@@ -31,4 +35,5 @@ end
 TimeLimitMode -> Ui: showTimeLimitResult(numOfLines, numOfCorrect)
 User -> TimeLimitMode: Return to menu
 
+end box
 @enduml
