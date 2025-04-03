@@ -56,9 +56,9 @@ public class TimeLimitMode {
             String userInput = "";
             long timeLimit = getTimeLimit(s, difficulty);
             ClockThread clockThread = new ClockThread();
+            clockThread.start();
 
             System.out.println(s);
-            clockThread.start();
 
             try {
                 userInput = waitForInput(clockThread, reader, timeLimit); // Get user input
@@ -79,7 +79,6 @@ public class TimeLimitMode {
             // After time limit or correct input, interrupt the threads
             clockThread.interrupt();
         }
-
         ui.showTimeLimitResult(numOfLines, numOfCorrect);
         sc.nextLine();
 
@@ -120,5 +119,6 @@ public class TimeLimitMode {
     long getTimeLimit(String s, DifficultyLevel difficulty) {
         return (long) (wordCounter.countWords(s) / difficulty.getDivisor());
     }
+
 }
 
