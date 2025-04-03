@@ -1,0 +1,62 @@
+# Sean Poon Project Portfolio Page
+
+## Project: Bobotype
+
+Bobotype is a typing test application that helps users improve their typing speed and accuracy. 
+It provides a user-friendly interface for practicing typing with various difficulty levels and text lengths. 
+The application also tracks the user's progress and provides feedback on their performance.
+
+### Summary of Contributions
+- Code Contributed: https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=sean2110&breakdown=true
+
+- New Feature: Added highscore feature to track the user's best score.
+  - What it does: allows users to view their best score for different difficulty levels and text lengths in normal mode.
+  - Justification: This feature enhances the user experience by providing motivation and a sense of achievement.
+  - Highlights: Implemented a new classes `State` and `Storage` to manage and display the high score. The storage class 
+  is set up so that the highscore can be saved onto a file and be easily retrieved when the program is run again. 
+  The state class is made to keep track of the current state of the program, including the current high score. It will 
+  update the high score whenever the user achieves a new high score.
+
+- New Feature: Added a highscore list feature to track the user's best scores.
+  - What it does: allows users to view their top 3 scores for different difficulty levels and text lengths
+in normal mode.
+  - Justification: This feature enhances the user experience by providing motivation and a sense of achievement.
+  - Highlights: Enhances classes `State` and `Storage` to manage and display the high scores. The list is able to
+  sort the scores in order of highest to lowest, and display the top 3 scores. To improve on the previously mentioned 
+  highscore, `State` class is modified to keep track of the current high score list. 
+  It will take in all the high scores and sort them in order of highest to lowest, and only keep the top 3 scores. 
+  Then, the method `getHighScore()` will get the top score in the list. The `Storage` class now keeps track of the 
+  list of highscores and saves it into a file. It updates everytime the user is in normal mode.
+
+- Previous Feature: Selecting a text to show on the screen
+  - What it does: allows users to select a text to practice typing.
+  - Justification: This feature enhances the user experience by providing a more personalized typing practice.
+  - Highlights: Implemented a new class `SampleTextReader` to manage and display the text. 
+  The class is set up so that the user can choose the difficulty of the text. The text is in an array with all the 
+  sample text of varying difficulty. The `getRandomNum()` method is used to generate a random number to select the text.
+  The sample text is then displayed on the screen for the user to practice typing.
+
+  - Contributions to the UG: 
+  - Added the `introduction`, `saving data`, `exiting the program`.
+  - Drafted the features for `normal`, `timelimit`, `zen` modes, `difficulty` levels, `commands page`.
+  - Added documentation for the new `highscore` feature 
+  - Added documentation for the new `highscorelist` feature.
+  - Added documentation for the planned implementation of `custom` mode.
+
+- Contributions to the DG:
+  - Added the `introduction`, `saving data`, `exiting the program`.
+  - Added documentation for the new `highscore` feature 
+  - Added documentation for the new `highscorelist` feature.
+  - Added documentation for the planned implementation of `custom` mode.
+  
+- Contributions to team-based tasks:
+  - Added the Jar file for release v1.0
+
+- Review/mentoring contributions:
+  - Commented on the following PRs:
+    - https://github.com/AY2425S2-CS2113-F13-2/tp/pull/78
+    - https://github.com/AY2425S2-CS2113-F13-2/tp/pull/74
+    - https://github.com/AY2425S2-CS2113-F13-2/tp/pull/29/files
+
+
+
