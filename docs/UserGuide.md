@@ -167,6 +167,7 @@ Example:
 
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts.
+Highscore is calculated based on the WPM * typingAccuracy of the user.
 
 Format: `highscore`
 
@@ -229,6 +230,10 @@ Displays a report on the user's past 10 runs in normal mode.
 
 Format: `progress`
 
+### Set Custom Mode: `[Coming Soon]`
+Allows user to input custom text to practice typing.
+
+Format: `custom`
 
 ### Exit the application: `exit`
 Exits the application.
