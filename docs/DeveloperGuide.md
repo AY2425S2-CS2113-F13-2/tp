@@ -216,7 +216,8 @@ Additionally, it implements the following operations:
 - `getHighscoreList()` - loads the highscore list from storage file.
 - `saveScoreList(ArrayList<Double> newHighScoreList)` - saves the highscore list to storage file.
 - `readHighScoreList()` - reads the highscore list from storage file.
-- `updateHighScore(Double accuracy, int wpm)` - updates the highscore list by adding the new highscore to the list.
+- `updateHighScore(Double accuracy, int wpm)` - highscore is calculated by WPM * typingAccuracy.
+  Updates the highscore list by adding the new highscore to the list.
   Then sorting the list into the top 3 highscores.
 - `showHighscoreList()` - displays the highscore list to the user.
 
