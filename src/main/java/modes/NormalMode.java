@@ -6,15 +6,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import storage.TypingTargets;
+import typing.MarkedText;
+import typing.TypingAccuracy;
+import typing.TypingTarget;
+import typing.TypingTargetSpeed;
+import typing.TypingTargetScore;
+import typing.TypingTargetList;
 import ui.Ui;
 import util.WordCounter;
 import storage.AutoAdjust;
 import storage.State;
-import typing.TypingAccuracy;
-import typing.TypingTarget;
-import typing.TypingTargetList;
-import typing.TypingTargetSpeed;
-import typing.TypingTargetScore;
 
 
 public class NormalMode {
@@ -43,19 +44,27 @@ public class NormalMode {
     public void startNormalMode(List<String> testText) throws IOException {
         typingAccuracy.clearUserText();
         typingAccuracy.setTestText((ArrayList<String>) testText);
-        ui.showStartGame();
         int wordCount = 0;
         int characterCount = 0;
 
+        // Start test
+        ui.countdown(ui);
         typingTimer.start();
+        ui.clearScreen(ui);
 
         // Typing test logic
+        MarkedText markedText = new MarkedText();
         for (String s : testText) {
             ui.showString(s);
             String userInput = sc.nextLine();
+            markedText.update(s, userInput);
+
             typingAccuracy.updateUserInput(userInput);
             wordCount += WordCounter.countWords(userInput);
             characterCount += userInput.length();
+
+            ui.clearScreen(ui);
+            markedText.print();
         }
         typingTimer.stop();
 
