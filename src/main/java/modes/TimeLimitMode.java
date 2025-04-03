@@ -86,7 +86,6 @@ public class TimeLimitMode {
 
     // Non-blocking check for user input using BufferedReader and ready()
     String waitForInput(ClockThread clockThread, BufferedReader reader, long timeLimit) throws Exception {
-        long startTime = System.currentTimeMillis();
         String userInput = null;
 
         while (clockThread.getElapsedTime() < timeLimit) {
