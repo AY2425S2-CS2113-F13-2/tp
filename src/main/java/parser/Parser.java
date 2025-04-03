@@ -1,5 +1,7 @@
 package parser;
 
+//@@author ravi-viswa105
+
 import command.Command;
 import command.ExitCommand;
 import command.HighscoreCommand;
@@ -15,25 +17,13 @@ import exceptions.InvalidInputException;
 
 public class Parser {
 
-    private final String userInput;
-
-    /**
-     * Constructs a UserInputParser object and sets the user input.
-     * Splits user input by spaces.
-     *
-     * @param userInput The complete input provided by the user.
-     */
-    public Parser(String userInput) {
-        this.userInput = userInput;
-    }
-
     /**
      * Parses user input to identify type of command
      *
      * @return command of corresponding type
      */
     //No break as all cases return
-    public Command parseToCommand() {
+    public static Command parseToCommand(String userInput) throws InvalidInputException {
         return switch (userInput) {
         case "start" -> new StartCommand();
         case "typingaccuracy" -> new TypingAccuracyCommand();

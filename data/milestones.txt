@@ -1,4 +1,4 @@
-currentDifficulty:difficult
+currentDifficulty:easy
 easy
 intermediate
 difficult
