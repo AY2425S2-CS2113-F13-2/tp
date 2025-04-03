@@ -1,10 +1,12 @@
 package typing;
 
+import exceptions.BoboTypeException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TypingAccuracyTest {
 
@@ -69,6 +71,14 @@ class TypingAccuracyTest {
         userInput.add("");
 
         assertEquals(0.0,testTypeAccuracy.getTypingAccuracy());
+    }
+
+    @Test
+    void getTypeAccuracy_emptyTestText_throwsException() {
+        ArrayList<String> testText = new ArrayList<>();
+        ArrayList<String> userInput = new ArrayList<>();
+        TypingAccuracy testTypeAccuracy = new TypingAccuracy(userInput);
+        assertThrows(BoboTypeException.class, testTypeAccuracy::getTypingAccuracy);
     }
 
 
