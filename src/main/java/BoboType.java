@@ -1,7 +1,10 @@
 import command.Command;
 import exceptions.InvalidInputException;
-import storage.*;
-
+import storage.AutoAdjust;
+import storage.Milestones;
+import storage.TypingTargets;
+import storage.State;
+import storage.Storage;
 import modes.TypingTimer;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;

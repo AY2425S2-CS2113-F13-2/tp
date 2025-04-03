@@ -1,7 +1,10 @@
 package command;
 
 import modes.TypingTimer;
-import storage.*;
+import storage.AutoAdjust;
+import storage.Milestones;
+import storage.TypingTargets;
+import storage.State;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;
 import ui.Ui;
