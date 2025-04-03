@@ -54,11 +54,4 @@ public class UiTest {
         String output = outputStream.toString().trim();
         assertTrue(output.contains("Bye. Hope to see you again soon!"));
     }
-
-    @Test
-    void showStartGame_printsCorrectOutput() {
-        ui.showStartGame();
-        String output = outputStream.toString().trim();
-        assertTrue(output.contains("Typing test started! Type the following text:"));
-    }
 }

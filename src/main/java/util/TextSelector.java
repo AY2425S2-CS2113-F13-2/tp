@@ -15,7 +15,7 @@ import enums.DifficultyLevel;
 public class TextSelector {
     private static Logger logger = setupLogger();
     private final Milestones milestones;
-    private final int NUM_OF_TEXTS = 3;
+    private final int numOfTexts = 3;
     private List<String> testText;
     private FileReader fileReader;
     private Scanner sc;
@@ -85,7 +85,7 @@ public class TextSelector {
     public List<String> selectText() {
         selectDifficulty();
         selectLength();
-        int randomNum = RandNumGenerator.randInt(1, NUM_OF_TEXTS);
+        int randomNum = RandNumGenerator.randInt(1, numOfTexts);
         String difficultyLevelName = difficultyLevel.name().toLowerCase();
         String textLengthName = textLength.name().toLowerCase();
         String filePath = "/sample_texts/" + difficultyLevelName + "/" + textLengthName + "/" + randomNum + ".txt";

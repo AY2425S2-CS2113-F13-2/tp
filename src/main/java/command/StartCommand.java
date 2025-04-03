@@ -12,7 +12,6 @@ import typing.TypingAccuracy;
 import typing.TypingTargetList;
 import util.TextSelector;
 import ui.Ui;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -62,7 +61,7 @@ public class StartCommand extends Command {
                 ui.showEndGame();
                 break;
 
-            // Catch exceptions
+                // Catch exceptions
             } else {
                 ui.showErrorMessage("Please enter a valid mode: 'normal', 'timeLimit', or 'zen'.");
             }
