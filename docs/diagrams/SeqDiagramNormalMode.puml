@@ -1,39 +1,62 @@
 @startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
 
-participant User
-participant NormalMode
-participant TypingTimer
-participant TypingAccuracy
-participant WordCounter
-participant Ui
-participant TypingTargetList
-participant TypingTarget
-participant AutoAdjust
-participant State
+box
+participant "StartCommand" as StartCommand
+participant "NormalMode" as NormalMode
+participant "Ui" as Ui
+participant "Scanner" as Scanner
+participant "TypingAccuracy" as TypingAccuracy
+participant "TypingTimer" as TypingTimer
+participant "WordCounter" as WordCounter
+participant "TypingTargetList" as TypingTargetList
+participant "TypingTargets" as TypingTargets
+participant "AutoAdjust" as AutoAdjust
+participant "State" as State
 
-User -> NormalMode: startNormalMode(testText)
-NormalMode -> Ui: showStartGame()
-NormalMode -> TypingTimer: start()
+StartCommand -> NormalMode : startNormalMode(testText)
+activate NormalMode
+NormalMode -> TypingAccuracy : setTestText(testText)
+NormalMode -> Ui : showStartGame()
+NormalMode -> TypingTimer : start()
+
 loop for each line in testText
-    NormalMode -> User: Display text
-    User -> NormalMode: Enter input
-    NormalMode -> TypingAccuracy: updateUserInput(userInput)
-    NormalMode -> WordCounter: countWords(userInput)
+    NormalMode -> Ui : showString(s)
+    NormalMode -> Scanner : nextLine()
+    Scanner --> NormalMode : userInput
+    NormalMode -> TypingAccuracy : updateUserInput(userInput)
+    NormalMode -> WordCounter : countWords(userInput)
+    WordCounter --> NormalMode : wordCount
+    NormalMode -> NormalMode : update characterCount
 end
-NormalMode -> TypingTimer: stop()
-NormalMode -> TypingTimer: getDurationMin()
-NormalMode -> Ui: showTypingSpeedWPM(wpm)
-NormalMode -> Ui: showTypingSpeedCPM(cpm)
-NormalMode -> Ui: showTypingScore(score)
-NormalMode -> TypingTargetList: getTypingTargetList()
-loop for each TypingTarget
-    NormalMode -> TypingTarget: check target met
-    TypingTarget -> Ui: printHit()
+
+NormalMode -> TypingTimer : stop()
+NormalMode -> Ui : showResult()
+NormalMode -> TypingTimer : getDurationMin()
+TypingTimer --> NormalMode : duration
+
+NormalMode -> Ui : showTypingSpeedWPM(typingSpeedWPM)
+NormalMode -> Ui : showTypingSpeedCPM(typingSpeedCPM)
+NormalMode -> Ui : showTypingScore(typingScore)
+
+loop for each typingTarget in typingTargetList
+    NormalMode -> TypingTarget : check target
+    TypingTarget --> NormalMode : result
+    NormalMode -> TypingTarget : printHit()
 end
-NormalMode -> AutoAdjust: evaluate(wpm)
-NormalMode -> State: updateHighScore(accuracy, wpm)
-State -> NormalMode: return success or error
-NormalMode -> Ui: showErrorMessage(errorMessage) (if error occurs)
-User -> NormalMode: Return to menu
+
+NormalMode -> TypingTargets : update(typingTargetList)
+NormalMode -> AutoAdjust : evaluate(wordCount/duration)
+
+alt updateHighScore succeeds
+    NormalMode -> State : updateHighScore(typingAccuracy, typingSpeedWPM)
+else IOException occurs
+    NormalMode -> Ui : showErrorMessage(e.getMessage())
+end
+
+end box
+
+
 
 @enduml
