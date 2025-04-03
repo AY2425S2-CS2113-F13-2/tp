@@ -41,6 +41,7 @@ public class NormalMode {
     }
 
     public void startNormalMode(List<String> testText) throws IOException {
+        typingAccuracy.clearUserText();
         typingAccuracy.setTestText((ArrayList<String>) testText);
         ui.showStartGame();
         int wordCount = 0;

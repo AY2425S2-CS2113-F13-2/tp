@@ -22,7 +22,7 @@ public class BoboType {
 
     private final Ui ui;
     private final Scanner sc;
-    private final TypingAccuracy typingAccuracy;
+    private TypingAccuracy typingAccuracy;
     private final TypingTimer typingTimer;
     private final State state;
     private final Milestones milestones;
