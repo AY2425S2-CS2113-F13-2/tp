@@ -38,6 +38,11 @@ public class TypingAccuracy {
         logger.log(Level.INFO, "Test text set to: " + testText);
     }
 
+    public void clearUserText() {
+        userText.clear();
+        logger.log(Level.INFO, "Clearing user text.");
+    }
+
     /**
      * Updates the user input by adding a line to the ArrayList.
      * @param userInput Singular line input by the user.

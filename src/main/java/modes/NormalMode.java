@@ -37,6 +37,7 @@ public class NormalMode {
     }
 
     public void startNormalMode(List<String> testText) throws IOException {
+        typingAccuracy.clearUserText();
         typingAccuracy.setTestText((ArrayList<String>) testText);
         int wordCount = 0;
         int characterCount = 0;
@@ -49,7 +50,7 @@ public class NormalMode {
         // Typing test logic
         MarkedText markedText = new MarkedText();
         for (String s : testText) {
-            System.out.println(s);
+            ui.showString(s);
             String userInput = sc.nextLine();
             markedText.update(s, userInput);
 
@@ -91,14 +92,13 @@ public class NormalMode {
         }
         typingTargets.update(typingTargetList);
 
-        // Adjust the game based on typing speed
-        autoAdjust.evaluate((int) (wordCount / duration));
-
         // Update the high score
         try {
             state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / duration));
+            autoAdjust.evaluate();
         } catch (IOException e) {
             ui.showErrorMessage(e.getMessage());
         }
+
     }
 }

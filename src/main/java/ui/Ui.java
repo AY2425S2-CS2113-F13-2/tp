@@ -235,6 +235,10 @@ public class Ui {
             ui.showErrorMessage(e.getMessage());
         }
     }
+    public void showString(String s) {
+        System.out.println(s);
+    }
+
 }
 
 

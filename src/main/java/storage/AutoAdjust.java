@@ -26,14 +26,12 @@ public class AutoAdjust {
     /**
      * Evaluates the user's current WPM performance.
      * If the user has achieved the WPM goal for the current difficulty,
-     * updates their milestone and promotes them to the next level.
-     *
-     * @param highscore highscore achieved in the overall typing session.
+     * updates their milestone and promotes them to the next level
      */
-    public void evaluate(double highscore) {
+    public void evaluate() {
         String difficulty = milestones.getCurrentDifficulty();
-        double highScore = state.getHighScore();
-        if (milestones.checkAndUpdate(difficulty, highScore)) {
+        double latestHighScore = state.getHighScore();
+        if (milestones.checkAndUpdate(difficulty, latestHighScore)) {
             int goal;
             switch (difficulty) {
             case "easy":

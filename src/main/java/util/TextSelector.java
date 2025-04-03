@@ -15,7 +15,7 @@ import enums.DifficultyLevel;
 public class TextSelector {
     private static Logger logger = setupLogger();
     private final Milestones milestones;
-    private final int NUM_OF_TEXTS = 3;
+    private final int num_of_texts = 3;
     private List<String> testText;
     private FileReader fileReader;
     private Scanner sc;
@@ -39,19 +39,30 @@ public class TextSelector {
     public DifficultyLevel selectDifficulty() {
         String defaultDifficulty = milestones.getCurrentDifficulty().toUpperCase();
         difficultyLevel = DifficultyLevel.valueOf(defaultDifficulty);
-        ui.showDefaultDifficultyPrompt(difficultyLevel.name().toLowerCase());
 
-        String input = sc.nextLine().trim();
-        if (input.equalsIgnoreCase("override")) {
-            while (true) {
-                ui.chooseDifficulty();
-                input = sc.nextLine().trim().toUpperCase();
-                try {
-                    difficultyLevel = DifficultyLevel.valueOf(input);
-                    break;
-                } catch (IllegalArgumentException e) {
-                    ui.showErrorMessage("Please enter a valid difficulty level.");
+        String input;
+        while (true) {
+            ui.showDefaultDifficultyPrompt(difficultyLevel.name().toLowerCase());
+            input = sc.nextLine().trim();
+            if (input.isEmpty()) {
+                // User accepts default difficulty
+                break;
+            } else if (input.equalsIgnoreCase("override")) {
+                // User override default difficulty, ask for new difficulty input
+                while (true) {
+                    ui.chooseDifficulty();
+                    input = sc.nextLine().trim().toUpperCase();
+                    try {
+                        difficultyLevel = DifficultyLevel.valueOf(input);
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        ui.showErrorMessage("Please enter a valid difficulty level.");
+                    }
                 }
+                break;
+            // Invalid input
+            } else {
+                ui.showErrorMessage("Please type 'override' or leave blank to proceed with default.");
             }
         }
         return difficultyLevel;
@@ -74,7 +85,7 @@ public class TextSelector {
     public List<String> selectText() {
         selectDifficulty();
         selectLength();
-        int randomNum = RandNumGenerator.randInt(1, NUM_OF_TEXTS);
+        int randomNum = RandNumGenerator.randInt(1, num_of_texts);
         String difficultyLevelName = difficultyLevel.name().toLowerCase();
         String textLengthName = textLength.name().toLowerCase();
         String filePath = "/sample_texts/" + difficultyLevelName + "/" + textLengthName + "/" + randomNum + ".txt";
