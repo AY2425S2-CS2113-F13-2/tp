@@ -78,6 +78,7 @@ public class TimeLimitMode {
             // After time limit or correct input, interrupt the threads
             clockThread.interrupt();
         }
+        numOfLines = getNumOfLines();
         ui.showTimeLimitResult(numOfLines, numOfCorrect);
         sc.nextLine();
 
@@ -92,7 +93,7 @@ public class TimeLimitMode {
             if (reader.ready()) { // Check if there's input available without blocking
                 userInput = reader.readLine(); // Read the input
                 // to prevent the program to process the input after the previous interrupt as valid input
-                if (clockThread.getElapsedTime() >= 3) {
+                if (clockThread.getElapsedTime() >= 2) {
                     break;
                 }
             }
