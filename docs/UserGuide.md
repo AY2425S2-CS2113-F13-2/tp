@@ -36,7 +36,7 @@ ____________________________________________________________
 
 ### Select Difficulty Level: `easy`, `intermediate`, `difficult`
 Select the difficulty level of the typing exercise. If the user leaves it blank, then 
-it is set as default difficulty level. 
+it is set as default difficulty level, which would be automatically adjusted depending on the user's progress. 
 
 Format: `easy`, `intermediate`, `difficult`
 
@@ -211,10 +211,36 @@ Example:
 
 `Type an integer (e.g., 60)`
 
+### View Milestone: `milestone`
+Displays the user's current milestone, which reflects the default typing difficulty. This difficulty level is 
+automatically adjusted based on the user's progress in achieving milestones dependent on their highscore.
+
+Format: `milestone`
+
+Example:
+```
+____________________________________________________________
+Current milestone: intermediate
+____________________________________________________________
+```
+
+### View Progress Report: `[Coming Soon]`
+Displays a report on the user's past 10 runs in normal mode.
+
+Format: `progress`
+
+
 ### Exit the application: `exit`
 Exits the application.
 
 Format: `exit`
+
+Output:
+```
+____________________________________________________________
+ Bye. Hope to see you again soon!
+____________________________________________________________
+```
 
 ### Saving the data
 Bobotype data is saved in the hard disk automatically after any command that changes the data. 
@@ -229,7 +255,7 @@ Advanced users are welcome to update data directly by editing that data file.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: 
 
 ## Command Summary
 
@@ -242,3 +268,4 @@ Advanced users are welcome to update data directly by editing that data file.
 * Get high score list `highscorelist`
 * Add target speed `targetspeedadd`
 * Add target score `targetscoreadd`
+* Get milestone `milestone`
