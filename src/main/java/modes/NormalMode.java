@@ -88,14 +88,13 @@ public class NormalMode {
         }
         typingTargets.update(typingTargetList);
 
-        // Adjust the game based on typing speed
-        autoAdjust.evaluate((int) (wordCount / duration));
-
         // Update the high score
         try {
             state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / duration));
+            autoAdjust.evaluate();
         } catch (IOException e) {
             ui.showErrorMessage(e.getMessage());
         }
+
     }
 }
