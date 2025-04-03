@@ -1,6 +1,14 @@
 package parser;
 
-import command.*;
+import command.StartCommand;
+import command.TypingAccuracyCommand;
+import command.ExitCommand;
+import command.HighscoreCommand;
+import command.HighscorelistCommand;
+import command.MilestoneCommand;
+import command.TargetspeedaddCommand;
+import command.TargetscoreaddCommand;
+import command.ListtargetsCommand;
 import exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
 

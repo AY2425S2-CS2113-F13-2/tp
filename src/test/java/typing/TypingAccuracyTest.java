@@ -2,7 +2,6 @@ package typing;
 
 import exceptions.BoboTypeException;
 import org.junit.jupiter.api.Test;
-import parser.Parser;
 
 import java.util.ArrayList;
 
