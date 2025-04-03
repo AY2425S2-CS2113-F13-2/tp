@@ -17,7 +17,7 @@ public class Parser {
 
     private final String userInput;
 
-    /**
+     /**
      * Constructs a UserInputParser object and sets the user input.
      * Splits user input by spaces.
      *

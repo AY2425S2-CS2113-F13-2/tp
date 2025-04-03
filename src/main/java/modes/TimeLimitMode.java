@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
+
+import typing.MarkedText;
 import util.WordCounter;
 import ui.Ui;
 import enums.DifficultyLevel;
@@ -48,7 +50,7 @@ public class TimeLimitMode {
     }
 
     public void startTimeLimitMode(List<String> testText, DifficultyLevel difficulty) throws InterruptedException {
-        ui.showTimeLimitModeInstructions();
+        ui.showTimeLimitModeInstructions(ui);
         numOfCorrect = 0;
         this.testText = testText;
 
@@ -59,6 +61,7 @@ public class TimeLimitMode {
 
             System.out.println(s);
             clockThread.start();
+            MarkedText markedText = new MarkedText();
 
             try {
                 userInput = waitForInput(clockThread, reader, timeLimit); // Get user input
@@ -67,6 +70,8 @@ public class TimeLimitMode {
             }
 
             if (userInput != null) {
+                markedText.update(s, userInput);
+                markedText.print();
                 if (userInput.equals(s)) {
                     numOfCorrect++;
                     System.out.println("*** Great! ***");

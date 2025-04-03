@@ -1,9 +1,6 @@
 package command;
 
-import modes.TimeLimitMode;
-import modes.TypingTimer;
-import modes.NormalMode;
-import modes.ZenMode;
+import modes.*;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;
@@ -46,7 +43,9 @@ public class StartCommand extends Command {
                 } catch (InterruptedException e) {
                     ui.showErrorMessage(e.getMessage());
                 }
-            } else { // normal mode
+
+            // normal mode
+            } else {
                 // TODO: if (mode.equals("normal") else ask for valid input
                 NormalMode normalMode = new NormalMode(
                         ui, sc, typingTargetList, typingTargets, state, autoAdjust, typingAccuracy
