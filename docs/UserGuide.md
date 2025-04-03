@@ -8,7 +8,7 @@ real-time feedback, and progress tracking, helping users build muscle memory and
 ## Quick Start
 
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `Bobotype` from [here](https://github.com/AY2425S2-CS2113-F13-2/tp/releases/tag/v1.1).
+1. Download the latest version of `Bobotype` from [here](https://github.com/AY2425S2-CS2113-F13-2/tp/releases/tag/v1.1).
 2. Download the jar file to the folder you want to use as the home folder for your Bobotype.
 3. Open a terminal and navigate to the folder where the jar file is located.
 4. Run the command `java -jar Bobotype.jar` to start the application.
@@ -127,8 +127,10 @@ Format: `zen`
 Example:
 
 ```
-Welcome to Zen Mode, you can type out anything to your heart's content and find out your typing speed.
-Typing 'start' will start the typingTimer and typing the command 'stop_practice' will stop the practice.
+Welcome to Zen Mode, you can type out anything to your
+heart's content and find out your typing speed.
+Typing 'start' will start the typingTimer and
+typing the command 'stop_practice' will stop the practice.
 ```
 
 User types
