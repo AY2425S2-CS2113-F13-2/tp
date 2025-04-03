@@ -6,7 +6,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import storage.TypingTargets;
-import typing.*;
+import typing.MarkedText;
+import typing.TypingAccuracy;
+import typing.TypingTarget;
+import typing.TypingTargetSpeed;
+import typing.TypingTargetScore;
+import typing.TypingTargetList;
 import ui.Ui;
 import util.WordCounter;
 import storage.AutoAdjust;

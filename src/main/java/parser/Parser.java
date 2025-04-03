@@ -17,12 +17,12 @@ public class Parser {
 
     private final String userInput;
 
-     /**
-     * Constructs a UserInputParser object and sets the user input.
-     * Splits user input by spaces.
-     *
-     * @param userInput The complete input provided by the user.
-     */
+    /**
+    * Constructs a UserInputParser object and sets the user input.
+    * Splits user input by spaces.
+    *
+    * @param userInput The complete input provided by the user.
+    */
     public Parser(String userInput) {
         this.userInput = userInput;
     }
@@ -51,6 +51,8 @@ public class Parser {
             return new TargetspeedaddCommand();
         case "targetscoreadd":
             return new TargetscoreaddCommand();
+        case "listtargets":
+            return new ListtargetsCommand();
         default:
             throw new InvalidInputException("Invalid input");
         }
