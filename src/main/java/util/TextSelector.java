@@ -85,7 +85,7 @@ public class TextSelector {
     public List<String> selectText() {
         selectDifficulty();
         selectLength();
-        int randomNum = RandNumGenerator.randInt(1, num_of_texts);
+        int randomNum = RandNumGenerator.randInt(1, numOfTexts);
         String difficultyLevelName = difficultyLevel.name().toLowerCase();
         String textLengthName = textLength.name().toLowerCase();
         String filePath = "/sample_texts/" + difficultyLevelName + "/" + textLengthName + "/" + randomNum + ".txt";
