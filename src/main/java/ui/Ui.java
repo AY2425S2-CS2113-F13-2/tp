@@ -222,6 +222,10 @@ public class Ui {
         drawLine();
     }
 
+    public void showString(String s) {
+        System.out.println(s);
+    }
+
 }
 
 

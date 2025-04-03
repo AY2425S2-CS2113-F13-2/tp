@@ -50,7 +50,7 @@ public class NormalMode {
 
         // Typing test logic
         for (String s : testText) {
-            System.out.println(s);
+            ui.showString(s);
             String userInput = sc.nextLine();
             typingAccuracy.updateUserInput(userInput);
             wordCount += WordCounter.countWords(userInput);

@@ -58,8 +58,7 @@ public class TimeLimitMode {
             ClockThread clockThread = new ClockThread();
             clockThread.start();
 
-            System.out.println(s);
-
+            ui.showString(s);
             try {
                 userInput = waitForInput(clockThread, reader, timeLimit); // Get user input
             } catch (Exception e) {
