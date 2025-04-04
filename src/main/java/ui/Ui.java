@@ -37,7 +37,7 @@ public class Ui {
     public void chooseMode() {
         drawLine();
         System.out.println(" Select your mode: ");
-        System.out.println(" Type: 'normal' or 'timeLimit' or 'zen'");
+        System.out.println(" Type: 'normal' or 'timeLimit' or 'zen' or 'custom'");
         drawLine();
     }
 
@@ -239,6 +239,28 @@ public class Ui {
     }
     public void showString(String s) {
         System.out.println(s);
+    }
+
+    public void showCustomMode() {
+        drawLine();
+        System.out.println(" We will start the Custom Mode Typing Test now.");
+    }
+
+    public void showInputUserText() {
+        drawLine();
+        System.out.println(" Please type your custom text. Press 'Enter' then type 'exit' to finish.");
+        drawLine();
+    }
+
+    public void showTextSaved() {
+        System.out.println(" Your custom text has been saved.");
+    }
+
+    public void showEndCustom() {
+        drawLine();
+        System.out.println(" You finished the Custom Mode Practice!");
+        System.out.println(" Please type 'exit' to exit or 'start' to start the new practice.");
+        drawLine();
     }
 
 }

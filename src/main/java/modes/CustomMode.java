@@ -1,14 +1,15 @@
 package modes;
 
-import storage.InputUserText;
-import typing.TypingAccuracy;
-import ui.Ui;
-import util.WordCounter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import storage.InputUserText;
+import typing.MarkedText;
+import typing.TypingAccuracy;
+import ui.Ui;
+import util.WordCounter;
 
 public class CustomMode {
 
@@ -25,31 +26,43 @@ public class CustomMode {
     }
 
     public void startCustomMode() throws IOException {
-        InputUserText inputUserText = new InputUserText();
+        typingAccuracy.clearUserText();
+        InputUserText inputUserText = new InputUserText(ui);
         List<String> customText = inputUserText.inputText();
-
         typingAccuracy.setTestText((ArrayList<String>) customText);
-        //ui.showStartGame();
-
         int wordCount = 0;
         int characterCount = 0;
 
+        // Start test
+        ui.showCustomMode();
+        ui.countdown(ui);
+        typingTimer.start();
+        ui.clearScreen(ui);
+
+        // Typing test logic
+        MarkedText markedText = new MarkedText();
         for (String s : customText) {
-            System.out.println(s);
+            ui.showString(s);
             String userInput = scanner.nextLine();
-            typingAccuracy.updateUserInput(userInput);
+            markedText.update(s, userInput);
             wordCount += WordCounter.countWords(userInput);
             characterCount += userInput.length();
-        }
 
+            ui.clearScreen(ui);
+            markedText.print();
+        }
+        typingTimer.stop();
+
+        // Show results
+        ui.showResult();
         double duration = typingTimer.getDurationMin();
         int typingSpeedWPM = (int) (wordCount / duration);
         int typingSpeedCPM = (int) (characterCount / duration);
-        double typingAccuracyDouble = typingAccuracy.getTypingAccuracy();
-        double typingScore = (double) typingSpeedWPM * typingAccuracyDouble;
 
         ui.showTypingSpeedWPM(typingSpeedWPM);
         ui.showTypingSpeedCPM(typingSpeedCPM);
-        ui.showTypingScore(typingScore);
+
+        // End custom mode
+        ui.showEndCustom();
     }
 }
