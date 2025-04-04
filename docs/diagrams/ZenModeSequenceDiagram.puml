@@ -2,19 +2,19 @@
 'https://plantuml.com/sequence-diagram
 hide footbox
 
+
 box
+participant ":StartCommand" as StartCommand
 participant ":ZenMode" as ZenMode
-participant ":StartCommand" as StartCommand
-participant ":StartCommand" as StartCommand
 participant ":TypingTimer" as TypingTimer
 participant ":Ui" as Ui
 
 StartCommand -> ZenMode
 activate ZenMode
-ZenMode -> ZenMode: startZenMode()
-ZenMode -> TypingTimer
-TypingTimer --> ZenMode: getTypingDuration()
-ZenMode -> Ui : showZenModeEndGame()
+ZenMode -> ZenMode ++: startZenMode()
+ZenMode -> TypingTimer ++
+return getTypingDuration()
+ZenMode -> Ui ++ : showZenModeEndGame()
 
 end box
 @enduml

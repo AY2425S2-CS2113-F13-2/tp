@@ -2,10 +2,9 @@ import command.Command;
 import exceptions.InvalidInputException;
 import storage.AutoAdjust;
 import storage.Milestones;
+import storage.TypingTargets;
 import storage.State;
 import storage.Storage;
-import storage.TypingTargets;
-
 import modes.TypingTimer;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;
@@ -22,7 +21,7 @@ public class BoboType {
 
     private final Ui ui;
     private final Scanner sc;
-    private final TypingAccuracy typingAccuracy;
+    private TypingAccuracy typingAccuracy;
     private final TypingTimer typingTimer;
     private final State state;
     private final Milestones milestones;
@@ -53,8 +52,8 @@ public class BoboType {
         while (!isExit) {
             try {
                 String input = ui.readInput(sc);
-                Parser userInput = new Parser(input);
-                Command c = userInput.parseToCommand();
+                //Parser userInput = new Parser(input);
+                Command c = Parser.parseToCommand(input);
                 c.execute(
                         ui, sc, milestones, typingTimer, typingAccuracy,
                         typingTargetList, typingTargets, state, autoAdjust

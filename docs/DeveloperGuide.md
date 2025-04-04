@@ -2,10 +2,7 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-original source as well}
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+The format of the Developer Guide and User Guide were inspired and adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3).
 
 ## Design
 ### Architecture
@@ -24,13 +21,13 @@ The API of this component is specified in `Ui.java`.
 
 #### Normal Mode 
 
-<img src ="images/SeqDiagramNormalMode.png" width="280" />
+<img src ="images/SeqDiagramNormalMode.png" width="500" />
 
 #### TimeLimit Mode
-<img src ="images/SeqDiagramTimeLimitMode.png" width="280" />
+<img src ="images/SeqDiagramTimeLimitMode.png" width="500" />
 
 #### Zen Mode 
-<img src="images/ZenModeSequenceDiagram.png" width="280" />
+<img src="images/ZenModeSequenceDiagram.png" width="400" />
 
 ## Implementation
 
@@ -50,7 +47,7 @@ Below is the sequence diagram for `TypingAccuracy`
 
 Below is the class diagram for `TypingAccuracy`
 
-<img src="images/TypingAccuracyClassDiagram.png" width="280" />
+<img src="images/TypingAccuracyClassDiagram.png" width="500" />
 
 #### Design Considerations
 
@@ -216,7 +213,8 @@ Additionally, it implements the following operations:
 - `getHighscoreList()` - loads the highscore list from storage file.
 - `saveScoreList(ArrayList<Double> newHighScoreList)` - saves the highscore list to storage file.
 - `readHighScoreList()` - reads the highscore list from storage file.
-- `updateHighScore(Double accuracy, int wpm)` - updates the highscore list by adding the new highscore to the list.
+- `updateHighScore(Double accuracy, int wpm)` - highscore is calculated by WPM * typingAccuracy.
+  Updates the highscore list by adding the new highscore to the list.
   Then sorting the list into the top 3 highscores.
 - `showHighscoreList()` - displays the highscore list to the user.
 
@@ -324,20 +322,22 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 
 ## User Stories
 
-| Version | As a ...         | I want to ...                                                                    | So that I can ...                                                 |
-|---------|------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| v1.0    | slow typer       | practise typing with different texts                                             | improve my typing speed                                           |
-| v1.0    | user             | have various lengths for typing tests                                            | spend as little or as much time I want practising                 |
-| v1.0    | user             | adjust the difficulty level of typing exercises                                  | challenge myself appropriately as I improve over time             |
-| v1.0    | user             | track my typing speed                                                            | know how fast I can type                                          |
-| v1.0    | user             | track my typing accuracy                                                         | know how accurately I can type                                    |
-| v1.0    | user             | track my typing high score                                                       | track my personal best and attempt to break it                    |
+| Version | As a ...         | I want to ...                                                                     | So that I can ...                                                 |
+|---------|------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | slow typer       | practise typing with different texts                                              | improve my typing speed                                           |
+| v1.0    | user             | have various lengths for typing tests                                             | spend as little or as much time I want practising                 |
+| v1.0    | user             | adjust the difficulty level of typing exercises                                   | challenge myself appropriately as I improve over time             |
+| v1.0    | user             | track my typing speed                                                             | know how fast I can type                                          |
+| v1.0    | user             | track my typing accuracy                                                          | know how accurately I can type                                    |
+| v1.0    | user             | track my typing high score                                                        | track my personal best and attempt to break it                    |
 | v2.0    | goal-driven user | set specific targets for typing speed and scores and get notified when I hit them | keep track of my progress and goals                               |
-| v2.0    | unmotivated user | have timed tests                                                                 | be motivated to type faster each time                             |
-| v2.0    | user             | type my own words (zen mode)                                                     | train using my own texts                                          |
-| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience    | gradually improve as the difficulty increases with my skill level |
-| v2.0    | user             | track milestones I achieve                                                       | keep track of my progress and give myself a sense of achievement  |
-| v2.0    | user             | view the top 3 highscores                                                        | keep track of my progress and past performances.                  |
+| v2.0    | unmotivated user | have timed tests                                                                  | be motivated to type faster each time                             |
+| v2.0    | user             | type my own words (zen mode)                                                      | train using my own texts                                          |
+| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience     | gradually improve as the difficulty increases with my skill level |
+| v2.0    | user             | track milestones I achieve                                                        | keep track of my progress and give myself a sense of achievement  |
+| v2.0    | user             | view the top 3 highscores                                                         | keep track of my progress and past performances.                  |
+
+
 ## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 17 or above installed.

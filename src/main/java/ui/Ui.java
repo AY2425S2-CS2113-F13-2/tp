@@ -61,7 +61,7 @@ public class Ui {
 
     public void showInvalidInputMessage() {
         drawLine();
-        System.out.println("Invalid command entered. Please provide a valid input!");
+        System.out.println(" Invalid command entered. Please provide a valid input!");
         drawLine();
     }
 
@@ -120,33 +120,30 @@ public class Ui {
         drawLine();
     }
 
-    public void showStartGame() {
-        drawLine();
-        System.out.println("Typing test started! Type the following text:");
-    }
-
     public void showEndGame() {
         drawLine();
 
-        System.out.println("You finished the practice! Please type \n" +
-                "\t - 'typingaccuracy' to view your typing accuracy \n" +
-                "\t - 'highscore' to view your high score \n" +
-                "\t - 'highscorelist' to view your top 3 high scores \n" +
-                "\t - 'milestone' to view your default difficulty level \n" +       
-                "\t - 'targetspeedadd' to add a typing speed target \n" +
-                "\t - 'targetscoreadd' to add a typing score target \n" +
-                "\t - 'exit' to exit or \n" +
-                "\t - 'start' to start the new practice.");
+        System.out.println("""
+                 You finished the practice! Please type\s
+                \t - 'typingaccuracy' to view your typing accuracy\s
+                \t - 'highscore' to view your high score\s
+                \t - 'highscorelist' to view your top 3 high scores\s
+                \t - 'milestone' to view your default difficulty level\s
+                \t - 'targetspeedadd' to add a typing speed target\s
+                \t - 'targetscoreadd' to add a typing score target\s
+                \t - 'exit' to exit or\s
+                \t - 'start' to start the new practice.""");
         drawLine();
 
     }
 
     public void showZenModeInstructions() {
         drawLine();
-        System.out.println("Welcome to Zen Mode, you can type out anything to your\n" +
-                "heart's content and find out your typing speed.\n" +
-                "Typing 'start' will start the typingTimer and typing the command\n" +
-                "'stop_practice' will stop the practice.");
+        System.out.println("""
+                Welcome to Zen Mode, you can type out anything to your
+                heart's content and find out your typing speed.
+                Typing 'start' will start the typingTimer and typing the command
+                'stop_practice' will stop the practice.""");
         drawLine();
     }
 
@@ -161,45 +158,37 @@ public class Ui {
         showTypingSpeedWPM(typingSpeedWPM);
         showTypingSpeedCPM(typingSpeedCPM);
         drawLine();
-        System.out.println("Please type\n" +
-                "    - 'exit' to exit or\n" +
-                "    - 'start' to start the new practice.");
+        System.out.println("""
+                Please type
+                    - 'exit' to exit or
+                    - 'start' to start the new practice.""");
         drawLine();
 
     }
 
-    public void showTimeLimitModeInstructions() {
+    public void showTimeLimitModeInstructions(Ui ui) {
         drawLine();
         System.out.println("Welcome to Time Limit mode.");
-        waitOneSec();
         System.out.println("*** You can see your input ONLY after you press ENTER!!! ***");
-        waitOneSec();
         System.out.println("*** RESULT will be shown in either GREAT! or WRONG! or Time's up! ***");
         drawLine();
-        waitOneSec();
+        sleep(ui);
+        System.out.println("Are you ready? The game will begin in...");
+        countdown(ui);
     }
 
     public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
-        waitOneSec();
-        System.out.println("");
+        System.out.println();
         drawLine();
-        System.out.println("You finished the timeLimit Mode Practice! ");
+        System.out.println(" You finished the timeLimit Mode Practice!");
         System.out.println("\t - Num of correct lines: " + numOfCorrect + " lines out of " + numOfLines + " lines");
         drawLine();
         System.out.println("*** Please press enter to continue. ***");
     }
 
-    private void waitOneSec() {
-        try {
-            Thread.sleep(1000); // Wait for 1 second (1000 milliseconds)
-        } catch (InterruptedException e) {
-            System.out.println("Thread was interrupted");
-        }
-    }
-
     public void showMilestoneAchieved(String difficulty, int wpmGoal) {
         drawLine();
-        System.out.println("Congrats! You hit the milestone:");
+        System.out.println(" Congrats! You hit the milestone:");
         System.out.println(" -> Achieved " + wpmGoal + " WPM in " + difficulty + " mode!");
         System.out.println(" You've been promoted to a new difficulty level.");
     }
@@ -217,6 +206,37 @@ public class Ui {
         drawLine();
     }
 
+    private static void sleep(Ui ui) {
+        try {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException e) {
+            ui.showErrorMessage(e.getMessage());
+        }
+    }
+
+    public void countdown(Ui ui) {
+        drawLine();
+        for (int countdown = 3; countdown > 0; countdown--) {
+            System.out.println(countdown);
+            sleep(ui);
+        }
+        System.out.println("Start!");
+        drawLine();
+        sleep(ui);
+    }
+
+    public void clearScreen(Ui ui) {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            ui.showErrorMessage(e.getMessage());
+        }
+    }
     public void showString(String s) {
         System.out.println(s);
     }

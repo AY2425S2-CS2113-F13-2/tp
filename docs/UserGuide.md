@@ -8,7 +8,7 @@ real-time feedback, and progress tracking, helping users build muscle memory and
 ## Quick Start
 
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `Bobotype` from [here](https://github.com/AY2425S2-CS2113-F13-2/tp/releases/tag/v1.1).
+1. Download the latest version of `Bobotype` from [here](https://github.com/AY2425S2-CS2113-F13-2/tp/releases/tag/v1.1).
 2. Download the jar file to the folder you want to use as the home folder for your Bobotype.
 3. Open a terminal and navigate to the folder where the jar file is located.
 4. Run the command `java -jar Bobotype.jar` to start the application.
@@ -36,7 +36,7 @@ ____________________________________________________________
 
 ### Select Difficulty Level: `easy`, `intermediate`, `difficult`
 Select the difficulty level of the typing exercise. If the user leaves it blank, then 
-it is set as default difficulty level. 
+it is set as default difficulty level, which would be automatically adjusted depending on the user's progress. 
 
 Format: `easy`, `intermediate`, `difficult`
 
@@ -127,8 +127,10 @@ Format: `zen`
 Example:
 
 ```
-Welcome to Zen Mode, you can type out anything to your heart's content and find out your typing speed.
-Typing 'start' will start the typingTimer and typing the command 'stop_practice' will stop the practice.
+Welcome to Zen Mode, you can type out anything to your
+heart's content and find out your typing speed.
+Typing 'start' will start the typingTimer and
+typing the command 'stop_practice' will stop the practice.
 ```
 
 User types
@@ -169,6 +171,7 @@ Example:
 
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts.
+Highscore is calculated based on the WPM * typingAccuracy of the user.
 
 Format: `highscore`
 
@@ -213,10 +216,40 @@ Example:
 
 `Type an integer (e.g., 60)`
 
+### View Milestone: `milestone`
+Displays the user's current milestone, which reflects the default typing difficulty. This difficulty level is 
+automatically adjusted based on the user's progress in achieving milestones dependent on their highscore.
+
+Format: `milestone`
+
+Example:
+```
+____________________________________________________________
+Current milestone: intermediate
+____________________________________________________________
+```
+
+### View Progress Report: `[Coming Soon]`
+Displays a report on the user's past 10 runs in normal mode.
+
+Format: `progress`
+
+### Set Custom Mode: `[Coming Soon]`
+Allows user to input custom text to practice typing.
+
+Format: `custom`
+
 ### Exit the application: `exit`
 Exits the application.
 
 Format: `exit`
+
+Output:
+```
+____________________________________________________________
+ Bye. Hope to see you again soon!
+____________________________________________________________
+```
 
 ### Saving the data
 Bobotype data is saved in the hard disk automatically after any command that changes the data. 
@@ -231,7 +264,7 @@ Advanced users are welcome to update data directly by editing that data file.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: 
 
 ## Command Summary
 
@@ -244,3 +277,4 @@ Advanced users are welcome to update data directly by editing that data file.
 * Get high score list `highscorelist`
 * Add target speed `targetspeedadd`
 * Add target score `targetscoreadd`
+* Get milestone `milestone`

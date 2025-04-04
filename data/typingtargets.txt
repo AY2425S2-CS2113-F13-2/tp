@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
 Speed|60|true
 Score|45|true
 Score|50|true
-Speed|50|false
+Speed|50|true
 Speed|10|true
-Speed|50|false
+Speed|50|true
+>>>>>>> ae6f5bdf77b9dd0c084b6ef3bd300c8aa4232a02
