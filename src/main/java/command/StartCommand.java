@@ -1,6 +1,10 @@
 package command;
 
-import modes.*;
+import modes.CustomMode;
+import modes.NormalMode;
+import modes.TimeLimitMode;
+import modes.ZenMode;
+import modes.TypingTimer;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;
@@ -36,8 +40,14 @@ public class StartCommand extends Command {
                 zenMode.startZenMode();
             } else if (mode.equals("custom")){
                 // custom mode
-                CustomMode customMode = new CustomMode(ui, sc, typingAccuracy);
-                customMode.startCustomMode();
+                CustomMode customMode = new CustomMode(ui, sc);
+                try {
+                    customMode.startCustomMode();
+                    ;
+                } catch (IOException e) {
+                    ui.showErrorMessage(e.getMessage());
+                }
+                break;
             } else if (mode.equals("timeLimit") || mode.equals("normal")) {
                 TextSelector textSelector = new TextSelector(sc, ui);
                 List<String> testText = textSelector.selectText();
@@ -64,7 +74,7 @@ public class StartCommand extends Command {
 
                 // Catch exceptions
             } else {
-                ui.showErrorMessage("Please enter a valid mode: 'normal', 'timeLimit', or 'zen'.");
+                ui.showErrorMessage("Please enter a valid mode: 'normal', 'timeLimit', or 'zen' or 'custom'.");
             }
         }
     }

@@ -209,8 +209,7 @@ public class Ui {
     private static void sleep(Ui ui) {
         try {
             Thread.sleep(1000);
-        }
-        catch(InterruptedException e) {
+        } catch(InterruptedException e) {
             ui.showErrorMessage(e.getMessage());
         }
     }
@@ -258,8 +257,16 @@ public class Ui {
 
     public void showEndCustom() {
         drawLine();
-        System.out.println(" You finished the Custom Mode Practice!");
-        System.out.println(" Please type 'exit' to exit or 'start' to start the new practice.");
+
+        System.out.println("""
+                 You finished the practice! Please type\s
+                \t - 'highscore' to view your high score\s
+                \t - 'highscorelist' to view your top 3 high scores\s
+                \t - 'milestone' to view your default difficulty level\s
+                \t - 'targetspeedadd' to add a typing speed target\s
+                \t - 'targetscoreadd' to add a typing score target\s
+                \t - 'exit' to exit or\s
+                \t - 'start' to start the new practice.""");
         drawLine();
     }
 

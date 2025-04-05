@@ -1,13 +1,11 @@
 package modes;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import storage.InputUserText;
 import typing.MarkedText;
-import typing.TypingAccuracy;
 import ui.Ui;
 import util.WordCounter;
 
@@ -16,20 +14,16 @@ public class CustomMode {
     private final Ui ui;
     private final Scanner scanner;
     private final TypingTimer typingTimer;
-    private final TypingAccuracy typingAccuracy;
 
-    public CustomMode(Ui ui, Scanner scanner, TypingAccuracy typingAccuracy) {
+    public CustomMode(Ui ui, Scanner scanner) {
         this.ui = ui;
         this.scanner = scanner;
         this.typingTimer = new TypingTimer();
-        this.typingAccuracy = typingAccuracy;
     }
 
     public void startCustomMode() throws IOException {
-        typingAccuracy.clearUserText();
         InputUserText inputUserText = new InputUserText(ui);
         List<String> customText = inputUserText.inputText();
-        typingAccuracy.setTestText((ArrayList<String>) customText);
         int wordCount = 0;
         int characterCount = 0;
 
@@ -59,10 +53,16 @@ public class CustomMode {
         int typingSpeedWPM = (int) (wordCount / duration);
         int typingSpeedCPM = (int) (characterCount / duration);
 
+        assert wordCount >= 0 : "Word count must be non-negative";
+        assert characterCount >= 0 : "Character count must be non-negative";
+        assert typingSpeedWPM >= 0 : "Typing speed WPM must be non-negative";
+        assert typingSpeedCPM >= 0 : "Typing speed CPM must be non-negative";
+
         ui.showTypingSpeedWPM(typingSpeedWPM);
         ui.showTypingSpeedCPM(typingSpeedCPM);
 
         // End custom mode
         ui.showEndCustom();
+
     }
 }

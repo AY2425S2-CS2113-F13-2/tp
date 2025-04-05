@@ -4,3 +4,4 @@ Score|50|true
 Speed|50|true
 Speed|10|true
 Speed|50|true
+Score|100|false
