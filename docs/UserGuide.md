@@ -76,6 +76,8 @@ The sun is shining, and birds are singing.
 ### Practice in TimeLimit Mode:
 In the time limit mode, each sentence will be given for the user to type, and there will be time limit for each sentence based on the difficulty level and the length of the sentence. Based on the user input, the response will be given. 
 
+[ Warning ] What the user inputs will be displayed on the console only after the user presses enter. In other words, before the user presses enter, the user is not able to see what they have typed so far.
+
 Example:
 
 ```
@@ -169,6 +171,7 @@ Example:
 
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts.
+Highscore is calculated based on the WPM * typingAccuracy of the user.
 
 Format: `highscore`
 
@@ -231,6 +234,10 @@ Displays a report on the user's past 10 runs in normal mode.
 
 Format: `progress`
 
+### Set Custom Mode: `[Coming Soon]`
+Allows user to input custom text to practice typing.
+
+Format: `custom`
 
 ### Exit the application: `exit`
 Exits the application.

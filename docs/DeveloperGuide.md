@@ -17,46 +17,13 @@ The ***Architecture Diagram*** given above explains the high-level design of Bob
 
 The API of this component is specified in `Ui.java`.
 
-### Sequence Diagram for 3 Different Modes
+### Command Component
+The API of this component is specified in `Command` package
 
-#### Normal Mode 
-
-<img src ="images/SeqDiagramNormalMode.png" width="500" />
-
-#### TimeLimit Mode
-<img src ="images/SeqDiagramTimeLimitMode.png" width="500" />
-
-#### Zen Mode 
-<img src="images/ZenModeSequenceDiagram.png" width="400" />
-
+The class diagram of `Command` is shown below.
+<img src="images/CommandClassDigram.png">
 ## Implementation
 
-### Typing Accuracy
-
-#### Implementation
-
-The typing accuracy of the user is facilitated by `TypingAccuracy`. It implements the following operations:
-- `TypingAccuracy(ArrayList<String> userText)` - Constructor to create TypingAccuracy object with user input
-- `setTestText` - Set's the test text to the corresponding text being tested
-- `updateUserInput` - Update's the user input when they type a new line
-- `getTypingAccuracy` - Computes and returns typing accuracy
-
-Below is the sequence diagram for `TypingAccuracy`
-
-<img src="images/TypingAccuracySequenceDiagram.png" width="500" />
-
-Below is the class diagram for `TypingAccuracy`
-
-<img src="images/TypingAccuracyClassDiagram.png" width="280" />
-
-#### Design Considerations
-
-- **Alternative 1 (current choice):** Measure typing accuracy only up to the test text or user input depending on which
-input is shorter
-  - **Pros:** Easier to implement
-- **Alternative 2:** Always measure to the end of user input and penalise for additional words
-  - **Pros:** More accurate comparison between user and test text
-  - **Cons:** Less intuitive for users
 
 ### Normal Mode Feature
 
@@ -100,6 +67,10 @@ Step 8: The user's high score is updated using state.updateHighScore(). If an er
 
 Step 9: The user returns to the main menu after reviewing their results.
 
+Below is the sequence diagram of normal mode.
+
+<img src ="images/SeqDiagramNormalMode.png" width="500" />
+
 ### TimeLimit Mode Feature 
 
 #### Implementation 
@@ -134,6 +105,9 @@ Step 6: The process repeats for each line in the test text. After all lines are 
 
 Step 7: The user presses Enter to return to the main menu.
 
+Below is the sequence diagram of time limit mode.
+
+<img src ="images/SeqDiagramTimeLimitMode.png" width="500" />
 
 ### Zen Mode Feature
 
@@ -159,6 +133,31 @@ Step 4. The typing practice results is displayed to the user with `UI.showZenMod
 Below is the sequence diagram for ZenMode
 
 <img src="images/ZenModeSequenceDiagram.png" width="280" />
+
+### Custom Mode Feature
+
+#### Planned Implementation
+
+Custom Mode is facilitated by `CustomMode`.
+Additionally, it implements the following operations:
+
+- `CustomMode(TypingTimer typingTimer, Scanner sc, Ui ui)` - Constructor to create CustomMode object
+- `startCustomMode()` - Runs input loop to read user input and compute typing statistics
+- `inputText()` - creates a file to store the user's custom text input
+
+Given below is an example usage scenario and how the Custom Mode behaves at each step.
+
+Step 1. The user selects Custom Mode when selecting the practice mode, instantiating a `CustomMode` object and running
+`startCustomMode()`.
+
+Step 2. Custom mode requires the user to input a custom text to be tested on.
+
+Step 3. The user types `exit`. The loop ends and the user's custom text is saved to a file.
+
+Step 4. Typing Practice will start for the user, using the custom text they inputted.
+
+Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm)
+are calculated and displayed to the user.
 
 ### Typing Targets Feature
 
@@ -213,7 +212,8 @@ Additionally, it implements the following operations:
 - `getHighscoreList()` - loads the highscore list from storage file.
 - `saveScoreList(ArrayList<Double> newHighScoreList)` - saves the highscore list to storage file.
 - `readHighScoreList()` - reads the highscore list from storage file.
-- `updateHighScore(Double accuracy, int wpm)` - updates the highscore list by adding the new highscore to the list.
+- `updateHighScore(Double accuracy, int wpm)` - highscore is calculated by WPM * typingAccuracy.
+  Updates the highscore list by adding the new highscore to the list.
   Then sorting the list into the top 3 highscores.
 - `showHighscoreList()` - displays the highscore list to the user.
 
@@ -252,30 +252,35 @@ Step 4. `getHighscore()` will take the top highscore in the highscore list and s
 
 Step 5. `state.showHighscore()` displays the highscore to the user.
 
-### Custom Mode Feature
 
-#### Planned Implementation
 
-Custom Mode is facilitated by `CustomMode`. 
-Additionally, it implements the following operations:
+### Typing Accuracy
 
-- `CustomMode(TypingTimer typingTimer, Scanner sc, Ui ui)` - Constructor to create CustomMode object
-- `startCustomMode()` - Runs input loop to read user input and compute typing statistics
-- `inputText()` - creates a file to store the user's custom text input
+#### Implementation
 
-Given below is an example usage scenario and how the Custom Mode behaves at each step.
-  
-Step 1. The user selects Custom Mode when selecting the practice mode, instantiating a `CustomMode` object and running
-`startCustomMode()`. 
+The typing accuracy of the user is facilitated by `TypingAccuracy`. It implements the following operations:
+- `TypingAccuracy(ArrayList<String> userText)` - Constructor to create TypingAccuracy object with user input
+- `setTestText` - Set's the test text to the corresponding text being tested
+- `updateUserInput` - Update's the user input when they type a new line
+- `getTypingAccuracy` - Computes and returns typing accuracy
 
-Step 2. Custom mode requires the user to input a custom text to be tested on. 
+Below is the sequence diagram for `TypingAccuracy`
 
-Step 3. The user types `exit`. The loop ends and the user's custom text is saved to a file.
+<img src="images/TypingAccuracySequenceDiagram.png" width="280" />
 
-Step 4. Typing Practice will start for the user, using the custom text they inputted.
+Below is the class diagram for `TypingAccuracy`
 
-Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm) 
-are calculated and displayed to the user.
+<img src="images/TypingAccuracyClassDiagram.png" width="500" />
+
+#### Design Considerations
+
+- **Alternative 1 (current choice):** Measure typing accuracy only up to the test text or user input depending on which
+  input is shorter
+  - **Pros:** Easier to implement
+- **Alternative 2:** Always measure to the end of user input and penalise for additional words
+  - **Pros:** More accurate comparison between user and test text
+  - **Cons:** Less intuitive for users
+
 
 ### Progress Report
 #### Planned Implementation
