@@ -3,13 +3,12 @@
 hide footbox
 
 box
-participant StartCommand
-participant TimeLimitMode
-participant ClockThread
-participant Ui
-participant BufferedReader
-participant WordCounter
-participant DifficultyLevel
+participant ":StartCommand" as StartCommand
+participant ":TimeLimitMode" as TimeLimitMode
+participant ":ClockThread" as ClockThread
+participant ":Ui" as Ui
+participant ":BufferedReader" as BufferedReader
+participant ":DifficultyLevel" as DifficultyLevel
 
 StartCommand -> TimeLimitMode: startTimeLimitMode(testText, difficulty)
 activate TimeLimitMode
@@ -21,19 +20,14 @@ loop for each line in testText
     TimeLimitMode -> BufferedReader: waitForInput(clockThread, reader, timeLimit)
     alt User types within time limit
         BufferedReader -> TimeLimitMode: return user input
-        TimeLimitMode -> WordCounter: countWords(userInput)
-        alt Input matches test text
-            TimeLimitMode -> Ui: Show "Great!"
-        else Input incorrect
-            TimeLimitMode -> Ui: Show "Wrong!"
-        end
+        TimeLimitMode -> Ui: Show "Great!" or "Wrong!"
+
     else Time runs out
         TimeLimitMode -> Ui: Show "Time's up!"
     end
     TimeLimitMode -> ClockThread: interrupt()
 end
-TimeLimitMode -> Ui: showTimeLimitResult(numOfLines, numOfCorrect)
-User -> TimeLimitMode: Return to menu
+TimeLimitMode -> Ui: Show result
 
 end box
 @enduml

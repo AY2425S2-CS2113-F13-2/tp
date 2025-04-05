@@ -1,6 +1,6 @@
 package command;
 
-//@@author ravi-viswa105
+//@@author shanicetanhui
 
 import modes.TypingTimer;
 import storage.AutoAdjust;
