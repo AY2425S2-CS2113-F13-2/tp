@@ -6,18 +6,18 @@ participant ":BoboTypeException" as BoboTypeException
 
 TypingAccuracyCommand -> TypingAccuracy : new TypingAccuracy(userText)
 activate TypingAccuracy
-TypingAccuracy -> TypingAccuracy ++: setTestText(testText)
-return testText
-TypingAccuracy -> TypingAccuracy ++ : updateUserInput(userInput)
-return userInput
-TypingAccuracyCommand -> TypingAccuracy ++ : getTypingAccuracy()
+TypingAccuracy -> TypingAccuracy : setTestText(testText)
+TypingAccuracy -> TypingAccuracy : updateUserInput(userInput)
+TypingAccuracyCommand -> TypingAccuracy : getTypingAccuracy()
+activate TypingAccuracy
 
-
-opt testText is null
+TypingAccuracy -> TypingAccuracy : Validate testText != null
+alt testText is null
     TypingAccuracy -> BoboTypeException : throw new BoboTypeException()
+else testText is set
+    TypingAccuracy -> TypingAccuracy : Calculate accuracy
+    TypingAccuracy -> TypingAccuracy : Return accuracy
 end
-
-TypingAccuracy --> TypingAccuracyCommand
 
 deactivate TypingAccuracy
 @enduml

@@ -11,7 +11,7 @@ participant ":Ui" as Ui
 
 StartCommand -> ZenMode
 activate ZenMode
-ZenMode -> ZenMode ++: startZenMode()
+ZenMode -> ZenMode: startZenMode()
 ZenMode -> TypingTimer ++
 return getTypingDuration()
 ZenMode -> Ui ++ : showZenModeEndGame()
