@@ -81,7 +81,7 @@ public class NormalMode {
 
         ui.showTypingSpeedWPM(typingSpeedWPM);
         ui.showTypingSpeedCPM(typingSpeedCPM);
-        // ui.showTypingAccuracy(typingAccuracyDouble);
+        ui.showTypingAccuracy(typingAccuracyDouble);
         ui.showTypingScore(typingScore);
 
         // Handle typing targets

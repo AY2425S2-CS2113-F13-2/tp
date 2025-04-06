@@ -173,15 +173,6 @@ Example:
 
 ` Type: 'easy' or 'intermediate' or 'difficult' `
 
-### Get Typing Accuracy: `typingaccuracy`
-Returns the typing accuracy of the user's previous typing test in normal mode.
-
-Format: `typingaccuracy`
-
-Example: 
-
-` Your typing accuracy is: 96.43%`
-
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts of `normal` mode.
 Highscore is calculated based on the WPM * typingAccuracy of the user.
@@ -190,7 +181,7 @@ Format: `highscore`
 
 Example: 
 
-` Your high score is: 49.0`
+`Your high score is: 49.0`
 
 ### Get High Score List: `highscorelist`
 Gets back the top 3 highest score of the user across all attempts.
@@ -199,7 +190,7 @@ Format: `highscorelist`
 
 Example:
 
-` Top 3 High Scores: `
+`Top 3 High Scores:`
 
 `1. 49.0`
 
