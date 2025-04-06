@@ -326,20 +326,21 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 
 ## User Stories
 
-| Version | As a ...         | I want to ...                                                                     | So that I can ...                                                 |
-|---------|------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| v1.0    | slow typer       | practise typing with different texts                                              | improve my typing speed                                           |
-| v1.0    | user             | have various lengths for typing tests                                             | spend as little or as much time I want practising                 |
-| v1.0    | user             | adjust the difficulty level of typing exercises                                   | challenge myself appropriately as I improve over time             |
-| v1.0    | user             | track my typing speed                                                             | know how fast I can type                                          |
-| v1.0    | user             | track my typing accuracy                                                          | know how accurately I can type                                    |
-| v1.0    | user             | track my typing high score                                                        | track my personal best and attempt to break it                    |
-| v2.0    | goal-driven user | set specific targets for typing speed and scores and get notified when I hit them | keep track of my progress and goals                               |
-| v2.0    | unmotivated user | have timed tests                                                                  | be motivated to type faster each time                             |
-| v2.0    | user             | type my own words (zen mode)                                                      | train using my own texts                                          |
-| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience     | gradually improve as the difficulty increases with my skill level |
-| v2.0    | user             | track milestones I achieve                                                        | keep track of my progress and give myself a sense of achievement  |
-| v2.0    | user             | view the top 3 highscores                                                         | keep track of my progress and past performances.                  |
+| Version | As a ...         | I want to ...                                                                      | So that I can ...                                                 |
+|---------|------------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | slow typer       | practise typing with different texts                                               | improve my typing speed                                           |
+| v1.0    | user             | have various lengths for typing tests                                              | spend as little or as much time I want practising                 |
+| v1.0    | user             | adjust the difficulty level of typing exercises                                    | challenge myself appropriately as I improve over time             |
+| v1.0    | user             | track my typing speed                                                              | know how fast I can type                                          |
+| v1.0    | user             | track my typing accuracy                                                           | know how accurately I can type                                    |
+| v1.0    | user             | track my typing high score                                                         | track my personal best and attempt to break it                    |
+| v2.0    | goal-driven user | set specific targets for typing speed and scores and get notified when I hit them  | keep track of my progress and goals                               |
+| v2.0    | unmotivated user | have timed tests                                                                   | be motivated to type faster each time                             |
+| v2.0    | user             | type my own words (zen mode)                                                       | train using my own texts                                          |
+| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience      | gradually improve as the difficulty increases with my skill level |
+| v2.0    | user             | track milestones I achieve                                                         | keep track of my progress and give myself a sense of achievement  |
+| v2.0    | user             | view the top 3 highscores                                                          | keep track of my progress and past performances.                  |
+| v2.0    | user             | practice typing with custom text                                                   | improve my typing speed and accuracy using my own text            |
 
 
 ## Non-Functional Requirements
