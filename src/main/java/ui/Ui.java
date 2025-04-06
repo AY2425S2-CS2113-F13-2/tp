@@ -176,7 +176,10 @@ public class Ui {
         System.out.println("Are you ready? The game will begin in...");
         countdown(ui);
     }
-
+    public void showTimeLimitMiddleMessage() {
+        System.out.println("*** Press enter to continue... " +
+                "Previous input (shown below, if any) will be cleared.***");
+    }
     public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
         System.out.println();
         drawLine();

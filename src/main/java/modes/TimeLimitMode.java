@@ -85,8 +85,7 @@ public class TimeLimitMode {
                 System.out.println("*** Time's up! Try typing faster! ***");
             }
 
-            System.out.println("*** Press enter to continue... " +
-                    "Previous input (shown below, if any) will be cleared.***");
+            ui.showTimeLimitMiddleMessage();
             sc.nextLine();
 
             // After time limit or correct input, interrupt the threads
