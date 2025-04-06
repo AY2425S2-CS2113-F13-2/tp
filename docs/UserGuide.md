@@ -20,7 +20,7 @@ Starts a typing exercise with a random sentence.
 
 Format: `start`
 
-### Set Mode: `normal`, `timelimit`, `zen`
+### Set Mode: `normal`, `timeLimit`, `zen`
 Set the mode to set the typing speed.
 
 Format: `normal`, `timeLimit`, `zen`
@@ -73,36 +73,48 @@ The sun is shining, and birds are singing.
 ```
 
 
-### Practice in TimeLimit Mode:
-In the time limit mode, each sentence will be given for the user to type, and there will be time limit for each sentence based on the difficulty level and the length of the sentence. Based on the user input, the response will be given. 
+### Practice in timeLimit Mode:
+In the timeLimit mode, each sentence will be given for the user to type, and there will be time limit for each sentence based on the difficulty level and the length of the sentence. Based on the user input, the response will be given. 
 
 [ Warning ] What the user inputs will be displayed on the console only after the user presses enter. In other words, before the user presses enter, the user is not able to see what they have typed so far.
 
-Example:
+Example of timeLimit mode instruction:
 
 ```
 ____________________________________________________________
-Welcome to Time Limit mode.
+Welcome to timeLimit mode.
+*** In this mode, you can view your input ONLY after you finish your sentence ***
+*** i.e when ENTER is pressed!!! ***
 ____________________________________________________________
 Are you ready? The game will begin in 
 3
 2
 1
 ____________________________________________________________
+```
+On the next page, the test sentence will be given:
+```
 The sun is shining, and birds are singing.
-The sun is shining, and birds are singing.
+```
+After the user inputs the sentence or the time is up.
+On the next page, the result statement will be shown: 
+```
 *** Great! ***
-The park is full of families enjoying the day.
-The park is full of fammmmmmmmmmmmmmmmmmmmmmm.
-
-*** Time's up! Try typing faster! ***
-Children play on swings, and parents chat while sitting on benches.
-Children paay on
+*** Press enter to continue... Previous input (shown below, if any) will be cleared.***
+```
+```
 *** Wrong! Please be more careful next time! ***
-
+*** Press enter to continue... Previous input (shown below, if any) will be cleared.***
+```
+```
+*** Time's up! Try typing faster! ***
+*** Press enter to continue... Previous input (shown below, if any) will be cleared.***
+```
+At the end of the entire practice, the final result will be shown:
+```
 ____________________________________________________________
 You finished the timeLimit Mode Practice! 
-	 - Num of correct lines: 1 lines out of 0 lines
+	 - Num of correct lines: 1 lines out of 3 lines
 ____________________________________________________________
 *** Please press enter to continue. ***
 ```
@@ -119,8 +131,9 @@ Example:
 
 ` Type: '1' or '2' or '3' `
 
-### Set Zen Typing Speed: `zen`
-Type as long as desired. Get the typing speed of the user's attempt.
+### Zen Mode: `zen`
+Type as long as desired. Get the typing speed of the user's attempt. The command stop_practice is included in the word 
+count of the test and calculation of typing speed.
 
 Format: `zen`
 
@@ -161,16 +174,16 @@ Example:
 ` Type: 'easy' or 'intermediate' or 'difficult' `
 
 ### Get Typing Accuracy: `typingaccuracy`
-Returns the typing accuracy of the user's previous typing test.
+Returns the typing accuracy of the user's previous typing test in normal mode.
 
 Format: `typingaccuracy`
 
 Example: 
 
-` Your typing accuracy is: 39.285714285714285%`
+` Your typing accuracy is: 96.43%`
 
 ### Get High Score: `highscore`
-Gets back the highest score of the user across all attempts.
+Gets back the highest score of the user across all attempts of `normal` mode.
 Highscore is calculated based on the WPM * typingAccuracy of the user.
 
 Format: `highscore`
@@ -234,10 +247,30 @@ Displays a report on the user's past 10 runs in normal mode.
 
 Format: `progress`
 
-### Set Custom Mode: `[Coming Soon]`
+### Set Custom Mode: `custom`
 Allows user to input custom text to practice typing.
 
 Format: `custom`
+
+Output:
+```
+____________________________________________________________
+ Please type your custom text. Press 'Enter' then type 'exit' to finish.
+____________________________________________________________
+```
+
+User types
+- `Some Sample Text`
+- `exit`
+
+Returns
+```
+____________________________________________________________
+ Hope you enjoyed the round! Here are your stats:
+ Typing speed (WPM): 35 WPM
+ Typing speed (CPM): 190 CPM
+____________________________________________________________
+```
 
 ### Exit the application: `exit`
 Exits the application.
@@ -269,7 +302,7 @@ Advanced users are welcome to update data directly by editing that data file.
 ## Command Summary
 
 * Start a typing exercise `start`
-* Set mode `normal`, `timelimit`, `zen`
+* Set mode `normal`, `timeLimit`, `zen`, `custom`
 * Set difficulty level `easy`, `intermediate`, `difficult`
 * Set text length `short`, `medium`, `long`
 * Get typing accuracy `typingaccuracy`
