@@ -8,8 +8,8 @@ import java.util.Scanner;
 import ui.Ui;
 
 public class ProgressReport {
-    private final File file;
     private static final int MAX_ENTRIES = 10;
+    private final File file;
     private final ArrayList<Integer> scores;
     private final Ui ui;
     private int sessionCounter;

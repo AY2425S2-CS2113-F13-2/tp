@@ -2,7 +2,17 @@ package parser;
 
 //@@author ravi-viswa105
 
-import command.*;
+import command.Command;
+import command.StartCommand;
+import command.TypingAccuracyCommand;
+import command.ExitCommand;
+import command.HighscoreCommand;
+import command.HighscorelistCommand;
+import command.MilestoneCommand;
+import command.TargetspeedaddCommand;
+import command.TargetscoreaddCommand;
+import command.ListtargetsCommand;
+import command.ProgressReportCommand;
 
 import exceptions.InvalidInputException;
 
