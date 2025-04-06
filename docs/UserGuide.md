@@ -289,7 +289,7 @@ Advanced users are welcome to update data directly by editing that data file.
 ## Command Summary
 
 * Start a typing exercise `start`
-* Set mode `normal`, `timelimit`, `zen`
+* Set mode `normal`, `timelimit`, `zen`, `custom`
 * Set difficulty level `easy`, `intermediate`, `difficult`
 * Set text length `short`, `medium`, `long`
 * Get typing accuracy `typingaccuracy`
