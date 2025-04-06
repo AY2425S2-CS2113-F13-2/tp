@@ -25,8 +25,11 @@ public class InputUserText {
 
         ui.showInputUserText();
         try (FileWriter fileWriter = new FileWriter(filepath, false)) { // Overwrite the file
-            while (true) {
+            while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+                if (line.isEmpty()) {
+                    continue; // Skip empty lines
+                }
                 if (line.equalsIgnoreCase("exit")) {
                     break;
                 }

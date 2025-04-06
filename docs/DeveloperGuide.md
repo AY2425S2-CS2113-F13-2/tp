@@ -136,14 +136,14 @@ Below is the sequence diagram for ZenMode
 
 ### Custom Mode Feature
 
-#### Planned Implementation
+#### Implementation
 
 Custom Mode is facilitated by `CustomMode`.
 Additionally, it implements the following operations:
 
-- `CustomMode(TypingTimer typingTimer, Scanner sc, Ui ui)` - Constructor to create CustomMode object
+- `CustomMode(Ui ui, Scanner sc)` - Constructor to create CustomMode object
 - `startCustomMode()` - Runs input loop to read user input and compute typing statistics
-- `inputText()` - creates a file to store the user's custom text input
+- `inputText()` - creates a file to store the user's custom text input and puts them into an ArrayList<String>.
 
 Given below is an example usage scenario and how the Custom Mode behaves at each step.
 
@@ -415,15 +415,9 @@ Expected: The app should ignore or flag them as incorrect input.
 
 ### 3. Custom Mode
 
-#### Adding Custom Text
-
-1. Run the command: `custom "Custom text here."`
-
-Expected: The app should save this text as a new typing prompt.
-
 #### Starting a Custom Typing Test
 
-1. Run the command: `start custom`
+1. Run the command: `custom`
 
 Expected: The app should prompt the user to type the previously added custom text.
 
