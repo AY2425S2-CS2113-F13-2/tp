@@ -340,7 +340,7 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 | v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience      | gradually improve as the difficulty increases with my skill level |
 | v2.0    | user             | track milestones I achieve                                                         | keep track of my progress and give myself a sense of achievement  |
 | v2.0    | user             | view the top 3 highscores                                                          | keep track of my progress and past performances.                  |
-| v2.0    | user             | practice typing with custom text                                                   | improve my typing speed and accuracy using my own text            |
+| v2.1    | user             | practice typing with custom text                                                   | improve my typing speed and accuracy using my own text            |
 
 
 ## Non-Functional Requirements
