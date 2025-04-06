@@ -102,7 +102,7 @@ Children paay on
 
 ____________________________________________________________
 You finished the timeLimit Mode Practice! 
-	 - Num of correct lines: 1 lines out of 0 lines
+	 - Num of correct lines: 1 lines out of 3 lines
 ____________________________________________________________
 *** Please press enter to continue. ***
 ```
@@ -119,8 +119,9 @@ Example:
 
 ` Type: '1' or '2' or '3' `
 
-### Set Zen Typing Speed: `zen`
-Type as long as desired. Get the typing speed of the user's attempt.
+### Zen Mode: `zen`
+Type as long as desired. Get the typing speed of the user's attempt. The command stop_practice is included in the word 
+count of the test and calculation of typing speed.
 
 Format: `zen`
 
@@ -161,13 +162,13 @@ Example:
 ` Type: 'easy' or 'intermediate' or 'difficult' `
 
 ### Get Typing Accuracy: `typingaccuracy`
-Returns the typing accuracy of the user's previous typing test.
+Returns the typing accuracy of the user's previous typing test in normal mode.
 
 Format: `typingaccuracy`
 
 Example: 
 
-` Your typing accuracy is: 39.285714285714285%`
+` Your typing accuracy is: 96.43%`
 
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts.

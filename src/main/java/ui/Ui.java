@@ -126,6 +126,7 @@ public class Ui {
         System.out.println("""
                  You finished the practice! Please type\s
                 \t - 'typingaccuracy' to view your typing accuracy\s
+                \t    of your previous typing test in normal mode\s
                 \t - 'highscore' to view your high score\s
                 \t - 'highscorelist' to view your top 3 high scores\s
                 \t - 'milestone' to view your default difficulty level\s
@@ -142,8 +143,15 @@ public class Ui {
         System.out.println("""
                 Welcome to Zen Mode, you can type out anything to your
                 heart's content and find out your typing speed.
-                Typing 'start' will start the typingTimer and typing the command
-                'stop_practice' will stop the practice.""");
+                Typing 'start' on a new line will start the typingTimer and typing the command
+                'stop_practice' on a new line will stop the practice.""");
+        drawLine();
+    }
+
+    public void showZenModeStartPrompt() {
+        drawLine();
+        System.out.println("""
+                Please type 'start' on a new line to start Zen mode""");
         drawLine();
     }
 

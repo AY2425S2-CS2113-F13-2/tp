@@ -37,6 +37,7 @@ public class StartCommand extends Command {
             if (mode.equals("zen")) {
                 ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
                 zenMode.startZenMode();
+                break;
             } else if (mode.equals("timeLimit") || mode.equals("normal")) {
                 TextSelector textSelector = new TextSelector(sc, ui);
                 List<String> testText = textSelector.selectText();

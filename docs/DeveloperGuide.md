@@ -21,7 +21,7 @@ The API of this component is specified in `Ui.java`.
 The API of this component is specified in `Command` package
 
 The class diagram of `Command` is shown below.
-<img src="images/CommandClassDigram.png">
+<img src="images/CommandClassDiagram.png">
 ## Implementation
 
 
@@ -69,7 +69,7 @@ Step 9: The user returns to the main menu after reviewing their results.
 
 Below is the sequence diagram of normal mode.
 
-<img src ="images/SeqDiagramNormalMode.png" width="500" />
+<img src ="images/SeqDiagramNormalMode.png" width="1000" />
 
 ### TimeLimit Mode Feature
 
@@ -107,7 +107,7 @@ Step 7: The user presses Enter to return to the main menu.
 
 Below is the sequence diagram of time limit mode.
 
-<img src ="images/SeqDiagramTimeLimitMode.png" width="500" />
+<img src ="images/SeqDiagramTimeLimitMode.png" width="10000" />
 
 ### Zen Mode Feature
 
@@ -132,7 +132,7 @@ Step 4. The typing practice results is displayed to the user with `UI.showZenMod
 
 Below is the sequence diagram for ZenMode
 
-<img src="images/ZenModeSequenceDiagram.png" width="280" />
+<img src="images/ZenModeSequenceDiagram.png" width="500" />
 
 ### Custom Mode Feature
 
@@ -269,8 +269,6 @@ Below is the sequence diagram for `TypingAccuracy`
 <img src="images/TypingAccuracySequenceDiagram.png" width="280" />
 
 Below is the class diagram for `TypingAccuracy`
-
-<img src="images/TypingAccuracyClassDiagram.png" width="500" />
 
 #### Design Considerations
 
