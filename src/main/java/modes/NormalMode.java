@@ -16,6 +16,7 @@ import ui.Ui;
 import util.WordCounter;
 import storage.AutoAdjust;
 import storage.State;
+import storage.ProgressReport;
 
 
 public class NormalMode {
@@ -27,6 +28,7 @@ public class NormalMode {
     private final TypingTargets typingTargets;
     private final State state;
     private final AutoAdjust autoAdjust;
+    private final ProgressReport progressReport;
 
     public NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, TypingTargets typingTargets,
                       State state, AutoAdjust autoAdjust,
@@ -39,6 +41,7 @@ public class NormalMode {
         this.autoAdjust = autoAdjust;
         this.typingTimer = new TypingTimer();
         this.typingAccuracy = typingAccuracy;
+        this.progressReport = new ProgressReport("data/progress.txt", ui);
     }
 
     public void startNormalMode(List<String> testText) throws IOException {
@@ -101,6 +104,8 @@ public class NormalMode {
         try {
             state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / duration));
             autoAdjust.evaluate();
+            progressReport.update(typingScore);
+
         } catch (IOException e) {
             ui.showErrorMessage(e.getMessage());
         }
