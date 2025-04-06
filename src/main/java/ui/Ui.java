@@ -131,6 +131,7 @@ public class Ui {
                 \t - 'milestone' to view your default difficulty level\s
                 \t - 'targetspeedadd' to add a typing speed target\s
                 \t - 'targetscoreadd' to add a typing score target\s
+                \t - 'progress' to view your typing progress\s
                 \t - 'exit' to exit or\s
                 \t - 'start' to start the new practice.""");
         drawLine();
@@ -237,6 +238,7 @@ public class Ui {
             ui.showErrorMessage(e.getMessage());
         }
     }
+
     public void showString(String s) {
         System.out.println(s);
     }
