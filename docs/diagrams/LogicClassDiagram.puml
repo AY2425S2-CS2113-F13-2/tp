@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+hide members
+
+class BoboType
+abstract Command
+class Parser
+class XYZCommand
+
+Parser --> XYZCommand : creates
+XYZCommand --|> Command
+BoboType -> Command : calls
+BoboType -> Parser
+XYZCommand -> XYZFunction
+BoboType ..> XYZFunction
+
+
+
+
+@enduml

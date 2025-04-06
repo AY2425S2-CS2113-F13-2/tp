@@ -90,11 +90,9 @@ public class Ui {
      * @param typingAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
      */
     public void showTypingAccuracy(double typingAccuracy) {
-        drawLine();
-        System.out.print(" Your typing accuracy is: ");
+        System.out.print(" Typing accuracy: ");
         System.out.printf("%.2f", typingAccuracy * 100);
         System.out.println("%");
-        drawLine();
     }
 
     public void showHighScore() {
