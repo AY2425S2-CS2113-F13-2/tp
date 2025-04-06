@@ -61,6 +61,7 @@ public class TimeLimitMode {
             clockThread.start();
             MarkedText markedText = new MarkedText();
 
+            ui.clearScreen(ui);
             ui.showString(s);
             try {
                 userInput = waitForInput(clockThread, reader, timeLimit); // Get user input
@@ -68,9 +69,12 @@ public class TimeLimitMode {
                 System.out.println("An error occurred while waiting for input.");
             }
 
+            ui.clearScreen(ui);
+
             if (userInput != null) {
                 markedText.update(s, userInput);
                 markedText.print();
+
                 if (userInput.equals(s)) {
                     numOfCorrect++;
                     System.out.println("*** Great! ***");
@@ -78,14 +82,19 @@ public class TimeLimitMode {
                     System.out.println("*** Wrong! Please be more careful next time! ***");
                 }
             } else {
-                System.out.println("\n*** Time's up! Try typing faster! ***");
+                System.out.println("*** Time's up! Try typing faster! ***");
             }
+
+            ui.showTimeLimitMiddleMessage();
+            sc.nextLine();
+
             // After time limit or correct input, interrupt the threads
             clockThread.interrupt();
         }
         numOfLines = getNumOfLines();
         ui.showTimeLimitResult(numOfLines, numOfCorrect);
         sc.nextLine();
+
 
     }
 
@@ -96,10 +105,7 @@ public class TimeLimitMode {
         while (clockThread.getElapsedTime() < timeLimit) {
             if (reader.ready()) { // Check if there's input available without blocking
                 userInput = reader.readLine(); // Read the input
-                // to prevent the program to process the input after the previous interrupt as valid input
-                if (clockThread.getElapsedTime() >= 2) {
-                    break;
-                }
+                break;
             }
 
             try {

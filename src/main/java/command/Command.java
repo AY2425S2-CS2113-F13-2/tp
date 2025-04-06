@@ -18,7 +18,7 @@ import java.util.Scanner;
  * Abstract class for commands
  * Tracks exit status to check if application should be exited
  */
-public class Command {
+public abstract class Command {
 
     /**
      * Computes the typing accuracy and prints to user.

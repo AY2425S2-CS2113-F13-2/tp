@@ -48,12 +48,16 @@ public class ZenMode {
             if (userInput.equals("start")) {
                 isZenModeStarted = true;
             }
+            else {
+                ui.showZenModeStartPrompt();
+            }
         }
         typingTimer.start();
         while (isZenMode) {
             String userInput = sc.nextLine();
             if (userInput.equals("stop_practice")) {
                 isZenMode = false;
+                isZenModeStarted = false;
             }
             wordCount += WordCounter.countWords(userInput);
             characterCount += userInput.length();
