@@ -100,4 +100,18 @@ public class ProgressReport {
 
         ui.drawLine();
     }
+
+    // Helper Methods for Testing
+    public int getSessionCounter() {
+        return sessionCounter;
+    }
+
+    public int getScoreCount() {
+        return scores.size();
+    }
+
+    public int getLastScore() {
+        return scores.get(scores.size() - 1);
+    }
+
 }
