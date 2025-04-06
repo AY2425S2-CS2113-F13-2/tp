@@ -136,14 +136,14 @@ Below is the sequence diagram for ZenMode
 
 ### Custom Mode Feature
 
-#### Planned Implementation
+#### Implementation
 
 Custom Mode is facilitated by `CustomMode`.
 Additionally, it implements the following operations:
 
-- `CustomMode(TypingTimer typingTimer, Scanner sc, Ui ui)` - Constructor to create CustomMode object
+- `CustomMode(Ui ui, Scanner sc)` - Constructor to create CustomMode object
 - `startCustomMode()` - Runs input loop to read user input and compute typing statistics
-- `inputText()` - creates a file to store the user's custom text input
+- `inputText()` - creates a file to store the user's custom text input and puts them into an ArrayList<String>.
 
 Given below is an example usage scenario and how the Custom Mode behaves at each step.
 
@@ -326,20 +326,21 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 
 ## User Stories
 
-| Version | As a ...         | I want to ...                                                                     | So that I can ...                                                 |
-|---------|------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| v1.0    | slow typer       | practise typing with different texts                                              | improve my typing speed                                           |
-| v1.0    | user             | have various lengths for typing tests                                             | spend as little or as much time I want practising                 |
-| v1.0    | user             | adjust the difficulty level of typing exercises                                   | challenge myself appropriately as I improve over time             |
-| v1.0    | user             | track my typing speed                                                             | know how fast I can type                                          |
-| v1.0    | user             | track my typing accuracy                                                          | know how accurately I can type                                    |
-| v1.0    | user             | track my typing high score                                                        | track my personal best and attempt to break it                    |
-| v2.0    | goal-driven user | set specific targets for typing speed and scores and get notified when I hit them | keep track of my progress and goals                               |
-| v2.0    | unmotivated user | have timed tests                                                                  | be motivated to type faster each time                             |
-| v2.0    | user             | type my own words (zen mode)                                                      | train using my own texts                                          |
-| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience     | gradually improve as the difficulty increases with my skill level |
-| v2.0    | user             | track milestones I achieve                                                        | keep track of my progress and give myself a sense of achievement  |
-| v2.0    | user             | view the top 3 highscores                                                         | keep track of my progress and past performances.                  |
+| Version | As a ...         | I want to ...                                                                      | So that I can ...                                                 |
+|---------|------------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | slow typer       | practise typing with different texts                                               | improve my typing speed                                           |
+| v1.0    | user             | have various lengths for typing tests                                              | spend as little or as much time I want practising                 |
+| v1.0    | user             | adjust the difficulty level of typing exercises                                    | challenge myself appropriately as I improve over time             |
+| v1.0    | user             | track my typing speed                                                              | know how fast I can type                                          |
+| v1.0    | user             | track my typing accuracy                                                           | know how accurately I can type                                    |
+| v1.0    | user             | track my typing high score                                                         | track my personal best and attempt to break it                    |
+| v2.0    | goal-driven user | set specific targets for typing speed and scores and get notified when I hit them  | keep track of my progress and goals                               |
+| v2.0    | unmotivated user | have timed tests                                                                   | be motivated to type faster each time                             |
+| v2.0    | user             | type my own words (zen mode)                                                       | train using my own texts                                          |
+| v2.0    | user             | have a tool that auto-adjusts my exercises' difficulty based on my experience      | gradually improve as the difficulty increases with my skill level |
+| v2.0    | user             | track milestones I achieve                                                         | keep track of my progress and give myself a sense of achievement  |
+| v2.0    | user             | view the top 3 highscores                                                          | keep track of my progress and past performances.                  |
+| v2.1    | user             | practice typing with custom text                                                   | improve my typing speed and accuracy using my own text            |
 
 
 ## Non-Functional Requirements
@@ -415,15 +416,9 @@ Expected: The app should ignore or flag them as incorrect input.
 
 ### 3. Custom Mode
 
-#### Adding Custom Text
-
-1. Run the command: `custom "Custom text here."`
-
-Expected: The app should save this text as a new typing prompt.
-
 #### Starting a Custom Typing Test
 
-1. Run the command: `start custom`
+1. Run the command: `custom`
 
 Expected: The app should prompt the user to type the previously added custom text.
 

@@ -170,7 +170,7 @@ Example:
 ` Your typing accuracy is: 39.285714285714285%`
 
 ### Get High Score: `highscore`
-Gets back the highest score of the user across all attempts.
+Gets back the highest score of the user across all attempts of `normal` mode.
 Highscore is calculated based on the WPM * typingAccuracy of the user.
 
 Format: `highscore`
@@ -234,10 +234,30 @@ Displays a report on the user's past 10 runs in normal mode.
 
 Format: `progress`
 
-### Set Custom Mode: `[Coming Soon]`
+### Set Custom Mode: `custom`
 Allows user to input custom text to practice typing.
 
 Format: `custom`
+
+Output:
+```
+____________________________________________________________
+ Please type your custom text. Press 'Enter' then type 'exit' to finish.
+____________________________________________________________
+```
+
+User types
+- `Some Sample Text`
+- `exit`
+
+Returns
+```
+____________________________________________________________
+ Hope you enjoyed the round! Here are your stats:
+ Typing speed (WPM): 35 WPM
+ Typing speed (CPM): 190 CPM
+____________________________________________________________
+```
 
 ### Exit the application: `exit`
 Exits the application.
@@ -269,7 +289,7 @@ Advanced users are welcome to update data directly by editing that data file.
 ## Command Summary
 
 * Start a typing exercise `start`
-* Set mode `normal`, `timelimit`, `zen`
+* Set mode `normal`, `timelimit`, `zen`, `custom`
 * Set difficulty level `easy`, `intermediate`, `difficult`
 * Set text length `short`, `medium`, `long`
 * Get typing accuracy `typingaccuracy`
