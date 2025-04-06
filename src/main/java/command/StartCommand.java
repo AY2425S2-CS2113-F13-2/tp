@@ -38,6 +38,7 @@ public class StartCommand extends Command {
             if (mode.equals("zen")) {
                 ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
                 zenMode.startZenMode();
+                break;
             } else if (mode.equals("custom")){
                 // custom mode
                 CustomMode customMode = new CustomMode(ui, sc);
