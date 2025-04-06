@@ -65,7 +65,8 @@ public class CustomModeTest {
 
     @Test
     public void testStartCustomModeWithLongText() {
-        String longText = "This is a very long text input to test the custom mode functionality over a longer period of time.\nexit\n";
+        String longText = "This is a very long text input to test the custom mode functionality over " +
+                "a longer period of time.\nexit\n";
         scanner = new Scanner(new ByteArrayInputStream(longText.getBytes()));
         customMode = new CustomMode(ui, scanner);
         assertDoesNotThrow(() -> customMode.startCustomMode());
