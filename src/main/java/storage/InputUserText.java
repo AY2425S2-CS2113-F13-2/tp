@@ -6,27 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import ui.Ui;
 
 public class InputUserText {
 
-    private String text;
+    private final Ui ui;
     private Scanner scanner;
 
-    public void parseText() {
-        List<String> list = inputText();
-        text = ""; // Initialize text to avoid null pointer exception
-        for (String line : list) {
-            text += line;
-        }
-        String[] sentences = text.split("[.!?]");
-        String filepath = "data/user_text/inputs.txt";
-        try (FileWriter fileWriter = new FileWriter(filepath, false)) { // Overwrite the file
-            for (String sentence : sentences) {
-                fileWriter.write(sentence + System.lineSeparator());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public InputUserText(Ui ui) {
+        this.ui = ui;
     }
 
     public List<String> inputText() {
@@ -35,17 +23,20 @@ public class InputUserText {
         String filepath = "data/user_text/inputs.txt";
         createDirectoryIfNotExists("data/user_text");
 
-        System.out.println("Enter text (type 'exit' to finish):");
+        ui.showInputUserText();
         try (FileWriter fileWriter = new FileWriter(filepath, false)) { // Overwrite the file
-            while (true) {
+            while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+                if (line.isEmpty()) {
+                    continue; // Skip empty lines
+                }
                 if (line.equalsIgnoreCase("exit")) {
                     break;
                 }
                 list.add(line);
                 fileWriter.write(line + System.lineSeparator());
             }
-            System.out.println("Custom text saved!");
+            ui.showTextSaved();
         } catch (IOException e) {
             e.printStackTrace();
         }
