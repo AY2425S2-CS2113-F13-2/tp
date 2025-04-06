@@ -168,15 +168,18 @@ public class Ui {
 
     public void showTimeLimitModeInstructions(Ui ui) {
         drawLine();
-        System.out.println("Welcome to Time Limit mode.");
-        System.out.println("*** You can see your input ONLY after you press ENTER!!! ***");
-        System.out.println("*** RESULT will be shown in either GREAT! or WRONG! or Time's up! ***");
+        System.out.println("Welcome to timeLimit mode.");
+        System.out.println("*** In this mode, you can view your input ONLY after you finish your sentence ***");
+        System.out.println("*** i.e when ENTER is pressed!!! ***");
         drawLine();
         sleep(ui);
         System.out.println("Are you ready? The game will begin in...");
         countdown(ui);
     }
-
+    public void showTimeLimitMiddleMessage() {
+        System.out.println("*** Press enter to continue... " +
+                "Previous input (shown below, if any) will be cleared.***");
+    }
     public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
         System.out.println();
         drawLine();
