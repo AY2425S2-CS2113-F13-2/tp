@@ -242,10 +242,24 @@ Current milestone: intermediate
 ____________________________________________________________
 ```
 
-### View Progress Report: `[Coming Soon]`
-Displays a report on the user's past 10 runs in normal mode.
+### View Progress Report: `progress`
+Displays a report on the user's scores from the past 10 runs in normal mode. Scores are represented using a bar graph 
+where each '█' corresponds to 5 points.
 
 Format: `progress`
+
+Example: 
+```
+Typing Progress (Past 5 sessions):
+Each '█' represents 5 points
+Session 5: ████████████████████                         (97 pts)
+Session 4: ███████████████████████                     (105 pts)
+Session 3: ███████████                                  (55 pts)
+Session 2: ██████████████████                           (85 pts)
+Session 1: █████████████████████████████               (130 pts)
+____________________________________________________________
+
+```
 
 ### Set Custom Mode: `custom`
 Allows user to input custom text to practice typing.

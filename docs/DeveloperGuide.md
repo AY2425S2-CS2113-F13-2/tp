@@ -281,27 +281,46 @@ Below is the class diagram for `TypingAccuracy`
 
 
 ### Progress Report
-#### Planned Implementation
+#### Implementation
 
 Progress Report is facilitated by `ProgressReport`.
 Additionally, it implements the following operations:
 
-- `getProgressReport()` - loads the past 10 scores from the ProgressReport List.
-- `updateProgressReport()` - updates the ProgressReport list to store the score from the past 10 runs.
-- `showProgressReport()` - displays the ProgressReport to the user.
-- `resetProgress()` - Reset all stored scores and empties the ProgressReport list.
+- `update(double score)` - adds the latest's session score to the list and saves it to the `progress.txt` file. Removes 
+the oldest entry if maximum number of stored sessions (10) is exceeded. Also increments a `sessionCounter`. 
+- `show()` - displays the most recent 10 attempts in a text-based vertical bar graph.
 
-Given below is an example usage scenario and how the Custom Mode behaves at each step.
+Given below is an example usage scenario and how Progress Report behaves at each step.
 
 Step 1. The user starts a practice session in normal mode.
 
-Step 2. The user completes the round and `updateProgressReport()` adds the new score to the list of past 10 practices.
+Step 2. The user completes the round and `update(double score)` adds the new score to the list of past 10 practices.
 
-Step 3. `updateProgressReport()` updates the new score to the ProgressReport list.
+Step 3. `sessionCounter` is incremented to track the total number of sessions ever played, with progress data 
+persistently stored in `progress.txt`.
 
-Step 4. When user inputs the command `progress`, `showProgressReport()` displays the Report as a Graph.
+Step 4. When user inputs the command `progress`, `show()` displays the past 10 session scores as a vertical bar graph 
+with corresponding session numbers.
 
-Step 5. When user inputs command `resetprogress`, the ProgressReport list will clear.
+#### Design Considerations
+
+**Aspect: How to display progress data**
+
+- **Alternative 1:**  Display a list of scores from past runs in a simple table format
+  - **Pros:** Easier to implement and simple to read
+  - **Cons:** Less visual, harder for users to spot trends at a glance
+- **Alternative 2 (current choice):** Text-Based Vertical Bar Graph
+  - **Pros:** More visually engaging, allows users to quickly and easily observe trends
+  - **Cons:** Slightly harder to implement due to bar scaling
+
+**Aspect: How many past sessions to display**
+
+- **Alternative 1:** List out data of all sessions
+  - **Pros:** Provides user with a comprehensive understanding of their progress from the start
+  - **Cons:** Can be overwhelming or cluttered, especially with many sessions
+- **Alternative 2 (current choice):** Show past 10 sessions
+  - **Pros:** More intuitive and easy for users to view and digest information
+  - **Cons:** Requires additional logic for tracking and maintaining session count
 
 ## Product scope
 
@@ -352,6 +371,7 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 - Mainstream OS: Windows, Linux, Unix, MacOS
 - WPM (Words Per Minute): A measure of typing speed, indicating how many words a user types per minute.
 - CPM (Characters Per Minute): A measure of typing speed based on the number of characters typed per minute.
+- score: WPM * Accuracy 
 
 ## Instructions for manual testing
 
