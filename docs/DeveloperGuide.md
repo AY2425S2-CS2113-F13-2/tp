@@ -75,7 +75,7 @@ Below is the sequence diagram of normal mode.
 
 #### Implementation 
 
-TimeLimit Mode is facilitated by `ZenMode`. Additionally, it implements the following operations:
+TimeLimit Mode is facilitated by `TimeLimitMode`. Additionally, it implements the following operations:
 
 - `TimeLimitMode(Ui ui, Scanner sc)` - Constructor to create TimeLimitMode object 
 - `startTimeLimitMode(List<String> testText, DifficultyLevel difficulty)` - Runs the time-limited typing test, displaying test text, tracking user input, and enforcing a time limit. 
