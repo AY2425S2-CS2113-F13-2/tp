@@ -37,7 +37,7 @@ public class Ui {
     public void chooseMode() {
         drawLine();
         System.out.println(" Select your mode: ");
-        System.out.println(" Type: 'normal' or 'timeLimit' or 'zen'");
+        System.out.println(" Type: 'normal' or 'timeLimit' or 'zen' or 'custom'");
         drawLine();
     }
 
@@ -176,15 +176,18 @@ public class Ui {
 
     public void showTimeLimitModeInstructions(Ui ui) {
         drawLine();
-        System.out.println("Welcome to Time Limit mode.");
-        System.out.println("*** You can see your input ONLY after you press ENTER!!! ***");
-        System.out.println("*** RESULT will be shown in either GREAT! or WRONG! or Time's up! ***");
+        System.out.println("Welcome to timeLimit mode.");
+        System.out.println("*** In this mode, you can view your input ONLY after you finish your sentence ***");
+        System.out.println("*** i.e when ENTER is pressed!!! ***");
         drawLine();
         sleep(ui);
         System.out.println("Are you ready? The game will begin in...");
         countdown(ui);
     }
-
+    public void showTimeLimitMiddleMessage() {
+        System.out.println("*** Press enter to continue... " +
+                "Previous input (shown below, if any) will be cleared.***");
+    }
     public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
         System.out.println();
         drawLine();
@@ -217,8 +220,7 @@ public class Ui {
     private static void sleep(Ui ui) {
         try {
             Thread.sleep(1000);
-        }
-        catch(InterruptedException e) {
+        } catch(InterruptedException e) {
             ui.showErrorMessage(e.getMessage());
         }
     }
@@ -247,6 +249,36 @@ public class Ui {
     }
     public void showString(String s) {
         System.out.println(s);
+    }
+
+    public void showCustomMode() {
+        drawLine();
+        System.out.println(" We will start the Custom Mode Typing Test now.");
+    }
+
+    public void showInputUserText() {
+        drawLine();
+        System.out.println(" Please type your custom text. Press 'Enter' then type 'exit' to finish.");
+        drawLine();
+    }
+
+    public void showTextSaved() {
+        System.out.println(" Your custom text has been saved.");
+    }
+
+    public void showEndCustom() {
+        drawLine();
+
+        System.out.println("""
+                 You finished the practice! Please type\s
+                \t - 'highscore' to view your high score\s
+                \t - 'highscorelist' to view your top 3 high scores\s
+                \t - 'milestone' to view your default difficulty level\s
+                \t - 'targetspeedadd' to add a typing speed target\s
+                \t - 'targetscoreadd' to add a typing score target\s
+                \t - 'exit' to exit or\s
+                \t - 'start' to start the new practice.""");
+        drawLine();
     }
 
 }
