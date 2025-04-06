@@ -5,6 +5,7 @@ import storage.Milestones;
 import storage.TypingTargets;
 import storage.State;
 import storage.Storage;
+import storage.ProgressReport;
 import modes.TypingTimer;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;
@@ -29,6 +30,8 @@ public class BoboType {
     private final TypingTargetList typingTargetList;
     private final TypingTargets typingTargets;
     private final TextSelector textSelector;
+    private final ProgressReport progressReport;
+
 
     public BoboType(String filepath) throws IOException {
         Storage storage = new Storage(filepath);
@@ -43,6 +46,8 @@ public class BoboType {
         typingTargets = new TypingTargets("data/typingtargets.txt");
         typingTargets.load(typingTargetList);
         textSelector = new TextSelector(sc, ui);
+        progressReport = new ProgressReport("data/progress.txt", ui);
+
     }
 
 
