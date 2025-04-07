@@ -34,49 +34,45 @@ public class StartCommand extends Command {
         while (true) {
             ui.chooseMode();
             String mode = sc.nextLine().trim();
+            TextSelector textSelector = new TextSelector(sc, ui);
+            List<String> testText = null;
 
-            if (mode.equals("zen")) {
+            switch (mode) {
+            case "zen":
                 ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
                 zenMode.startZenMode();
                 break;
-            } else if (mode.equals("custom")){
-                // custom mode
+            case "custom":
                 CustomMode customMode = new CustomMode(ui, sc);
                 try {
                     customMode.startCustomMode();
-                    ;
                 } catch (IOException e) {
                     ui.showErrorMessage(e.getMessage());
                 }
                 break;
-            } else if (mode.equals("timeLimit") || mode.equals("normal")) {
-                TextSelector textSelector = new TextSelector(sc, ui);
-                List<String> testText = textSelector.selectText();
-
-                // time limit mode
-                if (mode.equals("timeLimit")) {
-                    TimeLimitMode timeLimitMode = new TimeLimitMode(ui, sc);
-                    try {
-                        timeLimitMode.startTimeLimitMode(testText, textSelector.getDifficultyLevel());
-                    } catch (InterruptedException e) {
-                        ui.showErrorMessage(e.getMessage());
-                    }
-
-                    // normal mode
-                } else {
-                    NormalMode normalMode = new NormalMode(
-                            ui, sc, typingTargetList, typingTargets, state, autoAdjust, typingAccuracy
-                    );
-                    normalMode.startNormalMode(testText);
+            case "timeLimit":
+                testText = textSelector.selectText();
+                TimeLimitMode timeLimitMode = new TimeLimitMode(ui, sc);
+                try {
+                    timeLimitMode.startTimeLimitMode(testText, textSelector.getDifficultyLevel());
+                } catch (InterruptedException e) {
+                    ui.showErrorMessage(e.getMessage());
                 }
-
                 ui.showEndGame();
                 break;
-
-                // Catch exceptions
-            } else {
+            case "normal":
+                testText = textSelector.selectText();
+                NormalMode normalMode = new NormalMode(
+                        ui, sc, typingTargetList, typingTargets, state, autoAdjust, typingAccuracy
+                );
+                normalMode.startNormalMode(testText);
+                ui.showEndGame();
+                break;
+            default:
                 ui.showErrorMessage("Please enter a valid mode: 'normal', 'timeLimit', or 'zen' or 'custom'.");
+                continue;
             }
+            break;
         }
     }
 }
