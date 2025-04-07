@@ -36,11 +36,6 @@ public class State {
         return formattedList;
     }
 
-    private void setHighScoreList(ArrayList<Double> newHighScoreList) {
-        highScoreList = newHighScoreList;
-        assert highScoreList.equals(newHighScoreList) : "highscorelist should be updated";
-    }
-
     public void updateHighScore(Double accuracy, int wpm) throws IOException {
         double newHighScore = accuracy * wpm;
         newHighScore = Double.parseDouble(df.format(newHighScore));

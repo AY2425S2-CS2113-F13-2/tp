@@ -1,0 +1,25 @@
+@startuml
+actor User
+participant Main
+participant Storage
+participant File
+
+User -> Main: start application
+Main -> Storage: new Storage("data/highscores.txt")
+activate Storage
+Storage -> File: create file if not exists
+deactivate Storage
+
+User -> Main: save high scores
+Main -> Storage: saveScoreList(highScores)
+activate Storage
+Storage -> File: write high scores to file
+deactivate Storage
+
+User -> Main: read high scores
+Main -> Storage: readHighScoreList()
+activate Storage
+Storage -> File: read high scores from file
+deactivate Storage
+Main -> User: return high scores
+@enduml
