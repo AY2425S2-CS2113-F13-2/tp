@@ -13,6 +13,9 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Command to handle adding of target speeds.
+ */
 public class TargetspeedaddCommand extends Command {
 
     @Override

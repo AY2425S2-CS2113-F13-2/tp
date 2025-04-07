@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Handles output of typingaccuracy.
+ * Command to handle output of typingaccuracy.
  */
 public class TypingAccuracyCommand extends Command {
 

@@ -14,6 +14,9 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Command for printing user's High Score.
+ */
 public class HighscoreCommand extends Command {
 
     @Override

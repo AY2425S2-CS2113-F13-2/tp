@@ -296,9 +296,9 @@ Advanced users are welcome to update data directly by editing that data file.
 * Set mode `normal`, `timeLimit`, `zen`, `custom`
 * Set difficulty level `easy`, `intermediate`, `difficult`
 * Set text length `short`, `medium`, `long`
-* Get typing accuracy `typingaccuracy`
 * Get high score `highscore`
 * Get high score list `highscorelist`
 * Add target speed `targetspeedadd`
 * Add target score `targetscoreadd`
 * Get milestone `milestone`
+* Exit application `exit`

@@ -272,7 +272,7 @@ The typing accuracy of the user is facilitated by `TypingAccuracy`. It implement
 
 Below is the sequence diagram for `TypingAccuracy`
 
-<img src="images/TypingAccuracySequenceDiagram.png" width="280" />
+<img src="images/TypingAccuracySequenceDiagram.png" width="500" />
 
 #### Design Considerations
 
