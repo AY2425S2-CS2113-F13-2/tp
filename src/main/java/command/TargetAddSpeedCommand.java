@@ -25,14 +25,12 @@ public class TargetspeedaddCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
-        ui.drawLine();
-        System.out.println(" Please enter a typing speed target you would like to hit (WPM)!");
-        ui.drawLine();
 
         try {
-            String targetSpeed = sc.nextLine().trim();
+            String targetSpeed = command.substring(17);
             long targetSpeedLong = Long.parseLong(targetSpeed);
             if (targetSpeedLong <= 0) {
                 throw new NumberFormatException();
@@ -41,9 +39,10 @@ public class TargetspeedaddCommand extends Command {
             typingTargetList.addTarget(typingTargetSpeed);
             typingTargets.update(typingTargetList);
             ui.showTargetAdded(typingTargetSpeed.getString());
+
         } catch (NumberFormatException e) {
             ui.drawLine();
-            System.out.println(" Invalid target speed entered. Please provide a positive valid integer!");
+            ui.showErrorMessage(" No/Invalid target speed entered. Please provide a positive valid integer!");
             ui.drawLine();
         }
     }
