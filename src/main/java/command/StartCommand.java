@@ -67,7 +67,7 @@ public class StartCommand extends Command {
                     NormalMode normalMode = new NormalMode(
                             ui, sc, typingTargetList, typingTargets, state, autoAdjust, typingAccuracy
                     );
-                    normalMode.startNormalMode(testText);
+                    normalMode.startNormalMode(testText, textSelector.getDifficultyLevel().name().toLowerCase());
                 }
 
                 ui.showEndGame();
