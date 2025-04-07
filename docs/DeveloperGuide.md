@@ -350,7 +350,7 @@ with corresponding session numbers.
   - **Pros:** More intuitive and easy for users to view and digest information
   - **Cons:** Requires additional logic for tracking and maintaining session count
 
-##Appendix: Requirements
+## Appendix: Requirements
 
 ### Product scope
 
