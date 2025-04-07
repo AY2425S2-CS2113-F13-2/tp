@@ -41,11 +41,11 @@ public class Parser {
         case "target list":
             return new TargetListCommand();
         default:
-            if (userInput.startsWith("target add speed")) {
+            if (userInput.equals("target add speed") || userInput.startsWith("target add speed ")) {
                 return new TargetAddSpeedCommand();
-            } else if (userInput.startsWith("target add score")) {
+            } else if (userInput.equals("target add score") || userInput.startsWith("target add score ")) {
                 return new TargetAddScoreCommand();
-            } else if (userInput.startsWith("target remove")) {
+            } else if (userInput.equals("target remove") || userInput.startsWith("target remove ")) {
                 return new TargetRemoveCommand();
             }
             throw new InvalidInputException("Invalid input");

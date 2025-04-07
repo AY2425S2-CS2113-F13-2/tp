@@ -1,13 +1,6 @@
 package parser;
 
-import command.StartCommand;
-import command.ExitCommand;
-import command.HighscoreCommand;
-import command.HighscoreListCommand;
-import command.MilestoneCommand;
-import command.TargetAddSpeedCommand;
-import command.TargetAddScoreCommand;
-import command.TargetListCommand;
+import command.*;
 import exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
@@ -42,17 +35,33 @@ class ParserTest {
     }
 
     @Test
+    void parseToCommand_progress_instantiateProgressCommand() {
+        assertInstanceOf(ProgressReportCommand.class, Parser.parseToCommand("progress"));
+    }
+
+    @Test
     void parseToCommand_targetaddspeed_instantiateTargetAddSpeedCommand() {
         assertInstanceOf(TargetAddSpeedCommand.class, Parser.parseToCommand("target add speed"));
+        assertInstanceOf(TargetAddSpeedCommand.class, Parser.parseToCommand("target add speed "));
+        assertInstanceOf(TargetAddSpeedCommand.class, Parser.parseToCommand("target add speed 88"));
     }
 
     @Test
     void parseToCommand_targetaddscore_instantiateTargetAddScoreCommand() {
         assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("target add score"));
+        assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("target add score "));
+        assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("target add score 42"));
     }
 
     @Test
-    void parseToCommand_targetlist_instantiateListtargetsCommand() {
+    void parseToCommand_targetremove_instantiateTargetRemoveCommand() {
+        assertInstanceOf(TargetRemoveCommand.class, Parser.parseToCommand("target remove"));
+        assertInstanceOf(TargetRemoveCommand.class, Parser.parseToCommand("target remove "));
+        assertInstanceOf(TargetRemoveCommand.class, Parser.parseToCommand("target remove 1"));
+    }
+
+    @Test
+    void parseToCommand_targetlist_instantiateTargetListCommand() {
         assertInstanceOf(TargetListCommand.class, Parser.parseToCommand("target list"));
     }
 
@@ -60,6 +69,8 @@ class ParserTest {
     void parseToCommand_incorrectInput_throwInvalidInputException() {
         assertThrows(InvalidInputException.class, () -> Parser.parseToCommand("invalidinput"));
         assertThrows(InvalidInputException.class, () -> Parser.parseToCommand(""));
+        assertThrows(InvalidInputException.class, () -> Parser.parseToCommand("target add"));
+        assertThrows(InvalidInputException.class, () -> Parser.parseToCommand("target delete"));
     }
 
 
