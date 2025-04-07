@@ -5,34 +5,34 @@ skinparam classAttributeIconSize 0
 
 abstract "{abstract}\nCommand" {
 
-    {abstract} +execute()
+    {abstract} +execute(...)
     +isExit()
     }
 
     class ExitCommand {
-    +execute()
+    +execute(...)
     +isExit()
     }
     class HighscoreCommand {
-    +execute()
+    +execute(...)
     }
     class ListtargetsCommand {
-    +execute()
+    +execute(...)
     }
     class MilestoneCommand {
-    +execute()
+    +execute(...)
     }
     class StartCommand {
-    +execute()
+    +execute(...)
     }
     class TargetscoreaddCommand {
-    +execute()
+    +execute(...)
     }
     class TargetspeedaddCommand {
-    +execute()
+    +execute(...)
     }
     class TypingAccuracyCommand {
-    +execute()
+    +execute(...)
     }
 
     "{abstract}\nCommand" <|-- ExitCommand
