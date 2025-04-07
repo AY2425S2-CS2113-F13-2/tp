@@ -38,6 +38,12 @@ public class StartCommand extends Command {
             TextSelector textSelector = new TextSelector(sc, ui);
             List<String> testText = null;
 
+            if (mode.equalsIgnoreCase("exit")) {
+                ui.showExit();
+                System.exit(0);
+                return;
+            }
+
             switch (mode) {
             case "zen":
                 ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
