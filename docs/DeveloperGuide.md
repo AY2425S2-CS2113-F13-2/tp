@@ -4,6 +4,8 @@
 
 The format of the Developer Guide and User Guide were inspired and adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3).
 
+The sample texts used in BoboType were generated using ChatGPT, an AI language model developed by OpenAI.
+
 ## Design
 ### Architecture
 
