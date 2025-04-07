@@ -157,9 +157,18 @@ Below is the simplified sequence diagram for ZenMode
 - **Alternate 1 (current choice):** Include stop_practice in word count
   - Pros: Easy to implement
   - Cons: May be confusing to users
-- **Alternate 1 (current choice):** Do not include stop_practice in word count
+- **Alternate 2:** Do not include stop_practice in word count
   - Pros: Less confusing to users
   - Cons: Less accurate word count and WPM
+
+**Aspect: Whether to clear screen:**
+
+- **Alternate 1 (current choice):** Do not clear screen
+  - Pros: Easy to implement
+  - Cons: More cluttered for users
+- **Alternate 2:** Clear screen
+  - Pros: More clean experience
+  - Cons: Unable to view previous attempts after starting a new one
 
 ### Custom Mode Feature
 
@@ -382,7 +391,7 @@ Below is a class diagram of Storage and State.
   - **Pros:** More intuitive and easy for users to view and digest information
   - **Cons:** Requires additional logic for tracking and maintaining session count
 
-##Appendix: Requirements
+## Appendix: Requirements
 
 ### Product scope
 

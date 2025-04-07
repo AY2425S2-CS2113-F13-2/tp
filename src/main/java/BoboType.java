@@ -6,7 +6,7 @@ import storage.TypingTargets;
 import storage.State;
 import storage.Storage;
 import storage.ProgressReport;
-import modes.TypingTimer;
+import typing.TypingTimer;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;
 import ui.Ui;
@@ -33,7 +33,7 @@ public class BoboType {
     private final ProgressReport progressReport;
 
 
-    public BoboType(String filepath) throws IOException {
+    public BoboType(String filepath) {
         Storage storage = new Storage(filepath);
         state = new State(storage);
         ui = new Ui(state);
@@ -64,7 +64,7 @@ public class BoboType {
                 );
                 isExit = c.isExit();
             } catch (InvalidInputException e) {
-                ui.showInvalidInputMessage();
+                ui.showErrorMessage("Invalid command entered. Please provide a valid input!");
             }
         }
     }

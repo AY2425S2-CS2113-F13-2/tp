@@ -174,7 +174,7 @@ ____________________________________________________________
 
 
 ### Get High Score: `highscore`
-Gets back the highest score of the user across all attempts of `normal` mode.
+Gets back the highest score of the user across all attempts of normal mode.
 Highscore is calculated based on the WPM * typingAccuracy of the user.
 
 Format: `highscore`
@@ -198,27 +198,76 @@ Example:
 
 `3. 12.7`
 
-### Add Target Speed: `targetspeedadd`
-Add a target speed (WPM) to hit. Users will be informed when they hit their target speed.
+### Add Target Speed: `target add speed`
+Add a target speed (WPM) to hit. Users will be informed when they hit their target speed in normal mode.
 
-Format: `targetspeedadd`
-
-Example:
-
-`Please enter a typing speed target you would like to hit (WPM)!`
-
-`Type an integer (e.g., 60)`
-
-### Add Target Score: `targetscoreadd`
-Add a target score (effective WPM) to hit. Users will be informed when they hit their target score.
-
-Format: `targetscoreadd`
+Format: `target add speed SPEED`
 
 Example:
 
-`Please enter a typing score target you would like to hit (Effective WPM)!`
+`target add speed 88`
 
-`Type an integer (e.g., 60)`
+Expected output:
+```
+____________________________________________________________
+ Target added!
+ Target Speed (WPM): 88 | Not Achieved
+____________________________________________________________
+```
+
+### Add Target Score: `target add score`
+Add a target score (effective WPM) to hit. Users will be informed when they hit their target score in normal mode.
+
+Format: `target add score SCORE`
+
+Example:
+
+`target add score 42`
+
+Expected output:
+```
+____________________________________________________________
+ Target added!
+ Target Score (Effective WPM): 42 | Not Achieved
+____________________________________________________________
+```
+
+### List Targets: `target list`
+Print a list of all the targets inputted by the user and shows whether they have been achieved.
+
+Example:
+
+`target list`
+
+Format: `target list`
+
+Expected output:
+
+```
+____________________________________________________________
+ Here is your list of targets!
+ 1. Target Speed (WPM): 88 | Not Achieved
+ 2. Target Score (Effective WPM): 42 | Not Achieved
+____________________________________________________________
+```
+
+### Remove Target: `target remove`
+Remove targets from the target list according to the target index.
+
+Format: `target remove TARGET_INDEX`
+
+Example:
+
+`target remove 1`
+
+Expected output:
+
+```
+____________________________________________________________
+ Target removed!
+ Target Speed (WPM): 88 | Not Achieved
+____________________________________________________________
+```
 
 ### View Milestone: `milestone`
 Displays the user's current milestone, which reflects the default typing difficulty. This difficulty level is 
@@ -294,16 +343,15 @@ Bobotype data is saved in the hard disk automatically after any command that cha
 There is no need to save manually.
 
 ### Editing the data file
-Bobotype data is saved as a text file `data/bobotype.txt`. 
-Advanced users are welcome to update data directly by editing that data file.
+Bobotype data is saved in various text files, namely in`data/BoboType.txt`, `data/milestones.txt`, `data/progress.txt`, and, `data/typingtargets.txt`. 
+Advanced users are welcome to update data directly by editing these data files.
 
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Install Bobotype on the other computer and replace the save file in the data directory with 
-your existing save file.
+**A**: Install Bobotype on the other computer and replace `data` directory with your existing `data` directory.
 
 ## Command Summary
 
@@ -313,7 +361,9 @@ your existing save file.
 * Set text length `short`, `medium`, `long`
 * Get high score `highscore`
 * Get high score list `highscore list`
-* Add target speed `targetspeedadd`
-* Add target score `targetscoreadd`
+* Add target speed `target add speed SPEED`
+* Add target score `target add score SCORE`
+* List targets `target list`
+* Remove target `target remove TARGET_INDEX`
 * Get milestone `milestone`
 * Exit application `exit`

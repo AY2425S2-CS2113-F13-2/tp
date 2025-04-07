@@ -1,9 +1,0 @@
-Score|45|true
-Score|50|true
-Speed|50|true
-Speed|10|true
-Speed|50|true
-Score|100|false
-Score|7|false
-Speed|1|false
-Score|11|false
