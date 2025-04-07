@@ -10,7 +10,7 @@ class Storage {
 }
 
 class State {
-    - storage: storage
+    - storage: Storage
     - highScoreList: ArrayList<Double>
     - <u>df: DecimalFormat
     + getHighScore()
