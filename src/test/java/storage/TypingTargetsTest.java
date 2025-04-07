@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TypingTargetsTest {
 
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private static final String testFilePath = "data/testTypingTargets.txt";
+    private final static String testFilePath = "data/testTypingTargets.txt";
     private TypingTargets typingTargets;
 
     @BeforeEach

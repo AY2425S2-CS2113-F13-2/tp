@@ -200,7 +200,9 @@ public class UiTest {
         ui.showTimeLimitModeInstructions(ui);
         String output = outputStream.toString();
         assertTrue(output.contains("Welcome to timeLimit mode."));
-        assertTrue(output.contains("*** In this mode, you can view your input ONLY after you finish your sentence ***"));
+        assertTrue(
+                output.contains("*** In this mode, you can view your input ONLY after you finish your sentence ***")
+        );
         assertTrue(output.contains("*** i.e when ENTER is pressed!!! ***"));
         assertTrue(output.contains("Are you ready? The game will begin in..."));
         assertTrue(output.contains("3"));
