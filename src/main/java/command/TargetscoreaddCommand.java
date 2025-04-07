@@ -27,16 +27,25 @@ public class TargetscoreaddCommand extends Command {
             State state,
             AutoAdjust autoAdjust
     ) throws IOException {
-        System.out.println("Please enter a typing score target you would like to hit (Effective WPM)!");
+
+        ui.drawLine();
+        System.out.println(" Please enter a typing score target you would like to hit (Effective WPM)!");
+        ui.drawLine();
+
         try {
             String targetScore = sc.nextLine().trim();
             long targetScoreLong = Long.parseLong(targetScore);
+            if (targetScoreLong <= 0) {
+                throw new NumberFormatException();
+            }
             TypingTargetScore typingTargetScore = new TypingTargetScore(targetScoreLong, false);
             typingTargetList.addTarget(typingTargetScore);
             typingTargets.update(typingTargetList);
             ui.showTargetAdded(typingTargetScore.getString());
         } catch (NumberFormatException e) {
-            System.out.println("Invalid target score entered. Please provide a valid integer!");
+            ui.drawLine();
+            System.out.println(" Invalid target score entered. Please provide a valid integer!");
+            ui.drawLine();
         }
     }
 }

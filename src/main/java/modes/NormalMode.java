@@ -86,16 +86,26 @@ public class NormalMode {
 
         // Handle typing targets
         for (TypingTarget typingTarget : typingTargetList.getTypingTargetList()) {
-            if (typingTarget instanceof TypingTargetSpeed) {
-                if (typingSpeedWPM >= typingTarget.getTarget()) {
-                    typingTarget.setHit(true);
+            // Check if typing target has not been hit previously
+            if (!typingTarget.getHit()) {
+
+                // Check if typing target has been hit in this round
+                if (typingTarget instanceof TypingTargetSpeed) {
+                    if (typingSpeedWPM >= typingTarget.getTarget()) {
+                        typingTarget.setHit(true);
+                        typingTarget.printHit();
+                    }
+                } else if (typingTarget instanceof TypingTargetScore) {
+                    if (typingScore >= typingTarget.getTarget()) {
+                        typingTarget.setHit(true);
+                        typingTarget.printHit();
+                    }
                 }
-                typingTarget.printHit();
-            } else if (typingTarget instanceof TypingTargetScore) {
-                if (typingScore >= typingTarget.getTarget()) {
-                    typingTarget.setHit(true);
+
+                // Check if typing target has still not been hit
+                if (!typingTarget.getHit()) {
+                    typingTarget.printHit();
                 }
-                typingTarget.printHit();
             }
         }
         typingTargets.update(typingTargetList);

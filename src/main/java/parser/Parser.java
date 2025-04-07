@@ -2,17 +2,7 @@ package parser;
 
 //@@author ravi-viswa105
 
-import command.Command;
-import command.StartCommand;
-import command.TypingAccuracyCommand;
-import command.ExitCommand;
-import command.HighscoreCommand;
-import command.HighscorelistCommand;
-import command.MilestoneCommand;
-import command.TargetspeedaddCommand;
-import command.TargetscoreaddCommand;
-import command.ListtargetsCommand;
-import command.ProgressReportCommand;
+import command.*;
 
 import exceptions.InvalidInputException;
 
@@ -34,6 +24,7 @@ public class Parser {
         case "milestone" -> new MilestoneCommand();
         case "targetspeedadd" -> new TargetspeedaddCommand();
         case "targetscoreadd" -> new TargetscoreaddCommand();
+        case "targetremove" -> new TargetremoveCommand();
         case "listtargets" -> new ListtargetsCommand();
         case "progress" -> new ProgressReportCommand();
         default -> throw new InvalidInputException("Invalid input");
