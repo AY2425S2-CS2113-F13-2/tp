@@ -45,6 +45,6 @@ run {
     enableAssertions = true
 }
 
-run{
+run {
     standardInput = System.in
 }

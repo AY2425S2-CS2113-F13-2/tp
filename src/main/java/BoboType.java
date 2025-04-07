@@ -64,6 +64,7 @@ public class BoboType {
                 );
                 isExit = c.isExit();
             } catch (InvalidInputException e) {
+                ui.drawLine();
                 ui.showErrorMessage("Invalid command entered. Please provide a valid input!");
                 ui.drawLine();
 

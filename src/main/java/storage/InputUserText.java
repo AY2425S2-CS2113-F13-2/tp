@@ -28,7 +28,9 @@ public class InputUserText {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.isEmpty()) {
-                    System.out.println("Please input characters");
+                    ui.drawLine();
+                    System.out.println(" Please input characters!");
+                    ui.drawLine();
                     continue;
                 }
                 if (line.equalsIgnoreCase("exit")) {
@@ -37,6 +39,7 @@ public class InputUserText {
                 list.add(line);
                 fileWriter.write(line + System.lineSeparator());
             }
+            ui.drawLine();
             ui.showTextSaved();
         } catch (IOException e) {
             e.printStackTrace();

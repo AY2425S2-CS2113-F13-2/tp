@@ -41,7 +41,7 @@ public class TargetRemoveCommand extends Command {
 
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             ui.drawLine();
-            ui.showErrorMessage(" No/invalid target index entered. Please input a valid integer target index!");
+            ui.showErrorMessage("No/invalid target index entered. Please input a valid integer target index!");
             ui.drawLine();
         }
     }

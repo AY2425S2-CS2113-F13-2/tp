@@ -47,7 +47,7 @@ public class TargetAddSpeedCommand extends Command {
 
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.drawLine();
-            ui.showErrorMessage(" No/Invalid target speed entered. Please provide a positive valid integer!");
+            ui.showErrorMessage("No/Invalid target speed entered. Please provide a positive valid integer!");
             ui.drawLine();
         }
     }

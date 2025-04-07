@@ -82,20 +82,22 @@ public class ProgressReport {
      */
     public void show() {
         if (scores.isEmpty()) {
+            ui.drawLine();
             ui.showErrorMessage("No past data found!");
             ui.drawLine();
             return;
         }
 
-        System.out.println("Typing Progress (Past " + scores.size() + " sessions):");
-        System.out.println("Each '█' represents 5 points");
+        ui.drawLine();
+        System.out.println(" Typing Progress (Past " + scores.size() + " sessions):");
+        System.out.println(" Each '█' represents 5 points");
 
         int startIdx = Math.max(0, scores.size() - MAX_ENTRIES); // Only keep last 10
         for (int i = scores.size() - 1; i >= startIdx; i--) {
             int sessionNumber = sessionCounter - (scores.size() - i - 1);
             int score = scores.get(i);
             String bar = "█".repeat(score / 5);
-            System.out.printf("Session %2d: %-60s (%d pts)%n", sessionNumber, bar, score);
+            System.out.printf(" Session %2d: %-60s (%d pts)%n", sessionNumber, bar, score);
         }
 
         ui.drawLine();

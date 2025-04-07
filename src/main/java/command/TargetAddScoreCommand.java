@@ -46,7 +46,7 @@ public class TargetAddScoreCommand extends Command {
 
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             ui.drawLine();
-            ui.showErrorMessage(" No/Invalid target score entered. Please provide a valid integer!");
+            ui.showErrorMessage("No/Invalid target score entered. Please provide a valid integer!");
             ui.drawLine();
         }
     }

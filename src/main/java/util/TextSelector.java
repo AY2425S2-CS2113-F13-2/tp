@@ -66,11 +66,13 @@ public class TextSelector {
                         difficultyLevel = DifficultyLevel.valueOf(input);
                         break;
                     } catch (IllegalArgumentException e) {
+                        ui.drawLine();
                         ui.showErrorMessage("Please enter a valid difficulty level.");
                     }
                 }
                 break;
             } else {
+                ui.drawLine();
                 ui.showErrorMessage("Please type 'override' or leave blank to proceed with default.");
             }
         }
@@ -91,6 +93,7 @@ public class TextSelector {
                 textLength = TextLength.valueOf(input);
                 break;
             } catch (IllegalArgumentException e) {
+                ui.drawLine();
                 ui.showErrorMessage("Please enter a valid text length.");
             }
         }
