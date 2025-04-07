@@ -13,7 +13,7 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class TargetscoreaddCommand extends Command {
+public class TargetAddScoreCommand extends Command {
 
     @Override
     public void execute(

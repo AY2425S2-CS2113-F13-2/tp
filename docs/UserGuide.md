@@ -183,10 +183,10 @@ Example:
 
 `Your high score is: 49.0`
 
-### Get High Score List: `highscorelist`
+### Get High Score List: `highscore list`
 Gets back the top 3 highest score of the user across all attempts.
 
-Format: `highscorelist`
+Format: `highscore list`
 
 Example:
 
@@ -312,7 +312,7 @@ Advanced users are welcome to update data directly by editing that data file.
 * Set text length `short`, `medium`, `long`
 * Get typing accuracy `typingaccuracy`
 * Get high score `highscore`
-* Get high score list `highscorelist`
+* Get high score list `highscore list`
 * Add target speed `targetspeedadd`
 * Add target score `targetscoreadd`
 * Get milestone `milestone`

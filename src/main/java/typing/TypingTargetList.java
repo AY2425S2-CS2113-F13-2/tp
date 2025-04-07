@@ -25,6 +25,10 @@ public class TypingTargetList {
         this.typingTargetList.add(typingTarget);
     }
 
+    public TypingTarget getTarget(int targetNo) {
+        return this.typingTargetList.get(targetNo - 1);
+    }
+
     public void removeTarget(int targetNo) {
         this.typingTargetList.remove(targetNo - 1);
     }

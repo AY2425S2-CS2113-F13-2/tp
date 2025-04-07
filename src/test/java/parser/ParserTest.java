@@ -6,9 +6,9 @@ import command.ExitCommand;
 import command.HighscoreCommand;
 import command.HighscorelistCommand;
 import command.MilestoneCommand;
-import command.TargetspeedaddCommand;
-import command.TargetscoreaddCommand;
-import command.ListtargetsCommand;
+import command.TargetAddSpeedCommand;
+import command.TargetAddScoreCommand;
+import command.TargetListCommand;
 import exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
@@ -49,17 +49,17 @@ class ParserTest {
 
     @Test
     void parseToCommand_targetspeedadd_instantiateTargetspeedaddCommand() {
-        assertInstanceOf(TargetspeedaddCommand.class, Parser.parseToCommand("targetspeedadd"));
+        assertInstanceOf(TargetAddSpeedCommand.class, Parser.parseToCommand("targetspeedadd"));
     }
 
     @Test
     void parseToCommand_targetscoreadd_instantiateTargetscoreaddCommand() {
-        assertInstanceOf(TargetscoreaddCommand.class, Parser.parseToCommand("targetscoreadd"));
+        assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("targetscoreadd"));
     }
 
     @Test
     void parseToCommand_listtargets_instantiateListtargetsCommand() {
-        assertInstanceOf(ListtargetsCommand.class, Parser.parseToCommand("listtargets"));
+        assertInstanceOf(TargetListCommand.class, Parser.parseToCommand("listtargets"));
     }
 
     @Test

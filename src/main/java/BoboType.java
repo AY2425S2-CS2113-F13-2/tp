@@ -61,7 +61,7 @@ public class BoboType {
                 Command c = Parser.parseToCommand(input);
                 c.execute(
                         ui, sc, milestones, typingTimer, typingAccuracy,
-                        typingTargetList, typingTargets, state, autoAdjust
+                        typingTargetList, typingTargets, state, autoAdjust, input
                 );
                 isExit = c.isExit();
             } catch (InvalidInputException e) {

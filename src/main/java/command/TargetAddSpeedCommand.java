@@ -13,7 +13,7 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class TargetspeedaddCommand extends Command {
+public class TargetAddSpeedCommand extends Command {
 
     @Override
     public void execute(

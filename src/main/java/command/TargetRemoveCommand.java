@@ -6,13 +6,14 @@ import storage.Milestones;
 import storage.State;
 import storage.TypingTargets;
 import typing.TypingAccuracy;
+import typing.TypingTarget;
 import typing.TypingTargetList;
 import ui.Ui;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class TargetremoveCommand extends Command {
+public class TargetRemoveCommand extends Command {
 
     @Override
     public void execute(
@@ -24,28 +25,23 @@ public class TargetremoveCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
 
-        ui.drawLine();
-        typingTargetList.print();
-        System.out.println(" Please enter the index of the target you would like to remove!");
-        ui.drawLine();
-
         try {
-            String targetNo = sc.nextLine().trim();
+            String targetNo = command.substring(14);
             int targetNoInt = Integer.parseInt(targetNo);
-            if (targetNoInt > typingTargetList.getTargetCount()) {
+            TypingTarget target = typingTargetList.getTarget(targetNoInt);
+            if (targetNoInt < 1 || targetNoInt > typingTargetList.getTargetCount()) {
                 throw new ArrayIndexOutOfBoundsException();
             }
             typingTargetList.removeTarget(targetNoInt);
-            ui.drawLine();
-            System.out.println(" Target removed!");
-            ui.drawLine();
+            ui.showTargetRemoved(target.getString());
 
-        } catch (NumberFormatException | IndexOutOfBoundsException e) { // Invalid target index inputted
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             ui.drawLine();
-            System.out.println(" Invalid target index entered. Please input a valid integer target index!");
+            ui.showErrorMessage(" No/invalid target index entered. Please input a valid integer target index!");
             ui.drawLine();
         }
     }

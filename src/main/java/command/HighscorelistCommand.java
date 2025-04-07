@@ -26,7 +26,8 @@ public class HighscorelistCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
         ui.showHighScoreList();
     }
