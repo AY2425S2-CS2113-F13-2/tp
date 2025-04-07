@@ -90,11 +90,9 @@ public class Ui {
      * @param typingAccuracy Typing Accuracy of user in decimal (0.0 to 1.0)
      */
     public void showTypingAccuracy(double typingAccuracy) {
-        drawLine();
-        System.out.print(" Your typing accuracy is: ");
+        System.out.print(" Typing accuracy: ");
         System.out.printf("%.2f", typingAccuracy * 100);
         System.out.println("%");
-        drawLine();
     }
 
     public void showHighScore() {
@@ -126,11 +124,13 @@ public class Ui {
         System.out.println("""
                  You finished the practice! Please type\s
                 \t - 'typingaccuracy' to view your typing accuracy\s
+                \t    of your previous typing test in normal mode\s
                 \t - 'highscore' to view your high score\s
                 \t - 'highscorelist' to view your top 3 high scores\s
                 \t - 'milestone' to view your default difficulty level\s
                 \t - 'targetspeedadd' to add a typing speed target\s
                 \t - 'targetscoreadd' to add a typing score target\s
+                \t - 'progress' to view your typing progress\s
                 \t - 'exit' to exit or\s
                 \t - 'start' to start the new practice.""");
         drawLine();
@@ -142,8 +142,15 @@ public class Ui {
         System.out.println("""
                 Welcome to Zen Mode, you can type out anything to your
                 heart's content and find out your typing speed.
-                Typing 'start' will start the typingTimer and typing the command
-                'stop_practice' will stop the practice.""");
+                Typing 'start' on a new line will start the typingTimer and typing the command
+                'stop_practice' on a new line will stop the practice.""");
+        drawLine();
+    }
+
+    public void showZenModeStartPrompt() {
+        drawLine();
+        System.out.println("""
+                Please type 'start' on a new line to start Zen mode""");
         drawLine();
     }
 
@@ -239,6 +246,7 @@ public class Ui {
             ui.showErrorMessage(e.getMessage());
         }
     }
+
     public void showString(String s) {
         System.out.println(s);
     }

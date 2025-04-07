@@ -131,8 +131,9 @@ Example:
 
 ` Type: '1' or '2' or '3' `
 
-### Set Zen Typing Speed: `zen`
-Type as long as desired. Get the typing speed of the user's attempt.
+### Zen Mode: `zen`
+Type as long as desired. Get the typing speed of the user's attempt. The command stop_practice is included in the word 
+count of the test and calculation of typing speed.
 
 Format: `zen`
 
@@ -172,15 +173,6 @@ Example:
 
 ` Type: 'easy' or 'intermediate' or 'difficult' `
 
-### Get Typing Accuracy: `typingaccuracy`
-Returns the typing accuracy of the user's previous typing test.
-
-Format: `typingaccuracy`
-
-Example: 
-
-` Your typing accuracy is: 39.285714285714285%`
-
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts of `normal` mode.
 Highscore is calculated based on the WPM * typingAccuracy of the user.
@@ -189,7 +181,7 @@ Format: `highscore`
 
 Example: 
 
-` Your high score is: 49.0`
+`Your high score is: 49.0`
 
 ### Get High Score List: `highscorelist`
 Gets back the top 3 highest score of the user across all attempts.
@@ -198,7 +190,7 @@ Format: `highscorelist`
 
 Example:
 
-` Top 3 High Scores: `
+`Top 3 High Scores:`
 
 `1. 49.0`
 
@@ -241,10 +233,24 @@ Current milestone: intermediate
 ____________________________________________________________
 ```
 
-### View Progress Report: `[Coming Soon]`
-Displays a report on the user's past 10 runs in normal mode.
+### View Progress Report: `progress`
+Displays a report on the user's scores from the past 10 runs in normal mode. Scores are represented using a bar graph 
+where each '█' corresponds to 5 points.
 
 Format: `progress`
+
+Example: 
+```
+Typing Progress (Past 5 sessions):
+Each '█' represents 5 points
+Session 5: ████████████████████                         (97 pts)
+Session 4: ███████████████████████                     (105 pts)
+Session 3: ███████████                                  (55 pts)
+Session 2: ██████████████████                           (85 pts)
+Session 1: █████████████████████████████               (130 pts)
+____________________________________________________________
+
+```
 
 ### Set Custom Mode: `custom`
 Allows user to input custom text to practice typing.

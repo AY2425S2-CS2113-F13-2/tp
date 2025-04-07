@@ -21,9 +21,15 @@ The API of this component is specified in `Ui.java`.
 The API of this component is specified in `Command` package
 
 The class diagram of `Command` is shown below.
-<img src="images/CommandClassDigram.png">
-## Implementation
+<img src="images/CommandClassDiagram.png">
 
+## Logic
+
+Here’s a (partial) class diagram of the parsing logic:
+
+<img src="images/LogicClassDiagram.png">
+
+## Implementation
 
 ### Normal Mode Feature
 
@@ -31,7 +37,7 @@ The class diagram of `Command` is shown below.
 
 Normal Mode is facilitated by `NormalMode`. Additionally, it implements the following operations:
 
-- `NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust, TypingAccuracy typingAccuracy)` - Constructor to create a NormalMode object. 
+- `NormalMode(Ui ui, Scanner sc, TypingTargetList typingTargetList, State state, AutoAdjust autoAdjust, TypingAccuracy typingAccuracy)` - Constructor to create a NormalMode object.
 - `startNormalMode(List<String> testText)` - Runs the normal typing test, displaying test text, tracking user input, and computing typing statistics.
 
 Usage Scenario
@@ -53,7 +59,7 @@ Step 5: The typing timer stops, and the typing statistics are calculated:
 - Typing accuracy
 - Overall typing score (calculated using WPM and accuracy)
 
-These results are displayed using UI methods (`ui.showTypingSpeedWPM()`, `ui.showTypingSpeedCPM()`, and `ui.showTypingScore()`).
+These results are displayed using UI methods (`ui.showTypingSpeedWPM()`, `ui.showTypingSpeedCPM()`, `ui.showTypingAccuracy` and `ui.showTypingScore()`).
 
 Step 6: The program checks if the user has met any predefined typing targets stored in TypingTargetList:
 
@@ -69,16 +75,16 @@ Step 9: The user returns to the main menu after reviewing their results.
 
 Below is the sequence diagram of normal mode.
 
-<img src ="images/SeqDiagramNormalMode.png" width="500" />
+<img src ="images/SeqDiagramNormalMode.png" width="1000" />
 
-### TimeLimit Mode Feature 
+### TimeLimit Mode Feature
 
-#### Implementation 
+#### Implementation
 
 TimeLimit Mode is facilitated by `TimeLimitMode`. Additionally, it implements the following operations:
 
-- `TimeLimitMode(Ui ui, Scanner sc)` - Constructor to create TimeLimitMode object 
-- `startTimeLimitMode(List<String> testText, DifficultyLevel difficulty)` - Runs the time-limited typing test, displaying test text, tracking user input, and enforcing a time limit. 
+- `TimeLimitMode(Ui ui, Scanner sc)` - Constructor to create TimeLimitMode object
+- `startTimeLimitMode(List<String> testText, DifficultyLevel difficulty)` - Runs the time-limited typing test, displaying test text, tracking user input, and enforcing a time limit.
 - `waitForInput(ClockThread clockThread, BufferedReader reader, long timeLimit)` - Waits for user input within the given time limit and returns the typed text.
 - `getNumOfCorrect()` - Returns the number of correctly typed lines.
 - `getNumOfLines()` - Returns the total number of lines in the test text.
@@ -107,7 +113,7 @@ Step 7: The user presses Enter to return to the main menu.
 
 Below is the sequence diagram of time limit mode.
 
-<img src ="images/SeqDiagramTimeLimitMode.png" width="500" />
+<img src ="images/SeqDiagramTimeLimitMode.png" width="10000" />
 
 ### Zen Mode Feature
 
@@ -126,13 +132,14 @@ Step 1. The user selects Zen Mode when selecting the practice mode, instantiatin
 Step 2. The user types `I am typing a sample text here`, calling `wordCounter.countWords` to count the number of words
 in the user's input and adds to the `wordCount`.
 
-Step 3. The user types `stop_practice`, ending the loop and computes the typing speed.
+Step 3. The user types `stop_practice`, ending the loop and computes the typing speed. stop_practice is included in the
+word count as the timer runs until the user enters stop_practice.
 
 Step 4. The typing practice results is displayed to the user with `UI.showZenModeEndGame`
 
-Below is the sequence diagram for ZenMode
+Below is the simplified sequence diagram for ZenMode
 
-<img src="images/ZenModeSequenceDiagram.png" width="280" />
+<img src="images/ZenModeSequenceDiagram.png" width="500" />
 
 ### Custom Mode Feature
 
@@ -181,24 +188,24 @@ Additionally, it implements the following operations:
 - `Milestones(String filePath)` - Loads milestone progress from a file (or initializes it if not found).
 
 - `checkAndUpdate(String difficulty, double wpm)` - Checks whether the user has hit the milestone (e.g., 60 WPM in easy)
-and updates their progress if so. Promotes to the next difficulty and writes to file.
+  and updates their progress if so. Promotes to the next difficulty and writes to file.
 
 - `getCurrentDifficulty()` - Returns the current default difficulty that will be suggested for practice.
 
-- `evaluate(int wpm)` - Invokes checkAndUpdate to determine whether the user should be promoted. If a milestone is hit, 
-the user is congratulated with Ui.showMilestoneAchieved.
+- `evaluate(int wpm)` - Invokes checkAndUpdate to determine whether the user should be promoted. If a milestone is hit,
+  the user is congratulated with Ui.showMilestoneAchieved.
 
 Given below is an example usage scenario of how Milestones feature behave at each step.
-Step 1. The user starts a practice session in normal or timedLimit mode. `Milestones.getCurrentDifficulty()` is used to 
+Step 1. The user starts a practice session in normal or timedLimit mode. `Milestones.getCurrentDifficulty()` is used to
 determine their default difficulty (e.g., "easy").
 
 Step 2. The user completes the round and achieves a sufficiently high WPM (e.g., 61 WPM in easy mode).
 `AutoAdjust.evaluate(wpm)` is called at the end of the session.
 
-Step 3. `Milestones.checkAndUpdate(difficulty, wpm)` checks if the user qualifies for a milestone. Since 61 WPM is the 
+Step 3. `Milestones.checkAndUpdate(difficulty, wpm)` checks if the user qualifies for a milestone. Since 61 WPM is the
 goal for "easy"(60), the milestone is achieved.
 
-Step 4. The Milestones class promotes the user to the next difficulty (e.g., from "easy" to "intermediate") and updates 
+Step 4. The Milestones class promotes the user to the next difficulty (e.g., from "easy" to "intermediate") and updates
 `data/milestones.txt`.
 `Ui.showMilestoneAchieved(...)` is then called to notify the user of their achievement and promotion.
 
@@ -240,9 +247,9 @@ Additionally, it implements the following operations:
 
 Given below is an example usage scenario of how Highscore feature behave at each step.
 
-Step 1. The user starts a practice session in normal mode. 
+Step 1. The user starts a practice session in normal mode.
 
-Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated. 
+Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated.
 `state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` is called at the end of the session.
 
 Step 3. `state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` adds the new highscore to the highscore list.
@@ -251,7 +258,6 @@ Then, the list is sorted into the top 3 highscores.
 Step 4. `getHighscore()` will take the top highscore in the highscore list and save it.
 
 Step 5. `state.showHighscore()` displays the highscore to the user.
-
 
 
 ### Typing Accuracy
@@ -268,11 +274,9 @@ Below is the sequence diagram for `TypingAccuracy`
 
 <img src="images/TypingAccuracySequenceDiagram.png" width="280" />
 
-Below is the class diagram for `TypingAccuracy`
-
-<img src="images/TypingAccuracyClassDiagram.png" width="500" />
-
 #### Design Considerations
+
+**Aspect: How to measure typing accuracy**
 
 - **Alternative 1 (current choice):** Measure typing accuracy only up to the test text or user input depending on which
   input is shorter
@@ -281,29 +285,57 @@ Below is the class diagram for `TypingAccuracy`
   - **Pros:** More accurate comparison between user and test text
   - **Cons:** Less intuitive for users
 
+**Aspect: When to measure typing accuracy**
+
+- **Alternative 1 (current choice):** Only measure typing accuracy in normal mode
+  - **Pros:** More streamlined for users
+  - **Cons:** Less information for users in other mods
+- **Alternative 2:** Measure typing accuracy in all modes
+  - **Pros:** More options available for users
+  - **Cons:** Shows redundant information (e.g. You must achieve 100% accuracy in TimeLimit mode to pass anyway)
+
 
 ### Progress Report
-#### Planned Implementation
+#### Implementation
 
 Progress Report is facilitated by `ProgressReport`.
 Additionally, it implements the following operations:
 
-- `getProgressReport()` - loads the past 10 scores from the ProgressReport List.
-- `updateProgressReport()` - updates the ProgressReport list to store the score from the past 10 runs.
-- `showProgressReport()` - displays the ProgressReport to the user.
-- `resetProgress()` - Reset all stored scores and empties the ProgressReport list.
+- `update(double score)` - adds the latest's session score to the list and saves it to the `progress.txt` file. Removes 
+the oldest entry if maximum number of stored sessions (10) is exceeded. Also increments a `sessionCounter`. 
+- `show()` - displays the most recent 10 attempts in a text-based vertical bar graph.
 
-Given below is an example usage scenario and how the Custom Mode behaves at each step.
+Given below is an example usage scenario and how Progress Report behaves at each step.
 
 Step 1. The user starts a practice session in normal mode.
 
-Step 2. The user completes the round and `updateProgressReport()` adds the new score to the list of past 10 practices. 
+Step 2. The user completes the round and `update(double score)` adds the new score to the list of past 10 practices.
 
-Step 3. `updateProgressReport()` updates the new score to the ProgressReport list.
+Step 3. `sessionCounter` is incremented to track the total number of sessions ever played, with progress data 
+persistently stored in `progress.txt`.
 
-Step 4. When user inputs the command `progress`, `showProgressReport()` displays the Report as a Graph.
+Step 4. When user inputs the command `progress`, `show()` displays the past 10 session scores as a vertical bar graph 
+with corresponding session numbers.
 
-Step 5. When user inputs command `resetprogress`, the ProgressReport list will clear.
+#### Design Considerations
+
+**Aspect: How to display progress data**
+
+- **Alternative 1:**  Display a list of scores from past runs in a simple table format
+  - **Pros:** Easier to implement and simple to read
+  - **Cons:** Less visual, harder for users to spot trends at a glance
+- **Alternative 2 (current choice):** Text-Based Vertical Bar Graph
+  - **Pros:** More visually engaging, allows users to quickly and easily observe trends
+  - **Cons:** Slightly harder to implement due to bar scaling
+
+**Aspect: How many past sessions to display**
+
+- **Alternative 1:** List out data of all sessions
+  - **Pros:** Provides user with a comprehensive understanding of their progress from the start
+  - **Cons:** Can be overwhelming or cluttered, especially with many sessions
+- **Alternative 2 (current choice):** Show past 10 sessions
+  - **Pros:** More intuitive and easy for users to view and digest information
+  - **Cons:** Requires additional logic for tracking and maintaining session count
 
 ## Product scope
 
@@ -321,7 +353,7 @@ Is motivated by progress tracking, stats, and milestone achievements.
 
 ### Value proposition
 
-Helps users practice and improve typing in a distraction-free CLI environment by offering a faster, 
+Helps users practice and improve typing in a distraction-free CLI environment by offering a faster,
 lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric users.
 
 ## User Stories
@@ -346,14 +378,15 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 ## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 17 or above installed.
-2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
-be able to accomplish most of the tasks faster using commands than using the mouse.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+   be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## Glossary
 
 - Mainstream OS: Windows, Linux, Unix, MacOS
-- WPM (Words Per Minute): A measure of typing speed, indicating how many words a user types per minute. 
+- WPM (Words Per Minute): A measure of typing speed, indicating how many words a user types per minute.
 - CPM (Characters Per Minute): A measure of typing speed based on the number of characters typed per minute.
+- score: WPM * Accuracy 
 
 ## Instructions for manual testing
 
@@ -361,7 +394,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 Given below are instructions to test the app manually.
 
-Note: These instructions only provide a starting point for testers to work on; testers are expected to do more 
+Note: These instructions only provide a starting point for testers to work on; testers are expected to do more
 exploratory testing.
 
 ### 1. Launch and Shutdown
@@ -471,6 +504,3 @@ Expected: The application should close cleanly without errors.
 2. Reopen the application.
 
 Expected: The app should start normally without corruption or data loss.
-
-
-
