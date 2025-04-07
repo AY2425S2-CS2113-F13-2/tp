@@ -214,7 +214,8 @@ public class Ui {
 
     public void showFinalMilestoneAchieved(int wpmGoal) {
         drawLine();
-        System.out.println(" Congrats! You have completed the max difficulty level by hitting a score of " + wpmGoal + " in difficult mode!");
+        System.out.println(" Congrats! You have completed the max difficulty level by hitting a score of " + wpmGoal +
+                " in difficult mode!");
     }
 
     public void showDefaultDifficultyPrompt(String difficultyLevel) {
