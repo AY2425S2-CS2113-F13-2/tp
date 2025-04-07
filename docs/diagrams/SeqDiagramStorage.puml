@@ -1,8 +1,8 @@
 @startuml
 actor User
-participant Main
-participant Storage
-participant File
+participant ":Main" as Main
+participant ":Storage" as Storage
+participant ":File" as File
 
 User -> Main: start application
 Main -> Storage: new Storage("data/highscores.txt")

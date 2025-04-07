@@ -35,7 +35,7 @@ Here’s a (partial) class diagram of the parsing logic:
 The API of this component is specified in `Storage.java`.
 The class diagram of `Storage` is shown below.
 
-<img src="images/StorageClassDiagram.png">
+<img src="images/SeqDiagramStorage.png">
 
 
 ## Implementation

@@ -1,12 +1,12 @@
 @startuml
 actor User
-participant Main
-participant CustomMode
-participant Ui
-participant TypingTimer
-participant InputUserText
-participant MarkedText
-participant WordCounter
+participant ":Main" as Main
+participant ":CustomMode" as CustomMode
+participant ":Ui" as Ui
+participant ":TypingTimer" as TypingTimer
+participant ":InputUserText" as InputUserText
+participant ":MarkedText" as MarkedText
+participant ":WordCounter" as WordCounter
 
 User -> Main: start application
 Main -> CustomMode: new CustomMode(ui, scanner)
