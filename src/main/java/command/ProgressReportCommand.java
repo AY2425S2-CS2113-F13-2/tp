@@ -27,7 +27,8 @@ public class ProgressReportCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
         ProgressReport progressReport = new ProgressReport("data/progress.txt", ui);
         progressReport.show();

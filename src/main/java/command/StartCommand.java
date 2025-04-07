@@ -29,7 +29,8 @@ public class StartCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
         while (true) {
             ui.chooseMode();
