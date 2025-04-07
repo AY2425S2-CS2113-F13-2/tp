@@ -208,8 +208,14 @@ public class Ui {
     public void showMilestoneAchieved(String difficulty, int wpmGoal) {
         drawLine();
         System.out.println(" Congrats! You hit the milestone:");
-        System.out.println(" -> Achieved " + wpmGoal + " WPM in " + difficulty + " mode!");
+        System.out.println(" -> Achieved a score of " + wpmGoal + " in " + difficulty + " mode!");
         System.out.println(" You've been promoted to a new difficulty level.");
+    }
+
+    public void showFinalMilestoneAchieved(int wpmGoal) {
+        drawLine();
+        System.out.println(" Congrats! You have completed the max difficulty level by hitting a score of " + wpmGoal +
+                " in difficult mode!");
     }
 
     public void showDefaultDifficultyPrompt(String difficultyLevel) {
