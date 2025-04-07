@@ -5,6 +5,7 @@ import storage.Milestones;
 import storage.TypingTargets;
 import storage.State;
 import storage.Storage;
+import storage.ProgressReport;
 import modes.TypingTimer;
 import typing.TypingAccuracy;
 import typing.TypingTargetList;

@@ -6,9 +6,12 @@ import storage.State;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ZenModeTest {
 
@@ -51,6 +54,21 @@ class ZenModeTest {
         assertEquals(13, zenMode.getCharacterCount());
         assertEquals(1, zenMode.getTypingSpeedInWPM());
         assertEquals(13, zenMode.getTypingSpeedInCPM());
+    }
+
+    @Test
+    void startZenMode_wrongStartCommand_printStartPrompt() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outputStream));
+        scanner = new Scanner("not_start\nstart\nstop_practice");
+        zenMode = new ZenMode(typingTimer, scanner, ui);
+
+        zenMode.startZenMode();
+
+        System.setOut(originalOut);
+        String output = outputStream.toString();
+        assertTrue(output.contains("Please type 'start' on a new line to start Zen mode"));
     }
 
 
