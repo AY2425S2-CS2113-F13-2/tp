@@ -4,7 +4,7 @@ import modes.CustomMode;
 import modes.NormalMode;
 import modes.TimeLimitMode;
 import modes.ZenMode;
-import modes.TypingTimer;
+import typing.TypingTimer;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;

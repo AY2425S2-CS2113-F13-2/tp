@@ -53,7 +53,7 @@ class ParserTest {
     }
 
     @Test
-    void parseToCommand_targetaddscore_instantiateTargetscoreaddCommand() {
+    void parseToCommand_targetaddscore_instantiateTargetAddScoreCommand() {
         assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("target add score"));
     }
 

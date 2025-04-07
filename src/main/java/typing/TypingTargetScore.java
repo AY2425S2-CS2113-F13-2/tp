@@ -27,6 +27,6 @@ public class TypingTargetScore extends TypingTarget {
      */
     @Override
     public String getString() {
-        return " Target Score: " + getTarget() + " | " + (getHit() ? "Achieved" : "Not Achieved");
+        return " Target Score (Effective WPM): " + getTarget() + " | " + (getHit() ? "Achieved" : "Not Achieved");
     }
 }
