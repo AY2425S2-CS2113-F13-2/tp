@@ -4,11 +4,11 @@ import command.StartCommand;
 import command.TypingAccuracyCommand;
 import command.ExitCommand;
 import command.HighscoreCommand;
-import command.HighscorelistCommand;
+import command.HighscoreListCommand;
 import command.MilestoneCommand;
-import command.TargetspeedaddCommand;
-import command.TargetscoreaddCommand;
-import command.ListtargetsCommand;
+import command.TargetAddSpeedCommand;
+import command.TargetAddScoreCommand;
+import command.TargetListCommand;
 import exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
@@ -38,8 +38,8 @@ class ParserTest {
     }
 
     @Test
-    void parseToCommand_highscorelist_instantiateHighscorelistCommand() {
-        assertInstanceOf(HighscorelistCommand.class, Parser.parseToCommand("highscorelist"));
+    void parseToCommand_highscorelist_instantiateHighscoreListCommand() {
+        assertInstanceOf(HighscoreListCommand.class, Parser.parseToCommand("highscore list"));
     }
 
     @Test
@@ -48,18 +48,18 @@ class ParserTest {
     }
 
     @Test
-    void parseToCommand_targetspeedadd_instantiateTargetspeedaddCommand() {
-        assertInstanceOf(TargetspeedaddCommand.class, Parser.parseToCommand("targetspeedadd"));
+    void parseToCommand_targetaddspeed_instantiateTargetAddSpeedCommand() {
+        assertInstanceOf(TargetAddSpeedCommand.class, Parser.parseToCommand("target add speed"));
     }
 
     @Test
-    void parseToCommand_targetscoreadd_instantiateTargetscoreaddCommand() {
-        assertInstanceOf(TargetscoreaddCommand.class, Parser.parseToCommand("targetscoreadd"));
+    void parseToCommand_targetaddscore_instantiateTargetscoreaddCommand() {
+        assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("target add score"));
     }
 
     @Test
-    void parseToCommand_listtargets_instantiateListtargetsCommand() {
-        assertInstanceOf(ListtargetsCommand.class, Parser.parseToCommand("listtargets"));
+    void parseToCommand_targetlist_instantiateListtargetsCommand() {
+        assertInstanceOf(TargetListCommand.class, Parser.parseToCommand("target list"));
     }
 
     @Test

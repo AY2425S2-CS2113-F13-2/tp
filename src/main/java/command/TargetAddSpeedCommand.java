@@ -13,7 +13,7 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class TargetspeedaddCommand extends Command {
+public class TargetAddSpeedCommand extends Command {
 
     @Override
     public void execute(
@@ -25,18 +25,25 @@ public class TargetspeedaddCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
-        System.out.println("Please enter a typing speed target you would like to hit (WPM)!");
+
         try {
-            String targetSpeed = sc.nextLine().trim();
+            String targetSpeed = command.substring(17);
             long targetSpeedLong = Long.parseLong(targetSpeed);
+            if (targetSpeedLong <= 0) {
+                throw new NumberFormatException();
+            }
             TypingTargetSpeed typingTargetSpeed = new TypingTargetSpeed(targetSpeedLong, false);
             typingTargetList.addTarget(typingTargetSpeed);
             typingTargets.update(typingTargetList);
             ui.showTargetAdded(typingTargetSpeed.getString());
+
         } catch (NumberFormatException e) {
-            System.out.println("Invalid target speed entered. Please provide a valid integer!");
+            ui.drawLine();
+            ui.showErrorMessage(" No/Invalid target speed entered. Please provide a positive valid integer!");
+            ui.drawLine();
         }
     }
 }
