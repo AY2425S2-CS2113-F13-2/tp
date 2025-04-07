@@ -143,6 +143,17 @@ Below is the simplified sequence diagram for ZenMode
 
 <img src="images/ZenModeSequenceDiagram.png" width="500" />
 
+##### Design Considerations:
+
+**Aspect: How to measure word count:** 
+
+- **Alternate 1 (current choice):** Include stop_practice in word count
+  - Pros: Easy to implement
+  - Cons: May be confusing to users
+- **Alternate 1 (current choice):** Do not include stop_practice in word count
+  - Pros: Less confusing to users
+  - Cons: Less accurate word count and WPM
+
 ### Custom Mode Feature
 
 #### Implementation
@@ -230,7 +241,7 @@ Given below is an example usage scenario of how Highscore List feature behave at
 
 Step 1. The user starts a practice session in normal mode.
 
-Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated.
+Step 2. The user completes the round, typing accuracy and words per minute (wpm) are calculated.
 
 Step 3. `state.updateHighscoreList(typingAccuracyDouble, typingSpeedWPM)` adds the new highscore to the highscore list.
 Then, the list is sorted into the top 3 highscores.
@@ -251,7 +262,7 @@ Given below is an example usage scenario of how Highscore feature behave at each
 
 Step 1. The user starts a practice session in normal mode.
 
-Step 2. The user completes the round and the typing accuracy and words per minute (wpm) are calculated.
+Step 2. The user completes the round, the typing accuracy and words per minute (wpm) are calculated.
 `state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` is called at the end of the session.
 
 Step 3. `state.updateHighscore(typingAccuracyDouble, typingSpeedWPM)` adds the new highscore to the highscore list.
@@ -274,7 +285,7 @@ The typing accuracy of the user is facilitated by `TypingAccuracy`. It implement
 
 Below is the sequence diagram for `TypingAccuracy`
 
-<img src="images/TypingAccuracySequenceDiagram.png" width="280" />
+<img src="images/TypingAccuracySequenceDiagram.png" width="500" />
 
 #### Design Considerations
 
@@ -339,9 +350,11 @@ with corresponding session numbers.
   - **Pros:** More intuitive and easy for users to view and digest information
   - **Cons:** Requires additional logic for tracking and maintaining session count
 
-## Product scope
+##Appendix: Requirements
 
-### Target user profile
+### Product scope
+
+#### Target user profile
 
 Has a desire to improve typing speed and accuracy.
 
@@ -353,12 +366,12 @@ Prefers keyboard-based interactions to mouse navigation.
 
 Is motivated by progress tracking, stats, and milestone achievements.
 
-### Value proposition
+#### Value proposition
 
 Helps users practice and improve typing in a distraction-free CLI environment by offering a faster,
 lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric users.
 
-## User Stories
+### User Stories
 
 | Version | As a ...         | I want to ...                                                                      | So that I can ...                                                 |
 |---------|------------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------|
@@ -377,22 +390,20 @@ lightweight alternative to bloated GUI typing apps, ideal for keyboard-centric u
 | v2.1    | user             | practice typing with custom text                                                   | improve my typing speed and accuracy using my own text            |
 
 
-## Non-Functional Requirements
+### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 17 or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
    be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## Glossary
+### Glossary
 
 - Mainstream OS: Windows, Linux, Unix, MacOS
 - WPM (Words Per Minute): A measure of typing speed, indicating how many words a user types per minute.
 - CPM (Characters Per Minute): A measure of typing speed based on the number of characters typed per minute.
 - score: WPM * Accuracy 
 
-## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 

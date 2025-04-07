@@ -14,6 +14,10 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/**
+ * Command for listing targets reached.
+ */
 public class TargetListCommand extends Command {
     @Override
     public void execute(

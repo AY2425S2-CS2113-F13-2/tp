@@ -14,6 +14,9 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Command for handling exiting of application.
+ */
 public class ExitCommand extends Command {
 
     @Override

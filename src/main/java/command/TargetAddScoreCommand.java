@@ -13,6 +13,10 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/**
+ * Command to handle adding of Target scores.
+ */
 public class TargetAddScoreCommand extends Command {
 
     @Override
