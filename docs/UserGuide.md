@@ -243,8 +243,8 @@ ____________________________________________________________
 ```
 
 ### View Progress Report: `progress`
-Displays a report on the user's scores from the past 10 runs in normal mode. Scores are represented using a bar graph 
-where each '█' corresponds to 5 points.
+Displays a report on the user's scores from the past 10 runs. Scores are represented using a bar graph 
+where each '█' corresponds to 5 points. Scores are calculated based on normal mode runs only.
 
 Format: `progress`
 

@@ -288,7 +288,7 @@ Additionally, it implements the following operations:
 
 - `update(double score)` - adds the latest's session score to the list and saves it to the `progress.txt` file. Removes 
 the oldest entry if maximum number of stored sessions (10) is exceeded. Also increments a `sessionCounter`. 
-- `show()` - displays the most recent 10 attempts in a text-based vertical bar graph.
+- `show()` - displays the most recent 10 attempts from normal mode only in a text-based vertical bar graph.
 
 Given below is an example usage scenario and how Progress Report behaves at each step.
 
