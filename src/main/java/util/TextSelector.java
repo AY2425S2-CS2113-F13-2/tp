@@ -44,14 +44,24 @@ public class TextSelector {
         while (true) {
             ui.showDefaultDifficultyPrompt(difficultyLevel.name().toLowerCase());
             input = sc.nextLine().trim();
-            if (input.isEmpty()) {
+
+            if (input.equalsIgnoreCase("exit")) {
+                ui.showExit();
+                System.exit(0);
+            } else if (input.isEmpty()) {
                 // User accepts default difficulty
                 break;
             } else if (input.equalsIgnoreCase("override")) {
-                // User override default difficulty, ask for new difficulty input
+                // User overrides default difficulty, ask for new difficulty input
                 while (true) {
                     ui.chooseDifficulty();
                     input = sc.nextLine().trim().toUpperCase();
+
+                    if (input.equalsIgnoreCase("exit")) {
+                        ui.showExit();
+                        System.exit(0);
+                    }
+
                     try {
                         difficultyLevel = DifficultyLevel.valueOf(input);
                         break;
@@ -60,7 +70,6 @@ public class TextSelector {
                     }
                 }
                 break;
-            // Invalid input
             } else {
                 ui.showErrorMessage("Please type 'override' or leave blank to proceed with default.");
             }
@@ -72,6 +81,12 @@ public class TextSelector {
         while (true) {
             ui.chooseLength();
             String input = sc.nextLine().trim().toUpperCase();
+
+            if (input.equalsIgnoreCase("exit")) {
+                ui.showExit();
+                System.exit(0);
+            }
+
             try {
                 textLength = TextLength.valueOf(input);
                 break;

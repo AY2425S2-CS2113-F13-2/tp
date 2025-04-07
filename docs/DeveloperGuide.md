@@ -31,6 +31,13 @@ Here’s a (partial) class diagram of the parsing logic:
 
 <img src="images/LogicClassDiagram.png">
 
+### Storage
+The API of this component is specified in `Storage.java`.
+The class diagram of `Storage` is shown below.
+
+<img src="images/SeqDiagramStorage.png">
+
+
 ## Implementation
 
 ### Normal Mode Feature
@@ -163,7 +170,7 @@ Additionally, it implements the following operations:
 
 - `CustomMode(Ui ui, Scanner sc)` - Constructor to create CustomMode object
 - `startCustomMode()` - Runs input loop to read user input and compute typing statistics
-- `inputText()` - creates a file to store the user's custom text input and puts them into an ArrayList<String>.
+- `inputUserText()` - creates a file to store the user's custom text input and puts them into an ArrayList<String>.
 
 Given below is an example usage scenario and how the Custom Mode behaves at each step.
 
@@ -178,6 +185,10 @@ Step 4. Typing Practice will start for the user, using the custom text they inpu
 
 Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm)
 are calculated and displayed to the user.
+
+Given below is the Class diagram of CustomMode
+
+<img src="images/SeqDiagramCustomMode.png" width="500" />
 
 ### Typing Targets Feature
 
@@ -329,6 +340,27 @@ persistently stored in `progress.txt`.
 
 Step 4. When user inputs the command `progress`, `show()` displays the past 10 session scores as a vertical bar graph 
 with corresponding session numbers.
+
+
+### Storage
+#### Implementation
+
+Storage is facilitated by `Storage` and `State`.
+Storage handles the reading and writing of data to and from files, while State manages the application state.
+Additionally, it implements the following operations:
+- `Storage(String filePath)` - Constructor to create Storage object with the specified file path.
+- 'saveScoreList(ArrayList<Double> newHighScoreList)` - Saves the highscore list to the specified file.'
+- `readHighScoreList()` - Reads the highscore list from the specified file.
+
+State manages the application state and implements the following operations:
+- `State(Storage storage)` - Constructor to create State object with the specified Storage object.
+- `getHighScore()` - Returns the highscore.
+- `getHighScoreList()` - Returns the highscore list.
+- `UpdateHighScore(Double accuracy, int wpm)` - Updates the highscore list with the new score.
+
+Below is a class diagram of Storage and State.
+
+<img src="images/StateClassDiagram.png" width="500" />
 
 #### Design Considerations
 

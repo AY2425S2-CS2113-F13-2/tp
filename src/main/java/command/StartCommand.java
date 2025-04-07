@@ -42,6 +42,10 @@ public class StartCommand extends Command {
             List<String> testText = null;
 
             switch (mode) {
+            case "exit":
+                ui.showExit();
+                System.exit(0);
+                return;
             case "zen":
                 ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
                 zenMode.startZenMode();
