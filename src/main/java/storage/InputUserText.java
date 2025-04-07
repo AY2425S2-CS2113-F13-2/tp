@@ -28,7 +28,8 @@ public class InputUserText {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.isEmpty()) {
-                    continue; // Skip empty lines
+                    System.out.println("Please input characters");
+                    continue;
                 }
                 if (line.equalsIgnoreCase("exit")) {
                     break;
