@@ -1,0 +1,46 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract "{abstract}\nCommand" {
+
+    {abstract} +execute()
+    +isExit()
+    }
+
+    class ExitCommand {
+    +execute()
+    +isExit()
+    }
+    class HighscoreCommand {
+    +execute()
+    }
+    class ListtargetsCommand {
+    +execute()
+    }
+    class MilestoneCommand {
+    +execute()
+    }
+    class StartCommand {
+    +execute()
+    }
+    class TargetscoreaddCommand {
+    +execute()
+    }
+    class TargetspeedaddCommand {
+    +execute()
+    }
+    class TypingAccuracyCommand {
+    +execute()
+    }
+
+    "{abstract}\nCommand" <|-- ExitCommand
+    "{abstract}\nCommand" <|-- HighscoreCommand
+    "{abstract}\nCommand" <|-- ListtargetsCommand
+    "{abstract}\nCommand" <|-- MilestoneCommand
+    "{abstract}\nCommand" <|-- StartCommand
+    "{abstract}\nCommand" <|-- TargetscoreaddCommand
+    "{abstract}\nCommand" <|-- TargetspeedaddCommand
+    "{abstract}\nCommand" <|-- TypingAccuracyCommand
+@enduml
