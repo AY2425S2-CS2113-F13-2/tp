@@ -62,21 +62,38 @@ ____________________________________________________________
 ```
 
 ### Practice in Normal Mode: 
-In the normal mode, each sentence will be given for the user to type.
+The normal mode starts with the count-down. On the next page, each sentence will be given for the user to type.
 
 Example:
 
 ```
 ____________________________________________________________
-Typing test started! Type the following text:
+3
+2
+1
+Start!
+____________________________________________________________
+
+```
+On the next page, each sentence will be given for the user to type along: 
+```
 The sun is shining, and birds are singing.
 ```
-
+At the end of each practice, the result will be given: 
+```
+____________________________________________________________
+Hope you enjoyed the round! Here are your stats:
+Typing speed (WPM): 49 WPM
+Typing speed (CPM): 245 CPM
+Typing accuracy: 21.43%
+Typing Score (Effective WPM): 10.50 WPM
+____________________________________________________________
+```
 
 ### Practice in timeLimit Mode:
 In the timeLimit mode, each sentence will be given for the user to type, and there will be time limit for each sentence based on the difficulty level and the length of the sentence. Based on the user input, the response will be given. 
 
-[ Warning ] What the user inputs will be displayed on the console only after the user presses enter. In other words, before the user presses enter, the user is not able to see what they have typed so far.
+[ Warning ] User input will be displayed on the console only after the user presses ENTER. In other words, before the user presses ENTER, the user is not able to see what they have typed so far.
 
 Example of timeLimit mode instruction:
 
@@ -97,7 +114,7 @@ On the next page, the test sentence will be given:
 The sun is shining, and birds are singing.
 ```
 After the user inputs the sentence or the time is up.
-On the next page, the result statement will be shown: 
+On the next page, the result statement will be shown in either: 
 ```
 *** Great! ***
 *** Press enter to continue... Previous input (shown below, if any) will be cleared.***
@@ -120,18 +137,7 @@ ____________________________________________________________
 ```
 
 
-### Time Limit Typing Speed: `timeLimit`
-Set a time limit for the typing exercise to the user's liking.
-
-Format: `timeLimit`
-
-Example:
-
-` Set your time limit: `
-
-` Type: '1' or '2' or '3' `
-
-### Zen Mode: `zen`
+### Practice in Zen Mode: `zen`
 Type as long as desired. Get the typing speed of the user's attempt. The command stop_practice is included in the word 
 count of the test and calculation of typing speed.
 
@@ -165,22 +171,7 @@ Please type
 ____________________________________________________________
 ```
 
-### Set Typing Difficulty: `difficulty`
-Sets the difficulty of the typing exercise.
 
-Example:
-` Select your difficulty: `
-
-` Type: 'easy' or 'intermediate' or 'difficult' `
-
-### Get Typing Accuracy: `typingaccuracy`
-Returns the typing accuracy of the user's previous typing test in normal mode.
-
-Format: `typingaccuracy`
-
-Example: 
-
-` Your typing accuracy is: 96.43%`
 
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts of `normal` mode.
@@ -190,16 +181,16 @@ Format: `highscore`
 
 Example: 
 
-` Your high score is: 49.0`
+`Your high score is: 49.0`
 
-### Get High Score List: `highscorelist`
+### Get High Score List: `highscore list`
 Gets back the top 3 highest score of the user across all attempts.
 
-Format: `highscorelist`
+Format: `highscore list`
 
 Example:
 
-` Top 3 High Scores: `
+`Top 3 High Scores:`
 
 `1. 49.0`
 
@@ -321,7 +312,7 @@ Advanced users are welcome to update data directly by editing that data file.
 * Set text length `short`, `medium`, `long`
 * Get typing accuracy `typingaccuracy`
 * Get high score `highscore`
-* Get high score list `highscorelist`
+* Get high score list `highscore list`
 * Add target speed `targetspeedadd`
 * Add target score `targetscoreadd`
 * Get milestone `milestone`

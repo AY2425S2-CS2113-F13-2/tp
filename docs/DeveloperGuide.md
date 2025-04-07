@@ -4,6 +4,8 @@
 
 The format of the Developer Guide and User Guide were inspired and adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3).
 
+The sample texts used in BoboType were generated using ChatGPT, an AI language model developed by OpenAI.
+
 ## Design
 ### Architecture
 
@@ -22,8 +24,14 @@ The API of this component is specified in `Command` package
 
 The class diagram of `Command` is shown below.
 <img src="images/CommandClassDiagram.png">
-## Implementation
 
+## Logic
+
+Here’s a (partial) class diagram of the parsing logic:
+
+<img src="images/LogicClassDiagram.png">
+
+## Implementation
 
 ### Normal Mode Feature
 
@@ -53,7 +61,7 @@ Step 5: The typing timer stops, and the typing statistics are calculated:
 - Typing accuracy
 - Overall typing score (calculated using WPM and accuracy)
 
-These results are displayed using UI methods (`ui.showTypingSpeedWPM()`, `ui.showTypingSpeedCPM()`, and `ui.showTypingScore()`).
+These results are displayed using UI methods (`ui.showTypingSpeedWPM()`, `ui.showTypingSpeedCPM()`, `ui.showTypingAccuracy` and `ui.showTypingScore()`).
 
 Step 6: The program checks if the user has met any predefined typing targets stored in TypingTargetList:
 
@@ -126,11 +134,12 @@ Step 1. The user selects Zen Mode when selecting the practice mode, instantiatin
 Step 2. The user types `I am typing a sample text here`, calling `wordCounter.countWords` to count the number of words
 in the user's input and adds to the `wordCount`.
 
-Step 3. The user types `stop_practice`, ending the loop and computes the typing speed.
+Step 3. The user types `stop_practice`, ending the loop and computes the typing speed. stop_practice is included in the
+word count as the timer runs until the user enters stop_practice.
 
 Step 4. The typing practice results is displayed to the user with `UI.showZenModeEndGame`
 
-Below is the sequence diagram for ZenMode
+Below is the simplified sequence diagram for ZenMode
 
 <img src="images/ZenModeSequenceDiagram.png" width="500" />
 
@@ -253,7 +262,6 @@ Step 4. `getHighscore()` will take the top highscore in the highscore list and s
 Step 5. `state.showHighscore()` displays the highscore to the user.
 
 
-
 ### Typing Accuracy
 
 #### Implementation
@@ -268,9 +276,9 @@ Below is the sequence diagram for `TypingAccuracy`
 
 <img src="images/TypingAccuracySequenceDiagram.png" width="280" />
 
-Below is the class diagram for `TypingAccuracy`
-
 #### Design Considerations
+
+**Aspect: How to measure typing accuracy**
 
 - **Alternative 1 (current choice):** Measure typing accuracy only up to the test text or user input depending on which
   input is shorter
@@ -278,6 +286,15 @@ Below is the class diagram for `TypingAccuracy`
 - **Alternative 2:** Always measure to the end of user input and penalise for additional words
   - **Pros:** More accurate comparison between user and test text
   - **Cons:** Less intuitive for users
+
+**Aspect: When to measure typing accuracy**
+
+- **Alternative 1 (current choice):** Only measure typing accuracy in normal mode
+  - **Pros:** More streamlined for users
+  - **Cons:** Less information for users in other mods
+- **Alternative 2:** Measure typing accuracy in all modes
+  - **Pros:** More options available for users
+  - **Cons:** Shows redundant information (e.g. You must achieve 100% accuracy in TimeLimit mode to pass anyway)
 
 
 ### Progress Report
