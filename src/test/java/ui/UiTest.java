@@ -231,7 +231,7 @@ public class UiTest {
         ui.showMilestoneAchieved("intermediate", 80);
         String output = outputStream.toString();
         assertTrue(output.contains(" Congrats! You hit the milestone:"));
-        assertTrue(output.contains(" -> Achieved 80 WPM in intermediate mode!"));
+        assertTrue(output.contains(" -> Achieved a score of 80 in intermediate mode!"));
         assertTrue(output.contains(" You've been promoted to a new difficulty level"));
     }
 

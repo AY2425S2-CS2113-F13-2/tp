@@ -1,2 +1,0 @@
-Speed|100|true
-Score|69|false
