@@ -4,6 +4,8 @@
 
 The format of the Developer Guide and User Guide were inspired and adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3).
 
+The sample texts used in BoboType were generated using ChatGPT, an AI language model developed by OpenAI.
+
 ## Design
 ### Architecture
 
@@ -314,7 +316,7 @@ Additionally, it implements the following operations:
 
 - `update(double score)` - adds the latest's session score to the list and saves it to the `progress.txt` file. Removes 
 the oldest entry if maximum number of stored sessions (10) is exceeded. Also increments a `sessionCounter`. 
-- `show()` - displays the most recent 10 attempts in a text-based vertical bar graph.
+- `show()` - displays the most recent 10 attempts from normal mode only in a text-based vertical bar graph.
 
 Given below is an example usage scenario and how Progress Report behaves at each step.
 

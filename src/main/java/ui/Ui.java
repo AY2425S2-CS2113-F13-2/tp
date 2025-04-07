@@ -118,6 +118,13 @@ public class Ui {
         drawLine();
     }
 
+    public void showTargetRemoved(String targetString) {
+        drawLine();
+        System.out.println(" Target removed!");
+        System.out.println(targetString);
+        drawLine();
+    }
+
     public void showEndGame() {
         drawLine();
 
@@ -126,10 +133,12 @@ public class Ui {
                 \t - 'typingaccuracy' to view your typing accuracy\s
                 \t    of your previous typing test in normal mode\s
                 \t - 'highscore' to view your high score\s
-                \t - 'highscorelist' to view your top 3 high scores\s
+                \t - 'highscore list' to view your top 3 high scores\s
                 \t - 'milestone' to view your default difficulty level\s
-                \t - 'targetspeedadd' to add a typing speed target\s
-                \t - 'targetscoreadd' to add a typing score target\s
+                \t - 'target list' to view your typing targets\s
+                \t - 'target add speed' to add a typing speed target\s
+                \t - 'target add score' to add a typing score target\s
+                \t - 'target remove' to remove a typing target\s
                 \t - 'progress' to view your typing progress\s
                 \t - 'exit' to exit or\s
                 \t - 'start' to start the new practice.""");
@@ -199,8 +208,14 @@ public class Ui {
     public void showMilestoneAchieved(String difficulty, int wpmGoal) {
         drawLine();
         System.out.println(" Congrats! You hit the milestone:");
-        System.out.println(" -> Achieved " + wpmGoal + " WPM in " + difficulty + " mode!");
+        System.out.println(" -> Achieved a score of " + wpmGoal + " in " + difficulty + " mode!");
         System.out.println(" You've been promoted to a new difficulty level.");
+    }
+
+    public void showFinalMilestoneAchieved(int wpmGoal) {
+        drawLine();
+        System.out.println(" Congrats! You have completed the max difficulty level by hitting a score of " + wpmGoal +
+                " in difficult mode!");
     }
 
     public void showDefaultDifficultyPrompt(String difficultyLevel) {
@@ -271,11 +286,16 @@ public class Ui {
 
         System.out.println("""
                  You finished the practice! Please type\s
+                \t - 'typingaccuracy' to view your typing accuracy\s
+                \t    of your previous typing test in normal mode\s
                 \t - 'highscore' to view your high score\s
-                \t - 'highscorelist' to view your top 3 high scores\s
+                \t - 'highscore list' to view your top 3 high scores\s
                 \t - 'milestone' to view your default difficulty level\s
-                \t - 'targetspeedadd' to add a typing speed target\s
-                \t - 'targetscoreadd' to add a typing score target\s
+                \t - 'target list' to view your typing targets\s
+                \t - 'target add speed' to add a typing speed target\s
+                \t - 'target add score' to add a typing score target\s
+                \t - 'target remove' to remove a typing target\s
+                \t - 'progress' to view your typing progress\s
                 \t - 'exit' to exit or\s
                 \t - 'start' to start the new practice.""");
         drawLine();
