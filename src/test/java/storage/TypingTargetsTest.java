@@ -5,25 +5,31 @@ package storage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import typing.TypingTargetList;
+import typing.TypingTargetScore;
+import typing.TypingTargetSpeed;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TypingTargetsTest {
 
+    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private static final String testFilePath = "data/testTypingTargets.txt";
-    private Milestones milestones;
+    private TypingTargets typingTargets;
 
     @BeforeEach
     void setUp() {
+        System.setOut(new PrintStream(outputStream));
         // Delete test file if it exists
         File file = new File(testFilePath);
         if (file.exists()) {
             file.delete();
         }
-        milestones = new Milestones(testFilePath);
+        typingTargets = new TypingTargets(testFilePath);
     }
 
     @AfterEach
@@ -35,50 +41,32 @@ class TypingTargetsTest {
     }
 
     @Test
-    void testInitialDifficultyIsEasy() {
-        assertEquals("easy", milestones.getCurrentDifficulty());
-    }
+    public void updateAndLoad_success() {
+        // Create typing targets file
+        TypingTargetList typingTargetList = new TypingTargetList();
+        typingTargets.load(typingTargetList);
 
-    @Test
-    void testMilestoneAchievedAndPromoted() {
-        boolean achieved = milestones.checkAndUpdate("easy", 61.0);
-        assertTrue(achieved);
-        assertTrue(milestones.isAchieved("easy"));
-        assertEquals("intermediate", milestones.getCurrentDifficulty());
-    }
+        // Add target speed
+        TypingTargetSpeed typingTargetSpeed = new TypingTargetSpeed(100, true);
+        typingTargetList.addTarget(typingTargetSpeed);
 
-    @Test
-    void testNoPromotionIfBelowGoal() {
-        boolean achieved = milestones.checkAndUpdate("easy", 40.0);
-        assertFalse(achieved);
-        assertEquals("easy", milestones.getCurrentDifficulty());
-    }
+        // Add target score
+        TypingTargetScore typingTargetScore = new TypingTargetScore(69, false);
+        typingTargetList.addTarget(typingTargetScore);
 
-    @Test
-    void testDuplicateMilestoneNotRePromoted() {
-        milestones.checkAndUpdate("easy", 70.0); // First time
-        boolean secondTime = milestones.checkAndUpdate("easy", 90.0); // Already achieved
-        assertFalse(secondTime);
-    }
+        // Update typing targets file
+        typingTargets.update(typingTargetList);
 
-    @Test
-    void testSaveAndReloadPreservesState() {
-        milestones.checkAndUpdate("easy", 70.0);
+        // Reload typing target list
+        TypingTargetList reloadedTypingTargetList = new TypingTargetList();
+        TypingTargets reloadedTypingTargets = new TypingTargets(testFilePath);
+        reloadedTypingTargets.load(reloadedTypingTargetList);
 
-        Milestones reloaded = new Milestones(testFilePath);
-        assertTrue(reloaded.isAchieved("easy"));
-        assertEquals("intermediate", reloaded.getCurrentDifficulty());
-    }
-
-    @Test
-    void testSetCurrentDifficultyDirectly() {
-        milestones.setCurrentDifficulty("difficult");
-        assertEquals("difficult", milestones.getCurrentDifficulty());
-    }
-
-    @Test
-    void testSetInvalidDifficultyIgnored() {
-        milestones.setCurrentDifficulty("impossible");
-        assertEquals("easy", milestones.getCurrentDifficulty());
+        // Print typing target list
+        reloadedTypingTargetList.print();
+        String output = outputStream.toString();
+        assertTrue(output.contains(" Here is your list of targets!"));
+        assertTrue(output.contains(" 1. Target Speed (WPM): 100 | Achieved"));
+        assertTrue(output.contains(" 2. Target Score (Effective WPM): 69 | Not Achieved"));
     }
 }

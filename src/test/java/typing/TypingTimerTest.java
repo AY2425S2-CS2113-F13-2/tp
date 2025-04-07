@@ -1,9 +1,8 @@
-package modes;
+package typing;
 
 //@@author rodi-314
 
 import org.junit.jupiter.api.Test;
-import typing.TypingTimer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
