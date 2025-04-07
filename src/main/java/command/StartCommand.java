@@ -51,6 +51,7 @@ public class StartCommand extends Command {
                     ui.showErrorMessage(e.getMessage());
                 }
                 break;
+
             case "timeLimit":
                 testText = textSelector.selectText();
                 TimeLimitMode timeLimitMode = new TimeLimitMode(ui, sc);
@@ -61,14 +62,25 @@ public class StartCommand extends Command {
                 }
                 ui.showEndGame();
                 break;
+
             case "normal":
                 testText = textSelector.selectText();
+
+                if (testText == null || textSelector.getDifficultyLevel() == null) {
+                    ui.showErrorMessage("Failed to load text or difficulty level. Please try again.");
+                    continue;
+                }
+
+                String difficulty = textSelector.getDifficultyLevel().name().toLowerCase();
+
                 NormalMode normalMode = new NormalMode(
                         ui, sc, typingTargetList, typingTargets, state, autoAdjust, typingAccuracy
                 );
-                normalMode.startNormalMode(testText);
+                normalMode.startNormalMode(testText, difficulty);
+
                 ui.showEndGame();
                 break;
+
             default:
                 ui.showErrorMessage("Please enter a valid mode: 'normal', 'timeLimit', or 'zen' or 'custom'.");
                 continue;

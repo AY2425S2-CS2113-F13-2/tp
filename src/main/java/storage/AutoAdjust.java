@@ -25,28 +25,37 @@ public class AutoAdjust {
 
     /**
      * Evaluates the user's current highscore performance.
-     * If the user has achieved the highscore goal for the current difficulty,
-     * updates their milestone and promotes them to the next level
+     * Only promotes to the next difficulty if the score was achieved
+     * at the current milestone difficulty.
+     *
+     * @param playedDifficulty the difficulty level the score was achieved in
+     * @param score the score achieved in that round
      */
-    public void evaluate() {
-        String difficulty = milestones.getCurrentDifficulty();
-        double latestHighScore = state.getHighScore();
-        if (milestones.checkAndUpdate(difficulty, latestHighScore)) {
+    public void evaluate(String playedDifficulty, double score) {
+        String currentDifficulty = milestones.getCurrentDifficulty();
+
+        if (!playedDifficulty.equals(currentDifficulty)) {
+            return;
+        }
+
+        if (milestones.checkAndUpdate(currentDifficulty, score)) {
             int goal;
-            switch (difficulty) {
+            switch (currentDifficulty) {
             case "easy":
                 goal = 60;
+                ui.showMilestoneAchieved(currentDifficulty, goal);
                 break;
             case "intermediate":
                 goal = 80;
+                ui.showMilestoneAchieved(currentDifficulty, goal);
                 break;
             case "difficult":
                 goal = 100;
+                ui.showFinalMilestoneAchieved(goal);
                 break;
             default:
                 goal = 9999;
             }
-            ui.showMilestoneAchieved(difficulty, goal);
         }
     }
 
