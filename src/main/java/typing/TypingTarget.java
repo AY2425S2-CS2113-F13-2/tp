@@ -2,6 +2,8 @@
  * Abstract class representing a typing target
  */
 
+//@@author rodi-314
+
 package typing;
 
 public abstract class TypingTarget {

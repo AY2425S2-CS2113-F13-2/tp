@@ -1,4 +1,6 @@
-package modes;
+package typing;
+
+//@@author rodi-314
 
 import org.junit.jupiter.api.Test;
 

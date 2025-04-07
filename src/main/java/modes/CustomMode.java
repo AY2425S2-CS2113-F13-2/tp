@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import storage.InputUserText;
 import typing.MarkedText;
+import typing.TypingTimer;
 import ui.Ui;
 import util.WordCounter;
 

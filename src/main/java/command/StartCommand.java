@@ -4,7 +4,7 @@ import modes.CustomMode;
 import modes.NormalMode;
 import modes.TimeLimitMode;
 import modes.ZenMode;
-import modes.TypingTimer;
+import typing.TypingTimer;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;
@@ -42,6 +42,10 @@ public class StartCommand extends Command {
             List<String> testText = null;
 
             switch (mode) {
+            case "exit":
+                ui.showExit();
+                System.exit(0);
+                return;
             case "zen":
                 ZenMode zenMode = new ZenMode(typingTimer, sc, ui);
                 zenMode.startZenMode();

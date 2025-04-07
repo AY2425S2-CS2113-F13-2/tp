@@ -1,5 +1,6 @@
 package modes;
 
+import typing.TypingTimer;
 import ui.Ui;
 import util.WordCounter;
 

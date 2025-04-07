@@ -2,6 +2,7 @@ package command;
 
 //@@author ravi-viswa105
 
+import exceptions.BoboTypeException;
 import typing.TypingTimer;
 import storage.AutoAdjust;
 import storage.Milestones;
@@ -15,9 +16,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Command for printing user's list of top five high scores.
+ * Handles output of typingaccuracy.
  */
-public class HighscoreListCommand extends Command {
+public class TypingAccuracyCommand extends Command {
 
     @Override
     public void execute(
@@ -32,6 +33,10 @@ public class HighscoreListCommand extends Command {
             AutoAdjust autoAdjust,
             String command
     ) throws IOException {
-        ui.showHighScoreList();
+        try {
+            ui.showTypingAccuracy(typingAccuracy.getTypingAccuracy());
+        } catch (BoboTypeException e) {
+            ui.showErrorMessage(e.getMessage());
+        }
     }
 }

@@ -59,12 +59,6 @@ public class Ui {
         System.out.println(" *** Oops! *** \n -> " + message);
     }
 
-    public void showInvalidInputMessage() {
-        drawLine();
-        System.out.println(" Invalid command entered. Please provide a valid input!");
-        drawLine();
-    }
-
     public void showResult() {
         drawLine();
         System.out.println(" Hope you enjoyed the round! Here are your stats:");
@@ -79,7 +73,7 @@ public class Ui {
     }
 
     public void showTypingScore(double typingScore) {
-        System.out.print(" Typing Score (Effective WPM): ");
+        System.out.print(" Typing score (Effective WPM): ");
         System.out.printf("%.2f", typingScore);
         System.out.println(" WPM");
     }
@@ -166,7 +160,7 @@ public class Ui {
     public void showZenModeEndGame(int wordCount, int typingSpeedWPM, int typingSpeedCPM) {
         drawLine();
         String wordText = " word";
-        if (wordCount >1) {
+        if (wordCount > 1) {
             wordText = " words";
         }
         System.out.println(" You finished the Zen Mode Practice! \n" +
@@ -227,14 +221,14 @@ public class Ui {
 
     public void showCurrentMilestone(String difficulty) {
         drawLine();
-        System.out.println("Current milestone: " + difficulty);
+        System.out.println(" Current milestone: " + difficulty);
         drawLine();
     }
 
     private static void sleep(Ui ui) {
         try {
             Thread.sleep(1000);
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             ui.showErrorMessage(e.getMessage());
         }
     }

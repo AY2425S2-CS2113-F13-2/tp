@@ -29,7 +29,7 @@ public class StateTest {
 
         // Write an initial value to the file to avoid NoSuchElementException
         try (FileWriter writer = new FileWriter(file)) {
-            writer.write("0.0");
+            writer.write("0.00");
         } catch (Exception e) {
             System.err.println("Error writing to temporary file.");
         }
@@ -51,22 +51,22 @@ public class StateTest {
 
     @Test
     public void testGetHighScore() {
-        assertEquals(0.0, state.getHighScore());
+        assertEquals(0.00, state.getHighScore());
         System.out.println("testGetHighScore passed.");
     }
 
     @Test
     public void testUpdateHighScore() throws IOException {
         state.updateHighScore(1.0, 100);
-        assertEquals(100.0, state.getHighScore());
+        assertEquals(100.00, state.getHighScore());
         System.out.println("High score updated to 100.0 and verified.");
 
         state.updateHighScore(1.0, 50);
-        assertEquals(100.0, state.getHighScore());
+        assertEquals(100.00, state.getHighScore());
         System.out.println("High score remains 100.0 after attempting to update with a lower score.");
 
         state.updateHighScore(1.0, 150);
-        assertEquals(150.0, state.getHighScore());
+        assertEquals(150.00, state.getHighScore());
         System.out.println("High score updated to 150.0 and verified.");
     }
 
@@ -78,9 +78,9 @@ public class StateTest {
 
         ArrayList<Double> highScoreList = state.getHighScoreList();
         assertEquals(3, highScoreList.size(), "There should be 3 scores in the list.");
-        assertEquals(300.0, highScoreList.get(0), "First score should be the highest.");
-        assertEquals(200.0, highScoreList.get(1), "Second score should be the second highest.");
-        assertEquals(100.0, highScoreList.get(2), "Third score should be the third highest.");
+        assertEquals(300.00, highScoreList.get(0), "First score should be the highest.");
+        assertEquals(200.00, highScoreList.get(1), "Second score should be the second highest.");
+        assertEquals(100.00, highScoreList.get(2), "Third score should be the third highest.");
         System.out.println("testGetHighScoreList passed. Scores: " + highScoreList);
     }
 }

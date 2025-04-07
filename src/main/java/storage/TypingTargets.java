@@ -2,6 +2,8 @@
  * Class to load and save typing targets to local storage
  */
 
+//@@author rodi-314
+
 package storage;
 
 import typing.TypingTarget;
@@ -43,15 +45,16 @@ public class TypingTargets {
      * If the file doesn't exist, it will be initialized with default values.
      *
      * @param typingTargetList Typing target list
-     * @throws IOException if there was an error reading the file
      */
-    public void load(TypingTargetList typingTargetList) throws IOException {
-        if (!file.exists()) {
-            clear(); // Save defaults if file doesn't exist
-            return;
-        }
+    public void load(TypingTargetList typingTargetList) {
 
-        try (Scanner scanner = new Scanner(file)) {
+        try {
+            if (!file.exists()) {
+                clear(); // Save defaults if file doesn't exist
+                return;
+            }
+
+            Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 String[] data = line.split("\\|");
@@ -76,9 +79,8 @@ public class TypingTargets {
      * Saves the current typing target list to the file
      *
      * @param typingTargetList Typing target list
-     * @throws IOException if an input/output operation has failed
      */
-    public void update(TypingTargetList typingTargetList) throws IOException {
+    public void update(TypingTargetList typingTargetList) {
         try (FileWriter fw = new FileWriter(file)) {
             ArrayList<TypingTarget> typingTargetList1 = typingTargetList.getTypingTargetList();
             for (TypingTarget typingTarget : typingTargetList1) {
@@ -88,6 +90,8 @@ public class TypingTargets {
                     fw.write("Score|" + typingTarget.getTarget() + "|" + typingTarget.getHit() + "\n");
                 }
             }
+        } catch (IOException e) {
+            System.err.println("Error writing to typing targets file.");
         }
     }
 }

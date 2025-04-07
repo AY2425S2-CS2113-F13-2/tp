@@ -20,17 +20,17 @@ Starts a typing exercise with a random sentence.
 
 Format: `start`
 
-### Set Mode: `normal`, `timeLimit`, `zen`
+### Set Mode: `normal`, `timeLimit`, `zen`, `custom`
 Set the mode to set the typing speed.
 
-Format: `normal`, `timeLimit`, `zen`
+Format: `normal`, `timeLimit`, `zen`, `custom`
 
 Example:
 
 ```
 ____________________________________________________________
  Select your mode: 
- Type: 'normal' or 'timeLimit' or 'zen'
+ Type: 'normal' or 'timeLimit' or 'zen' or `'custom'
 ____________________________________________________________
 ```
 
@@ -198,7 +198,7 @@ Example:
 
 `3. 12.7`
 
-### Add Target Speed: `targetspeedadd`
+### Add Target Speed: `target add speed`
 Add a target speed (WPM) to hit. Users will be informed when they hit their target speed.
 
 Format: `targetspeedadd`
@@ -302,7 +302,8 @@ Advanced users are welcome to update data directly by editing that data file.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: 
+**A**: Install Bobotype on the other computer and replace the save file in the data directory with 
+your existing save file.
 
 ## Command Summary
 
