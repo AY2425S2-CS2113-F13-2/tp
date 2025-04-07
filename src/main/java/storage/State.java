@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class State {
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     private Storage storage;
     private ArrayList<Double> highScoreList;
-    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public State (Storage storage) {
         this.storage = storage;
