@@ -2,7 +2,9 @@
  * Class to represent a timer that can be started, stopped, and returns the elapsed time
  */
 
-package modes;
+//@@author rodi-314
+
+package typing;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

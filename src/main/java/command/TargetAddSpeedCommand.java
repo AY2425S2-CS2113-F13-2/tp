@@ -1,6 +1,6 @@
 package command;
 
-import modes.TypingTimer;
+import typing.TypingTimer;
 import storage.AutoAdjust;
 import storage.Milestones;
 import storage.State;
@@ -45,7 +45,7 @@ public class TargetAddSpeedCommand extends Command {
             typingTargets.update(typingTargetList);
             ui.showTargetAdded(typingTargetSpeed.getString());
 
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.drawLine();
             ui.showErrorMessage(" No/Invalid target speed entered. Please provide a positive valid integer!");
             ui.drawLine();

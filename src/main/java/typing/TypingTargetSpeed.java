@@ -2,6 +2,8 @@
  * Class representing a target speed
  */
 
+//@@author rodi-314
+
 package typing;
 
 public class TypingTargetSpeed extends TypingTarget {
@@ -27,6 +29,6 @@ public class TypingTargetSpeed extends TypingTarget {
      */
     @Override
     public String getString() {
-        return " Target Speed (Effective WPM): " + getTarget() + " | " + (getHit() ? "Achieved" : "Not Achieved");
+        return " Target Speed (WPM): " + getTarget() + " | " + (getHit() ? "Achieved" : "Not Achieved");
     }
 }

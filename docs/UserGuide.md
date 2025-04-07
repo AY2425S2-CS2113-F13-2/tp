@@ -198,7 +198,7 @@ Example:
 
 `3. 12.7`
 
-### Add Target Speed: `targetspeedadd`
+### Add Target Speed: `target add speed`
 Add a target speed (WPM) to hit. Users will be informed when they hit their target speed.
 
 Format: `targetspeedadd`
