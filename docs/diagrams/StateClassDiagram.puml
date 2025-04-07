@@ -3,21 +3,19 @@ hide circle
 skinparam classAttributeIconSize 0
 
 class Storage {
-    - data: static ArrayList<Double>
-    - File file
-    + Storage(String filePath)
-    + void saveScoreList(ArrayList<Double> newHighScoreList) throws IOException
-    + ArrayList<Double> readHighScoreList() throws FileNotFoundException
+    - <u>data: ArrayList<Double>
+    - file: File
+    + saveScoreList(ArrayList<Double>)
+    + readHighScoreList()
 }
 
 class State {
-    - Storage storage
-    - ArrayList<Double> highScoreList
-    - static final DecimalFormat df
-    + State(Storage storage)
-    + Double getHighScore()
-    + ArrayList<Double> getHighScoreList()
-    + void updateHighScore(Double accuracy, int wpm) throws IOException
+    - storage: storage
+    - highScoreList: ArrayList<Double>
+    - <u>df: DecimalFormat
+    + getHighScore()
+    + getHighScoreList()
+    + updateHighScore(Double, int)
 }
 
 State --> Storage
