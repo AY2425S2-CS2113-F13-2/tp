@@ -2,6 +2,8 @@
  * Class representing a list of typing targets
  */
 
+//@@author rodi-314
+
 package typing;
 
 import java.util.ArrayList;

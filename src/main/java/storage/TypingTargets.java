@@ -2,6 +2,8 @@
  * Class to load and save typing targets to local storage
  */
 
+//@@author rodi-314
+
 package storage;
 
 import typing.TypingTarget;

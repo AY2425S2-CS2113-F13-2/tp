@@ -2,6 +2,8 @@
  * Class representing a target speed
  */
 
+//@@author rodi-314
+
 package typing;
 
 public class TypingTargetSpeed extends TypingTarget {
