@@ -3,7 +3,7 @@ hide circle
 skinparam classAttributeIconSize 0
 
 class Storage {
-    - static ArrayList<Double> data
+    - data: static ArrayList<Double>
     - File file
     + Storage(String filePath)
     + void saveScoreList(ArrayList<Double> newHighScoreList) throws IOException
