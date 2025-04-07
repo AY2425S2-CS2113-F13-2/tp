@@ -38,8 +38,8 @@ class ParserTest {
     }
 
     @Test
-    void parseToCommand_highscorelist_instantiateHighscorelistCommand() {
-        assertInstanceOf(HighscoreListCommand.class, Parser.parseToCommand("highscorelist"));
+    void parseToCommand_highscore_list_instantiateHighscoreListCommand() {
+        assertInstanceOf(HighscoreListCommand.class, Parser.parseToCommand("highscore list"));
     }
 
     @Test
@@ -48,18 +48,18 @@ class ParserTest {
     }
 
     @Test
-    void parseToCommand_targetspeedadd_instantiateTargetspeedaddCommand() {
-        assertInstanceOf(TargetAddSpeedCommand.class, Parser.parseToCommand("targetspeedadd"));
+    void parseToCommand_target_add_speed_instantiateTargetAddSpeedCommand() {
+        assertInstanceOf(TargetAddSpeedCommand.class, Parser.parseToCommand("target add speed"));
     }
 
     @Test
-    void parseToCommand_targetscoreadd_instantiateTargetscoreaddCommand() {
-        assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("targetscoreadd"));
+    void parseToCommand_target_add_score_instantiateTargetscoreaddCommand() {
+        assertInstanceOf(TargetAddScoreCommand.class, Parser.parseToCommand("target add score"));
     }
 
     @Test
-    void parseToCommand_listtargets_instantiateListtargetsCommand() {
-        assertInstanceOf(TargetListCommand.class, Parser.parseToCommand("listtargets"));
+    void parseToCommand_target_list_instantiateListtargetsCommand() {
+        assertInstanceOf(TargetListCommand.class, Parser.parseToCommand("target list"));
     }
 
     @Test
