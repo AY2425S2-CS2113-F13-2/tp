@@ -311,9 +311,9 @@ your existing save file.
 * Set mode `normal`, `timeLimit`, `zen`, `custom`
 * Set difficulty level `easy`, `intermediate`, `difficult`
 * Set text length `short`, `medium`, `long`
-* Get typing accuracy `typingaccuracy`
 * Get high score `highscore`
 * Get high score list `highscore list`
 * Add target speed `targetspeedadd`
 * Add target score `targetscoreadd`
 * Get milestone `milestone`
+* Exit application `exit`

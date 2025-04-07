@@ -14,6 +14,9 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Command for milestones.
+ */
 public class MilestoneCommand extends Command {
 
     @Override

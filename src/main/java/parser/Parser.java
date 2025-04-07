@@ -5,7 +5,6 @@ package parser;
 import command.Command;
 import command.ExitCommand;
 import command.StartCommand;
-import command.TypingAccuracyCommand;
 import command.HighscoreCommand;
 import command.HighscoreListCommand;
 import command.MilestoneCommand;
@@ -29,8 +28,6 @@ public class Parser {
         switch (userInput) {
         case "start":
             return new StartCommand();
-        case "typingaccuracy":
-            return new TypingAccuracyCommand();
         case "exit":
             return new ExitCommand();
         case "highscore":

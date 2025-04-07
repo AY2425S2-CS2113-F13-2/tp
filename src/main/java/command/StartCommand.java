@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Command for starting typing test and instantiating the appropriate mode of typing test.
+ */
 public class StartCommand extends Command {
 
     @Override

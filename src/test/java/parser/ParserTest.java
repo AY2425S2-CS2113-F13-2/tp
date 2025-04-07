@@ -1,7 +1,6 @@
 package parser;
 
 import command.StartCommand;
-import command.TypingAccuracyCommand;
 import command.ExitCommand;
 import command.HighscoreCommand;
 import command.HighscoreListCommand;
@@ -20,11 +19,6 @@ class ParserTest {
     @Test
     void parseToCommand_start_instantiateStartCommand() {
         assertInstanceOf(StartCommand.class, Parser.parseToCommand("start"));
-    }
-
-    @Test
-    void parseToCommand_typingaccuracy_instantiateTypingAccuracyCommand() {
-        assertInstanceOf(TypingAccuracyCommand.class, Parser.parseToCommand("typingaccuracy"));
     }
 
     @Test
