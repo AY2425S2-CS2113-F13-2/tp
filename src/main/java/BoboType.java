@@ -33,7 +33,7 @@ public class BoboType {
     private final ProgressReport progressReport;
 
 
-    public BoboType(String filepath) throws IOException {
+    public BoboType(String filepath) {
         Storage storage = new Storage(filepath);
         state = new State(storage);
         ui = new Ui(state);
