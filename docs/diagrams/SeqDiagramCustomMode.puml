@@ -1,0 +1,60 @@
+@startuml
+actor User
+participant ":Main" as Main
+participant ":CustomMode" as CustomMode
+participant ":Ui" as Ui
+participant ":TypingTimer" as TypingTimer
+participant ":InputUserText" as InputUserText
+participant ":MarkedText" as MarkedText
+participant ":WordCounter" as WordCounter
+
+User -> Main: start application
+Main -> CustomMode: new CustomMode(ui, scanner)
+activate CustomMode
+
+User -> CustomMode: startCustomMode()
+activate CustomMode
+CustomMode -> Ui: showCustomMode()
+activate Ui
+deactivate Ui
+
+CustomMode -> TypingTimer: start()
+activate TypingTimer
+deactivate TypingTimer
+
+CustomMode -> InputUserText: inputText()
+activate InputUserText
+InputUserText -> CustomMode: return userInput
+deactivate InputUserText
+
+CustomMode -> MarkedText: update(s, userInput)
+activate MarkedText
+deactivate MarkedText
+
+CustomMode -> TypingTimer: stop()
+activate TypingTimer
+deactivate TypingTimer
+
+CustomMode -> WordCounter: countWords(userInput)
+activate WordCounter
+WordCounter -> CustomMode: return wordCount
+deactivate WordCounter
+
+CustomMode -> Ui: showResult()
+activate Ui
+deactivate Ui
+
+CustomMode -> Ui: showTypingSpeedWPM(wpm)
+activate Ui
+deactivate Ui
+
+CustomMode -> Ui: showTypingSpeedCPM(cpm)
+activate Ui
+deactivate Ui
+
+CustomMode -> Ui: showEndCustom()
+activate Ui
+deactivate Ui
+
+deactivate CustomMode
+@enduml
