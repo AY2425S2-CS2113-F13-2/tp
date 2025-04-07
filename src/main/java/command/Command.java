@@ -27,15 +27,17 @@ public abstract class Command {
      * @param milestones The Milestone object used to track user milestones.
      * @param typingTimer The TypingTimer object used to track duration of typing.
      * @param typingAccuracy The TypingAccuracy object used to track typing accuracy.
-     * @param typingTargetList The TypingTargetList object used to list TypingTarget objects .
-     * @param typingTargets To store typing targets
+     * @param typingTargetList The TypingTargetList object used to list TypingTarget objects.
+     * @param typingTargets To store typing targets.
      * @param state State for storage.
      * @param autoAdjust The AutoAdjust object for setting difficulty based on user.
+     * @param command Command the user initially entered.
      * @throws IOException if storage fails.
      */
     public void execute(Ui ui, Scanner sc, Milestones milestones, TypingTimer typingTimer,
                         TypingAccuracy typingAccuracy, TypingTargetList typingTargetList, TypingTargets typingTargets,
-                        State state, AutoAdjust autoAdjust) throws IOException {}
+                        State state, AutoAdjust autoAdjust, String command) throws IOException {
+    }
 
     /**
      * Sets isExit to false by default to continue loop

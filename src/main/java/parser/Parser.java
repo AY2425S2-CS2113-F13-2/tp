@@ -3,16 +3,17 @@ package parser;
 //@@author ravi-viswa105
 
 import command.Command;
+import command.ExitCommand;
 import command.StartCommand;
 import command.TypingAccuracyCommand;
-import command.ExitCommand;
 import command.HighscoreCommand;
-import command.HighscorelistCommand;
+import command.HighscoreListCommand;
 import command.MilestoneCommand;
-import command.TargetspeedaddCommand;
-import command.TargetscoreaddCommand;
-import command.ListtargetsCommand;
 import command.ProgressReportCommand;
+import command.TargetListCommand;
+import command.TargetAddSpeedCommand;
+import command.TargetAddScoreCommand;
+import command.TargetRemoveCommand;
 
 import exceptions.InvalidInputException;
 
@@ -25,19 +26,33 @@ public class Parser {
      */
     //No break as all cases return
     public static Command parseToCommand(String userInput) throws InvalidInputException {
-        return switch (userInput) {
-        case "start" -> new StartCommand();
-        case "typingaccuracy" -> new TypingAccuracyCommand();
-        case "exit" -> new ExitCommand();
-        case "highscore" -> new HighscoreCommand();
-        case "highscorelist" -> new HighscorelistCommand();
-        case "milestone" -> new MilestoneCommand();
-        case "targetspeedadd" -> new TargetspeedaddCommand();
-        case "targetscoreadd" -> new TargetscoreaddCommand();
-        case "listtargets" -> new ListtargetsCommand();
-        case "progress" -> new ProgressReportCommand();
-        default -> throw new InvalidInputException("Invalid input");
-        };
+        switch (userInput) {
+        case "start":
+            return new StartCommand();
+        case "typingaccuracy":
+            return new TypingAccuracyCommand();
+        case "exit":
+            return new ExitCommand();
+        case "highscore":
+            return new HighscoreCommand();
+        case "highscore list":
+            return new HighscoreListCommand();
+        case "milestone":
+            return new MilestoneCommand();
+        case "progress":
+            return new ProgressReportCommand();
+        case "target list":
+            return new TargetListCommand();
+        default:
+            if (userInput.startsWith("target add speed")) {
+                return new TargetAddSpeedCommand();
+            } else if (userInput.startsWith("target add score")) {
+                return new TargetAddScoreCommand();
+            } else if (userInput.startsWith("target remove")) {
+                return new TargetRemoveCommand();
+            }
+            throw new InvalidInputException("Invalid input");
+        }
     }
 }
 
