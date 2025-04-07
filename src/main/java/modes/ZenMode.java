@@ -47,8 +47,7 @@ public class ZenMode {
             String userInput = sc.nextLine();
             if (userInput.equals("start")) {
                 isZenModeStarted = true;
-            }
-            else {
+            } else {
                 ui.showZenModeStartPrompt();
             }
         }

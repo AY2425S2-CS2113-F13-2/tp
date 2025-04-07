@@ -2,7 +2,18 @@ package parser;
 
 //@@author ravi-viswa105
 
-import command.*;
+import command.Command;
+import command.ExitCommand;
+import command.StartCommand;
+import command.TypingAccuracyCommand;
+import command.HighscoreCommand;
+import command.HighscoreListCommand;
+import command.MilestoneCommand;
+import command.ProgressReportCommand;
+import command.TargetListCommand;
+import command.TargetAddSpeedCommand;
+import command.TargetAddScoreCommand;
+import command.TargetRemoveCommand;
 
 import exceptions.InvalidInputException;
 
@@ -25,7 +36,7 @@ public class Parser {
         case "highscore":
             return new HighscoreCommand();
         case "highscore list":
-            return new HighscorelistCommand();
+            return new HighscoreListCommand();
         case "milestone":
             return new MilestoneCommand();
         case "progress":

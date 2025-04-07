@@ -14,7 +14,7 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class HighscorelistCommand extends Command {
+public class HighscoreListCommand extends Command {
 
     @Override
     public void execute(

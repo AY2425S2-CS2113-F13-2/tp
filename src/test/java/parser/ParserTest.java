@@ -4,7 +4,7 @@ import command.StartCommand;
 import command.TypingAccuracyCommand;
 import command.ExitCommand;
 import command.HighscoreCommand;
-import command.HighscorelistCommand;
+import command.HighscoreListCommand;
 import command.MilestoneCommand;
 import command.TargetAddSpeedCommand;
 import command.TargetAddScoreCommand;
@@ -39,7 +39,7 @@ class ParserTest {
 
     @Test
     void parseToCommand_highscorelist_instantiateHighscorelistCommand() {
-        assertInstanceOf(HighscorelistCommand.class, Parser.parseToCommand("highscorelist"));
+        assertInstanceOf(HighscoreListCommand.class, Parser.parseToCommand("highscorelist"));
     }
 
     @Test
