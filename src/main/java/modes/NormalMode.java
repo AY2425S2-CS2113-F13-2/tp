@@ -45,7 +45,7 @@ public class NormalMode {
         this.progressReport = new ProgressReport("data/progress.txt", ui);
     }
 
-    public void startNormalMode(List<String> testText) throws IOException {
+    public void startNormalMode(List<String> testText, String difficultyLevel) throws IOException {
         typingAccuracy.clearUserText();
         typingAccuracy.setTestText((ArrayList<String>) testText);
         int wordCount = 0;
@@ -114,7 +114,7 @@ public class NormalMode {
         // Update the high score
         try {
             state.updateHighScore(typingAccuracy.getTypingAccuracy(), (int) (wordCount / duration));
-            autoAdjust.evaluate();
+            autoAdjust.evaluate(difficultyLevel, typingScore);
             progressReport.update(typingScore);
 
         } catch (IOException e) {

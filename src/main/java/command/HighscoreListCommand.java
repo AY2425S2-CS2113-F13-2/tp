@@ -14,6 +14,9 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Command for printing user's list of top five high scores.
+ */
 public class HighscoreListCommand extends Command {
 
     @Override
