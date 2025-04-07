@@ -14,10 +14,11 @@ import ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 /**
  * Command for listing targets reached.
  */
-public class ListtargetsCommand extends Command {
+public class TargetListCommand extends Command {
     @Override
     public void execute(
             Ui ui,
@@ -28,7 +29,8 @@ public class ListtargetsCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
         ui.drawLine();
         typingTargetList.print();

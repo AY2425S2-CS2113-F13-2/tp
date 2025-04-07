@@ -29,7 +29,8 @@ public class MilestoneCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
         String difficulty = milestones.getCurrentDifficulty();
         ui.showCurrentMilestone(difficulty);

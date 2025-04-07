@@ -30,7 +30,8 @@ public class TypingAccuracyCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
         try {
             ui.showTypingAccuracy(typingAccuracy.getTypingAccuracy());

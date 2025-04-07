@@ -17,7 +17,7 @@ import java.util.Scanner;
 /**
  * Command for printing user's list of top five high scores.
  */
-public class HighscorelistCommand extends Command {
+public class HighscoreListCommand extends Command {
 
     @Override
     public void execute(
@@ -29,7 +29,8 @@ public class HighscorelistCommand extends Command {
             TypingTargetList typingTargetList,
             TypingTargets typingTargets,
             State state,
-            AutoAdjust autoAdjust
+            AutoAdjust autoAdjust,
+            String command
     ) throws IOException {
         ui.showHighScoreList();
     }
