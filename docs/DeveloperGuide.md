@@ -459,7 +459,7 @@ exploratory testing.
 
 2. Open a terminal or command prompt and navigate to the folder containing the JAR file.
 
-3. Run the command: `java -jar BoboType.jar`.
+3. Run the command: ``java -jar [CS2113-F13-2][BoboType].jar``.
 
 Expected: The CLI interface should launch, displaying the welcome message and available commands.
 
@@ -469,7 +469,7 @@ Expected: The CLI interface should launch, displaying the welcome message and av
 
 2. Complete a few exercises and exit the application using the exit command.
 
-3. Restart the application with `java -jar BoboType.jar`.
+3. Restart the application with ``java -jar [CS2113-F13-2][BoboType].jar``.
 
 Expected: User progress and settings from the previous session should be retained.
 
