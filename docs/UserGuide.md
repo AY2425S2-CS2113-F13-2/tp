@@ -171,7 +171,7 @@ Please type
 ____________________________________________________________
 ```
 
-### Set Custom Mode: `custom`
+### Practice in Custom Mode: `custom`
 Allows user to input their custom text to practice typing the text they want.
 
 Format: `custom`
