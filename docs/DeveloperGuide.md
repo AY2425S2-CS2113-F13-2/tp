@@ -201,13 +201,13 @@ Given below is the Class diagram of CustomMode
 
 ### Typing Targets Feature
 
-#### Proposed Implementation
+#### Implementation
 
 Typing Targets are facilitated by `TypingTargetList`, `TypingTarget`, `TypingTargetSpeed`, and `TypingTargetScore`.
 `TypingTargetList` contains various `TypingTarget` instances, which can be of class `TypingTargetSpeed` or
 `TypingTargetScore`.
 
-The user can issue the command `targetspeedadd` or `targetscoreadd` to add a typing target for speed or score
+The user can issue the command `target add speed SPEED` or `target add score SCORE` to add a typing target for speed or score
 respectively. When the target is hit when the user finishes a `normal` typing test, the program will inform the user
 that their target has been successfully reached.
 
