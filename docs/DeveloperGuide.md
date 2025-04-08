@@ -200,15 +200,36 @@ Given below is the Class diagram of CustomMode
 
 ### Typing Targets Feature
 
-#### Proposed Implementation
+#### Implementation
 
 Typing Targets are facilitated by `TypingTargetList`, `TypingTarget`, `TypingTargetSpeed`, and `TypingTargetScore`.
 `TypingTargetList` contains various `TypingTarget` instances, which can be of class `TypingTargetSpeed` or
-`TypingTargetScore`.
+`TypingTargetScore`. Additionally, it is facilitated by `TypingTargets` to save the targets onto the hard disk.
 
-The user can issue the command `targetspeedadd` or `targetscoreadd` to add a typing target for speed or score
-respectively. When the target is hit when the user finishes a `normal` typing test, the program will inform the user
-that their target has been successfully reached.
+Given below is the class diagram of `TypingTargetList`, `TypingTarget`, `TypingTargetSpeed`, and `TypingTargetScore`.
+
+![TypingTargetsClassDiagram.png](images/TypingTargetsClassDiagram.png)
+
+Furthermore, `TypingTargetList` implements the following operations:
+
+- `addTarget(TypingTarget typingTarget)` - Adds a typing target (e.g., a speed or score target) to the internal list.
+- `getTarget(int targetNo)` - Returns a specific typing target from the list. Note that this operation uses one-based indexing (i.e., the first target is accessed with targetNo equal to 1).
+- `removeTarget(int targetNo)` - Removes a specific typing target from the list using one-based indexing.
+- `getTypingTargetList()` - Returns the complete list of typing targets, allowing further manipulation or inspection of the targets.
+- `getTargetCount()` - Returns the total number of typing targets currently stored in the list.
+- `print()` - Prints a formatted list of typing targets. This method iterates over the list and, for each target, it outputs its description by calling the `TypingTarget` object's `getString()` method.
+
+Below is an example usage scenario of how the TypingTargetList is integrated into BoboType:
+
+Step 1. The user starts the application, which initializes a `TypingTargetList` object.  If the `typingtargets.txt` is available, the application will load the saved data to the object.
+
+Step 2. The user adds typing targets using the `target add speed SPEED` or `target add score SCORE` command. This is facilitated by `addTarget(TypingTarget typingTarget)`.
+
+Step 3. The user issues the `target list` command, which calls `print()` to print the list of typing targets to the console.
+
+Step 4. The user completes a normal mode typing test, and the user manages to hit his target speed. The `TypingTarget` object's `setHit()` method is called to update its status, and its `printHit()` function is called to inform the user that they have hit their target speed.
+
+Step 5. The user removes the typing target he has hit using the `target remove TARGET_INDEX` command, which calls `removeTarget(int targetNo)`.
 
 ### Milestones Feature
 
@@ -228,6 +249,7 @@ Additionally, it implements the following operations:
   the user is congratulated with Ui.showMilestoneAchieved.
 
 Given below is an example usage scenario of how Milestones feature behave at each step.
+
 Step 1. The user starts a practice session in normal or timedLimit mode. `Milestones.getCurrentDifficulty()` is used to
 determine their default difficulty (e.g., "easy").
 
@@ -326,6 +348,35 @@ Below is the sequence diagram for `TypingAccuracy`
   - **Pros:** More options available for users
   - **Cons:** Shows redundant information (e.g. You must achieve 100% accuracy in TimeLimit mode to pass anyway)
 
+### Marked Text
+
+#### Implementation
+
+The `MarkedText` class is designed to compare a target text (referred to as the “test line”) with a user’s input and build a marked-up version of the text where correct characters are highlighted in green and errors (mismatches or missing characters) in red using ANSI escape codes.
+
+Two methods are implemented, `update(String testLine, String userInput)` and `print()`.
+
+##### update(String testLine, String userInput)
+
+Step 1: Split Text into Words — Both `testLine` and `userInput` are split by spaces into arrays called `splitTestWords` and `splitUserWords` respectively to prepare for word-by-word comparison.
+
+Step 2: Loop Over Each Word — An outer loop iterates through each index word in `splitTestWords`. 
+- If word exceeds the length of splitUserWords (meaning the word is missing in the user input), the entire word from `splitTestWords[word]` is appended in red.
+
+Step 3: Compare Words Character by Character — If a matching word exists in `splitUserWords`, an inner loop uses an index character to compare each character from both words until the length of the longer word is reached:
+- If the index is beyond the length of `splitTestWords[word]` (extra character in user input), append it in red.
+- If the index is beyond the length of `splitUserWords[word]` (missing character in user input), append the extra character from `splitTestWords[word]` in red.
+- If both characters exist, compare them: append in green if they match, otherwise in red.
+
+##### print()
+
+The print method defines an ANSI reset code (ansiReset as `"\u001B[0m"`) and prints the accumulated markedText along with the reset code. This ensures that the coloring does not affect subsequent output.
+
+#### Design Considerations
+
+Due to certain limitations inherent in Java, particularly when it comes to handling real-time keyboard input across various operating systems, I had to explore different design alternatives. Initially, my goal was to format the text as the user typed—character-by-character—in a dynamic typing test. However, capturing individual key presses without the user pressing "enter" proved to be extremely challenging, given the platform-specific constraints in Java.
+
+After dedicating several hours to researching potential solutions for character-by-character input, I ultimately decided to implement a line-by-line formatting approach. This alternative provided a more reliable and cross-platform compatible solution, ensuring that the typing test could function smoothly regardless of the operating system.
 
 ### Progress Report
 #### Implementation

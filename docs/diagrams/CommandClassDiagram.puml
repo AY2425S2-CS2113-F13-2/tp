@@ -10,37 +10,45 @@ abstract "{abstract}\nCommand" {
     }
 
     class ExitCommand {
-    +execute(...)
-    +isExit()
+        +execute(...)
+        +isExit()
     }
     class HighscoreCommand {
-    +execute(...)
+        +execute(...)
     }
-    class ListtargetsCommand {
-    +execute(...)
+    class HighscoreListCommand {
+        +execute(...)
     }
     class MilestoneCommand {
-    +execute(...)
+        +execute(...)
+    }
+    class ProgressReportCommand {
+        +execute(...)
     }
     class StartCommand {
-    +execute(...)
+        +execute(...)
     }
-    class TargetscoreaddCommand {
-    +execute(...)
+    class TargetAddScoreCommand {
+        +execute(...)
     }
-    class TargetspeedaddCommand {
-    +execute(...)
+    class TargetAddSpeedCommand {
+        +execute(...)
     }
-    class TypingAccuracyCommand {
-    +execute(...)
+    class TargetListCommand {
+        +execute(...)
+    }
+    class TargetRemoveCommand {
+        +execute(...)
     }
 
     "{abstract}\nCommand" <|-- ExitCommand
     "{abstract}\nCommand" <|-- HighscoreCommand
-    "{abstract}\nCommand" <|-- ListtargetsCommand
-    "{abstract}\nCommand" <|-- MilestoneCommand
-    "{abstract}\nCommand" <|-- StartCommand
-    "{abstract}\nCommand" <|-- TargetscoreaddCommand
-    "{abstract}\nCommand" <|-- TargetspeedaddCommand
-    "{abstract}\nCommand" <|-- TypingAccuracyCommand
+    "{abstract}\nCommand" <|--- HighscoreListCommand
+    "{abstract}\nCommand" <|--- MilestoneCommand
+    "{abstract}\nCommand" <|---- ProgressReportCommand
+    "{abstract}\nCommand" <|---- StartCommand
+    "{abstract}\nCommand" <|--- TargetAddScoreCommand
+    "{abstract}\nCommand" <|--- TargetAddSpeedCommand
+    "{abstract}\nCommand" <|-- TargetListCommand
+    "{abstract}\nCommand" <|-- TargetRemoveCommand
 @enduml

@@ -37,6 +37,7 @@ Given below are my contributions to the project.
 
 - **Contributions to the DG**: 
   - Added and formatted the table for user stories
+  - Updated `Command` class diagram with new commands
   - Added implementation and diagrams for the following features:
     - Typing Targets
     - Marked Text

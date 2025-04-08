@@ -1,0 +1,52 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+
+    ' Abstract TypingTarget class
+    abstract class TypingTarget {
+        - target: long
+        - hit: boolean
+        + TypingTarget(target: long, hit: boolean)
+        + getTarget() : long
+        + setHit(hit: boolean) : void
+        + getHit() : boolean
+        + printHit() : void
+        + getString() : String
+    }
+
+    ' TypingTargetList class that contains a list of TypingTarget objects
+    class TypingTargetList {
+        - logger: Logger
+        - typingTargetList: ArrayList<TypingTarget>
+        + addTarget(typingTarget: TypingTarget) : void
+        + getTarget(targetNo: int) : TypingTarget
+        + removeTarget(targetNo: int) : void
+        + getTypingTargetList() : ArrayList<TypingTarget>
+        + getTargetCount() : int
+        + print() : void
+    }
+
+    ' TypingTargetScore extending TypingTarget
+    class TypingTargetScore {
+        + TypingTargetScore(target: long, hit: boolean)
+        + printHit() : void
+        + getString() : String
+    }
+
+    ' TypingTargetSpeed extending TypingTarget
+    class TypingTargetSpeed {
+        + TypingTargetSpeed(target: long, hit: boolean)
+        + printHit() : void
+        + getString() : String
+    }
+
+    ' Inheritance relationships
+    TypingTargetScore --|> TypingTarget
+    TypingTargetSpeed --|> TypingTarget
+
+    ' Aggregation relationship: TypingTargetList contains TypingTarget objects.
+    TypingTargetList "1" o-- "*" TypingTarget : contains
+
+
+@enduml
