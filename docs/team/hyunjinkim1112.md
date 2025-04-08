@@ -25,3 +25,17 @@ Given below are my contributions to the project.
 
 
 - **Code contributed:** [RepoSense link](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=hyu&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&tabOpen=true&tabType=authorship&tabAuthor=hyunjinkim1112&tabRepo=AY2425S2-CS2113-F13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+
+
+- **Contributions to the UG:**
+- Added documentation for the `Normal Mode`, `TimeLimit Mode` feature.
+
+
+- **Contributions to the DG:**
+- Added documentation for the `Normal Mode`, `TimeLimit Mode` feature.
+
+
+- **Contribution to team-based tasks:** 
+- contributed to refactor the code to apply more OOP. 
+
