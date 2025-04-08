@@ -70,8 +70,9 @@ public class TypingTargets {
                     );
                 }
             }
-        } catch (IOException e) {
-            System.err.println("Error reading typing targets file.");
+        } catch (Exception e) {
+            System.err.println("Error reading typing targets file. File might be corrupted. " +
+                    "Please delete data/typingtargets.txt and restart the program!");
         }
     }
 

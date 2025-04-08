@@ -1,6 +1,15 @@
 package parser;
 
-import command.*;
+import command.ExitCommand;
+import command.HighscoreCommand;
+import command.HighscoreListCommand;
+import command.StartCommand;
+import command.MilestoneCommand;
+import command.ProgressReportCommand;
+import command.TargetAddSpeedCommand;
+import command.TargetAddScoreCommand;
+import command.TargetListCommand;
+import command.TargetRemoveCommand;
 import exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
@@ -72,6 +81,4 @@ class ParserTest {
         assertThrows(InvalidInputException.class, () -> Parser.parseToCommand("target add"));
         assertThrows(InvalidInputException.class, () -> Parser.parseToCommand("target delete"));
     }
-
-
 }
