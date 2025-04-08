@@ -8,7 +8,7 @@ real-time feedback, and progress tracking, helping users build muscle memory and
 ## Quick Start
 
 1. Ensure that you have Java 17 or above installed.
-1. Download the latest version of `Bobotype` from [here](https://github.com/AY2425S2-CS2113-F13-2/tp/releases/tag/v1.1).
+1. Download the latest version of `Bobotype` from [here](https://github.com/AY2425S2-CS2113-F13-2/tp/releases/tag/v2.1).
 2. Download the jar file to the folder you want to use as the home folder for your Bobotype.
 3. Open a terminal and navigate to the folder where the jar file is located.
 4. Run the command `java -jar [CS2113-F13-2][BoboType].jar` to start the application.
