@@ -63,7 +63,7 @@ public class CustomMode {
         ui.showTypingSpeedCPM(typingSpeedCPM);
 
         // End custom mode
-        ui.showEndCustom();
+        ui.showEndGame();
 
     }
 }

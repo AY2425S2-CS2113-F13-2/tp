@@ -100,7 +100,7 @@ public class Ui {
         System.out.println(" Top 3 High Scores: ");
         ArrayList<Double> highScoreList = state.getHighScoreList();
         for (int i = 1; i <= Math.min(4, highScoreList.size()); i++) {
-            System.out.println(i + ". " + highScoreList.get(i - 1));
+            System.out.println(" " + i + ". " + highScoreList.get(i - 1));
         }
         drawLine();
     }
@@ -128,9 +128,9 @@ public class Ui {
                 \t - 'highscore list' to view your top 3 high scores\s
                 \t - 'milestone' to view your default difficulty level\s
                 \t - 'target list' to view your typing targets\s
-                \t - 'target add speed' to add a typing speed target\s
-                \t - 'target add score' to add a typing score target\s
-                \t - 'target remove' to remove a typing target\s
+                \t - 'target add speed SPEED' to add a typing speed target\s
+                \t - 'target add score SCORE' to add a typing score target\s
+                \t - 'target remove TARGET_INDEX' to remove a typing target\s
                 \t - 'progress' to view your typing progress\s
                 \t - 'exit' to exit or\s
                 \t - 'start' to start the new practice.""");
@@ -140,18 +140,18 @@ public class Ui {
 
     public void showZenModeInstructions() {
         drawLine();
-        System.out.println("""
-                Welcome to Zen Mode, you can type out anything to your
-                heart's content and find out your typing speed.
-                Typing 'start' on a new line will start the typingTimer and typing the command
-                'stop_practice' on a new line will stop the practice.""");
+        System.out.print("""
+                 Welcome to Zen Mode, you can type out anything to your
+                 heart's content and find out your typing speed.
+                 Typing 'start' on a new line will start the typingTimer and typing the command
+                 'stop_practice' on a new line will stop the practice.
+                """);
         drawLine();
     }
 
     public void showZenModeStartPrompt() {
         drawLine();
-        System.out.println("""
-                Please type 'start' on a new line to start Zen mode""");
+        System.out.println(" Please type 'start' on a new line to start Zen mode");
         drawLine();
     }
 
@@ -167,26 +167,26 @@ public class Ui {
         showTypingSpeedCPM(typingSpeedCPM);
         drawLine();
         System.out.println("""
-                Please type
-                    - 'exit' to exit or
-                    - 'start' to start the new practice.""");
+                     Please type\s
+                    \t - 'exit' to exit or\s
+                    \t - 'start' to start the new practice.""");
         drawLine();
 
     }
 
     public void showTimeLimitModeInstructions(Ui ui) {
         drawLine();
-        System.out.println("Welcome to timeLimit mode.");
-        System.out.println("*** In this mode, you can view your input ONLY after you finish your sentence ***");
-        System.out.println("*** i.e when ENTER is pressed!!! ***");
+        System.out.println(" Welcome to timeLimit mode.");
+        System.out.println(" *** In this mode, you can view your input ONLY after you finish your sentence ***");
+        System.out.println(" *** i.e when ENTER is pressed!!! ***");
         drawLine();
         sleep(ui);
-        System.out.println("Are you ready? The game will begin in...");
+        System.out.println(" Are you ready? The game will begin in...");
         countdown(ui);
     }
     public void showTimeLimitMiddleMessage() {
-        System.out.println("*** Press enter to continue... " +
-                "Previous input (shown below, if any) will be cleared.***");
+        System.out.println(" *** Press enter to continue... " +
+                "Previous input (shown below, if any) will be cleared. ***");
     }
     public void showTimeLimitResult(int numOfLines, int numOfCorrect) {
         System.out.println();
@@ -194,7 +194,7 @@ public class Ui {
         System.out.println(" You finished the timeLimit Mode Practice!");
         System.out.println("\t - Num of correct lines: " + numOfCorrect + " lines out of " + numOfLines + " lines");
         drawLine();
-        System.out.println("*** Please press enter to continue. ***");
+        System.out.println(" *** Please press enter to continue. ***");
     }
 
     public void showMilestoneAchieved(String difficulty, int wpmGoal) {
@@ -227,17 +227,19 @@ public class Ui {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
+            ui.drawLine();
             ui.showErrorMessage(e.getMessage());
+            ui.drawLine();
         }
     }
 
     public void countdown(Ui ui) {
         drawLine();
         for (int countdown = 3; countdown > 0; countdown--) {
-            System.out.println(countdown);
+            System.out.println(" " + countdown);
             sleep(ui);
         }
-        System.out.println("Start!");
+        System.out.println(" Start!");
         drawLine();
         sleep(ui);
     }
@@ -250,7 +252,9 @@ public class Ui {
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
             }
         } catch (Exception e) {
+            ui.drawLine();
             ui.showErrorMessage(e.getMessage());
+            ui.drawLine();
         }
     }
 
@@ -259,7 +263,6 @@ public class Ui {
     }
 
     public void showCustomMode() {
-        drawLine();
         System.out.println(" We will start the Custom Mode Typing Test now.");
     }
 
@@ -272,25 +275,6 @@ public class Ui {
     public void showTextSaved() {
         System.out.println(" Your custom text has been saved.");
     }
-
-    public void showEndCustom() {
-        drawLine();
-
-        System.out.println("""
-                 You finished the practice! Please type\s
-                \t - 'highscore' to view your high score\s
-                \t - 'highscore list' to view your top 3 high scores\s
-                \t - 'milestone' to view your default difficulty level\s
-                \t - 'target list' to view your typing targets\s
-                \t - 'target add speed' to add a typing speed target\s
-                \t - 'target add score' to add a typing score target\s
-                \t - 'target remove' to remove a typing target\s
-                \t - 'progress' to view your typing progress\s
-                \t - 'exit' to exit or\s
-                \t - 'start' to start the new practice.""");
-        drawLine();
-    }
-
 }
 
 

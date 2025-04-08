@@ -168,9 +168,9 @@ public class UiTest {
         assertTrue(output.contains(" - 'highscore list' to view your top 3 high scores"));
         assertTrue(output.contains(" - 'milestone' to view your default difficulty level"));
         assertTrue(output.contains(" - 'target list' to view your typing targets"));
-        assertTrue(output.contains(" - 'target add speed' to add a typing speed target"));
-        assertTrue(output.contains(" - 'target add score' to add a typing score target"));
-        assertTrue(output.contains(" - 'target remove' to remove a typing target"));
+        assertTrue(output.contains(" - 'target add speed SPEED' to add a typing speed target"));
+        assertTrue(output.contains(" - 'target add score SCORE' to add a typing score target"));
+        assertTrue(output.contains(" - 'target remove TARGET_INDEX' to remove a typing target"));
         assertTrue(output.contains(" - 'progress' to view your typing progress"));
         assertTrue(output.contains(" - 'exit' to exit or"));
         assertTrue(output.contains(" - 'start' to start the new practice."));
@@ -180,41 +180,41 @@ public class UiTest {
     void showZenModeInstructions_printsCorrectOutput() {
         ui.showZenModeInstructions();
         String output = outputStream.toString();
-        assertTrue(output.contains("Welcome to Zen Mode, you can type out anything to your"));
-        assertTrue(output.contains("heart's content and find out your typing speed."));
-        assertTrue(output.contains("Typing 'start' on a new line will start the typingTimer and typing the command"));
-        assertTrue(output.contains("'stop_practice' on a new line will stop the practice."));
+        assertTrue(output.contains(" Welcome to Zen Mode, you can type out anything to your"));
+        assertTrue(output.contains(" heart's content and find out your typing speed."));
+        assertTrue(output.contains(" Typing 'start' on a new line will start the typingTimer and typing the command"));
+        assertTrue(output.contains(" 'stop_practice' on a new line will stop the practice."));
     }
 
     @Test
     void showZenModeStartPrompt_printsCorrectOutput() {
         ui.showZenModeStartPrompt();
         String output = outputStream.toString();
-        assertTrue(output.contains("Please type 'start' on a new line to start Zen mode"));
+        assertTrue(output.contains(" Please type 'start' on a new line to start Zen mode"));
     }
 
     @Test
     void showTimeLimitModeInstructions_printsCorrectOutput() {
         ui.showTimeLimitModeInstructions(ui);
         String output = outputStream.toString();
-        assertTrue(output.contains("Welcome to timeLimit mode."));
+        assertTrue(output.contains(" Welcome to timeLimit mode."));
         assertTrue(
-                output.contains("*** In this mode, you can view your input ONLY after you finish your sentence ***")
+                output.contains(" *** In this mode, you can view your input ONLY after you finish your sentence ***")
         );
-        assertTrue(output.contains("*** i.e when ENTER is pressed!!! ***"));
-        assertTrue(output.contains("Are you ready? The game will begin in..."));
-        assertTrue(output.contains("3"));
-        assertTrue(output.contains("2"));
-        assertTrue(output.contains("1"));
-        assertTrue(output.contains("Start!"));
+        assertTrue(output.contains(" *** i.e when ENTER is pressed!!! ***"));
+        assertTrue(output.contains(" Are you ready? The game will begin in..."));
+        assertTrue(output.contains(" 3"));
+        assertTrue(output.contains(" 2"));
+        assertTrue(output.contains(" 1"));
+        assertTrue(output.contains(" Start!"));
     }
 
     @Test
     void showTimeLimitMiddleMessage_printsCorrectOutput() {
         ui.showTimeLimitMiddleMessage();
         String output = outputStream.toString();
-        assertTrue(output.contains("*** Press enter to continue... "));
-        assertTrue(output.contains("Previous input (shown below, if any) will be cleared.***"));
+        assertTrue(output.contains(" *** Press enter to continue... "));
+        assertTrue(output.contains("Previous input (shown below, if any) will be cleared. ***"));
     }
 
     @Test
@@ -223,7 +223,7 @@ public class UiTest {
         String output = outputStream.toString();
         assertTrue(output.contains(" You finished the timeLimit Mode Practice!"));
         assertTrue(output.contains(" - Num of correct lines: 2 lines out of 3 lines"));
-        assertTrue(output.contains("*** Please press enter to continue. ***"));
+        assertTrue(output.contains(" *** Please press enter to continue. ***"));
     }
 
     @Test

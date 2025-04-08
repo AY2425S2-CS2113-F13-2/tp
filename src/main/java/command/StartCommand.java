@@ -89,6 +89,7 @@ public class StartCommand extends Command {
                 break;
 
             default:
+                ui.drawLine();
                 ui.showErrorMessage("Please enter a valid mode: 'normal', 'timeLimit', or 'zen' or 'custom'.");
                 continue;
             }

@@ -66,7 +66,7 @@ public class TimeLimitMode {
             try {
                 userInput = waitForInput(clockThread, reader, timeLimit); // Get user input
             } catch (Exception e) {
-                System.out.println("An error occurred while waiting for input.");
+                System.out.println(" An error occurred while waiting for input.");
             }
 
             ui.clearScreen(ui);
@@ -77,12 +77,12 @@ public class TimeLimitMode {
 
                 if (userInput.equals(s)) {
                     numOfCorrect++;
-                    System.out.println("*** Great! ***");
+                    System.out.println(" *** Great! ***");
                 } else {
-                    System.out.println("*** Wrong! Please be more careful next time! ***");
+                    System.out.println(" *** Wrong! Please be more careful next time! ***");
                 }
             } else {
-                System.out.println("*** Time's up! Try typing faster! ***");
+                System.out.println(" *** Time's up! Try typing faster! ***");
             }
 
             ui.showTimeLimitMiddleMessage();
