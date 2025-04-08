@@ -68,10 +68,10 @@ Example:
 
 ```
 ____________________________________________________________
-3
-2
-1
-Start!
+ 3
+ 2
+ 1
+ Start!
 ____________________________________________________________
 
 ```
@@ -82,11 +82,11 @@ The sun is shining, and birds are singing.
 At the end of each practice, the result will be given: 
 ```
 ____________________________________________________________
-Hope you enjoyed the round! Here are your stats:
-Typing speed (WPM): 49 WPM
-Typing speed (CPM): 245 CPM
-Typing accuracy: 21.43%
-Typing Score (Effective WPM): 10.50 WPM
+ Hope you enjoyed the round! Here are your stats:
+ Typing speed (WPM): 49 WPM
+ Typing speed (CPM): 245 CPM
+ Typing accuracy: 21.43%
+ Typing Score (Effective WPM): 10.50 WPM
 ____________________________________________________________
 ```
 
@@ -99,14 +99,15 @@ Example of timeLimit mode instruction:
 
 ```
 ____________________________________________________________
-Welcome to timeLimit mode.
-*** In this mode, you can view your input ONLY after you finish your sentence ***
-*** i.e when ENTER is pressed!!! ***
+ Welcome to timeLimit mode.
+ *** In this mode, you can view your input ONLY after you finish your sentence ***
+ *** i.e when ENTER is pressed!!! ***
 ____________________________________________________________
-Are you ready? The game will begin in 
-3
-2
-1
+ Are you ready? The game will begin in...
+____________________________________________________________
+ 3
+ 2
+ 1
 ____________________________________________________________
 ```
 On the next page, the test sentence will be given:
@@ -116,24 +117,24 @@ The sun is shining, and birds are singing.
 After the user inputs the sentence or the time is up.
 On the next page, the result statement will be shown in either: 
 ```
-*** Great! ***
-*** Press enter to continue... Previous input (shown below, if any) will be cleared.***
+ *** Great! ***
+ *** Press enter to continue... Previous input (shown below, if any) will be cleared.***
 ```
 ```
-*** Wrong! Please be more careful next time! ***
-*** Press enter to continue... Previous input (shown below, if any) will be cleared.***
+ *** Wrong! Please be more careful next time! ***
+ *** Press enter to continue... Previous input (shown below, if any) will be cleared.***
 ```
 ```
-*** Time's up! Try typing faster! ***
-*** Press enter to continue... Previous input (shown below, if any) will be cleared.***
+ *** Time's up! Try typing faster! ***
+ *** Press enter to continue... Previous input (shown below, if any) will be cleared.***
 ```
 At the end of the entire practice, the final result will be shown:
 ```
 ____________________________________________________________
-You finished the timeLimit Mode Practice! 
+ You finished the timeLimit Mode Practice! 
 	 - Num of correct lines: 1 lines out of 3 lines
 ____________________________________________________________
-*** Please press enter to continue. ***
+ *** Please press enter to continue. ***
 ```
 
 
@@ -146,28 +147,28 @@ Format: `zen`
 Example:
 
 ```
-Welcome to Zen Mode, you can type out anything to your
-heart's content and find out your typing speed.
-Typing 'start' will start the typingTimer and
-typing the command 'stop_practice' will stop the practice.
+ Welcome to Zen Mode, you can type out anything to your
+ heart's content and find out your typing speed.
+ Typing 'start' will start the typingTimer and
+ typing the command 'stop_practice' will stop the practice.
 ```
 
-User types
+User types:
 - `start`
 - `Some Sample Text`
 - `stop_practice`
 
-Returns
+Returns:
 ```
 ____________________________________________________________
-You finished the Zen Mode Practice!
-You have typed: 4 words
-Typing speed (WPM): 33 WPM
-Typing speed (CPM): 246 CPM
+ You finished the Zen Mode Practice!
+ You have typed: 20 words
+ Typing speed (WPM): 33 WPM
+ Typing speed (CPM): 505 CPM
 ____________________________________________________________
-Please type
-- 'exit' to exit or
-- 'start' to start the new practice.
+ Please type
+         - 'exit' to exit or
+         - 'start' to start the new practice.
 ____________________________________________________________
 ```
 
@@ -190,13 +191,14 @@ Format: `highscore list`
 
 Example:
 
-`Top 3 High Scores:`
-
-`1. 49.0`
-
-`2. 30.5`
-
-`3. 12.7`
+```
+____________________________________________________________
+ Top 3 High Scores:
+ 1. 49.0
+ 2. 30.5
+ 3. 12.7
+____________________________________________________________
+```
 
 ### Add Target Speed: `target add speed`
 Add a target speed (WPM) to hit. Users will be informed when they hit their target speed in normal mode.
@@ -278,7 +280,7 @@ Format: `milestone`
 Example:
 ```
 ____________________________________________________________
-Current milestone: intermediate
+ Current milestone: intermediate
 ____________________________________________________________
 ```
 
@@ -290,13 +292,14 @@ Format: `progress`
 
 Example: 
 ```
-Typing Progress (Past 5 sessions):
-Each '█' represents 5 points
-Session 5: ████████████████████                         (97 pts)
-Session 4: ███████████████████████                     (105 pts)
-Session 3: ███████████                                  (55 pts)
-Session 2: ██████████████████                           (85 pts)
-Session 1: █████████████████████████████               (130 pts)
+____________________________________________________________
+ Typing Progress (Past 5 sessions):
+ Each '█' represents 5 points
+ Session 5: ████████████████████                         (97 pts)
+ Session 4: ███████████████████████                     (105 pts)
+ Session 3: ███████████                                  (55 pts)
+ Session 2: ██████████████████                           (85 pts)
+ Session 1: █████████████████████████████               (130 pts)
 ____________________________________________________________
 
 ```

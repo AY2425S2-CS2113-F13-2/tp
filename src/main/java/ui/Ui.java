@@ -100,7 +100,7 @@ public class Ui {
         System.out.println(" Top 3 High Scores: ");
         ArrayList<Double> highScoreList = state.getHighScoreList();
         for (int i = 1; i <= Math.min(4, highScoreList.size()); i++) {
-            System.out.println(i + ". " + highScoreList.get(i - 1));
+            System.out.println(" " + i + ". " + highScoreList.get(i - 1));
         }
         drawLine();
     }
