@@ -164,8 +164,6 @@ public class UiTest {
         ui.showEndGame();
         String output = outputStream.toString();
         assertTrue(output.contains(" You finished the practice! Please type"));
-        assertTrue(output.contains(" - 'typingaccuracy' to view your typing accuracy"));
-        assertTrue(output.contains("    of your previous typing test in normal mode"));
         assertTrue(output.contains(" - 'highscore' to view your high score"));
         assertTrue(output.contains(" - 'highscore list' to view your top 3 high scores"));
         assertTrue(output.contains(" - 'milestone' to view your default difficulty level"));

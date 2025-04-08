@@ -124,8 +124,6 @@ public class Ui {
 
         System.out.println("""
                  You finished the practice! Please type\s
-                \t - 'typingaccuracy' to view your typing accuracy\s
-                \t    of your previous typing test in normal mode\s
                 \t - 'highscore' to view your high score\s
                 \t - 'highscore list' to view your top 3 high scores\s
                 \t - 'milestone' to view your default difficulty level\s
