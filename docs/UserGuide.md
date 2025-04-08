@@ -366,4 +366,5 @@ Advanced users are welcome to update data directly by editing these data files.
 * List targets `target list`
 * Remove target `target remove TARGET_INDEX`
 * Get milestone `milestone`
+* Get progress report `progress`
 * Exit application `exit`
