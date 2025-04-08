@@ -33,7 +33,7 @@ public class Milestones {
      */
     private void load() {
         if (!file.exists()) {
-            save(); // Save defaults if file doesn't exist
+            save();
             return;
         }
 
@@ -43,11 +43,12 @@ public class Milestones {
                 if (line.startsWith("currentDifficulty:")) {
                     currentDifficulty = line.split(":")[1].trim();
                 } else if (!line.isEmpty()) {
-                    achieved.add(line); // Assume it's a difficulty name
+                    achieved.add(line);
                 }
             }
-        } catch (IOException e) {
-            System.err.println("Error reading milestone file.");
+        } catch (Exception e) {
+            System.err.println("Error reading milestones file. File might be corrupted. " +
+                    "Please delete data/milestones.txt and restart the program!");
         }
     }
 

@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import ui.Ui;
 
+/**
+ * Tracks and displays the user's past typing progress.
+ * Stores the last 10 session scores and visualizes them in a CLI-friendly bar graph.
+ */
 public class ProgressReport {
     private static final int MAX_ENTRIES = 10;
     private final File file;
@@ -14,6 +18,13 @@ public class ProgressReport {
     private final Ui ui;
     private int sessionCounter;
 
+    /**
+     * Constructs a ProgressReport instance tied to a file path.
+     * Loads existing progress from the file or initializes a new file.
+     *
+     * @param filePath Path to the progress report file.
+     * @param ui The Ui instance used to show messages.
+     */
     public ProgressReport(String filePath, Ui ui) {
         this.file = new File(filePath);
         this.scores = new ArrayList<>();
@@ -23,8 +34,9 @@ public class ProgressReport {
     }
 
     /**
-     * Loads the progress report from the file.
-     * If the file doesn't exist, it will be initialized with default values.
+     * Loads session counter and scores from the file.
+     * If the file doesn't exist, a new file is initialized.
+     * Displays a recovery message if file is corrupted.
      */
     private void load() {
         scores.clear();
@@ -47,13 +59,15 @@ public class ProgressReport {
                     scores.add(Integer.parseInt(line));
                 }
             }
-        } catch (IOException e) {
-            System.err.println("Unable to load progress report: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error reading progress file. File might be corrupted. " +
+                    "Please delete data/progress.txt and restart the program!");
         }
     }
 
     /**
-     * Saves the latest progress to the file.
+     * Saves the session counter and all stored scores to file.
+     * Overwrites the file contents.
      */
     private void save() {
         try (FileWriter writer = new FileWriter(file)) {
@@ -66,6 +80,12 @@ public class ProgressReport {
         }
     }
 
+    /**
+     * Updates the report with the latest typing score.
+     * Keeps only the most recent 10 scores.
+     *
+     * @param score The new score (WPM * accuracy) to record.
+     */
     public void update(double score) {
         int intScore = (int) score;
         sessionCounter++;
