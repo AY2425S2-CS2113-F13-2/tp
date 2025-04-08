@@ -150,32 +150,11 @@ Below is the simplified sequence diagram for ZenMode
 
 <img src="images/ZenModeSequenceDiagram.png" width="500" />
 
-##### Design Considerations:
-
-**Aspect: How to measure word count:** 
-
-- **Alternate 1 (current choice):** Include stop_practice in word count
-  - Pros: Easy to implement
-  - Cons: May be confusing to users
-- **Alternate 2:** Do not include stop_practice in word count
-  - Pros: Less confusing to users
-  - Cons: Less accurate word count and WPM
-
-**Aspect: Whether to clear screen:**
-
-- **Alternate 1 (current choice):** Do not clear screen
-  - Pros: Easy to implement
-  - Cons: More cluttered for users
-- **Alternate 2:** Clear screen
-  - Pros: More clean experience
-  - Cons: Unable to view previous attempts after starting a new one
-
 ### Custom Mode Feature
 
 #### Implementation
 
-Custom Mode is facilitated by `CustomMode`.
-Additionally, it implements the following operations:
+Custom Mode is facilitated by `CustomMode`. Additionally, it implements the following operations:
 
 - `CustomMode(Ui ui, Scanner sc)` - Constructor to create CustomMode object
 - `startCustomMode()` - Runs input loop to read user input and compute typing statistics
@@ -198,6 +177,26 @@ are calculated and displayed to the user.
 Given below is the Class diagram of CustomMode
 
 <img src="images/SeqDiagramCustomMode.png" width="500" />
+
+##### Design Considerations:
+
+**Aspect: How to measure word count:** 
+
+- **Alternate 1 (current choice):** Include stop_practice in word count
+  - Pros: Easy to implement
+  - Cons: May be confusing to users
+- **Alternate 2:** Do not include stop_practice in word count
+  - Pros: Less confusing to users
+  - Cons: Less accurate word count and WPM
+
+**Aspect: Whether to clear screen:**
+
+- **Alternate 1 (current choice):** Do not clear screen
+  - Pros: Easy to implement
+  - Cons: More cluttered for users
+- **Alternate 2:** Clear screen
+  - Pros: More clean experience
+  - Cons: Unable to view previous attempts after starting a new one
 
 ### Typing Targets Feature
 

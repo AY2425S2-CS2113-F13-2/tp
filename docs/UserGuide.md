@@ -171,7 +171,30 @@ Please type
 ____________________________________________________________
 ```
 
+### Set Custom Mode: `custom`
+Allows user to input their custom text to practice typing the text they want.
 
+Format: `custom`
+
+Example:
+```
+____________________________________________________________
+ Please type your custom text. Press 'Enter' then type 'exit' to finish.
+____________________________________________________________
+```
+
+User types
+- `Some Sample Text`
+- `exit`
+
+Returns
+```
+____________________________________________________________
+ Hope you enjoyed the round! Here are your stats:
+ Typing speed (WPM): 35 WPM
+ Typing speed (CPM): 190 CPM
+____________________________________________________________
+```
 
 ### Get High Score: `highscore`
 Gets back the highest score of the user across all attempts of normal mode.
@@ -299,31 +322,6 @@ Session 2: ██████████████████               
 Session 1: █████████████████████████████               (130 pts)
 ____________________________________________________________
 
-```
-
-### Set Custom Mode: `custom`
-Allows user to input custom text to practice typing.
-
-Format: `custom`
-
-Output:
-```
-____________________________________________________________
- Please type your custom text. Press 'Enter' then type 'exit' to finish.
-____________________________________________________________
-```
-
-User types
-- `Some Sample Text`
-- `exit`
-
-Returns
-```
-____________________________________________________________
- Hope you enjoyed the round! Here are your stats:
- Typing speed (WPM): 35 WPM
- Typing speed (CPM): 190 CPM
-____________________________________________________________
 ```
 
 ### Exit the application: `exit`
