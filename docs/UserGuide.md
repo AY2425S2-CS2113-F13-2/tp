@@ -185,7 +185,7 @@ ____________________________________________________________
 
 User types
 - `Some Sample Text`
-- `exit`
+- `Enter` then `exit`
 
 Returns
 ```

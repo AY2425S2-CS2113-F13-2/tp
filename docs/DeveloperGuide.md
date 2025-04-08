@@ -167,7 +167,7 @@ Step 1. The user selects Custom Mode when selecting the practice mode, instantia
 
 Step 2. Custom mode requires the user to input a custom text to be tested on.
 
-Step 3. The user types `exit`. The loop ends and the user's custom text is saved to a file.
+Step 3. The user inputs ENTER and then types `exit`. The loop ends and the user's custom text is saved to a file.
 
 Step 4. Typing Practice will start for the user, using the custom text they inputted.
 
