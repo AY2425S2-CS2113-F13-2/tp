@@ -150,6 +150,34 @@ Below is the simplified sequence diagram for ZenMode
 
 <img src="images/ZenModeSequenceDiagram.png" width="500" />
 
+### Custom Mode Feature
+
+#### Implementation
+
+Custom Mode is facilitated by `CustomMode`. Additionally, it implements the following operations:
+
+- `CustomMode(Ui ui, Scanner sc)` - Constructor to create CustomMode object
+- `startCustomMode()` - Runs input loop to read user input and compute typing statistics
+- `inputUserText()` - creates a file to store the user's custom text input and puts them into an ArrayList<String>.
+
+Given below is an example usage scenario and how the Custom Mode behaves at each step.
+
+Step 1. The user selects Custom Mode when selecting the practice mode, instantiating a `CustomMode` object and running
+`startCustomMode()`.
+
+Step 2. Custom mode requires the user to input a custom text to be tested on.
+
+Step 3. The user inputs ENTER and then types `exit`. The loop ends and the user's custom text is saved to a file.
+
+Step 4. Typing Practice will start for the user, using the custom text they inputted.
+
+Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm)
+are calculated and displayed to the user.
+
+Given below is the Class diagram of CustomMode
+
+<img src="images/SeqDiagramCustomMode.png" width="500" />
+
 ##### Design Considerations:
 
 **Aspect: How to measure word count:** 
@@ -169,35 +197,6 @@ Below is the simplified sequence diagram for ZenMode
 - **Alternate 2:** Clear screen
   - Pros: More clean experience
   - Cons: Unable to view previous attempts after starting a new one
-
-### Custom Mode Feature
-
-#### Implementation
-
-Custom Mode is facilitated by `CustomMode`.
-Additionally, it implements the following operations:
-
-- `CustomMode(Ui ui, Scanner sc)` - Constructor to create CustomMode object
-- `startCustomMode()` - Runs input loop to read user input and compute typing statistics
-- `inputUserText()` - creates a file to store the user's custom text input and puts them into an ArrayList<String>.
-
-Given below is an example usage scenario and how the Custom Mode behaves at each step.
-
-Step 1. The user selects Custom Mode when selecting the practice mode, instantiating a `CustomMode` object and running
-`startCustomMode()`.
-
-Step 2. Custom mode requires the user to input a custom text to be tested on.
-
-Step 3. The user types `exit`. The loop ends and the user's custom text is saved to a file.
-
-Step 4. Typing Practice will start for the user, using the custom text they inputted.
-
-Step 5. The user completes the round and the words per minute (wpm) and characters per minute (cpm)
-are calculated and displayed to the user.
-
-Given below is the Class diagram of CustomMode
-
-<img src="images/SeqDiagramCustomMode.png" width="500" />
 
 ### Typing Targets Feature
 
